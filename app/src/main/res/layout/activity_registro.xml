@@ -30,14 +30,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                app:layout_constraintBottom_toTopOf="@+id/nameSignup"
+                android:id="@+id/logoSignup"
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/letshang" />
 
             <EditText
                 android:id="@+id/nameSignup"
@@ -143,28 +143,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <ToggleButton
-                        android:id="@+id/toggleSports"
+                    <CheckBox
+                        android:id="@+id/checkBox2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton"
-                        android:textOff="@string/sports"
-                        android:textOn="@string/sports" />
+                        android:gravity="center"
+                        android:text="@string/sports" />
 
-                    <ToggleButton
-                        android:id="@+id/toggleConcerts"
+                    <CheckBox
+                        android:id="@+id/checkBox3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton"
-                        android:textOff="@string/concerts"
-                        android:textOn="@string/concerts" />
+                        android:gravity="center"
+                        android:text="@string/concerts" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -172,46 +174,42 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
 
-                    <ToggleButton
-                        android:id="@+id/toggleTableGames"
+                    <CheckBox
+                        android:id="@+id/checkBox4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton"
-                        android:textOff="@string/tableGames"
-                        android:textOn="@string/tableGames" />
+                        android:gravity="center"
+                        android:text="@string/tableGames" />
 
-                    <ToggleButton
-                        android:id="@+id/toggleParty"
+                    <CheckBox
+                        android:id="@+id/checkBox5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton"
-                        android:textOff="@string/Party"
-                        android:textOn="@string/Party" />
+                        android:gravity="center"
+                        android:text="@string/Party" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <ToggleButton
-                        android:id="@+id/toggleChat"
+                    <CheckBox
+                        android:id="@+id/checkBox6"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton"
-                        android:textOff="@string/Chat"
-                        android:textOn="@string/Chat" />
+                        android:gravity="center"
+                        android:text="@string/Chat" />
 
-                    <ToggleButton
-                        android:id="@+id/toggleConference"
+                    <CheckBox
+                        android:id="@+id/checkBox7"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton"
-                        android:textOff="@string/Conference"
-                        android:textOn="@string/Conference" />
+                        android:gravity="center"
+                        android:text="@string/Conference" />
                 </LinearLayout>
             </LinearLayout>
 
