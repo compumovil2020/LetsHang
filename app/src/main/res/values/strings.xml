@@ -17,4 +17,5 @@
     <string-array name="Cities">
         <item>Bogotá</item>
     </string-array>
+    <string name="mock_event_rules">Para ingresar a este evento es necesario estar acompañado por un adulto responsable. Los participantes deben ser niños o niñas entre la edad de 10 y 14 años. Los participantes son responsables de llevar su propia hidratación y elementos deportivos. El organizador no se responsabiliza por objetos perdidos. Nam nisi est, bibendum quis lectus ut, mattis eleifend neque. Quisque enim turpis, sollicitudin sit amet elit sit amet, malesuada ornare dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam id nibh augue. In interdum quis nibh ut suscipit. Vestibulum fermentum elementum metus, in vulputate erat. Duis vel euismod est, sit amet varius urna. Morbi vel orci nulla. Aliquam a lacus tempus, ultricies turpis sed, eleifend metus. Vestibulum lacinia, dui at cursus laoreet, lectus erat mattis libero, eu ultricies neque sem at sapien. Curabitur a eros sem. Nullam vel euismod erat. Phasellus in turpis ex. Ine hac habitasse platea dictumst. Quisque ut nisl nisl.</string>
 </resources>
