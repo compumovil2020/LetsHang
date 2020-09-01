@@ -14,6 +14,7 @@
     <string name="Party">Fiestas</string>
     <string name="Chat">Charlar</string>
     <string name="Conference">Conferencias</string>
+    <string name="filter">Filtro</string>
     <string-array name="Cities">
         <item>Bogotá</item>
     </string-array>
