@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    android:padding="22"
+    android:padding="14dp"
     tools:context=".LoginActivity">
 
     <Button
@@ -31,6 +31,7 @@
         android:id="@+id/emailSignin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/secondaryColor"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textPersonName"
@@ -44,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:backgroundTint="@color/secondaryColor"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
@@ -57,13 +59,14 @@
         android:layout_marginTop="24dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordSignin">
 
         <Button
             android:id="@+id/signinBtn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/primaryColor"
             android:text="@string/signin" />
@@ -71,7 +74,7 @@
         <Button
             android:id="@+id/forgotBtn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/primaryColor"
             android:text="@string/forgotPswd" />
