@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CrearEvento"></activity>
+        <activity android:name=".ModificarEvento"></activity>
+        <activity android:name=".CrearEvento" />
         <activity android:name=".PrincipalActivity" />
         <activity android:name=".CrearSugerencia" />
         <activity android:name=".MainActivity" />
