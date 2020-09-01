@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".descripcionEvento"
+    tools:context=".DescripcionEvento"
     android:background="@color/backgroundColor"
     android:padding="5dp"
     android:paddingHorizontal="5dp">

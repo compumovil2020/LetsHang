@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class descripcionEvento extends AppCompatActivity {
+public class DescripcionEvento extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

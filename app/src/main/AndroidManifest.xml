@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PrincipalActivity"></activity>
+        <activity android:name=".CrearEvento"></activity>
+        <activity android:name=".PrincipalActivity" />
         <activity android:name=".CrearSugerencia" />
         <activity android:name=".MainActivity" />
         <activity android:name=".InscribirEvento" />
-        <activity android:name=".descripcionEvento" />
+        <activity android:name=".DescripcionEvento" />
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
