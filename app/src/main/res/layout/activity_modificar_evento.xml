@@ -9,7 +9,7 @@
     tools:context=".ModificarEvento">
 
     <Button
-        android:id="@+id/backBtnLogin"
+        android:id="@+id/backBtnModificar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/primaryColor"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="Crear Evento"
+        android:text="Modificar Evento"
         android:textColor="@color/black"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -272,11 +272,11 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/createEvent"
+        android:id="@+id/modifyEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/primaryColor"
-        android:text="Crear Evento"
+        android:text="Modificar Evento"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
