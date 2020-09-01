@@ -149,8 +149,8 @@
                     android:orientation="horizontal">
 
                     <ToggleButton
-                        android:id="@+id/toggleButton2"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/toggleSports"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="ToggleButton"
@@ -158,11 +158,13 @@
                         android:textOn="@string/sports" />
 
                     <ToggleButton
-                        android:id="@+id/toggle"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/toggleConcerts"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton" />
+                        android:text="ToggleButton"
+                        android:textOff="@string/concerts"
+                        android:textOn="@string/concerts" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -171,18 +173,22 @@
                     android:orientation="horizontal">
 
                     <ToggleButton
-                        android:id="@+id/toggleButton5"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/toggleTableGames"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton" />
+                        android:text="ToggleButton"
+                        android:textOff="@string/tableGames"
+                        android:textOn="@string/tableGames" />
 
                     <ToggleButton
-                        android:id="@+id/toggleButton4"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/toggleParty"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton" />
+                        android:text="ToggleButton"
+                        android:textOff="@string/Party"
+                        android:textOn="@string/Party" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -190,18 +196,22 @@
                     android:layout_height="match_parent">
 
                     <ToggleButton
-                        android:id="@+id/toggleButton6"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/toggleChat"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton" />
+                        android:text="ToggleButton"
+                        android:textOff="@string/Chat"
+                        android:textOn="@string/Chat" />
 
                     <ToggleButton
-                        android:id="@+id/toggleButton7"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/toggleConference"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="ToggleButton" />
+                        android:text="ToggleButton"
+                        android:textOff="@string/Conference"
+                        android:textOn="@string/Conference" />
                 </LinearLayout>
             </LinearLayout>
 

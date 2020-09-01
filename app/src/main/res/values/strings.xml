@@ -9,6 +9,11 @@
     <string name="verifyPassword">Verificar Contraseña</string>
     <string name="birth">Fecha de Nacimiento</string>
     <string name="sports">Deportes</string>
+    <string name="concerts">Conciertos</string>
+    <string name="tableGames">Juegos de Mesa</string>
+    <string name="Party">Fiestas</string>
+    <string name="Chat">Charlar</string>
+    <string name="Conference">Conferencias</string>
     <string-array name="Cities">
         <item>Bogotá</item>
     </string-array>
