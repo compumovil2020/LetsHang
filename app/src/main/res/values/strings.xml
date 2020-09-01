@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Lets Hang</string>
+    <string name="back">atras</string>
+    <string name="signup">Registrarse</string>
+    <string name="name">Nombre</string>
+    <string name="email">Correo Electronico</string>
+    <string name="phone">Celular</string>
+    <string name="password">Contraseña</string>
+    <string name="verifyPassword">Verificar Contraseña</string>
+    <string name="birth">Fecha de Nacimiento</string>
+    <string name="sports">Deportes</string>
+    <string-array name="Cities">
+        <item>Bogotá</item>
+    </string-array>
 </resources>
