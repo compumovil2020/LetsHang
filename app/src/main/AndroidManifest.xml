@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity_informacion_perfil"></activity>
+        <activity android:name=".activity_eventos_inscrito"></activity>
+        <activity android:name=".item_evento_descripcion" />
+        <activity android:name=".activity_informacion_perfil" />
         <activity android:name=".ModificarEvento" />
         <activity android:name=".RegistroActivity" />
         <activity android:name=".MapActivity" />
