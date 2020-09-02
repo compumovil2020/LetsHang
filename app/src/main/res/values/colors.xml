@@ -10,4 +10,5 @@
     <color name="terciaryColor">#ff8984</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <color name="gray">#808080</color>
 </resources>
