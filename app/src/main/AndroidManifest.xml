@@ -11,6 +11,10 @@
         android:theme="@style/AppTheme">
         <activity android:name=".InformacionPerfilActivity" />
         <activity android:name=".ModificarEvento" />
+        <activity android:name=".RegistroActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".FiltersActivity" />
         <activity android:name=".CrearEvento" />
         <activity android:name=".PrincipalActivity" />
         <activity android:name=".CrearSugerencia" />
