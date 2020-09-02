@@ -11,8 +11,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activity_informacion_perfil"></activity>
         <activity android:name=".ModificarEvento" />
-        android:theme="@style/AppTheme" >
-        <activity android:name=".ModificarEvento" />
         <activity android:name=".RegistroActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".LoginActivity" />
