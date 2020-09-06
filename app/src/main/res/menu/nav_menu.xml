@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_menu_eventos"
+        android:title="Ver eventos"></item>
+
+    <item
+        android:id="@+id/item_menu_administrar_perfil"
+        android:title="Administrar perfil"></item>
+
+    <item
+        android:id="@+id/item_menu_eventos_inscritos"
+        android:title="Ver eventos inscritos"></item>
+
+    <item
+        android:id="@+id/item_menu__sugerir"
+        android:title="Sugerir evento"></item>
+
+    <item
+        android:id="@+id/item_menu_pago"
+        android:title="Métodos de pago"></item>
+
+    <item
+        android:id="@+id/item_menu_logout"
+        android:title="Verrar sesión"></item>
+</menu>
