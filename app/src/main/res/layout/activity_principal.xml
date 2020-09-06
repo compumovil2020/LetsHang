@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".PrincipalActivity"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/principal_drawer_layout"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     >

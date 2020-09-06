@@ -14,7 +14,7 @@
         android:title="Ver eventos inscritos"></item>
 
     <item
-        android:id="@+id/item_menu__sugerir"
+        android:id="@+id/item_menu_sugerir"
         android:title="Sugerir evento"></item>
 
     <item
@@ -23,5 +23,5 @@
 
     <item
         android:id="@+id/item_menu_logout"
-        android:title="Verrar sesión"></item>
+        android:title="Cerrar sesión"></item>
 </menu>

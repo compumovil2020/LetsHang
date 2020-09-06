@@ -7,20 +7,15 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.google.android.material.navigation.NavigationView;
-
-import javax.xml.datatype.Duration;
 
 public class PrincipalActivity extends AppCompatActivity {
 
@@ -39,7 +34,7 @@ public class PrincipalActivity extends AppCompatActivity {
         filterImage = findViewById(R.id.principalFilterIcon);
         eventLayout = findViewById(R.id.eventLayout);
         listMapSwitch = findViewById(R.id.switch1);
-        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerLayout = findViewById(R.id.principal_drawer_layout);
         navView = findViewById(R.id.principal_nav_view);
 
         setupMenu();
@@ -93,8 +88,30 @@ public class PrincipalActivity extends AppCompatActivity {
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Toast.makeText(getApplicationContext(), item.getTitle() ,Toast.LENGTH_SHORT ).show();
-                return false;
+                if(item.getItemId() ==  R.id.item_menu_administrar_perfil){
+                    Intent intent = new Intent(getApplicationContext() , InformacionPerfil.class);
+                    startActivity(intent);
+                }
+                if(item.getItemId() ==  R.id.item_menu_sugerir){
+                    Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
+                    startActivity(intent);
+                }
+                if(item.getItemId() ==  R.id.item_menu_eventos){
+                    //does nothing
+                }
+                if(item.getItemId() ==  R.id.item_menu_eventos_inscritos){
+                    Intent intent = new Intent(getApplicationContext() , EventosInscritos.class);
+                    startActivity(intent);
+                }
+                if(item.getItemId() ==  R.id.item_menu_logout){
+                    Intent intent = new Intent(getApplicationContext() , LoginActivity.class);
+                    startActivity(intent);
+                }
+                if(item.getItemId() ==  R.id.item_menu_pago){
+                    Toast.makeText(getApplicationContext(), item.getTitle() ,Toast.LENGTH_SHORT ).show();
+
+                }
+                return true;
             }
         });
     }
