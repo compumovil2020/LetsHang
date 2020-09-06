@@ -9,13 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".InformacionPerfilActivity" />
+        <activity android:name=".InformacionPerfil" />
         <activity android:name=".ModificarEvento" />
         <activity android:name=".RegistroActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".FiltersActivity" />
         <activity android:name=".CrearEvento" />
+        <activity android:name=".EventosInscritos" />
         <activity android:name=".PrincipalActivity" />
         <activity android:name=".CrearSugerencia" />
         <activity android:name=".MainActivity" />

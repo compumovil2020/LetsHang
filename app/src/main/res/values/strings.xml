@@ -15,21 +15,11 @@
     <string name="Chat">Charlar</string>
     <string name="Conference">Conferencias</string>
     <string name="filter">Filtro</string>
-    <string-array name="Cities">
-        <item>Bogotá</item>
-    </string-array>
+
     <string name="mock_event_rules">Para ingresar a este evento es necesario estar acompañado por un adulto responsable. Los participantes deben ser niños o niñas entre la edad de 10 y 14 años. Los participantes son responsables de llevar su propia hidratación y elementos deportivos. El organizador no se responsabiliza por objetos perdidos. Nam nisi est, bibendum quis lectus ut, mattis eleifend neque. Quisque enim turpis, sollicitudin sit amet elit sit amet, malesuada ornare dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam id nibh augue. In interdum quis nibh ut suscipit. Vestibulum fermentum elementum metus, in vulputate erat. Duis vel euismod est, sit amet varius urna. Morbi vel orci nulla. Aliquam a lacus tempus, ultricies turpis sed, eleifend metus. Vestibulum lacinia, dui at cursus laoreet, lectus erat mattis libero, eu ultricies neque sem at sapien. Curabitur a eros sem. Nullam vel euismod erat. Phasellus in turpis ex. Ine hac habitasse platea dictumst. Quisque ut nisl nisl.</string>
     <string name="signin">Iniciar Sesión</string>
     <string name="forgotPswd">Olvide Mi Contraseña</string>
 
-    <string-array name="event_types">
-        <item>Deportivo</item>
-        <item>Musical</item>
-        <item>Social</item>
-        <item>Juegos</item>
-        <item>Corporativo</item>
-        <item>Educativo</item>
-    </string-array>
     <string name="title_activity_example">exampleActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -43,6 +33,22 @@
     <string name="menu_slideshow">Slideshow</string>
 
     <string name="home_second">Home Second</string>
+
+    <string name="menu_open_reader">Open menu</string>
+    <string name="menu_close_reader">Close menu</string>
+
+    <string-array name="event_types">
+        <item>Deportivo</item>
+        <item>Musical</item>
+        <item>Social</item>
+        <item>Juegos</item>
+        <item>Corporativo</item>
+        <item>Educativo</item>
+    </string-array>
+
+    <string-array name="Cities">
+        <item>Bogotá</item>
+    </string-array>
 
 
 </resources>

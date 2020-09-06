@@ -8,15 +8,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class CrearSugerencia extends AppCompatActivity {
+public class EventosInscritos extends AppCompatActivity {
 
-    Button enviarSugerencia;
     ActionBarDrawerToggle menuToggle;
     DrawerLayout drawerLayout;
     NavigationView navView;
@@ -24,22 +21,12 @@ public class CrearSugerencia extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_sugerencia);
+        setContentView(R.layout.activity_eventos_inscrito);
 
-        enviarSugerencia = findViewById(R.id.buttonEnviarSugerencia);
-        drawerLayout = findViewById(R.id.sugerencia_drawer_layout);
-        navView = findViewById(R.id.sugerencia_nav_view);
+        drawerLayout = findViewById(R.id.inscritos_drawer_layout);
+        navView = findViewById(R.id.inscritos_nav_view);
 
         setupMenu();
-
-        enviarSugerencia.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext() , PrincipalActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     void setupMenu(){
@@ -61,7 +48,8 @@ public class CrearSugerencia extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() ==  R.id.item_menu_administrar_perfil){
-                    //does nothing
+                    Intent intent = new Intent(getApplicationContext() , InformacionPerfil.class);
+                    startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
                     Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
@@ -72,8 +60,7 @@ public class CrearSugerencia extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos_inscritos){
-                    Intent intent = new Intent(getApplicationContext() , EventosInscritos.class);
-                    startActivity(intent);
+                    // does nothing
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
                     Intent intent = new Intent(getApplicationContext() , LoginActivity.class);
