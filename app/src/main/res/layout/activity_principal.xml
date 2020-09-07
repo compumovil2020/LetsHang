@@ -23,197 +23,96 @@
             tools:context=".PrincipalActivity">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="114dp"
-                android:layout_height="105dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="53dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6"
-                android:background="@drawable/layout_border">
-
-                <TextView
-                    android:id="@+id/textView22"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="36dp"
-                    android:text="Evento"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView29"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="40dp"
-                    android:text="Fecha"
-                    android:textSize="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView22" />
-
-                <TextView
-                    android:id="@+id/textView37"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="41dp"
-                    android:text="Lugar"
-                    android:textSize="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView29" />
-
-                <TextView
-                    android:id="@+id/textView39"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="27dp"
-                    android:text="Organizador"
-                    android:textSize="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView37" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout7"
-                android:layout_width="114dp"
-                android:layout_height="105dp"
-                android:layout_marginStart="59dp"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/layout_border"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
-
-                <TextView
-                    android:id="@+id/textView21"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="35dp"
-                    android:text="Evento"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/textView28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="44dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Fecha"
-                    android:textSize="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-                <TextView
-                    android:id="@+id/textView36"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="45dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Lugar"
-                    android:textSize="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView28" />
-
-                <TextView
-                    android:id="@+id/textView38"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="33dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Organizador"
-                    android:textSize="10dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView36" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
+                style="@style/form_bigOrange"
                 android:layout_width="114dp"
                 android:layout_height="105dp"
-                android:layout_marginTop="134dp"
-                android:layout_marginEnd="50dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="52dp"
+                android:backgroundTint="@color/primaryColor"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/layout_border">
+                app:layout_constraintTop_toBottomOf="@+id/textViewPrincipalTitulo">
 
                 <TextView
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="27dp"
+                    android:layout_marginTop="10dp"
                     android:text="Concierto"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="44dp"
+                    android:layout_marginTop="21dp"
                     android:text="Fecha"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
                 <TextView
                     android:id="@+id/textView30"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="44dp"
+                    android:layout_marginTop="5dp"
                     android:text="Lugar"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
                 <TextView
                     android:id="@+id/textView31"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="5dp"
                     android:text="Organizador"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView30" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout5"
+                style="@style/form_bigOrange"
                 android:layout_width="114dp"
                 android:layout_height="105dp"
                 android:layout_marginStart="59dp"
-                android:layout_marginTop="27dp"
+                android:layout_marginTop="43dp"
+                android:backgroundTint="@color/primaryColor"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
-                android:background="@drawable/layout_border">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
                 <TextView
                     android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="35dp"
+                    android:layout_marginTop="10dp"
                     android:text="Evento"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView26"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="44dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="21dp"
                     android:text="Fecha"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -221,10 +120,11 @@
                     android:id="@+id/textView34"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="44dp"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="5dp"
                     android:text="Lugar"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
@@ -232,10 +132,11 @@
                     android:id="@+id/textView41"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="5dp"
                     android:text="Organizador"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
@@ -243,21 +144,23 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout3"
+                style="@style/form_bigOrange"
                 android:layout_width="114dp"
                 android:layout_height="105dp"
                 android:layout_marginStart="59dp"
-                android:layout_marginTop="27dp"
+                android:layout_marginTop="42dp"
+                android:backgroundTint="@color/primaryColor"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/eventLayout"
-                android:background="@drawable/layout_border">
+                app:layout_constraintTop_toBottomOf="@+id/eventLayout">
 
                 <TextView
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="38dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="10dp"
                     android:text="Picnic"
+                    android:textColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -265,10 +168,11 @@
                     android:id="@+id/textView24"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="44dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="21dp"
                     android:text="Fecha"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -276,10 +180,11 @@
                     android:id="@+id/textView32"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="46dp"
-                    android:layout_marginTop="9dp"
+                    android:layout_marginTop="5dp"
                     android:text="Lugar"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -287,52 +192,58 @@
                     android:id="@+id/textView42"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="29dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="5dp"
                     android:text="Organizador"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/textViewPrincipalFiltro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
-                android:layout_marginTop="73dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="17dp"
+                android:fontFamily="@font/coves_light"
                 android:text="Filtrar"
                 app:layout_constraintStart_toEndOf="@+id/principalFilterIcon"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
             <ImageView
                 android:id="@+id/principalFilterIcon"
-                android:layout_width="33dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="49dp"
-                android:layout_marginTop="58dp"
+                style="@style/icn_filter"
+                android:layout_width="24dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="5dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/eventLayout"
+                style="@style/form_bigOrange"
                 android:layout_width="113dp"
                 android:layout_height="106dp"
                 android:layout_marginStart="60dp"
-                android:layout_marginTop="27dp"
+                android:layout_marginTop="23dp"
+                android:backgroundTint="@color/primaryColor"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/principalFilterIcon"
-                android:background="@drawable/layout_border">
+                app:layout_constraintTop_toBottomOf="@+id/textViewPrincipalTitulo">
 
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="10dp"
                     android:text="Clases de Futbol"
+                    android:textColor="@color/white"
+                    android:textSize="13dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.47"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -342,6 +253,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="21dp"
                     android:text="Junio 8 2020"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -353,6 +265,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Estadio el Campin"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -362,8 +275,9 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="5dp"
                     android:text="Pekerman"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -373,125 +287,198 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout6"
+                style="@style/form_bigOrange"
                 android:layout_width="114dp"
                 android:layout_height="105dp"
-                android:layout_marginTop="27dp"
-                android:layout_marginEnd="53dp"
+                android:layout_marginTop="43dp"
+                android:layout_marginEnd="52dp"
+                android:backgroundTint="@color/primaryColor"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout4"
-                android:background="@drawable/layout_border">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
                 <TextView
                     android:id="@+id/textView20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="36dp"
+                    android:layout_marginTop="10dp"
                     android:text="Evento"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView27"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginTop="21dp"
                     android:text="Fecha"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
                 <TextView
                     android:id="@+id/textView35"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="11dp"
-                    android:layout_marginEnd="44dp"
+                    android:layout_marginTop="5dp"
                     android:text="Lugar"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
                 <TextView
                     android:id="@+id/textView40"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="27dp"
+                    android:layout_marginTop="5dp"
                     android:text="Organizador"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView35" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout4"
+                style="@style/form_bigOrange"
                 android:layout_width="114dp"
                 android:layout_height="105dp"
-                android:layout_marginTop="27dp"
-                android:layout_marginEnd="53dp"
+                android:layout_marginTop="41dp"
+                android:layout_marginEnd="52dp"
+                android:backgroundTint="@color/primaryColor"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
-                android:background="@drawable/layout_border">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
                 <TextView
                     android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_marginTop="10dp"
                     android:text="Evento Musical"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="40dp"
+                    android:layout_marginTop="21dp"
                     android:text="Fecha"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
                 <TextView
                     android:id="@+id/textView33"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="41dp"
+                    android:layout_marginTop="5dp"
                     android:text="Lugar"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
                 <TextView
                     android:id="@+id/textView43"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginEnd="27dp"
+                    android:layout_marginTop="5dp"
                     android:text="Organizador"
+                    android:textColor="@color/white"
                     android:textSize="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="146dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="147dp"
-                android:text="Lista/Mapa"
+            <EditText
+                android:id="@+id/btnPrincipalLista"
+                android:layout_width="48dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="92dp"
+                android:layout_marginTop="22dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Lista"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5" />
+
+            <EditText
+                android:id="@+id/btnPrincipalMapa"
+                android:layout_width="52dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="80dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Mapa"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+
+            <TextView
+                android:id="@+id/textViewPrincipalTitulo"
+                android:layout_width="190dp"
+                android:layout_height="66dp"
+                android:layout_marginStart="110dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="111dp"
+                android:fontFamily="@font/coves_bold"
+                android:gravity="center"
+                android:text="EVENTOS DISPONIBLES"
+                android:textColor="@color/secondaryColor"
+                android:textSize="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout7" />
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/btnPrincipalFeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/white"
+                    app:srcCompat="@drawable/icn_hamburguer" />
+
+                <TextView
+                    android:id="@+id/textViewPrincipalFeed"
+                    android:layout_width="249dp"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/btnPrincipalFeed"
+                    android:gravity="center_vertical"
+                    android:text="FEED"
+                    android:textColor="@color/primaryColor" />
+
+                <ImageView
+                    android:id="@+id/imagePrincipalSuperiorFeed"
+                    android:layout_width="260dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="0dp"
+                    android:layout_toRightOf="@id/textViewPrincipalFeed"
+                    android:foregroundGravity="right"
+                    app:srcCompat="@drawable/logo_lets_hang" />
+            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
