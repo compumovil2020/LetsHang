@@ -14,41 +14,6 @@
         android:layout_height="match_parent"
         tools:context=".FiltersActivity">
 
-        <RelativeLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageButton
-                android:id="@+id/btnPrincipalFeed"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:backgroundTint="@color/white"
-                app:srcCompat="@drawable/icn_hamburguer" />
-
-            <TextView
-                android:id="@+id/textViewPrincipalFeed"
-                android:layout_width="249dp"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@id/btnPrincipalFeed"
-                android:gravity="center_vertical"
-                android:text="FEED"
-                android:textColor="@color/primaryColor" />
-
-            <ImageView
-                android:id="@+id/imagePrincipalSuperiorFeed"
-                android:layout_width="260dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="0dp"
-                android:layout_toRightOf="@id/textViewPrincipalFeed"
-                android:foregroundGravity="right"
-                app:srcCompat="@drawable/logo_lets_hang" />
-        </RelativeLayout>
-
         <CheckBox
             android:id="@+id/checkBox11"
             android:layout_width="wrap_content"
@@ -144,13 +109,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Fecha"
-            android:textSize="18dp"
+            android:text="Tipo de evento"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate2" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextDate2"
+            android:fontFamily="@font/coves_bold"
+            android:textColor="@color/secondaryColor"/>
 
         <TextView
             android:id="@+id/textView6"
@@ -162,14 +129,15 @@
             android:textColor="@color/secondaryColor"
             android:textSize="16dp"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar"
-            tools:layout_editor_absoluteX="149dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="68dp"
             android:fontFamily="@font/coves_bold"
             android:text="Distancia"
             android:textColor="@color/secondaryColor"
@@ -177,7 +145,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <SeekBar
             android:id="@+id/seekBar"
@@ -192,25 +160,25 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="62dp"
+            android:layout_marginTop="112dp"
             android:layout_marginEnd="4dp"
             android:fontFamily="@font/coves_bold"
             android:text="0km"
             android:textSize="16dp"
             app:layout_constraintEnd_toStartOf="@+id/seekBar"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="62dp"
+            android:layout_marginTop="112dp"
             android:fontFamily="@font/coves_bold"
             android:text="200km"
             android:textSize="16dp"
             app:layout_constraintStart_toEndOf="@+id/seekBar"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editTextDate"
@@ -268,17 +236,16 @@
 
         <Button
             android:id="@+id/applyFiltersButton"
+            style="@style/form_normal"
             android:layout_width="126dp"
             android:layout_height="48dp"
-            android:layout_marginStart="144dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/primaryColor"
             android:text="Aplicar Filtros"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox11"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBox11" />
 
         <ImageView
             android:id="@+id/imageView6"
