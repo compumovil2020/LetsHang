@@ -6,7 +6,8 @@
 
     <color name="primaryColor">#D74C04</color>
     <color name="secondaryColor">#009ADB</color>
+    <color name="backgroundColor">#ffffff</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
-    <color name="gray">#808080</color>
+    <color name="gray">#161615</color>
 </resources>

@@ -15,8 +15,8 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        buttonIniciar = findViewById(R.id.logIn);
-        buttonRegistro = findViewById(R.id.register);
+        buttonIniciar = findViewById(R.id.inicioSesionLanding);
+        buttonRegistro = findViewById(R.id.registrarseLanding);
 
         buttonIniciar.setOnClickListener(new View.OnClickListener(){
 

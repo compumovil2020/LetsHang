@@ -45,7 +45,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        style="@style/typ_normal"
                         android:text="Deportes" />
 
                     <CheckBox
@@ -53,7 +52,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        style="@style/typ_normal"
                         android:text="Juegos de Mesa" />
 
                     <CheckBox
@@ -61,7 +59,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        style="@style/typ_normal"
                         android:text="Just Chat" />
                 </LinearLayout>
 
@@ -76,7 +73,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        style="@style/typ_normal"
                         android:text="Conciertos" />
 
                     <CheckBox
@@ -84,7 +80,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        style="@style/typ_normal"
                         android:text="Fiestas" />
 
                     <CheckBox
@@ -92,7 +87,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        style="@style/typ_normal"
                         android:text="Conferencias" />
                 </LinearLayout>
             </LinearLayout>
@@ -103,7 +97,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:textAlignment="center"
-                style="@style/typ_Big"
                 android:text="Intereses"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout2" />
@@ -114,7 +107,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Eventos"
-                style="@style/typ_Big"
                 android:textAlignment="center"
                 android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
@@ -158,7 +150,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="7"
-                    style="@style/typ_normal"
                     android:gravity="center"
                     android:text="Redes Sociales"
                     android:textStyle="bold" />
@@ -213,7 +204,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            style="@style/typ_normal"
                             android:text="Nombre" />
 
                         <TextView
@@ -221,7 +211,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            style="@style/typ_normalGray"
                             android:text="Nombre" />
                     </LinearLayout>
 
@@ -236,7 +225,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            style="@style/typ_normal"
                             android:text="Correo" />
 
                         <TextView
@@ -244,7 +232,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            style="@style/typ_normalGray"
                             android:text="Correo" />
                     </LinearLayout>
 
@@ -260,8 +247,7 @@
                         android:id="@+id/imageView14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_launcher_foreground" />
+                        android:layout_weight="1"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -273,7 +259,6 @@
                 android:text="Información de Perfil"
                 android:textAlignment="center"
                 android:textStyle="bold"
-                style="@style/typ_ReallyBig"
                 app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
