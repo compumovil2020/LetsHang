@@ -29,16 +29,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/logoSignup"
-                android:layout_width="84dp"
-                android:layout_height="84dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/letshang" />
-
             <EditText
                 android:id="@+id/nameSignup"
                 android:layout_width="match_parent"

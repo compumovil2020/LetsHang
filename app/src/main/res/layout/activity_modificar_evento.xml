@@ -57,23 +57,23 @@
 
     <ImageView
         android:id="@+id/imageView10"
-        android:layout_width="46dp"
-        android:layout_height="41dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNombre"
-        app:srcCompat="@drawable/location" />
+        style="@style/icn_location"/>
 
     <ImageView
         android:id="@+id/imageView11"
-        android:layout_width="42dp"
-        android:layout_height="45dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextLugar"
-        app:srcCompat="@drawable/cash" />
+        style="@style/icn_money"/>
 
     <EditText
         android:id="@+id/editTextPrice"
@@ -110,10 +110,10 @@
 
         <ImageView
             android:id="@+id/imageViewInitFecha"
-            android:layout_width="42dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/calendar" />
+            style="@style/icn_calendar" />
 
         <EditText
             android:id="@+id/editTextInitDate"
@@ -127,10 +127,10 @@
 
         <ImageView
             android:id="@+id/imageViewFinishFecha"
-            android:layout_width="42dp"
-            android:layout_height="45dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/calendar" />
+            style="@style/icn_calendar" />
 
         <EditText
             android:id="@+id/editTextFinishDate"

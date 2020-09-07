@@ -1,53 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartActivity"
-    android:background="@color/backgroundColor">
+    android:fillViewport="true"
+    android:background="@drawable/landing_image"
+    tools:context=".StartActivity">
 
-    <ImageView
-        android:id="@+id/imageView5"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@drawable/letshang"
-        android:layout_above="@id/textInicio"
-        android:foregroundGravity="center"
-        android:paddingBottom="50dp"
-        android:layout_marginTop="50dp"/>
+        android:padding="10dp"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textInicio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Todos tus eventos y reuniones en un solo lugar!"
-        android:layout_centerVertical="true"
-        android:paddingLeft="60dp"
-        android:paddingRight="60dp"
-        android:gravity="center"
-        android:textSize="20dp" />
+        <Button
+            android:id="@+id/registrarseLanding"
+            style="@style/form_landing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/signup"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/logIn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
-        android:layout_below="@id/textInicio"
-        android:background="@color/primaryColor"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"/>
+        <Button
+            android:id="@+id/inicioSesionLanding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            style="@style/form_landing"
+            android:text="@string/signin"
+            android:textAllCaps="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registrarseLanding" />
 
-    <Button
-        android:id="@+id/register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Registrarse"
-        android:layout_below="@id/logIn"
-        android:background="@color/primaryColor"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp" />
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/registrarseLanding"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/logo_lets_hang" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/intialMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/initialMessage"
+            style="@style/typ_description_bold"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inicioSesionLanding"
+            tools:layout_editor_absoluteX="172dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
