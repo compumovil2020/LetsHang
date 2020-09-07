@@ -21,7 +21,6 @@ public class PrincipalActivity extends AppCompatActivity {
 
     ImageView filterImage;
     ConstraintLayout eventLayout;
-    Switch listMapSwitch;
     ActionBarDrawerToggle menuToggle;
     DrawerLayout drawerLayout;
     NavigationView navView;
@@ -31,23 +30,14 @@ public class PrincipalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+
+
         filterImage = findViewById(R.id.principalFilterIcon);
         eventLayout = findViewById(R.id.eventLayout);
-        listMapSwitch = findViewById(R.id.switch1);
         drawerLayout = findViewById(R.id.principal_drawer_layout);
         navView = findViewById(R.id.principal_nav_view);
 
         setupMenu();
-
-        listMapSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Intent intent = new Intent(buttonView.getContext() , MapActivity.class);
-                startActivity(intent);
-                listMapSwitch.setChecked(false);
-            }
-
-
-        });
 
         filterImage.setOnClickListener(new View.OnClickListener(){
 

@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
 
     <item
         android:id="@+id/item_menu_eventos"
+        android:icon="@drawable/icn_go"
         android:title="Ver eventos"></item>
 
     <item
         android:id="@+id/item_menu_administrar_perfil"
+        android:icon="@drawable/icn_profile"
         android:title="Administrar perfil"></item>
 
     <item
         android:id="@+id/item_menu_eventos_inscritos"
+        android:icon="@drawable/icn_check"
         android:title="Ver eventos inscritos"></item>
 
     <item
         android:id="@+id/item_menu_sugerir"
+        android:icon="@drawable/icn_suggest"
         android:title="Sugerir evento"></item>
 
     <item
         android:id="@+id/item_menu_pago"
+        android:icon="@drawable/icn_money"
         android:title="Métodos de pago"></item>
 
     <item
         android:id="@+id/item_menu_logout"
+        android:icon="@drawable/icn_salir"
         android:title="Cerrar sesión"></item>
 </menu>
