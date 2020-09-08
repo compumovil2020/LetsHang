@@ -17,6 +17,18 @@ public class FiltersActivity extends AppCompatActivity {
         setContentView(R.layout.activity_filters);
         applyFiltersButton = findViewById(R.id.applyFiltersButton);
 
+        getSupportActionBar().setTitle("");
+
+
+
+        backButton.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         applyFiltersButton.setOnClickListener(new View.OnClickListener(){
 
             @Override

@@ -24,6 +24,9 @@ public class InformacionPerfil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacion_perfil);
 
+        getSupportActionBar().setTitle("Mi perfil");
+
+
         drawerLayout = findViewById(R.id.perfil_drawer_layout);
         navView = findViewById(R.id.perfil_nav_view);
 

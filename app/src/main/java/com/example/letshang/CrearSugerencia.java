@@ -26,6 +26,9 @@ public class CrearSugerencia extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_sugerencia);
 
+        getSupportActionBar().setTitle("Sugerencia");
+
+
         enviarSugerencia = findViewById(R.id.buttonEnviarSugerencia);
         drawerLayout = findViewById(R.id.sugerencia_drawer_layout);
         navView = findViewById(R.id.sugerencia_nav_view);

@@ -16,6 +16,8 @@ public class DescripcionEvento extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_descripcion_evento);
 
+        getSupportActionBar().setTitle("Evento");
+
         backButton = findViewById(R.id.descriptionBackButton);
         enrollButton = findViewById(R.id.descriptionEnrollButton);
 

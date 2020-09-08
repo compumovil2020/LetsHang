@@ -17,6 +17,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        getSupportActionBar().setTitle("Login");
+
         buttonIniciar = findViewById(R.id.signinBtn);
         buttonForgotPassword = findViewById(R.id.forgotBtn);
         buttonAtras = findViewById(R.id.backBtnLogin);

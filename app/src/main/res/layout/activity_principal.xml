@@ -451,20 +451,14 @@
                 android:layout_height="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="5dp">
 
-                <ImageButton
-                    android:id="@+id/btnPrincipalFeed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/white"
-                    app:srcCompat="@drawable/icn_hamburguer" />
 
                 <TextView
                     android:id="@+id/textViewPrincipalFeed"
                     android:layout_width="249dp"
                     android:layout_height="match_parent"
-                    android:layout_toRightOf="@id/btnPrincipalFeed"
                     android:gravity="center_vertical"
                     android:text="FEED"
                     android:textColor="@color/primaryColor" />
