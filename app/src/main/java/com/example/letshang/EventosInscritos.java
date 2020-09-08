@@ -23,6 +23,9 @@ public class EventosInscritos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eventos_inscrito);
 
+        getSupportActionBar().setTitle("Eventos inscritos");
+
+
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
         navView = findViewById(R.id.inscritos_nav_view);
 

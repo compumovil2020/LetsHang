@@ -18,6 +18,9 @@ public class FiltersActivity extends AppCompatActivity {
         backButton = findViewById(R.id.filtersBack);
         applyFiltersButton = findViewById(R.id.applyFiltersButton);
 
+        getSupportActionBar().setTitle("");
+
+
 
         backButton.setOnClickListener(new View.OnClickListener(){
 

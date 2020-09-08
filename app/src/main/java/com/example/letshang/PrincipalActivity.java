@@ -30,15 +30,19 @@ public class PrincipalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
+        // set action bar title
+        getSupportActionBar().setTitle("Feed");
 
-
+        //inflate elements
         filterImage = findViewById(R.id.principalFilterIcon);
         eventLayout = findViewById(R.id.eventLayout);
         drawerLayout = findViewById(R.id.principal_drawer_layout);
         navView = findViewById(R.id.principal_nav_view);
 
+        //setup side menu
         setupMenu();
 
+        //setup listeners
         filterImage.setOnClickListener(new View.OnClickListener(){
 
             @Override
