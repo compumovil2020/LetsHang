@@ -9,7 +9,7 @@ import android.widget.Button;
 public class FiltersActivity extends AppCompatActivity {
 
 
-    Button backButton, applyFiltersButton;
+    Button applyFiltersButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,13 +21,6 @@ public class FiltersActivity extends AppCompatActivity {
 
 
 
-        backButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         applyFiltersButton.setOnClickListener(new View.OnClickListener(){
 
