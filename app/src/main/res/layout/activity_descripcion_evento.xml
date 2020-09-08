@@ -20,7 +20,7 @@
             android:id="@+id/titulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="30dp"
             android:text="Clase de futbol"
             android:textColor="@color/black"
             android:textSize="20dp"
@@ -65,7 +65,7 @@
             android:id="@+id/textviewLocation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="28dp"
             android:text="Parque nacional"
             android:textSize="20dp"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -85,19 +85,17 @@
             android:id="@+id/textViewDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:text="Sabado 16 de agosto"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintStart_toStartOf="@+id/textviewLocation"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView2"
             style="@style/icn_time" />
@@ -106,10 +104,9 @@
             android:id="@+id/textViewTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:text="3:00 PM - 4:00 PM"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintStart_toStartOf="@+id/textViewDate"
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
         <ImageView
@@ -126,16 +123,15 @@
             android:id="@+id/textViewPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:text="30.000$"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintStart_toStartOf="@+id/textViewTime"
             app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
         <ImageView
             android:id="@+id/imageView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -146,28 +142,28 @@
             android:id="@+id/textViewHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:text="Escuela de futbol los galacticos"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintStart_toStartOf="@+id/textViewPrice"
             app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="372dp"
             android:layout_height="55dp"
-            android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
             android:text="Clase para niños y adolecentes entre 10 y 14 años.  Exelente forma de pasar el fin de semana! Terminamos la clase con un partido amistoso."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.41"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView12" />
 
         <Button
             android:id="@+id/descriptionEnrollButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:background="@color/primaryColor"
+            style="@style/form_normal"
             android:text="Registrarse"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -183,16 +179,15 @@
             app:layout_constraintTop_toBottomOf="@+id/titulo"
             app:srcCompat="@drawable/logo_lets_hang" />
 
-        <Button
-            android:id="@+id/descriptionBackButton"
+        <ImageView
+            android:id="@+id/imageView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:text="Atras"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/primaryColor"/>
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            app:srcCompat="@drawable/rute_map" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
