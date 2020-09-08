@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    android:padding="12dp"
     tools:context=".RegistroActivity">
 
     <ScrollView
@@ -18,32 +17,44 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="25dp">
 
-            <Button
-                android:id="@+id/backBtn"
+            <TextView
+                android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/primaryColor"
-                android:text="@string/back"
+                android:layout_marginTop="28dp"
+                android:fontFamily="@font/coves_bold"
+                android:text="@string/Register"
+                android:textAllCaps="true"
+                android:textColor="@color/secondaryColor"
+                android:textSize="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/nameSignup"
+                style="@style/form_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/secondaryColor"
                 android:ems="10"
                 android:hint="@string/name"
                 android:inputType="textPersonName"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/emailSignup"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <EditText
                 android:id="@+id/emailSignup"
+                style="@style/form_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -51,12 +62,15 @@
                 android:ems="10"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
+                android:textAlignment="center"
+                android:textAllCaps="true"
                 app:layout_constraintBottom_toTopOf="@+id/phoneSignup"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/phoneSignup"
+                style="@style/form_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
@@ -64,149 +78,166 @@
                 android:ems="10"
                 android:hint="@string/phone"
                 android:inputType="phone"
+                android:textAlignment="center"
                 app:layout_constraintBottom_toTopOf="@+id/passwordSignup"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/passwordSignup"
+                style="@style/form_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/secondaryColor"
                 android:ems="10"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                app:layout_constraintBottom_toBottomOf="@+id/signupBtn"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/verifyPswd"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/verifyPswd"
+                style="@style/form_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:backgroundTint="@color/secondaryColor"
                 android:ems="10"
                 android:hint="@string/verifyPassword"
                 android:inputType="textPassword"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/passwordSignup" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/coves_bold"
+                android:text="@string/Interests"
+                android:textSize="20dp"
+                app:layout_constraintBottom_toTopOf="@+id/interests"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/verifyPswd" />
+
+            <LinearLayout
+                android:id="@+id/interests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/verifyPswd">
 
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:entries="@array/Cities" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/editTextDate"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/secondaryColor"
-                    android:ems="10"
-                    android:hint="@string/birth"
-                    android:inputType="date" />
+                    <ToggleButton
+                        android:id="@+id/checkBox2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textOff="@string/sports"
+                        android:textOn="@string/sports"
+                        android:textSize="10sp" />
+
+                    <ToggleButton
+                        android:id="@+id/checkBox3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textOff="@string/concerts"
+                        android:textOn="@string/concerts"
+                        android:textSize="10sp" />
+
+                    <ToggleButton
+                        android:id="@+id/checkBox7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textOff="@string/Conference"
+                        android:textOn="@string/Conference"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ToggleButton
+                        android:id="@+id/checkBox4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textOff="@string/tableGames"
+                        android:textOn="@string/tableGames"
+                        android:textSize="10sp" />
+
+                    <ToggleButton
+                        android:id="@+id/checkBox5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textOff="@string/Party"
+                        android:textOn="@string/Party"
+                        android:textSize="10sp" />
+
+                    <ToggleButton
+                        android:id="@+id/checkBox6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textOff="@string/Chat"
+                        android:textOn="@string/Chat"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <EditText
+                android:id="@+id/editTextTextPersonName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
+                android:ems="10"
+                android:hint="@string/AddNew"
+                android:inputType="textPersonName"
                 app:layout_constraintBottom_toTopOf="@+id/signupBtn"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+                app:layout_constraintTop_toBottomOf="@+id/interests" />
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/checkBox2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/sports" />
-
-                    <CheckBox
-                        android:id="@+id/checkBox3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/concerts" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <CheckBox
-                        android:id="@+id/checkBox4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/tableGames" />
-
-                    <CheckBox
-                        android:id="@+id/checkBox5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/Party" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <CheckBox
-                        android:id="@+id/checkBox6"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/Chat" />
-
-                    <CheckBox
-                        android:id="@+id/checkBox7"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/Conference" />
-                </LinearLayout>
-            </LinearLayout>
+            <Button
+                android:id="@+id/button"
+                style="@style/icn_plus"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/signupBtn"
+                app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
+                app:layout_constraintTop_toBottomOf="@+id/interests" />
 
             <Button
                 android:id="@+id/signupBtn"
+                style="@style/form_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/primaryColor"
                 android:text="@string/signup"
                 app:layout_constraintBottom_toBottomOf="parent"

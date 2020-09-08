@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Let \'s Hang</string>
     <string name="back">Atrás</string>
-    <string name="signup">Registrarse</string>
+    <string name="signup">Siguiente</string>
     <string name="inciate">Ingresar</string>
     <string name="name">Nombre</string>
     <string name="remember">Recuérdame</string>
@@ -39,6 +39,9 @@
 
     <string name="menu_open_reader">Open menu</string>
     <string name="menu_close_reader">Close menu</string>
+    <string name="Register">Registro</string>
+    <string name="Interests">Intereses:</string>
+    <string name="AddNew">Agrega Uno Nuevo</string>
 
     <string-array name="event_types">
         <item>Deportivo</item>
