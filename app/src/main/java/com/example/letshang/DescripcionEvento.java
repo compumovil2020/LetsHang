@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class DescripcionEvento extends AppCompatActivity {
 
-    Button backButton, enrollButton;
+    Button enrollButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,16 +18,7 @@ public class DescripcionEvento extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Evento");
 
-        backButton = findViewById(R.id.descriptionBackButton);
         enrollButton = findViewById(R.id.descriptionEnrollButton);
-
-        backButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         enrollButton.setOnClickListener(new View.OnClickListener(){
 

@@ -223,22 +223,22 @@
 
     <style name="icn_profile">
         <item name="android:background">@drawable/icn_profile</item>
-        <item name="android:layout_height">21dp</item>
-        <item name="android:layout_width">21dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
         <item name="android:colorBackground">@color/secondaryColor</item>
     </style>
 
     <style name="icn_money">
         <item name="android:background">@drawable/icn_money</item>
-        <item name="android:layout_height">21dp</item>
-        <item name="android:layout_width">21dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
         <item name="android:colorBackground">@color/secondaryColor</item>
     </style>
 
     <style name="icn_time">
         <item name="android:background">@drawable/icn_time</item>
-        <item name="android:layout_height">21dp</item>
-        <item name="android:layout_width">21dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
         <item name="android:colorBackground">@color/secondaryColor</item>
     </style>
 
