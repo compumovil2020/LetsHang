@@ -14,7 +14,7 @@
         <activity android:name=".RegistroActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".FiltersActivity" />
+        <activity android:name=".StartActivity" />
         <activity android:name=".CrearEvento" />
         <activity android:name=".EventosInscritos" />
         <activity android:name=".PrincipalActivity" />
@@ -22,7 +22,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".InscribirEvento" />
         <activity android:name=".DescripcionEvento" />
-        <activity android:name=".StartActivity">
+        <activity android:name=".FiltersActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
