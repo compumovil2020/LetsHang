@@ -15,7 +15,6 @@ public class FiltersActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filters);
-        backButton = findViewById(R.id.filtersBack);
         applyFiltersButton = findViewById(R.id.applyFiltersButton);
 
         getSupportActionBar().setTitle("");
