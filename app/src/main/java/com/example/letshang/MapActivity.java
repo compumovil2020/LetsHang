@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 
 public class MapActivity extends AppCompatActivity {
 
 
     ImageView filterIcon;
-    Switch listMapSwitch;
+    TextView textList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,15 @@ public class MapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map);
 
         filterIcon = findViewById(R.id.imageFilterMap);
-        listMapSwitch = findViewById(R.id.switch2);
+        textList = findViewById(R.id.btnMapaLista);
+
+        textList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(),PrincipalActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         filterIcon.setOnClickListener(new View.OnClickListener(){
@@ -33,11 +42,6 @@ public class MapActivity extends AppCompatActivity {
             }
         });
 
-        listMapSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                finish();
-            }
-        });
 
     }
 }
