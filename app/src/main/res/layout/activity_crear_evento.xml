@@ -8,84 +8,61 @@
     android:padding="14dp"
     tools:context=".CrearEvento">
 
-    <Button
-        android:id="@+id/backBtnCrear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/primaryColor"
-        android:text="@string/back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/textViewCrearEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:text="Crear Evento"
-        android:textColor="@color/black"
+        android:text="CREAR EVENTO"
+        android:textColor="@color/secondaryColor"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.535"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/coves_bold"/>
 
     <EditText
         android:id="@+id/editTextNombre"
+        style="@style/form_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/secondaryColor"
         android:ems="10"
-        android:hint="Nombre Evento"
+        android:hint="NOMBRE DEL EVENTO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCrearEvento" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewCrearEvento"
+        android:gravity="center"/>
 
     <EditText
         android:id="@+id/editTextLugar"
+        style="@style/form_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/secondaryColor"
         android:ems="10"
-        android:hint="Lugar"
+        android:hint="LUGAR"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView10"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNombre" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNombre"
-        style="@style/icn_location" />
-
-    <ImageView
-        android:id="@+id/imageView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLugar"
-        style="@style/icn_money" />
+        android:gravity="center"/>
 
     <EditText
         android:id="@+id/editTextPrice"
+        style="@style/form_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/secondaryColor"
         android:ems="10"
-        android:hint="Precio"
+        android:hint="VALOR"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView11"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLugar" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLugar"
+        android:gravity="center"/>
 
     <TextView
         android:id="@+id/textViewFechas"
@@ -96,7 +73,9 @@
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPrice"
+        android:textColor="@color/secondaryColor"
+        android:fontFamily="@font/coves_bold"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -108,17 +87,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewFechas">
 
-        <ImageView
-            android:id="@+id/imageViewInitFecha"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            style="@style/icn_calendar" />
-
         <EditText
             android:id="@+id/editTextInitDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:backgroundTint="@color/secondaryColor"
             android:ems="10"
@@ -130,7 +102,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            style="@style/icn_calendar" />
+            style="@style/icn_calendar"
+            />
 
         <EditText
             android:id="@+id/editTextFinishDate"
@@ -152,9 +125,12 @@
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:textColor="@color/secondaryColor"
+        android:fontFamily="@font/coves_bold"/>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -273,13 +249,16 @@
 
     <Button
         android:id="@+id/createEvent"
+        style="@style/form_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/primaryColor"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="15dp"
         android:text="Crear Evento"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
