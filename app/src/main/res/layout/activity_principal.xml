@@ -202,26 +202,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/textViewPrincipalFiltro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="17dp"
-                android:fontFamily="@font/coves_light"
-                android:text="Filtrar"
-                app:layout_constraintStart_toEndOf="@+id/principalFilterIcon"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
-            <ImageView
-                android:id="@+id/principalFilterIcon"
-                style="@style/icn_filter"
-                android:layout_width="24dp"
-                android:layout_height="31dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="5dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/eventLayout"
@@ -430,14 +411,29 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:padding="5dp">
 
+                <LinearLayout
+                    android:layout_width="144dp"
+                    android:layout_height="45dp"
+                    android:layout_marginEnd="-3dp"
+                    android:layout_toStartOf="@+id/imagePrincipalSuperiorFeed"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textViewPrincipalFeed"
-                    android:layout_width="249dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center_vertical"
-                    android:text="FEED"
-                    android:textColor="@color/primaryColor" />
+                    <ImageView
+                        android:id="@+id/principalFilterIcon"
+                        style="@style/icn_filter"
+                        android:layout_width="44dp"
+                        android:layout_height="match_parent" />
+
+                    <TextView
+                        android:id="@+id/textViewPrincipalFiltro"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textSize="30dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/coves_light"
+                        android:text="Filtrar" />
+                </LinearLayout>
 
                 <ImageView
                     android:id="@+id/imagePrincipalSuperiorFeed"
@@ -445,14 +441,17 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
                     android:layout_marginLeft="0dp"
-                    android:layout_toRightOf="@id/textViewPrincipalFeed"
                     android:foregroundGravity="right"
                     app:srcCompat="@drawable/logo_lets_hang" />
+
+
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -10,37 +10,48 @@
     tools:layout_editor_absoluteX="16dp"
     tools:layout_editor_absoluteY="16dp">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <ImageView
-            android:id="@+id/imageFilterMap"
-            style="@style/icn_filter"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout14"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/mapFilterText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/filter"
-            app:layout_constraintStart_toEndOf="@+id/imageFilterMap"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/imageFilterMap"
+                style="@style/icn_filter"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/mapFilterText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filter"
+                android:textSize="30dp"
+                app:layout_constraintStart_toEndOf="@+id/imageFilterMap"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/imageView7"
             android:layout_width="325dp"
             android:layout_height="489dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout14"
             app:srcCompat="@drawable/map" />
 
         <LinearLayout

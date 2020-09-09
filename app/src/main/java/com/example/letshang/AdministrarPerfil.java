@@ -1,19 +1,15 @@
 package com.example.letshang;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class InformacionPerfil extends AppCompatActivity {
+public class AdministrarPerfil extends AppCompatActivity {
 
     ActionBarDrawerToggle menuToggle;
     DrawerLayout drawerLayout;
@@ -22,7 +18,7 @@ public class InformacionPerfil extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_informacion_perfil);
+        setContentView(R.layout.activity_administrar_perfil);
 
         getSupportActionBar().setTitle("Mi perfil");
 
