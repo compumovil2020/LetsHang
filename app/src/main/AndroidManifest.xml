@@ -23,6 +23,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ReglasCondiciones" />
         <activity android:name=".DescripcionEventoActivity" />
+        <activity android:name=".DescripcionEvento" />
         <activity android:name=".InscripcionEventoActivity" />
         <activity android:name=".StartActivity">
             <intent-filter>

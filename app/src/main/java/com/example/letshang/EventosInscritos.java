@@ -3,11 +3,13 @@ package com.example.letshang;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -17,6 +19,7 @@ public class EventosInscritos extends AppCompatActivity {
     ActionBarDrawerToggle menuToggle;
     DrawerLayout drawerLayout;
     NavigationView navView;
+    ConstraintLayout eventLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,7 @@ public class EventosInscritos extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
         navView = findViewById(R.id.inscritos_nav_view);
+        eventLayout = findViewById(R.id.eventoInscritoLayout);
 
         setupMenu();
     }
@@ -74,6 +78,15 @@ public class EventosInscritos extends AppCompatActivity {
 
                 }
                 return true;
+            }
+        });
+
+        eventLayout.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext() , DescripcionEvento.class);
+                startActivity(intent);
             }
         });
     }
