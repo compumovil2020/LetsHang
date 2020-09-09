@@ -18,14 +18,13 @@ public class DescripcionEvento extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Evento");
 
-        enrollButton = findViewById(R.id.btnNextEnroll);
+        enrollButton = findViewById(R.id.btnCancellEvent);
 
         enrollButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext() , ReglasCondiciones.class);
-                startActivity(intent);
+                //TODO: Esto viene de mis eventos luego de esto devolver a la misma
             }
         });
 

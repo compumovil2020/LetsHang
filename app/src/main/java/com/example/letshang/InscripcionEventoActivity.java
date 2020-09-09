@@ -7,25 +7,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ReglasCondiciones extends AppCompatActivity {
+public class InscripcionEventoActivity extends AppCompatActivity {
 
-
-    Button registerButton;
-
+    private Button siguienteBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reglas_condiciones);
+        setContentView(R.layout.activity_inscripcion_evento);
 
-        registerButton = findViewById(R.id.registerButton);
+        siguienteBtn = findViewById(R.id.btnCancellEvent);
 
-        registerButton.setOnClickListener(new View.OnClickListener(){
-
+        siguienteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), PrincipalActivity.class);
+                Intent intent = new Intent(view.getContext(), ReglasCondiciones.class);
                 startActivity(intent);
             }
         });
     }
+
 }

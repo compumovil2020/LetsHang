@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class inscripcionEventoActivity extends AppCompatActivity {
+public class DescripcionEventoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inscripcion_evento);
+        setContentView(R.layout.activity_descripcion_evento);
     }
 }
