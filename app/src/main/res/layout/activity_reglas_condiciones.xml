@@ -36,6 +36,8 @@
             android:layout_marginTop="20dp"
             android:text="@string/mock_event_rules"
             app:layout_constraintEnd_toEndOf="parent"
+            style="@style/typ_normal"
+            android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTermsTitle" />
 
@@ -44,6 +46,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
+            android:fontFamily="@font/coves_bold"
+            android:textSize="16sp"
             android:text="Entiendo los términos y las reglas del evento"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewTerms" />

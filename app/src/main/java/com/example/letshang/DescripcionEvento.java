@@ -13,6 +13,7 @@ public class DescripcionEvento extends AppCompatActivity {
 
     Button enrollButton;
     TextView hostName;
+    private Button cancellButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +27,14 @@ public class DescripcionEvento extends AppCompatActivity {
 
         hostName.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
+        cancellButton = findViewById(R.id.btnCancellEvent);
 
-        enrollButton.setOnClickListener(new View.OnClickListener(){
+        cancellButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                //TODO: Esto viene de mis eventos luego de esto devolver a la misma
+                Intent intent = new Intent(view.getContext(), EventosInscritos.class);
+                startActivity(intent);
             }
         });
 
