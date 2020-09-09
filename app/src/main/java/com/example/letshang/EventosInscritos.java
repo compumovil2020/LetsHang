@@ -57,7 +57,7 @@ public class EventosInscritos extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() ==  R.id.item_menu_administrar_perfil){
-                    Intent intent = new Intent(getApplicationContext() , AdministrarPerfil.class);
+                    Intent intent = new Intent(getApplicationContext() , InformacionPerfilActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
