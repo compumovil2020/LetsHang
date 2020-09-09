@@ -51,7 +51,11 @@
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/white</item>
     </style>
-
+    <style name="typ_normal">
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
     <style name="typ_footer">
         <item name="android:fontFamily">@font/coves_light</item>
         <item name="android:textColor">@color/gray</item>
@@ -135,8 +139,8 @@
 
     <style name="form_bigOrange">
         <item name="android:background">@drawable/icn_big_orange</item>
-        <item name="android:layout_height">105dp</item>
-        <item name="android:layout_width">144dp</item>
+        <item name="android:layout_height">104.5dp</item>
+        <item name="android:layout_width">114dp</item>
         <item name="android:fontFamily">@font/coves_light</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textColor">@color/white</item>

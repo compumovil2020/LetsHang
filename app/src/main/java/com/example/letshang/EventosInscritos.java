@@ -7,7 +7,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.print.PrinterId;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -17,7 +20,7 @@ public class EventosInscritos extends AppCompatActivity {
     ActionBarDrawerToggle menuToggle;
     DrawerLayout drawerLayout;
     NavigationView navView;
-
+    Button addEvent, viewEvent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +32,26 @@ public class EventosInscritos extends AppCompatActivity {
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
         navView = findViewById(R.id.inscritos_nav_view);
 
+        addEvent = findViewById(R.id.addEventInscription);
+        viewEvent = findViewById(R.id.eventOnCar);
+
         setupMenu();
+
+        addEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), PrincipalActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        viewEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), DescripcionEvento.class);
+                startActivity(intent);
+            }
+        });
     }
 
     void setupMenu(){
