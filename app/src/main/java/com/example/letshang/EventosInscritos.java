@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -19,7 +20,7 @@ public class EventosInscritos extends AppCompatActivity {
     ActionBarDrawerToggle menuToggle;
     DrawerLayout drawerLayout;
     NavigationView navView;
-    ConstraintLayout eventLayout;
+    Button btnEventCar, btnAgregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,8 @@ public class EventosInscritos extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
         navView = findViewById(R.id.inscritos_nav_view);
-        eventLayout = findViewById(R.id.eventoInscritoLayout);
+        btnEventCar = findViewById(R.id.eventOnCar);
+        btnAgregar = findViewById(R.id.addEventInscription);
 
         setupMenu();
     }
@@ -81,11 +83,18 @@ public class EventosInscritos extends AppCompatActivity {
             }
         });
 
-        eventLayout.setOnClickListener(new View.OnClickListener(){
-
+        btnEventCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext() , DescripcionEvento.class);
+                Intent intent = new Intent(view.getContext(), DescripcionEvento.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), PrincipalActivity.class);
                 startActivity(intent);
             }
         });

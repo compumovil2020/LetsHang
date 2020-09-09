@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RegistroAdicional"></activity>
-        <activity android:name=".InformacionPerfil" />
+        <activity android:name=".AdministrarPerfil" />
         <activity android:name=".ModificarEvento" />
         <activity android:name=".RegistroActivity" />
         <activity android:name=".MapActivity" />
@@ -22,7 +22,6 @@
         <activity android:name=".CrearSugerencia" />
         <activity android:name=".MainActivity" />
         <activity android:name=".ReglasCondiciones" />
-        <activity android:name=".DescripcionEventoActivity" />
         <activity android:name=".DescripcionEvento" />
         <activity android:name=".PerfilHostActivity" />
         <activity android:name=".InscripcionEventoActivity" />

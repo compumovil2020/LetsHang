@@ -11,7 +11,6 @@ import android.widget.TextView;
 
 public class DescripcionEvento extends AppCompatActivity {
 
-    Button enrollButton;
     TextView hostName;
     private Button cancellButton;
 
@@ -22,7 +21,6 @@ public class DescripcionEvento extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Evento");
 
-        enrollButton = findViewById(R.id.btnCancellEvent);
         hostName = findViewById(R.id.textViewHost);
 
         hostName.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
