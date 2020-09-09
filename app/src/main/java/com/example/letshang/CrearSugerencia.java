@@ -64,7 +64,8 @@ public class CrearSugerencia extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() ==  R.id.item_menu_administrar_perfil){
-                    //does nothing
+                    Intent intent = new Intent(getApplicationContext() , InformacionPerfilActivity.class);
+                    startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
                     Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
