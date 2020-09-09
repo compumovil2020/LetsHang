@@ -160,14 +160,55 @@
 
         <Button
             android:id="@+id/btnNextEnroll"
+            style="@style/form_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            style="@style/form_normal"
-            android:text="Registrarse"
+            android:layout_marginTop="16dp"
+            android:text="@string/Next"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9">
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/coves_bold"
+                android:gravity="center"
+                android:text="Parque"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView36"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/coves_bold"
+                android:gravity="center"
+                android:text="Infantil"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView61"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/coves_bold"
+                android:gravity="center"
+                android:text="Aire Libre"
+                android:textSize="16sp" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/imageView8"

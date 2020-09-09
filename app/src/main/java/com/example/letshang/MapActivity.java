@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 public class MapActivity extends AppCompatActivity {
@@ -22,7 +20,7 @@ public class MapActivity extends AppCompatActivity {
         setContentView(R.layout.activity_map);
 
         filterIcon = findViewById(R.id.imageFilterMap);
-        textList = findViewById(R.id.btnMapaLista);
+        textList = findViewById(R.id.btnListaLista);
 
         textList.setOnClickListener(new View.OnClickListener() {
             @Override

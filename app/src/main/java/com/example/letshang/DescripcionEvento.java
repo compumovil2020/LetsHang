@@ -18,13 +18,13 @@ public class DescripcionEvento extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Evento");
 
-        enrollButton = findViewById(R.id.descriptionEnrollButton);
+        enrollButton = findViewById(R.id.btnNextEnroll);
 
         enrollButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext() , InscribirEvento.class);
+                Intent intent = new Intent(view.getContext() , ReglasCondiciones.class);
                 startActivity(intent);
             }
         });

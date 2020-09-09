@@ -44,6 +44,7 @@
     <string name="AddNew">Agrega Uno Nuevo</string>
     <string name="List"><u>Lista</u></string>
     <string name="Map"><u>Mapa</u></string>
+    <string name="Next">Siguiente</string>
 
     <string-array name="event_types">
         <item>Deportivo</item>
