@@ -4,12 +4,29 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/lets_hang_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/lets_hang_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".InformacionPerfilActivity"></activity>
+        <activity android:name=".RegistroAdicional" />
+        <activity android:name=".AdministrarPerfil" />
+        <activity android:name=".ModificarEvento" />
+        <activity android:name=".RegistroActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".FiltersActivity" />
+        <activity android:name=".CrearEvento" />
+        <activity android:name=".EventosInscritos" />
+        <activity android:name=".PrincipalActivity" />
+        <activity android:name=".CrearSugerencia" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ReglasCondiciones" />
+        <activity android:name=".DescripcionEvento" />
+        <activity android:name=".PerfilHostActivity" />
+        <activity android:name=".InscripcionEventoActivity" />
+        <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,3 +1,64 @@
 <resources>
-    <string name="app_name">Lets Hang</string>
+    <string name="app_name">Let \'s Hang</string>
+    <string name="back">Atrás</string>
+    <string name="signup">Siguiente</string>
+    <string name="inciate">Ingresar</string>
+    <string name="name">Nombre</string>
+    <string name="remember">Recuérdame</string>
+    <string name="email">Correo Electronico</string>
+    <string name="phone">Celular</string>
+    <string name="password">Contraseña</string>
+    <string name="verifyPassword">Verificar Contraseña</string>
+    <string name="birth">Fecha de Nacimiento</string>
+    <string name="sports">Deportes</string>
+    <string name="concerts">Conciertos</string>
+    <string name="tableGames">Juegos de Mesa</string>
+    <string name="Party">Fiestas</string>
+    <string name="Chat">Charlar</string>
+    <string name="Conference">Conferencias</string>
+    <string name="filter">Filtrar</string>
+    <string name="initialMessage">Todos tus eventos y reuniones
+    ¡En un solo lugar!</string>
+    <string name="mock_event_rules">Para ingresar a este evento es necesario estar acompañado por un adulto responsable. Los participantes deben ser niños o niñas entre la edad de 10 y 14 años. Los participantes son responsables de llevar su propia hidratación y elementos deportivos. El organizador no se responsabiliza por objetos perdidos. Nam nisi est, bibendum quis lectus ut, mattis eleifend neque. Quisque enim turpis, sollicitudin sit amet elit sit amet, malesuada ornare dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam id nibh augue. In interdum quis nibh ut suscipit. Vestibulum fermentum elementum metus, in vulputate erat. Duis vel euismod est, sit amet varius urna. Morbi vel orci nulla. Aliquam a lacus tempus, ultricies turpis sed, eleifend metus. Vestibulum lacinia, dui at cursus laoreet, lectus erat mattis libero, eu ultricies neque sem at sapien. Curabitur a eros sem. Nullam vel euismod erat. Phasellus in turpis ex. Ine hac habitasse platea dictumst. Quisque ut nisl nisl.</string>
+    <string name="signin">Iniciar Sesión</string>
+    <string name="forgotPswd">Olvidé mi contraseña</string>
+
+    <string name="title_activity_example">exampleActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+
+    <string name="menu_open_reader">Open menu</string>
+    <string name="menu_close_reader">Close menu</string>
+    <string name="Register">Registro</string>
+    <string name="Interests">Intereses:</string>
+    <string name="AddNew">Agrega Uno Nuevo</string>
+    <string name="List"><u>Lista</u></string>
+    <string name="Map"><u>Mapa</u></string>
+    <string name="Next">Siguiente</string>
+    <string name="ProfileAdmin">ADMINISTRAR PERFIL</string>
+
+    <string-array name="event_types">
+        <item>Deportivo</item>
+        <item>Musical</item>
+        <item>Social</item>
+        <item>Juegos</item>
+        <item>Corporativo</item>
+        <item>Educativo</item>
+    </string-array>
+
+    <string-array name="Cities">
+        <item>Bogotá</item>
+    </string-array>
+
+
 </resources>

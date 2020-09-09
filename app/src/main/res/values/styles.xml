@@ -7,5 +7,312 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- ATOM STYLES -->
+    <!-- Typography -->
+    <style name="typ_Title">
+        <item name="fontFamily">@font/cheetah_kick</item>
+        <item name="android:textSize">75sp</item>
+        <item name="android:textColor">@color/secondaryColor</item>
+    </style>
+
+    <style name="typ_TitleMedium">
+        <item name="fontFamily">@font/coves_bold</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/secondaryColor</item>
+    </style>
+
+    <style name="typ_reallyBig">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/coves_light</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+    <style name="typ_description_bold">
+        <item name="android:fontFamily">@font/coves_bold</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="typ_medium_bold">
+        <item name="android:fontFamily">@font/coves_bold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="typ_medium">
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="typ_small">
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="typ_small_bold">
+        <item name="android:fontFamily">@font/coves_bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="typ_normal">
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+    <style name="typ_footer">
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">21sp</item>
+    </style>
+
+    <!-- Forms -->
+
+    <style name="form_landing">
+        <item name="android:background">@drawable/button_landing</item>
+        <item name="android:layout_height">77dp</item>
+        <item name="android:layout_width">250dp</item>
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="form_normal">
+        <item name="android:background">@drawable/icn_button</item>
+        <item name="android:layout_height">47dp</item>
+        <item name="android:layout_width">153dp</item>
+        <item name="android:fontFamily">@font/coves_bold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    <style name="form_big">
+        <item name="android:background">@drawable/text_form</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">303dp</item>
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="form_back">
+        <item name="android:background">@drawable/back_button</item>
+        <item name="android:layout_width">91dp</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="fontFamily">@font/coves_bold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:text">@string/back</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="form_lineBlack">
+        <item name="android:background">@drawable/line_gray</item>
+        <item name="android:layout_width">84dp</item>
+        <item name="android:layout_height">0.5dp</item>
+    </style>
+
+    <style name="form_small_blue">
+        <item name="android:background">@drawable/icn_blue_small</item>
+        <item name="android:layout_width">153dp</item>
+        <item name="android:layout_height">47dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">@font/coves_bold</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/secondaryColor</item>
+    </style>
+
+    <style name="form_fill_star">
+        <item name="android:background">@drawable/icn_full_star</item>
+        <item name="android:layout_width">21dp</item>
+        <item name="android:layout_height">19dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+    <style name="form_empty_star">
+        <item name="android:background">@drawable/icn_empty_star</item>
+        <item name="android:layout_width">21dp</item>
+        <item name="android:layout_height">19dp</item>
+    </style>
+
+    <style name="form_reallyBig">
+        <item name="android:background">@drawable/icn_really_big</item>
+        <item name="android:layout_height">272dp</item>
+        <item name="android:layout_width">327dp</item>
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="form_bigOrange">
+        <item name="android:background">@drawable/icn_big_orange</item>
+        <item name="android:layout_height">104.5dp</item>
+        <item name="android:layout_width">114dp</item>
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="form_small">
+        <item name="android:background">@drawable/icn_small</item>
+        <item name="android:layout_height">47dp</item>
+        <item name="android:layout_width">153dp</item>
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="form_medium">
+        <item name="android:background">@drawable/icn_medium</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">266dp</item>
+        <item name="android:fontFamily">@font/coves_light</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <!-- Iconography -->
+    <style name="icn_facebookLogIn">
+        <item name="android:background">@drawable/icn_facebook</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+    <style name="icn_gmail">
+        <item name="android:background">@drawable/icon_gmail</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">40dp</item>
+    </style>
+
+    <style name="icn_yahoo">
+        <item name="android:background">@drawable/icn_yahoo</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
+    </style>
+
+    <style name="icn_facebook">
+        <item name="android:background">@drawable/icn_facebook</item>
+        <item name="android:layout_height">22dp</item>
+        <item name="android:layout_width">22dp</item>
+    </style>
+
+    <style name="icn_call">
+        <item name="android:background">@drawable/icn_call</item>
+        <item name="android:layout_height">21dp</item>
+        <item name="android:layout_width">21dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+    <style name="icn_go">
+        <item name="android:background">@drawable/icn_go</item>
+        <item name="android:layout_height">19dp</item>
+        <item name="android:layout_width">16dp</item>
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="icn_check">
+        <item name="android:background">@drawable/icn_check</item>
+        <item name="android:layout_height">17dp</item>
+        <item name="android:layout_width">17dp</item>
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="icn_sugesst">
+        <item name="android:background">@drawable/icn_suggest</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_width">22dp</item>
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="icn_signout">
+        <item name="android:background">@drawable/icn_salir</item>
+        <item name="android:layout_height">20dp</item>
+        <item name="android:layout_width">20dp</item>
+        <item name="android:colorBackground">@color/white</item>
+    </style>
+
+    <style name="icn_profile">
+        <item name="android:background">@drawable/icn_profile</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+    <style name="icn_money">
+        <item name="android:background">@drawable/icn_money</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+    <style name="icn_time">
+        <item name="android:background">@drawable/icn_time</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+    <style name="icn_hamburguer">
+        <item name="android:background">@drawable/icn_hamburguer</item>
+        <item name="android:layout_height">21dp</item>
+        <item name="android:layout_width">21dp</item>
+        <item name="android:colorBackground">@color/primaryColor</item>
+    </style>
+
+    <style name="icn_filter">
+        <item name="android:background">@drawable/icn_filter</item>
+        <item name="android:layout_height">27dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:colorBackground">@color/black</item>
+    </style>
+
+    <style name="icn_linkedin">
+        <item name="android:background">@drawable/icn_linkedin</item>
+        <item name="android:layout_height">23dp</item>
+        <item name="android:layout_width">23dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+    <style name="icn_instagram">
+        <item name="android:background">@drawable/icn_instagram</item>
+        <item name="android:layout_height">27dp</item>
+        <item name="android:layout_width">27dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+    <style name="icn_calendar">
+        <item name="android:background">@drawable/icn_calendar</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">29dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+    <style name="icn_location">
+        <item name="android:background">@drawable/icn_location</item>
+        <item name="android:layout_height">27dp</item>
+        <item name="android:layout_width">19dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+    <style name="icn_plus">
+        <item name="android:background">@drawable/plus_icon</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">30dp</item>
+        <item name="android:colorBackground">@color/secondaryColor</item>
+    </style>
+
+
+
 
 </resources>
