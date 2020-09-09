@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -24,6 +25,7 @@ public class PrincipalActivity extends AppCompatActivity {
     ActionBarDrawerToggle menuToggle;
     DrawerLayout drawerLayout;
     NavigationView navView;
+    TextView textMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class PrincipalActivity extends AppCompatActivity {
         eventLayout = findViewById(R.id.eventLayout);
         drawerLayout = findViewById(R.id.principal_drawer_layout);
         navView = findViewById(R.id.principal_nav_view);
+        textMap = findViewById(R.id.btnListaMapa);
 
         //setup side menu
         setupMenu();
@@ -57,6 +60,14 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext() , DescripcionEvento.class);
+                startActivity(intent);
+            }
+        });
+
+        textMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MapActivity.class);
                 startActivity(intent);
             }
         });
