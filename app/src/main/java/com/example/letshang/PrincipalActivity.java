@@ -10,9 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -94,7 +92,7 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() ==  R.id.item_menu_administrar_perfil){
-                    Intent intent = new Intent(getApplicationContext() , InformacionPerfil.class);
+                    Intent intent = new Intent(getApplicationContext() , AdministrarPerfil.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
