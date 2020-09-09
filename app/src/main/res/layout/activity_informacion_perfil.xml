@@ -90,7 +90,7 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/icn_location" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView46"
                 style="@style/form_medium"
                 android:layout_width="match_parent"
@@ -117,7 +117,7 @@
                 android:layout_weight="1"
                 app:srcCompat="@drawable/icn_calendar" />
 
-            <TextView
+            <EditText
                 android:id="@+id/textView47"
                 style="@style/form_medium"
                 android:layout_width="wrap_content"

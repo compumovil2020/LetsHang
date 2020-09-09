@@ -28,7 +28,7 @@ public class InformacionPerfil extends AppCompatActivity {
 
 
         drawerLayout = findViewById(R.id.perfil_drawer_layout);
-        navView = findViewById(R.id.perfil_nav_view);
+        //navView = findViewById(R.id.perfil_nav_view);
 
         setupMenu();
     }
@@ -47,7 +47,7 @@ public class InformacionPerfil extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
 
 
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+        /*navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -76,7 +76,7 @@ public class InformacionPerfil extends AppCompatActivity {
                 }
                 return true;
             }
-        });
+        });*/
     }
 
 
