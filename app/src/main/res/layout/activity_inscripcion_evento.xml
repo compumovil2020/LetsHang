@@ -29,36 +29,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewCategoria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:text="Categoria: Deportes"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:text="Deporte: Futbol"
-            android:textSize="20dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewCategoria" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/imageView8"
             app:srcCompat="@drawable/icn_location" />
 
         <TextView
@@ -67,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:text="Parque nacional"
-            android:textSize="20dp"
+            style="@style/typ_normal"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
@@ -86,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Sabado 16 de agosto"
-            android:textSize="20dp"
+            style="@style/typ_normal"
             app:layout_constraintStart_toStartOf="@+id/textviewLocation"
             app:layout_constraintTop_toTopOf="@+id/imageView2" />
 
@@ -105,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3:00 PM - 4:00 PM"
-            android:textSize="20dp"
+            style="@style/typ_normal"
             app:layout_constraintStart_toStartOf="@+id/textViewDate"
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
@@ -124,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="30.000$"
-            android:textSize="20dp"
+            style="@style/typ_normal"
             app:layout_constraintStart_toStartOf="@+id/textViewTime"
             app:layout_constraintTop_toTopOf="@+id/imageView4" />
 
@@ -143,7 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Escuela de futbol los galacticos"
-            android:textSize="20dp"
+            style="@style/typ_normal"
             app:layout_constraintStart_toStartOf="@+id/textViewPrice"
             app:layout_constraintTop_toTopOf="@+id/imageView5" />
 
@@ -152,6 +129,7 @@
             android:layout_width="372dp"
             android:layout_height="55dp"
             android:layout_marginTop="20dp"
+            style="@style/typ_normal"
             android:text="Clase para niños y adolecentes entre 10 y 14 años.  Exelente forma de pasar el fin de semana! Terminamos la clase con un partido amistoso."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.41"
@@ -184,30 +162,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/coves_bold"
+                android:fontFamily="@font/coves_light"
                 android:gravity="center"
                 android:text="Parque"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView36"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/coves_bold"
+                android:fontFamily="@font/coves_light"
                 android:gravity="center"
                 android:text="Infantil"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView61"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/coves_bold"
+                android:fontFamily="@font/coves_light"
                 android:gravity="center"
                 android:text="Aire Libre"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <ImageView
