@@ -59,7 +59,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext() , DescripcionEvento.class);
+                Intent intent = new Intent(view.getContext() , InscripcionEventoActivity.class);
                 startActivity(intent);
             }
         });

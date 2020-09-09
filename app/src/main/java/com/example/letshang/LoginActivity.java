@@ -3,15 +3,18 @@ package com.example.letshang;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
 
-    Button buttonIniciar, buttonForgotPassword, buttonAtras;
+    Button buttonIniciar, buttonForgotPassword;
+    TextView registarText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,8 +24,10 @@ public class LoginActivity extends AppCompatActivity {
 
         buttonIniciar = findViewById(R.id.signinBtn);
         buttonForgotPassword = findViewById(R.id.forgotBtn);
-        buttonAtras = findViewById(R.id.backBtnLogin);
 
+        registarText = findViewById(R.id.registerLogin);
+
+        registarText.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         buttonIniciar.setOnClickListener(new View.OnClickListener(){
 
@@ -42,17 +47,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        buttonAtras.setOnClickListener(new View.OnClickListener(){
-
+        registarText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(view.getContext(), RegistroActivity.class);
+                startActivity(intent);
             }
         });
-
-
-
-
 
     }
 }
