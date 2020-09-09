@@ -3,13 +3,16 @@ package com.example.letshang;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class DescripcionEvento extends AppCompatActivity {
 
     Button enrollButton;
+    TextView hostName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,12 +22,24 @@ public class DescripcionEvento extends AppCompatActivity {
         getSupportActionBar().setTitle("Evento");
 
         enrollButton = findViewById(R.id.btnCancellEvent);
+        hostName = findViewById(R.id.textViewHost);
+
+        hostName.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+
 
         enrollButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
                 //TODO: Esto viene de mis eventos luego de esto devolver a la misma
+            }
+        });
+
+        hostName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), PerfilHostActivity.class);
+                startActivity(intent);
             }
         });
 
