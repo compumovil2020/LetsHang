@@ -45,6 +45,7 @@
     <string name="List"><u>Lista</u></string>
     <string name="Map"><u>Mapa</u></string>
     <string name="Next">Siguiente</string>
+    <string name="ProfileAdmin">ADMINISTRAR PERFIL</string>
 
     <string-array name="event_types">
         <item>Deportivo</item>
