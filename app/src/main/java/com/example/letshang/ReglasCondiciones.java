@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class InscribirEvento extends AppCompatActivity {
+public class ReglasCondiciones extends AppCompatActivity {
 
 
     Button registerButton;
@@ -14,7 +14,7 @@ public class InscribirEvento extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inscribir_evento);
+        setContentView(R.layout.activity_reglas_condiciones);
 
         registerButton = findViewById(R.id.registerButton);
 
