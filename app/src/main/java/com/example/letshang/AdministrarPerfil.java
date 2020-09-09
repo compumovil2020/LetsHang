@@ -29,7 +29,7 @@ public class AdministrarPerfil extends AppCompatActivity {
         drawerLayout = findViewById(R.id.perfil_drawer_layout);
         //navView = findViewById(R.id.perfil_nav_view);
 
-        setupMenu();
+        //setupMenu();
     }
 
     void setupMenu(){
