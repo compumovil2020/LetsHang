@@ -10,268 +10,235 @@
     android:layout_width="match_parent">
 
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/backgroundColor"
         android:fillViewport="true">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="@color/backgroundColor"
             android:layout_height="match_parent"
-            android:padding="5dp"
-            >
+            android:padding="16dp">
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="112dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="24dp">
+        <TextView
+            android:id="@+id/textView45"
+            style="@style/typ_TitleMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/ProfileAdmin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
+        <EditText
+            android:id="@+id/editTextTextPersonName2"
+            style="@style/form_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textPersonName"
+            android:text="Cosme Fulanito"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
-                    <CheckBox
-                        android:id="@+id/checkBox14"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Deportes" />
+        <EditText
+            android:id="@+id/editTextTextEmailAddress"
+            style="@style/form_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="textEmailAddress"
+            android:text="cosme@micorreo.com"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
-                    <CheckBox
-                        android:id="@+id/checkBox15"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Juegos de Mesa" />
+        <EditText
+            android:id="@+id/editTextPhone"
+            style="@style/form_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="phone"
+            android:text="3248974121"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
 
-                    <CheckBox
-                        android:id="@+id/checkBox16"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Just Chat" />
-                </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPhone">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
-
-                    <CheckBox
-                        android:id="@+id/checkBox19"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Conciertos" />
-
-                    <CheckBox
-                        android:id="@+id/checkBox18"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Fiestas" />
-
-                    <CheckBox
-                        android:id="@+id/checkBox17"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Conferencias" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/textView45"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:textAlignment="center"
-                android:text="Intereses"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout2" />
+            <ImageView
+                android:id="@+id/imageView14"
+                android:layout_width="109dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/icn_location" />
 
             <TextView
                 android:id="@+id/textView46"
+                style="@style/form_medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Eventos"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-                tools:layout_editor_absoluteX="161dp" />
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Bogotá" />
+        </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView46"
-                tools:layout_editor_absoluteX="16dp">
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:orientation="vertical"></LinearLayout>
+            <ImageView
+                android:id="@+id/imageView22"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/icn_calendar" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:orientation="vertical">
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView47"
+                style="@style/form_medium"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/textView45"
-                tools:layout_editor_absoluteX="7dp">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Fecha de Nacimiento" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textView47"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:gravity="center"
-                    android:text="Redes Sociales"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@color/primaryColor"
-                    android:text="Facebook" />
-
-                <Button
-                    android:id="@+id/button6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@color/primaryColor"
-                    android:text="Instagram" />
-
-                <Button
-                    android:id="@+id/button7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:background="@color/primaryColor"
-                    android:text="YouTube" />
-            </LinearLayout>
+        <TextView
+            android:id="@+id/textView64"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/coves_bold"
+            android:text="@string/Interests"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
             <LinearLayout
                 android:id="@+id/linearLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout3">
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView64">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                    <TextView
+                        android:id="@+id/textView48"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:fontFamily="@font/coves_bold"
+                        android:gravity="center"
+                        android:text="@string/sports"
+                        android:textSize="16sp" />
 
-                        <TextView
-                            android:id="@+id/textView49"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Nombre" />
-
-                        <TextView
-                            android:id="@+id/textView48"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Nombre" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                    <TextView
+                        android:id="@+id/textView49"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:fontFamily="@font/coves_bold"
+                        android:gravity="center"
+                        android:text="@string/concerts"
+                        android:textSize="16sp" />
 
-                        <TextView
-                            android:id="@+id/textView51"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Correo" />
-
-                        <TextView
-                            android:id="@+id/textView50"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Correo" />
-                    </LinearLayout>
-
+                    <TextView
+                        android:id="@+id/textView50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/coves_bold"
+                        android:gravity="center"
+                        android:text="@string/Conference"
+                        android:textSize="16sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp">
 
-                    <ImageView
-                        android:id="@+id/imageView14"
+                    <TextView
+                        android:id="@+id/textView51"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"/>
+                        android:layout_weight="1"
+                        android:fontFamily="@font/coves_bold"
+                        android:gravity="center"
+                        android:text="@string/Chat"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textView52"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/coves_bold"
+                        android:gravity="center"
+                        android:text="@string/Party"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/textView62"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/coves_bold"
+                        android:gravity="center"
+                        android:text="@string/tableGames"
+                        android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView52"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/button2"
+                style="@style/form_normal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:text="Información de Perfil"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="24dp"
+                android:text="Guardar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        app:headerLayout="@layout/nav_header"
-        android:id="@+id/perfil_nav_view"
-        app:menu="@menu/nav_menu"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"/>
+
+
 </androidx.drawerlayout.widget.DrawerLayout>
 
