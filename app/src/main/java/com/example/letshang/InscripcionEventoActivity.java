@@ -10,6 +10,7 @@ import android.widget.Button;
 public class InscripcionEventoActivity extends AppCompatActivity {
 
     private Button siguienteBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

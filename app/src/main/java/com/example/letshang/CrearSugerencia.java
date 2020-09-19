@@ -16,10 +16,10 @@ import com.google.android.material.navigation.NavigationView;
 
 public class CrearSugerencia extends AppCompatActivity {
 
-    Button enviarSugerencia;
-    ActionBarDrawerToggle menuToggle;
-    DrawerLayout drawerLayout;
-    NavigationView navView;
+    private Button enviarSugerencia;
+    private ActionBarDrawerToggle menuToggle;
+    private DrawerLayout drawerLayout;
+    private NavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

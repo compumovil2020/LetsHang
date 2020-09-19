@@ -18,12 +18,12 @@ import com.google.android.material.navigation.NavigationView;
 
 public class PrincipalActivity extends AppCompatActivity {
 
-    ImageView filterImage;
-    ConstraintLayout eventLayout;
-    ActionBarDrawerToggle menuToggle;
-    DrawerLayout drawerLayout;
-    NavigationView navView;
-    TextView textMap;
+    private ImageView filterImage;
+    private ConstraintLayout eventLayout;
+    private ActionBarDrawerToggle menuToggle;
+    private DrawerLayout drawerLayout;
+    private NavigationView navView;
+    private TextView textMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

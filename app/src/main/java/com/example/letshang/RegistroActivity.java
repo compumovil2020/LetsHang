@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class RegistroActivity extends AppCompatActivity {
 
-    Button btnSiguiente;
+    private Button btnSiguiente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

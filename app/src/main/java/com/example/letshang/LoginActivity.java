@@ -13,8 +13,8 @@ import android.widget.Toast;
 public class LoginActivity extends AppCompatActivity {
 
 
-    Button buttonIniciar, buttonForgotPassword;
-    TextView registarText;
+    private Button buttonIniciar, buttonForgotPassword;
+    private TextView registarText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
