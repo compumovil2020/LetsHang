@@ -10,7 +10,7 @@ import android.widget.Button;
 public class ReglasCondiciones extends AppCompatActivity {
 
 
-    Button registerButton;
+    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

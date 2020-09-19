@@ -9,7 +9,7 @@ import android.widget.Button;
 public class FiltersActivity extends AppCompatActivity {
 
 
-    Button applyFiltersButton;
+    private Button applyFiltersButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

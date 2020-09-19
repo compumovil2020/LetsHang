@@ -17,10 +17,10 @@ import com.google.android.material.navigation.NavigationView;
 
 public class EventosInscritos extends AppCompatActivity {
 
-    ActionBarDrawerToggle menuToggle;
-    DrawerLayout drawerLayout;
-    NavigationView navView;
-    Button btnEventCar, btnAgregar;
+    private ActionBarDrawerToggle menuToggle;
+    private DrawerLayout drawerLayout;
+    private NavigationView navView;
+    private Button btnEventCar, btnAgregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

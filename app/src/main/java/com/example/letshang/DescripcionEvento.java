@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class DescripcionEvento extends AppCompatActivity {
 
-    TextView hostName;
+    private TextView hostName;
     private Button cancellButton;
 
     @Override

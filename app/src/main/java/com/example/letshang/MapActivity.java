@@ -18,11 +18,11 @@ import com.google.android.material.navigation.NavigationView;
 public class MapActivity extends AppCompatActivity {
 
 
-    ImageView filterIcon;
-    TextView textList;
-    ActionBarDrawerToggle menuToggle;
-    DrawerLayout drawerLayout;
-    NavigationView navView;
+    private ImageView filterIcon;
+    private TextView textList;
+    private ActionBarDrawerToggle menuToggle;
+    private DrawerLayout drawerLayout;
+    private NavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

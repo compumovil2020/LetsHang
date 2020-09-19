@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class RegistroAdicional extends AppCompatActivity {
 
-    Button btnRegistrar, btnOmitir;
+    private Button btnRegistrar, btnOmitir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -9,7 +9,8 @@ import android.widget.Button;
 
 public class StartActivity extends AppCompatActivity {
 
-    Button buttonIniciar, buttonRegistro;
+    private Button buttonIniciar, buttonRegistro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
