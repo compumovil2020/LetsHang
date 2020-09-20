@@ -1,14 +1,16 @@
-package com.example.letshang;
+package com.example.letshang.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ModificarEvento extends AppCompatActivity {
+import com.example.letshang.R;
+
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_modificar_evento);
+        setContentView(R.layout.activity_main);
     }
 }

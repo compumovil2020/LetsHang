@@ -1,8 +1,9 @@
-package com.example.letshang;
+package com.example.letshang.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
@@ -13,40 +14,38 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class MapActivity extends AppCompatActivity {
+public class PrincipalActivity extends AppCompatActivity {
 
-
-    private ImageView filterIcon;
-    private TextView textList;
+    private ImageView filterImage;
+    private ConstraintLayout eventLayout;
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
+    private TextView textMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.activity_principal);
 
-        filterIcon = findViewById(R.id.imageFilterMap);
-        textList = findViewById(R.id.btnListaLista);
-        navView = findViewById(R.id.map_nav_view);
-        drawerLayout = findViewById(R.id.map_drawer_layout);
+        // set action bar title
+        getSupportActionBar().setTitle("Feed");
 
+        //inflate elements
+        filterImage = findViewById(R.id.principalFilterIcon);
+        eventLayout = findViewById(R.id.eventLayout);
+        drawerLayout = findViewById(R.id.principal_drawer_layout);
+        navView = findViewById(R.id.principal_nav_view);
+        textMap = findViewById(R.id.btnListaMapa);
 
+        //setup side menu
         setupMenu();
 
-        textList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(),PrincipalActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        filterIcon.setOnClickListener(new View.OnClickListener(){
+        //setup listeners
+        filterImage.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -55,9 +54,25 @@ public class MapActivity extends AppCompatActivity {
             }
         });
 
+        eventLayout.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext() , InscripcionEventoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        textMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), MapActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
-
 
     void setupMenu(){
 

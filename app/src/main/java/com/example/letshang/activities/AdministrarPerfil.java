@@ -1,4 +1,4 @@
-package com.example.letshang;
+package com.example.letshang.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
 
 public class AdministrarPerfil extends AppCompatActivity {

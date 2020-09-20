@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:padding="5dp"
         android:paddingHorizontal="5dp"
-        tools:context=".DescripcionEvento">
+        tools:context=".activities.DescripcionEvento">
 
         <TextView
             android:id="@+id/titulo"

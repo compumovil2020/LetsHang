@@ -1,8 +1,10 @@
-package com.example.letshang;
+package com.example.letshang.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.letshang.R;
 
 public class CrearEvento extends AppCompatActivity {
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     android:padding="14dp"
-    tools:context=".ModificarEvento">
+    tools:context=".activities.ModificarEvento">
 
     <TextView
         android:id="@+id/textViewCrearEvento"
