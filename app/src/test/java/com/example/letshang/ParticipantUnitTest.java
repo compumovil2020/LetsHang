@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class ParticipantUnitTest {
 
     @Test
     public void lastEventShouldReturnLastEvent(){
 
+        // prepare the data
         Preference preference = new Preference(null, null);
         ArrayList<Event> events = new ArrayList<Event>();
         Event event1 = new SportEvent("Evento 1",null, new Date(2000,01,01),
@@ -41,20 +43,27 @@ public class ParticipantUnitTest {
         Participant p = new Participant("Juan Perez","juan@perez.com",new Date(1998, 15,06),
                 "318938928", "camiloserr", "camilo.serr", "cams", null, null, preference, events);
 
+        // Execute operation
         Event answer = p.lastEvent();
+
+        // Assert
         assertEquals(event2, answer);
     }
 
     @Test
-    public void lastEventShouldReturnNull(){
+    public void lastEventShouldReturnNullWithEmptyEventList(){
 
+        // prepare the data
         Preference preference = new Preference(null, null);
         ArrayList<Event> events = new ArrayList<Event>();
 
         Participant p = new Participant("Juan Perez","juan@perez.com",new Date(1998, 15,06),
                 "318938928", "camiloserr", "camilo.serr", "cams", null, null, preference, events);
 
+        // Execute operation
         Event answer = p.lastEvent();
-        assertEquals(null, answer);
+
+        // Assert
+        assertNull( answer);
     }
 }
