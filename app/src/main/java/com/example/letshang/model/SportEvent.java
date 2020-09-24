@@ -18,37 +18,18 @@ public class SportEvent extends Event{
     private SportEventLevel level;
 
     /**
-     * size of the team
+     * size of the team (can be 0)
      */
     private int teamSize;
 
 
-    /**
-     *
-     * @param title
-     * @param description
-     * @param date
-     * @param duration
-     * @param price
-     * @param maximumCapacity
-     * @param tags
-     * @param sport
-     * @param level
-     */
-    public SportEvent(String title, String description, Date date,
-                      Duration duration, long price, int maximumCapacity,
-                      Collection<String> tags, String sport, SportEventLevel level) {
-        super(title, description, date, duration, price, maximumCapacity, tags);
+    public SportEvent(String title, String description, Date startDate, Date endDate,
+                      long price, int maximumCapacity, Collection<String> tags,
+                      String sport, SportEventLevel level, int teamSize) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags);
         this.sport = sport;
         this.level = level;
-
+        this.teamSize = teamSize;
     }
 }
 
-enum SportEventLevel{
-    BEGINER,
-    AMATEUR,
-    INTERMEDIATE,
-    ADVANCED,
-    PROFESIONAL
-}
