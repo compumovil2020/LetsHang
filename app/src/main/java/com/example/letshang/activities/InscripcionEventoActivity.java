@@ -18,7 +18,7 @@ public class InscripcionEventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscripcion_evento);
 
-        siguienteBtn = findViewById(R.id.btnCancellEvent);
+        siguienteBtn = findViewById(R.id.btnCancelarDescripcionEvento);
 
         siguienteBtn.setOnClickListener(new View.OnClickListener() {
             @Override

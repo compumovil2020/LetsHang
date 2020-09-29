@@ -86,7 +86,7 @@ public class EventosInscritos extends AppCompatActivity {
         btnEventCar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DescripcionEvento.class);
+                Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
                 startActivity(intent);
             }
         });
