@@ -22,16 +22,16 @@ public class ParticipantUnitTest {
         Preference preference = new Preference(null, null);
         ArrayList<Event> events = new ArrayList<Event>();
         Event event1 = new SportEvent("Evento 1",null, new Date(2000,01,01),
-                null, 0, 0, null, null, null);
+                null, 0, 0, null, null, null, 5);
 
         Event event2 = new SportEvent("Evento 2",null, new Date(2020,01,01),
-                null, 0, 0, null, null, null);
+                null, 0, 0, null, null, null, 3);
 
         Event event3 = new SportEvent("Evento 3",null, new Date(1900,01,01),
-                null, 0, 0, null, null, null);
+                null, 0, 0, null, null, null, 01);
 
         Event event4 = new SportEvent("Evento 4",null, new Date(2010,01,01),
-                null, 0, 0, null, null, null);
+                null, 0, 0, null, null, null, 1);
 
         events.add(event1);
         events.add(event2);

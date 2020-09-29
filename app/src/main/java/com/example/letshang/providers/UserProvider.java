@@ -8,13 +8,10 @@ import com.example.letshang.model.SportEvent;
 import com.example.letshang.model.SportEventLevel;
 import com.example.letshang.model.User;
 
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.List;
-
-import javax.xml.datatype.Duration;
 
 
 //*******************
@@ -42,9 +39,12 @@ public class UserProvider {
                 new Date(1998, 5,5),"3177963053",
                 "juan.perez","perez99","@perez",
                 null,null,preferences,pastEvents );
-
     }
 
+    /**
+     * Helper function
+     * @return list of events
+     */
     private List<Event> generateEvents(){
         List<Event> ans = new ArrayList<Event>();
 
