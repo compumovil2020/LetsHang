@@ -1,4 +1,4 @@
-package com.example.letshang;
+package com.example.letshang.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -6,20 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class InformacionPerfilActivity extends AppCompatActivity {
+public class MapActivity extends AppCompatActivity {
 
-    private TextView deportesTag, conciertosTag, conferenciasTag;
-    private Button eventBtn, editPerfil;
+
+    private ImageView filterIcon;
+    private TextView textList;
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
@@ -27,41 +28,34 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_informacion_perfil);
+        setContentView(R.layout.activity_map);
 
-        //Inflates
-        deportesTag = findViewById(R.id.deportesInfoPerfil);
-        conciertosTag = findViewById(R.id.conciertosInfoPerfil);
-        conferenciasTag = findViewById(R.id.conferenciasInfoPerfil);
-        eventBtn = findViewById(R.id.eventOneInfoPerfil);
-        editPerfil = findViewById(R.id.editarInfoPerfil);
-        drawerLayout = findViewById(R.id.informacion_perfil_drawer_layout);
-        navView = findViewById(R.id.informacion_perfil_nav_view);
+        filterIcon = findViewById(R.id.imageFilterMap);
+        textList = findViewById(R.id.btnListaLista);
+        navView = findViewById(R.id.map_nav_view);
+        drawerLayout = findViewById(R.id.map_drawer_layout);
 
-        //Set underline
-        deportesTag.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        conciertosTag.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        conferenciasTag.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         setupMenu();
 
-
-        //Listeners
-        eventBtn.setOnClickListener(new View.OnClickListener() {
+        textList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ModificarEvento.class);
+                Intent intent = new Intent(getBaseContext(),PrincipalActivity.class);
                 startActivity(intent);
             }
         });
 
-        editPerfil.setOnClickListener(new View.OnClickListener() {
+
+        filterIcon.setOnClickListener(new View.OnClickListener(){
+
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AdministrarPerfil.class);
+                Intent intent = new Intent(view.getContext() , FiltersActivity.class);
                 startActivity(intent);
             }
         });
+
 
     }
 
@@ -85,15 +79,15 @@ public class InformacionPerfilActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if(item.getItemId() ==  R.id.item_menu_administrar_perfil){
-                    //does nothing
+                    Intent intent = new Intent(getApplicationContext() , InformacionPerfilActivity.class);
+                    startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
                     Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos){
-                    Intent intent = new Intent(getApplicationContext() , PrincipalActivity.class);
-                    startActivity(intent);
+                    //does nothing
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos_inscritos){
                     Intent intent = new Intent(getApplicationContext() , EventosInscritos.class);

@@ -6,7 +6,7 @@
     android:id="@+id/map_drawer_layout"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".MapActivity">
+    tools:context=".activities.MapActivity">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
