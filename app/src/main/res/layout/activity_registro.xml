@@ -21,7 +21,7 @@
             android:padding="25dp">
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tvTituloRegistro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
@@ -33,7 +33,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/nameSignup"
+                android:id="@+id/etNombreRegistro"
                 style="@style/form_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,13 +44,13 @@
                 android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/emailSignup"
+                app:layout_constraintBottom_toTopOf="@+id/etCorreoRegistro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTituloRegistro" />
 
             <EditText
-                android:id="@+id/emailSignup"
+                android:id="@+id/etCorreoRegistro"
                 style="@style/form_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,12 +61,12 @@
                 android:inputType="textEmailAddress"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                app:layout_constraintBottom_toTopOf="@+id/phoneSignup"
+                app:layout_constraintBottom_toTopOf="@+id/etTelefonoRegistro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/phoneSignup"
+                android:id="@+id/etTelefonoRegistro"
                 style="@style/form_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -76,12 +76,12 @@
                 android:hint="@string/phone"
                 android:inputType="phone"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/passwordSignup"
+                app:layout_constraintBottom_toTopOf="@+id/etPasswordRegistro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/passwordSignup"
+                android:id="@+id/etPasswordRegistro"
                 style="@style/form_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -91,12 +91,12 @@
                 android:hint="@string/password"
                 android:inputType="textPassword"
                 android:textAlignment="center"
-                app:layout_constraintBottom_toTopOf="@+id/verifyPswd"
+                app:layout_constraintBottom_toTopOf="@+id/etVerifyRegistro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
-                android:id="@+id/verifyPswd"
+                android:id="@+id/etVerifyRegistro"
                 style="@style/form_big"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -111,7 +111,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/tvInteresesRegistro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -119,20 +119,20 @@
                 android:fontFamily="@font/coves_bold"
                 android:text="@string/Interests"
                 android:textSize="20dp"
-                app:layout_constraintBottom_toTopOf="@+id/interests"
+                app:layout_constraintBottom_toTopOf="@+id/llRegistro1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/verifyPswd" />
+                app:layout_constraintTop_toBottomOf="@+id/etVerifyRegistro" />
 
             <LinearLayout
-                android:id="@+id/interests"
+                android:id="@+id/llRegistro1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/verifyPswd">
+                app:layout_constraintTop_toBottomOf="@+id/etVerifyRegistro">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -140,7 +140,7 @@
                     android:orientation="horizontal">
 
                     <ToggleButton
-                        android:id="@+id/checkBox2"
+                        android:id="@+id/tbDeportesRegistro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -150,7 +150,7 @@
                         android:textSize="10sp" />
 
                     <ToggleButton
-                        android:id="@+id/checkBox3"
+                        android:id="@+id/tbConciertosRegistro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -160,7 +160,7 @@
                         android:textSize="10sp" />
 
                     <ToggleButton
-                        android:id="@+id/checkBox7"
+                        android:id="@+id/tbConferenciasRegistro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -176,7 +176,7 @@
                     android:orientation="horizontal">
 
                     <ToggleButton
-                        android:id="@+id/checkBox4"
+                        android:id="@+id/tbJuegosMesaRegistro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -186,7 +186,7 @@
                         android:textSize="10sp" />
 
                     <ToggleButton
-                        android:id="@+id/checkBox5"
+                        android:id="@+id/tbFiestasRegistro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -196,7 +196,7 @@
                         android:textSize="10sp" />
 
                     <ToggleButton
-                        android:id="@+id/checkBox6"
+                        android:id="@+id/tbCharlarRegistro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -209,28 +209,28 @@
             </LinearLayout>
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/etNuevoRegistro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/AddNew"
                 android:inputType="textPersonName"
-                app:layout_constraintBottom_toTopOf="@+id/signupBtn"
+                app:layout_constraintBottom_toTopOf="@+id/btnSiguienteRegistro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/interests" />
+                app:layout_constraintTop_toBottomOf="@+id/llRegistro1" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnAgregarRegistro"
                 style="@style/icn_plus"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:layout_constraintBottom_toTopOf="@+id/signupBtn"
-                app:layout_constraintEnd_toStartOf="@+id/editTextTextPersonName"
-                app:layout_constraintTop_toBottomOf="@+id/interests" />
+                app:layout_constraintBottom_toTopOf="@+id/btnSiguienteRegistro"
+                app:layout_constraintEnd_toStartOf="@+id/etNuevoRegistro"
+                app:layout_constraintTop_toBottomOf="@+id/llRegistro1" />
 
             <Button
-                android:id="@+id/signupBtn"
+                android:id="@+id/btnSiguienteRegistro"
                 style="@style/form_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
