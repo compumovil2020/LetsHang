@@ -6,22 +6,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 import com.example.letshang.R;
 
-public class ReglasCondiciones extends AppCompatActivity {
+public class ReglasCondicionesActivity extends AppCompatActivity {
 
-
-    private Button registerButton;
+    private CheckBox cbConfirmar;
+    private Button btnRegistrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reglas_condiciones);
 
-        registerButton = findViewById(R.id.registerButton);
+        cbConfirmar = findViewById(R.id.cbConfirmarReglas);
 
-        registerButton.setOnClickListener(new View.OnClickListener(){
+        btnRegistrar = findViewById(R.id.btnRegistrarReglas);
+
+        btnRegistrar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {

@@ -23,7 +23,7 @@ public class InscripcionEventoActivity extends AppCompatActivity {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ReglasCondiciones.class);
+                Intent intent = new Intent(view.getContext(), ReglasCondicionesActivity.class);
                 startActivity(intent);
             }
         });
