@@ -5,7 +5,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activities.CrearSugerencia"
+    tools:context=".activities.CrearSugerenciaActivity"
     android:id="@+id/sugerencia_drawer_layout"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
@@ -24,7 +24,7 @@
             android:padding="15dp">
 
             <TextView
-                android:id="@+id/textViewSugerencia"
+                android:id="@+id/tvTituloCrearSugerencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/etSugerenciaCrearSugerencia"
                 android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:ems="10"
@@ -46,27 +46,27 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewSugerencia" />
+                app:layout_constraintTop_toBottomOf="@+id/tvTituloCrearSugerencia" />
 
             <Spinner
-                android:id="@+id/spinner"
+                android:id="@+id/spTipoEventoCrearSugerencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/event_types"
-                app:layout_constraintEnd_toEndOf="@+id/editText"
-                app:layout_constraintTop_toTopOf="@+id/tipoEventoSugerencia" />
+                app:layout_constraintEnd_toEndOf="@+id/etSugerenciaCrearSugerencia"
+                app:layout_constraintTop_toTopOf="@+id/tvTipoEventoCrearSugerencia" />
 
             <TextView
-                android:id="@+id/tipoEventoSugerencia"
+                android:id="@+id/tvTipoEventoCrearSugerencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Tipo de evento"
-                app:layout_constraintStart_toStartOf="@+id/editText"
-                app:layout_constraintTop_toBottomOf="@+id/editText" />
+                app:layout_constraintStart_toStartOf="@+id/etSugerenciaCrearSugerencia"
+                app:layout_constraintTop_toBottomOf="@+id/etSugerenciaCrearSugerencia" />
 
             <Button
-                android:id="@+id/buttonEnviarSugerencia"
+                android:id="@+id/btnEnviarCrearSugerencia"
                 style="@style/form_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -75,25 +75,25 @@
                 android:text="Enviar Sugerencia"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+                app:layout_constraintTop_toBottomOf="@+id/tvHoraCrearSugerencia" />
 
             <TextView
-                android:id="@+id/horaEventoSugerencia"
+                android:id="@+id/tvHoraCrearSugerencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:text="Hora del evento"
-                app:layout_constraintStart_toStartOf="@+id/tipoEventoSugerencia"
-                app:layout_constraintTop_toBottomOf="@+id/tipoEventoSugerencia" />
+                app:layout_constraintStart_toStartOf="@+id/tvTipoEventoCrearSugerencia"
+                app:layout_constraintTop_toBottomOf="@+id/tvTipoEventoCrearSugerencia" />
 
             <EditText
-                android:id="@+id/editTextTime"
+                android:id="@+id/etTiempoCrearSugerencia"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="time"
-                app:layout_constraintEnd_toEndOf="@+id/spinner"
-                app:layout_constraintTop_toTopOf="@+id/horaEventoSugerencia" />
+                app:layout_constraintEnd_toEndOf="@+id/spTipoEventoCrearSugerencia"
+                app:layout_constraintTop_toTopOf="@+id/tvHoraCrearSugerencia" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

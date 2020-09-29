@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".activities.EventosInscritos"
+    tools:context=".activities.EventosInscritosActivity"
     android:id="@+id/inscritos_drawer_layout"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
@@ -15,7 +15,7 @@
         android:padding="15dp">
 
         <TextView
-            android:id="@+id/textView56"
+            android:id="@+id/tvTituloEventosInscritos"
             style="@style/typ_TitleMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@+id/textView56"
+            app:layout_constraintTop_toBottomOf="@+id/tvTituloEventosInscritos"
             tools:layout_editor_absoluteX="1dp">
 
             <LinearLayout
@@ -40,7 +40,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/eventOnCar"
+                    android:id="@+id/btnEventoEventosInscritos"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -57,7 +57,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/addEventInscription"
+            android:id="@+id/btnAgregarEventosInscritos"
             style="@style/form_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

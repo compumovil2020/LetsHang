@@ -15,35 +15,27 @@ import android.widget.Toast;
 import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class CrearSugerencia extends AppCompatActivity {
+public class EventosInscritosActivity extends AppCompatActivity {
 
-    private Button enviarSugerencia;
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
+    private Button btnEvento, btnAgregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_sugerencia);
+        setContentView(R.layout.activity_eventos_inscrito);
 
-        getSupportActionBar().setTitle("Sugerencia");
+        getSupportActionBar().setTitle("Eventos inscritos");
 
 
-        enviarSugerencia = findViewById(R.id.buttonEnviarSugerencia);
-        drawerLayout = findViewById(R.id.sugerencia_drawer_layout);
-        navView = findViewById(R.id.sugerencia_nav_view);
+        drawerLayout = findViewById(R.id.inscritos_drawer_layout);
+        navView = findViewById(R.id.inscritos_nav_view);
+        btnEvento = findViewById(R.id.btnEventoEventosInscritos);
+        btnAgregar = findViewById(R.id.btnAgregarEventosInscritos);
 
         setupMenu();
-
-        enviarSugerencia.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext() , PrincipalActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     void setupMenu(){
@@ -69,7 +61,7 @@ public class CrearSugerencia extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
-                    Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
+                    Intent intent = new Intent(getApplicationContext() , CrearSugerenciaActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos){
@@ -77,8 +69,7 @@ public class CrearSugerencia extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos_inscritos){
-                    Intent intent = new Intent(getApplicationContext() , EventosInscritos.class);
-                    startActivity(intent);
+                    // does nothing
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
                     Intent intent = new Intent(getApplicationContext() , LoginActivity.class);
@@ -89,6 +80,22 @@ public class CrearSugerencia extends AppCompatActivity {
 
                 }
                 return true;
+            }
+        });
+
+        btnEvento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnAgregar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), PrincipalActivity.class);
+                startActivity(intent);
             }
         });
     }

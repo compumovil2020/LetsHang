@@ -31,7 +31,7 @@
                 android:layout_marginEnd="52dp"
                 android:backgroundTint="@color/primaryColor"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewPrincipalTitulo">
+                app:layout_constraintTop_toBottomOf="@+id/tvTituloPrincipal">
 
                 <TextView
                     android:id="@+id/textView16"
@@ -213,7 +213,7 @@
                 android:layout_marginTop="23dp"
                 android:backgroundTint="@color/primaryColor"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewPrincipalTitulo">
+                app:layout_constraintTop_toBottomOf="@+id/tvTituloPrincipal">
 
                 <TextView
                     android:id="@+id/textView12"
@@ -387,7 +387,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textViewPrincipalTitulo"
+                android:id="@+id/tvTituloPrincipal"
                 android:layout_width="190dp"
                 android:layout_height="66dp"
                 android:layout_marginStart="110dp"
@@ -400,10 +400,10 @@
                 android:textSize="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/rlPrincipal1" />
 
             <RelativeLayout
-                android:id="@+id/relativeLayout"
+                android:id="@+id/rlPrincipal1"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -415,17 +415,17 @@
                     android:layout_width="144dp"
                     android:layout_height="45dp"
                     android:layout_marginEnd="-3dp"
-                    android:layout_toStartOf="@+id/imagePrincipalSuperiorFeed"
+                    android:layout_toStartOf="@+id/ivLogoPrincipal"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/principalFilterIcon"
+                        android:id="@+id/ivFiltrarPrincipal"
                         style="@style/icn_filter"
                         android:layout_width="44dp"
                         android:layout_height="match_parent" />
 
                     <TextView
-                        android:id="@+id/textViewPrincipalFiltro"
+                        android:id="@+id/tvFiltrarPrincipal"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:textSize="30dp"
@@ -436,7 +436,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imagePrincipalSuperiorFeed"
+                    android:id="@+id/ivLogoPrincipal"
                     android:layout_width="260dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentRight="true"
@@ -459,7 +459,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
                 <TextView
-                    android:id="@+id/btnListaLista"
+                    android:id="@+id/btnListaPrincipal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -470,7 +470,7 @@
                     android:textSize="17dp" />
 
                 <TextView
-                    android:id="@+id/btnListaMapa"
+                    android:id="@+id/btnMapaPrincipal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

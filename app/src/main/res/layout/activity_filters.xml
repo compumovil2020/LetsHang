@@ -16,7 +16,7 @@
         tools:context=".activities.FiltersActivity">
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/tvTipoEventoFilters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -26,12 +26,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate2"
+            app:layout_constraintTop_toBottomOf="@+id/etFechaFinFilters"
             android:fontFamily="@font/coves_bold"
             android:textColor="@color/secondaryColor"/>
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tvFechaFilters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
@@ -42,10 +42,10 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+            app:layout_constraintTop_toBottomOf="@+id/sbDistanciaFilters" />
 
         <TextView
-            android:id="@+id/tipoEventoDistancia"
+            android:id="@+id/tvDistanciaFilters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="68dp"
@@ -59,16 +59,16 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/sbDistanciaFilters"
             android:layout_width="204dp"
             android:layout_height="19dp"
             android:layout_marginTop="25dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tipoEventoDistancia" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDistanciaFilters" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tvDistanciaInicioFilters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="112dp"
@@ -76,11 +76,11 @@
             android:fontFamily="@font/coves_bold"
             android:text="0km"
             android:textSize="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/seekBar"
+            app:layout_constraintEnd_toStartOf="@+id/sbDistanciaFilters"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvDistanciaFinFilters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -88,11 +88,11 @@
             android:fontFamily="@font/coves_bold"
             android:text="200km"
             android:textSize="16dp"
-            app:layout_constraintStart_toEndOf="@+id/seekBar"
+            app:layout_constraintStart_toEndOf="@+id/sbDistanciaFilters"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextDate"
+            android:id="@+id/etFechaInicioFilters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -100,21 +100,21 @@
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFechaFilters" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/tvFechaInicioFilters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="121dp"
             android:layout_marginEnd="12dp"
             android:text="Inicio"
             android:textSize="18dp"
-            app:layout_constraintEnd_toStartOf="@+id/editTextDate"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintEnd_toStartOf="@+id/etFechaInicioFilters"
+            app:layout_constraintTop_toBottomOf="@+id/tvDistanciaInicioFilters" />
 
         <EditText
-            android:id="@+id/editTextDate2"
+            android:id="@+id/etFechaFinFilters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
@@ -122,21 +122,21 @@
             android:inputType="date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+            app:layout_constraintTop_toBottomOf="@+id/etFechaInicioFilters" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/tvFechaFinFilters"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="68dp"
             android:layout_marginEnd="12dp"
             android:text="Fin"
             android:textSize="18dp"
-            app:layout_constraintEnd_toStartOf="@+id/editTextDate2"
-            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+            app:layout_constraintEnd_toStartOf="@+id/etFechaFinFilters"
+            app:layout_constraintTop_toBottomOf="@+id/tvFechaInicioFilters" />
 
         <Button
-            android:id="@+id/applyFiltersButton"
+            android:id="@+id/btnAplicarFilters"
             style="@style/form_normal"
             android:layout_width="126dp"
             android:layout_height="48dp"
@@ -144,27 +144,27 @@
             android:text="Aplicar Filtros"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutTipoEvento" />
+            app:layout_constraintTop_toBottomOf="@+id/llFilters1" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/ivCalendarFilters"
             android:layout_width="47dp"
             android:layout_height="40dp"
             android:layout_marginStart="27dp"
             android:layout_marginTop="53dp"
-            app:layout_constraintStart_toEndOf="@+id/textView6"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar"
+            app:layout_constraintStart_toEndOf="@+id/tvFechaFilters"
+            app:layout_constraintTop_toBottomOf="@+id/sbDistanciaFilters"
             app:srcCompat="@drawable/icn_calendar" />
 
         <LinearLayout
-            android:id="@+id/layoutTipoEvento"
+            android:id="@+id/llFilters1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView10">
+            app:layout_constraintTop_toBottomOf="@+id/tvTipoEventoFilters">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -172,7 +172,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/checkBoxSportsFilters"
+                    android:id="@+id/cbDeportivoFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -180,7 +180,7 @@
                     android:text="Deportivo" />
 
                 <CheckBox
-                    android:id="@+id/checkBoxSocialFilters"
+                    android:id="@+id/cbSocialFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -194,7 +194,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/checkBoxEmpFilters"
+                    android:id="@+id/cbEmpresarialFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -202,7 +202,7 @@
                     android:text="Empresariales" />
 
                 <CheckBox
-                    android:id="@+id/checkBoxCateringFilters"
+                    android:id="@+id/cbCateringFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -215,7 +215,7 @@
                 android:layout_height="match_parent">
 
                 <CheckBox
-                    android:id="@+id/checkBoxFeriaFilters"
+                    android:id="@+id/cbFeriaFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -223,7 +223,7 @@
                     android:text="Ferias" />
 
                 <CheckBox
-                    android:id="@+id/checkBoxConciertosFilters"
+                    android:id="@+id/cbConciertosFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -236,7 +236,7 @@
                 android:layout_height="match_parent">
 
                 <CheckBox
-                    android:id="@+id/checkBoxExFilters"
+                    android:id="@+id/cbExhibicionesFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -244,7 +244,7 @@
                     android:text="Exhibiciones" />
 
                 <CheckBox
-                    android:id="@+id/checkBoxEspFilters"
+                    android:id="@+id/cbEspectaculosFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -257,7 +257,7 @@
                 android:layout_height="match_parent">
 
                 <CheckBox
-                    android:id="@+id/checkBoxConFilters"
+                    android:id="@+id/cbCongresosFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -265,7 +265,7 @@
                     android:text="Congresos" />
 
                 <CheckBox
-                    android:id="@+id/checkBoxConvFilters"
+                    android:id="@+id/cbConvencionesFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     android:padding="14dp"
-    tools:context=".activities.ModificarEvento">
+    tools:context=".activities.ModificarEventoActivity">
 
     <TextView
-        android:id="@+id/textViewCrearEvento"
+        android:id="@+id/tvTituloModificarEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -23,7 +23,7 @@
         android:fontFamily="@font/coves_bold"/>
 
     <EditText
-        android:id="@+id/editTextNombre"
+        android:id="@+id/etNombreModificarEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -32,14 +32,14 @@
         android:hint="NOMBRE EVENTO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCrearEvento"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloModificarEvento"
         style="@style/form_big"
         android:gravity="center"
         android:fontFamily="@font/coves_light"
         android:textSize="17dp"/>
 
     <EditText
-        android:id="@+id/editTextLugar"
+        android:id="@+id/etLugarModificarEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -48,14 +48,14 @@
         android:hint="LUGAR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNombre"
+        app:layout_constraintTop_toBottomOf="@+id/etNombreModificarEvento"
         style="@style/form_big"
         android:gravity="center"
         android:fontFamily="@font/coves_light"
         android:textSize="17dp"/>
 
     <EditText
-        android:id="@+id/editTextPrice"
+        android:id="@+id/etPrecioModificarEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -64,14 +64,14 @@
         android:hint="PRECIO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLugar"
+        app:layout_constraintTop_toBottomOf="@+id/etLugarModificarEvento"
         style="@style/form_big"
         android:gravity="center"
         android:fontFamily="@font/coves_light"
         android:textSize="17dp"/>
 
     <TextView
-        android:id="@+id/textViewFechas"
+        android:id="@+id/tvFechasModificarEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -79,22 +79,22 @@
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPrice"
+        app:layout_constraintTop_toBottomOf="@+id/etPrecioModificarEvento"
         android:textColor="@color/secondaryColor"
         android:fontFamily="@font/coves_bold" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/llModificarEvento1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFechas">
+        app:layout_constraintTop_toBottomOf="@+id/tvFechasModificarEvento">
 
         <EditText
-            android:id="@+id/editTextInitDate"
+            android:id="@+id/etFechaInicioModificarEvento"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -104,14 +104,14 @@
             android:inputType="date" />
 
         <ImageView
-            android:id="@+id/imageViewFinishFecha"
+            android:id="@+id/ivCalendarModificarEvento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             style="@style/icn_calendar" />
 
         <EditText
-            android:id="@+id/editTextFinishDate"
+            android:id="@+id/etFechaFinModificarEvento"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -122,7 +122,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textViewTipo"
+        android:id="@+id/tvTipoEventoModificarEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -130,19 +130,19 @@
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/llModificarEvento1"
         android:fontFamily="@font/coves_bold"
         android:textColor="@color/secondaryColor"/>
 
     <LinearLayout
-        android:id="@+id/linearLayout7"
+        android:id="@+id/llModificarEvento2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTipo">
+        app:layout_constraintTop_toBottomOf="@+id/tvTipoEventoModificarEvento">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -150,7 +150,7 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/checkBoxSports"
+                android:id="@+id/cbDeportivoModificarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -160,7 +160,7 @@
                 android:textSize="16dp" />
 
             <CheckBox
-                android:id="@+id/checkBoxSocial"
+                android:id="@+id/cbSocialModificarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -176,7 +176,7 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/checkBoxEmp"
+                android:id="@+id/cbEmpresarialModificarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -186,7 +186,7 @@
                 android:textSize="16dp" />
 
             <CheckBox
-                android:id="@+id/checkBoxCatering"
+                android:id="@+id/cbCateringModificarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -201,7 +201,7 @@
             android:layout_height="match_parent">
 
             <CheckBox
-                android:id="@+id/checkBoxFeria"
+                android:id="@+id/cbFeriaModificarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -211,7 +211,7 @@
                 android:textSize="16dp" />
 
             <CheckBox
-                android:id="@+id/checkBoxConciertos"
+                android:id="@+id/cbConciertosModificarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -226,7 +226,7 @@
             android:layout_height="match_parent">
 
             <CheckBox
-                android:id="@+id/checkBoxEx"
+                android:id="@+id/cbExhibicionesModificarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -236,7 +236,7 @@
                 android:textSize="16dp" />
 
             <CheckBox
-                android:id="@+id/checkBoxEsp"
+                android:id="@+id/cbEspectaculosModificarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -251,7 +251,7 @@
             android:layout_height="match_parent">
 
             <CheckBox
-                android:id="@+id/checkBoxCon"
+                android:id="@+id/cbCongresosModificarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -261,7 +261,7 @@
                 android:textSize="16dp" />
 
             <CheckBox
-                android:id="@+id/checkBoxConv"
+                android:id="@+id/cbConvencionesModificarEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -273,7 +273,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/modifyEvent"
+        android:id="@+id/btnModificarEvento"
         style="@style/form_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -282,6 +282,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+        app:layout_constraintTop_toBottomOf="@+id/llModificarEvento2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

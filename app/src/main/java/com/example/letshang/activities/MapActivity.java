@@ -19,8 +19,8 @@ import com.google.android.material.navigation.NavigationView;
 public class MapActivity extends AppCompatActivity {
 
 
-    private ImageView filterIcon;
-    private TextView textList;
+    private ImageView ivFilter;
+    private TextView btnLista;
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
@@ -30,15 +30,15 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
-        filterIcon = findViewById(R.id.imageFilterMap);
-        textList = findViewById(R.id.btnListaLista);
+        ivFilter = findViewById(R.id.ivFiltroMap);
+        btnLista = findViewById(R.id.btnListaMap);
         navView = findViewById(R.id.map_nav_view);
         drawerLayout = findViewById(R.id.map_drawer_layout);
 
 
         setupMenu();
 
-        textList.setOnClickListener(new View.OnClickListener() {
+        btnLista.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(),PrincipalActivity.class);
@@ -47,7 +47,7 @@ public class MapActivity extends AppCompatActivity {
         });
 
 
-        filterIcon.setOnClickListener(new View.OnClickListener(){
+        ivFilter.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -83,14 +83,14 @@ public class MapActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
-                    Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
+                    Intent intent = new Intent(getApplicationContext() , CrearSugerenciaActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos){
                     //does nothing
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos_inscritos){
-                    Intent intent = new Intent(getApplicationContext() , EventosInscritos.class);
+                    Intent intent = new Intent(getApplicationContext() , EventosInscritosActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){

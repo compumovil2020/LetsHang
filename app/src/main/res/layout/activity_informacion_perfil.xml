@@ -23,7 +23,7 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/textView44"
+                android:id="@+id/tvInteresesInformacionPerfil"
                 style="@style/typ_medium_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView63"
+                android:id="@+id/tvEventosInformacionPerfil"
                 style="@style/typ_medium_bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,20 +42,20 @@
                 android:text="Tus Eventos"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout15" />
+                app:layout_constraintTop_toBottomOf="@+id/llInformacionPerfil1" />
 
             <LinearLayout
-                android:id="@+id/linearLayout15"
+                android:id="@+id/llInformacionPerfil1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView44">
+                app:layout_constraintTop_toBottomOf="@+id/tvInteresesInformacionPerfil">
 
                 <TextView
-                    android:id="@+id/deportesInfoPerfil"
+                    android:id="@+id/tvDeportesInformacionPerfil"
                     style="@style/typ_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                     android:text="Deportes" />
 
                 <TextView
-                    android:id="@+id/conciertosInfoPerfil"
+                    android:id="@+id/tvConciertosInformacionPerfil"
                     style="@style/typ_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                     android:text="Conciertos" />
 
                 <TextView
-                    android:id="@+id/conferenciasInfoPerfil"
+                    android:id="@+id/tvConferenciasInformacionPerfil"
                     style="@style/typ_medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/editarInfoPerfil"
+                android:id="@+id/btnEditarInformacionPerfil"
                 style="@style/form_small_blue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,16 +93,16 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <LinearLayout
-                android:id="@+id/linearLayout16"
+                android:id="@+id/llInformacionPerfil2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/editarInfoPerfil"
+                app:layout_constraintBottom_toTopOf="@+id/btnEditarInformacionPerfil"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView63">
+                app:layout_constraintTop_toBottomOf="@+id/tvEventosInformacionPerfil">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -112,7 +112,7 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/eventOneInfoPerfil"
+                        android:id="@+id/btnEvento1InformacionPerfil"
                         style="@style/form_bigOrange"
                         android:layout_marginBottom="20dp"
                         android:layout_weight="1"
@@ -120,7 +120,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:id="@+id/eventTwoInfoPerfil"
+                        android:id="@+id/btnEvento2InformacionPerfil"
                         style="@style/form_bigOrange"
                         android:layout_weight="1"
                         android:text="Actividad\nFecha\nLugar\nOrganizador"
@@ -134,7 +134,7 @@
                     android:orientation="vertical">
 
                     <Button
-                        android:id="@+id/eventThreeInfoPerfil"
+                        android:id="@+id/btnEvento3InformacionPerfil"
                         style="@style/form_bigOrange"
                         android:layout_marginBottom="20dp"
                         android:layout_weight="1"
@@ -142,7 +142,7 @@
                         android:textAlignment="center" />
 
                     <Button
-                        android:id="@+id/eventFourInfoPerfil"
+                        android:id="@+id/btnEvento4InformacionPerfil"
                         style="@style/form_bigOrange"
                         android:layout_weight="1"
                         android:text="Actividad \nFecha\nLugar\nOrganizador"
@@ -151,17 +151,17 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout17"
+                android:id="@+id/llInformacionPerfil3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginBottom="50dp"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/textView44"
+                app:layout_constraintBottom_toTopOf="@+id/tvInteresesInformacionPerfil"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
-                    android:id="@+id/textView66"
+                    android:id="@+id/tvRedesInformacionPerfil"
                     style="@style/typ_medium_bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -170,31 +170,31 @@
                     android:text="Redes Sociales:" />
 
                 <Button
-                    android:id="@+id/facebookInfoPerfil"
+                    android:id="@+id/btnFacebookInformacionPerfil"
                     style="@style/icn_facebook"
                     android:layout_marginRight="30dp"
                     android:layout_weight="1" />
 
                 <Button
-                    android:id="@+id/instagramInfoPerfil"
+                    android:id="@+id/btnInstagramInformacionPerfil"
                     style="@style/icn_instagram"
                     android:layout_marginRight="30dp"
                     android:layout_weight="1" />
 
                 <Button
-                    android:id="@+id/button15"
+                    android:id="@+id/btnLinkedinInformacionPerfil"
                     style="@style/icn_linkedin"
                     android:layout_weight="1" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayout18"
+                android:id="@+id/llInformacionPerfil4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
                 android:layout_marginBottom="40dp"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout17"
+                app:layout_constraintBottom_toTopOf="@+id/llInformacionPerfil3"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <LinearLayout
@@ -204,7 +204,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView67"
+                        android:id="@+id/tvTituloNombreInformacionPerfil"
                         style="@style/typ_medium_bold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -212,7 +212,7 @@
                         android:text="Nombre:" />
 
                     <TextView
-                        android:id="@+id/textView68"
+                        android:id="@+id/tvNombreInformacionPerfil"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -222,7 +222,7 @@
                         android:textSize="15sp" />
 
                     <TextView
-                        android:id="@+id/textView69"
+                        android:id="@+id/tvTituloCorreoInformacionPerfil"
                         style="@style/typ_medium_bold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -231,7 +231,7 @@
                         android:text="Correo:" />
 
                     <TextView
-                        android:id="@+id/textView70"
+                        android:id="@+id/tvCorreoInformacionPerfil"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -242,7 +242,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageView23"
+                    android:id="@+id/ivFotoInformacionPerfil"
                     android:layout_width="101dp"
                     android:layout_height="101dp"
                     android:layout_marginLeft="80dp"
@@ -252,14 +252,14 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/textView71"
+                android:id="@+id/tvTituloInformacionPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="50dp"
                 style="@style/typ_TitleMedium"
                 android:textAlignment="center"
                 android:text="Información \nDel Perfil"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout18"
+                app:layout_constraintBottom_toTopOf="@+id/llInformacionPerfil4"
                 tools:layout_editor_absoluteX="165dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
