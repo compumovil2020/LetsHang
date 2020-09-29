@@ -49,7 +49,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
         btnEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ModificarEvento.class);
+                Intent intent = new Intent(view.getContext(), ModificarEventoActivity.class);
                 startActivity(intent);
             }
         });

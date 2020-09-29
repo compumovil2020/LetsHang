@@ -12,7 +12,7 @@
         <activity android:name=".activities.InformacionPerfilActivity"></activity>
         <activity android:name=".activities.RegistroAdicional" />
         <activity android:name=".activities.AdministrarPerfilActivity" />
-        <activity android:name=".activities.ModificarEvento" />
+        <activity android:name=".activities.ModificarEventoActivity" />
         <activity android:name=".activities.RegistroActivity" />
         <activity android:name=".activities.MapActivity" />
         <activity android:name=".activities.LoginActivity" />

@@ -24,7 +24,7 @@ public class CrearEventoActivity extends AppCompatActivity {
         etNombre = findViewById(R.id.etNombreCrearEvento);
         etLugar = findViewById(R.id.etLugarCrearEvento);
         etPrecio = findViewById(R.id.etPrecioCrearEvento);
-        etInicio = findViewById(R.id.etFechaFinCrearEvento);
+        etInicio = findViewById(R.id.etFechaInicioCrearEvento);
         etFin = findViewById(R.id.etFechaFinCrearEvento);
 
         cbDeportivo = findViewById(R.id.cbDeportivoCrearEvento);
