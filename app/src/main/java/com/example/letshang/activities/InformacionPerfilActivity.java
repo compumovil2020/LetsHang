@@ -59,7 +59,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
         editPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AdministrarPerfil.class);
+                Intent intent = new Intent(view.getContext(), AdministrarPerfilActivity.class);
                 startActivity(intent);
             }
         });
