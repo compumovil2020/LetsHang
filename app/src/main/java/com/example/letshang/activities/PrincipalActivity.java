@@ -104,7 +104,7 @@ public class PrincipalActivity extends AppCompatActivity {
                     //does nothing
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos_inscritos){
-                    Intent intent = new Intent(getApplicationContext() , EventosInscritos.class);
+                    Intent intent = new Intent(getApplicationContext() , EventosInscritosActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){

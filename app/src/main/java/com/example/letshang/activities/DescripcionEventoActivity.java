@@ -33,7 +33,7 @@ public class DescripcionEventoActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), EventosInscritos.class);
+                Intent intent = new Intent(view.getContext(), EventosInscritosActivity.class);
                 startActivity(intent);
             }
         });

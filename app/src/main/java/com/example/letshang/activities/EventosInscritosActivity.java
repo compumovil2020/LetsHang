@@ -15,12 +15,12 @@ import android.widget.Toast;
 import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class EventosInscritos extends AppCompatActivity {
+public class EventosInscritosActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
-    private Button btnEventCar, btnAgregar;
+    private Button btnEvento, btnAgregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +32,8 @@ public class EventosInscritos extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
         navView = findViewById(R.id.inscritos_nav_view);
-        btnEventCar = findViewById(R.id.eventOnCar);
-        btnAgregar = findViewById(R.id.addEventInscription);
+        btnEvento = findViewById(R.id.btnEventoEventosInscritos);
+        btnAgregar = findViewById(R.id.btnAgregarEventosInscritos);
 
         setupMenu();
     }
@@ -83,7 +83,7 @@ public class EventosInscritos extends AppCompatActivity {
             }
         });
 
-        btnEventCar.setOnClickListener(new View.OnClickListener() {
+        btnEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
