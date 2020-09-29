@@ -8,7 +8,7 @@ import javax.xml.datatype.Duration;
 public class SportEvent extends Event{
 
     /**
-     * name of the sport wich will be practiced at the event
+     * name of the sport which will be practiced at the event
      */
     private String sport;
 
