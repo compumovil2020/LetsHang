@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:text="Sabado 16 de agosto"
             style="@style/typ_normal"
-            app:layout_constraintStart_toStartOf="@+id/textviewLocation"
+            app:layout_constraintStart_toStartOf="@+id/tvLocationDescripcionEvento"
             app:layout_constraintTop_toTopOf="@+id/ivCalendarDescripcionEvento" />
 
         <ImageView
