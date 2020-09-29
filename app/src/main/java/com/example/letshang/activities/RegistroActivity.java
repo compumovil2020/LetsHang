@@ -42,7 +42,7 @@ public class RegistroActivity extends AppCompatActivity {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), RegistroAdicional.class);
+                Intent intent = new Intent(view.getContext(), RegistroAdicionalActivity.class);
                 startActivity(intent);
             }
         });

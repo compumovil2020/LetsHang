@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
-    tools:context=".activities.RegistroAdicional" >
+    tools:context=".activities.RegistroAdicionalActivity" >
 
     <ScrollView
 
@@ -26,7 +26,7 @@
 
 
             <TextView
-                android:id="@+id/txtViewTitleInfoAdicional"
+                android:id="@+id/tvTituloRegistroAdicional"
                 style="@style/typ_TitleMedium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,23 +40,23 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:id="@+id/linearLayoutLocationInfoAdicional"
+                android:id="@+id/llRegistroAdicional1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtViewTitleInfoAdicional">
+                app:layout_constraintTop_toBottomOf="@+id/tvTituloRegistroAdicional">
 
                 <ImageView
-                    android:id="@+id/imgLocationInfoAdicional"
+                    android:id="@+id/ivLocationRegistroAdicional"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/icn_location" />
 
                 <EditText
-                    android:id="@+id/editTxtCiudadInfoAdicional"
+                    android:id="@+id/etLocationRegistroAdicional"
                     style="@style/form_big"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -72,23 +72,23 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayoutCalendarInfoAdicional"
+                android:id="@+id/llRegistroAdicional2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutLocationInfoAdicional">
+                app:layout_constraintTop_toBottomOf="@+id/llRegistroAdicional1">
 
                 <ImageView
-                    android:id="@+id/imgCalendarInfoAdicional"
+                    android:id="@+id/ivCalendarRegistroAdicional"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/icn_calendar" />
 
                 <EditText
-                    android:id="@+id/editTxtCalendarInfoAdicional"
+                    android:id="@+id/etFechaRegistroAdicional"
                     style="@style/form_big"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -102,7 +102,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txtViewRedesInfoAdicional"
+                android:id="@+id/tvRedesRegistroAdicional"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -112,26 +112,26 @@
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutCalendarInfoAdicional" />
+                app:layout_constraintTop_toBottomOf="@+id/llRegistroAdicional2" />
 
             <LinearLayout
-                android:id="@+id/linearLayoutFacebookInfoAdicional"
+                android:id="@+id/llRegistroAdicional3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtViewRedesInfoAdicional">
+                app:layout_constraintTop_toBottomOf="@+id/tvRedesRegistroAdicional">
 
                 <ImageView
-                    android:id="@+id/imgFacebookInfoAdicional"
+                    android:id="@+id/ivFacebookRegistroAdicional"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/icn_facebook" />
 
                 <EditText
-                    android:id="@+id/editTxtFacebookInfoAdicional"
+                    android:id="@+id/etFacebookRegistroAdicional"
                     style="@style/form_big"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -145,23 +145,23 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayoutInstagramInfoAdicional"
+                android:id="@+id/llRegistroAdicional4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutFacebookInfoAdicional">
+                app:layout_constraintTop_toBottomOf="@+id/llRegistroAdicional3">
 
                 <ImageView
-                    android:id="@+id/imgInstagramInfoAdicional"
+                    android:id="@+id/ivInstagramRegistroAdicional"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/icn_instagram" />
 
                 <EditText
-                    android:id="@+id/editTxtInstagramInfoAdicional"
+                    android:id="@+id/etInstagramRegistroAdicional"
                     style="@style/form_big"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -175,23 +175,23 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearLayoutLinkednInfoAdicional"
+                android:id="@+id/llRegistroAdicional5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutInstagramInfoAdicional">
+                app:layout_constraintTop_toBottomOf="@+id/llRegistroAdicional4">
 
                 <ImageView
-                    android:id="@+id/imgLinkednInfoAdicional"
+                    android:id="@+id/ivLinkedinRegistroAdicional"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     app:srcCompat="@drawable/icn_linkedin" />
 
                 <EditText
-                    android:id="@+id/editTxtLinkednInfoAdicional"
+                    android:id="@+id/etLinkedinRegistroAdicional"
                     style="@style/form_big"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -205,7 +205,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/buttonRegistrarInfoAdicional"
+                android:id="@+id/btnRegistrarRegistroAdicional"
                 style="@style/form_normal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -213,10 +213,10 @@
                 android:text="Registrarse"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayoutLinkednInfoAdicional" />
+                app:layout_constraintTop_toBottomOf="@+id/llRegistroAdicional5" />
 
             <Button
-                android:id="@+id/buttonOmitirInfoAdicional"
+                android:id="@+id/btnOmitirRegistroAdicional"
                 style="@style/form_small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -225,7 +225,7 @@
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonRegistrarInfoAdicional" />
+                app:layout_constraintTop_toBottomOf="@+id/btnRegistrarRegistroAdicional" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
