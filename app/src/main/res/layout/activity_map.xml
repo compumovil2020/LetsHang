@@ -22,7 +22,7 @@
             android:padding="16dp">
 
             <LinearLayout
-                android:id="@+id/linearLayout14"
+                android:id="@+id/llMap1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -31,7 +31,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/imageFilterMap"
+                    android:id="@+id/ivFiltroMap"
                     style="@style/icn_filter"
                     android:layout_width="44dp"
                     android:layout_height="44dp"
@@ -40,24 +40,24 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/mapFilterText"
+                    android:id="@+id/tvFiltroMap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/filter"
                     android:textSize="30dp"
-                    app:layout_constraintStart_toEndOf="@+id/imageFilterMap"
+                    app:layout_constraintStart_toEndOf="@+id/ivFiltroMap"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </LinearLayout>
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/ivMapaMap"
                 android:layout_width="325dp"
                 android:layout_height="489dp"
                 android:layout_marginTop="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout14"
+                app:layout_constraintTop_toBottomOf="@+id/llMap1"
                 app:srcCompat="@drawable/map" />
 
             <LinearLayout
@@ -67,10 +67,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7">
+                app:layout_constraintTop_toBottomOf="@+id/ivMapaMap">
 
                 <TextView
-                    android:id="@+id/btnListaLista"
+                    android:id="@+id/btnListaMap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -81,7 +81,7 @@
                     android:textSize="17dp" />
 
                 <TextView
-                    android:id="@+id/btnListaMapa"
+                    android:id="@+id/btnMapaMap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

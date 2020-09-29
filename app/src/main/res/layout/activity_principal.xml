@@ -459,7 +459,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
                 <TextView
-                    android:id="@+id/btnListaLista"
+                    android:id="@+id/btnListaMap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -470,7 +470,7 @@
                     android:textSize="17dp" />
 
                 <TextView
-                    android:id="@+id/btnListaMapa"
+                    android:id="@+id/btnMapaMap"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

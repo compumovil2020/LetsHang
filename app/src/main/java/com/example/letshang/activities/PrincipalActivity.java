@@ -39,7 +39,7 @@ public class PrincipalActivity extends AppCompatActivity {
         eventLayout = findViewById(R.id.eventLayout);
         drawerLayout = findViewById(R.id.principal_drawer_layout);
         navView = findViewById(R.id.principal_nav_view);
-        textMap = findViewById(R.id.btnListaMapa);
+        textMap = findViewById(R.id.btnMapaMap);
 
         //setup side menu
         setupMenu();
