@@ -12,9 +12,9 @@ import com.example.letshang.R;
 
 public class CrearEventoActivity extends AppCompatActivity {
 
-    EditText etNombre, etLugar, etPrecio, etInicio, etFin;
-    CheckBox cbDeportivo, cbEmpresarial, cbFerias, cbExhibiciones, cbCongresos, cbSocial, cbCatering, cbConciertos, cbEspectaculos, cbConvenciones;
-    Button btnCrear;
+    private EditText etNombre, etLugar, etPrecio, etInicio, etFin;
+    private CheckBox cbDeportivo, cbEmpresarial, cbFerias, cbExhibiciones, cbCongresos, cbSocial, cbCatering, cbConciertos, cbEspectaculos, cbConvenciones;
+    private Button btnCrear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class CrearEventoActivity extends AppCompatActivity {
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
             }
         });
     }

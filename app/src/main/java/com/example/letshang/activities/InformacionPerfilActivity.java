@@ -89,7 +89,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                     //does nothing
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
-                    Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
+                    Intent intent = new Intent(getApplicationContext() , CrearSugerenciaActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos){

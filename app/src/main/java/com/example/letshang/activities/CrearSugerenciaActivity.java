@@ -10,14 +10,18 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class CrearSugerencia extends AppCompatActivity {
+public class CrearSugerenciaActivity extends AppCompatActivity {
 
-    private Button enviarSugerencia;
+    private Button btnEnviar;
+    private EditText etSugerencia, etTiempo;
+    private Spinner spTipo;
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
@@ -30,13 +34,16 @@ public class CrearSugerencia extends AppCompatActivity {
         getSupportActionBar().setTitle("Sugerencia");
 
 
-        enviarSugerencia = findViewById(R.id.buttonEnviarSugerencia);
+        btnEnviar = findViewById(R.id.btnEnviarCrearSugerencia);
+        etSugerencia = findViewById(R.id.etSugerenciaCrearSugerencia);
+        etTiempo = findViewById(R.id.etTiempoCrearSugerencia);
+        spTipo = findViewById(R.id.spTipoEventoCrearSugerencia);
         drawerLayout = findViewById(R.id.sugerencia_drawer_layout);
         navView = findViewById(R.id.sugerencia_nav_view);
 
         setupMenu();
 
-        enviarSugerencia.setOnClickListener(new View.OnClickListener(){
+        btnEnviar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -69,7 +76,7 @@ public class CrearSugerencia extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
-                    Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
+                    Intent intent = new Intent(getApplicationContext() , CrearSugerenciaActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos){

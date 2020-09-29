@@ -18,8 +18,8 @@ import com.google.android.material.navigation.NavigationView;
 
 public class AdministrarPerfilActivity extends AppCompatActivity {
 
-    EditText etNombre, etEmail, etTelefono, etLocation, etFecha;
-    Button btnGuardar;
+    private EditText etNombre, etEmail, etTelefono, etLocation, etFecha;
+    private Button btnGuardar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

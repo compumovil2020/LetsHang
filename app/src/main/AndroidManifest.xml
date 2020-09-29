@@ -20,7 +20,7 @@
         <activity android:name=".activities.CrearEventoActivity" />
         <activity android:name=".activities.EventosInscritos" />
         <activity android:name=".activities.PrincipalActivity" />
-        <activity android:name=".activities.CrearSugerencia" />
+        <activity android:name=".activities.CrearSugerenciaActivity" />
         <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.ReglasCondiciones" />
         <activity android:name=".activities.DescripcionEvento" />
