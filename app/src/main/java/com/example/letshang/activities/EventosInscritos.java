@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class EventosInscritos extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class EventosInscritos extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private Button btnEventCar, btnAgregar;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class EventosInscritos extends AppCompatActivity {
         setContentView(R.layout.activity_eventos_inscrito);
 
         getSupportActionBar().setTitle("Eventos inscritos");
+        mAuth = FirebaseAuth.getInstance();
+
 
 
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
@@ -72,7 +76,9 @@ public class EventosInscritos extends AppCompatActivity {
                     // does nothing
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
-                    Intent intent = new Intent(getApplicationContext() , LoginActivity.class);
+                    mAuth.signOut();
+                    Intent intent = new Intent(getApplicationContext() , StartActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_pago){

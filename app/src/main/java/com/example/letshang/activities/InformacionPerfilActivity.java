@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class InformacionPerfilActivity extends AppCompatActivity {
 
@@ -24,11 +25,13 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacion_perfil);
+        mAuth = FirebaseAuth.getInstance();
 
         //Inflates
         deportesTag = findViewById(R.id.deportesInfoPerfil);
@@ -101,7 +104,10 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
-                    Intent intent = new Intent(getApplicationContext() , LoginActivity.class);
+
+                    mAuth.signOut();
+                    Intent intent = new Intent(getApplicationContext() , StartActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_pago){

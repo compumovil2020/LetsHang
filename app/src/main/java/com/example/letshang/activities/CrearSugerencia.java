@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class CrearSugerencia extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class CrearSugerencia extends AppCompatActivity {
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,7 @@ public class CrearSugerencia extends AppCompatActivity {
         setContentView(R.layout.activity_crear_sugerencia);
 
         getSupportActionBar().setTitle("Sugerencia");
+        mAuth = FirebaseAuth.getInstance();
 
 
         enviarSugerencia = findViewById(R.id.buttonEnviarSugerencia);
@@ -81,7 +84,9 @@ public class CrearSugerencia extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
-                    Intent intent = new Intent(getApplicationContext() , LoginActivity.class);
+                    mAuth.signOut();
+                    Intent intent = new Intent(getApplicationContext() , StartActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_pago){

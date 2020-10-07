@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MapActivity extends AppCompatActivity {
 
@@ -24,11 +25,14 @@ public class MapActivity extends AppCompatActivity {
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+        mAuth = FirebaseAuth.getInstance();
 
         filterIcon = findViewById(R.id.imageFilterMap);
         textList = findViewById(R.id.btnListaLista);
@@ -94,7 +98,10 @@ public class MapActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
-                    Intent intent = new Intent(getApplicationContext() , LoginActivity.class);
+
+                    mAuth.signOut();
+                    Intent intent = new Intent(getApplicationContext() , StartActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_pago){

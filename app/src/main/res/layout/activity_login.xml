@@ -25,7 +25,8 @@
             android:inputType="textEmailAddress"
             android:textAlignment="center"
             app:layout_constraintBottom_toTopOf="@+id/password"
-            tools:layout_editor_absoluteX="10dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/password"
