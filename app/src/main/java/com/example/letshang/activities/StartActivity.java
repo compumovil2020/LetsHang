@@ -11,17 +11,17 @@ import com.example.letshang.R;
 
 public class StartActivity extends AppCompatActivity {
 
-    private Button buttonIniciar, buttonRegistro;
+    private Button btnIniciar, btnRegistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        buttonIniciar = findViewById(R.id.inicioSesionLanding);
-        buttonRegistro = findViewById(R.id.registrarseLanding);
+        btnIniciar = findViewById(R.id.btnIniciarSesionStart);
+        btnRegistro = findViewById(R.id.btnRegistrarStart);
 
-        buttonIniciar.setOnClickListener(new View.OnClickListener(){
+        btnIniciar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -30,7 +30,7 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        buttonRegistro.setOnClickListener(new View.OnClickListener(){
+        btnRegistro.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {

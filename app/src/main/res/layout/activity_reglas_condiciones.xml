@@ -14,11 +14,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activities.ReglasCondiciones"
+        tools:context=".activities.ReglasCondicionesActivity"
         android:padding="15dp">
 
         <TextView
-            android:id="@+id/textViewTermsTitle"
+            android:id="@+id/tvTituloReglas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewTerms"
+            android:id="@+id/tvTerminosReglas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -39,10 +39,10 @@
             style="@style/typ_normal"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTermsTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTituloReglas" />
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/cbConfirmarReglas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
@@ -50,17 +50,17 @@
             android:textSize="16sp"
             android:text="Entiendo los términos y las reglas del evento"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTerms" />
+            app:layout_constraintTop_toBottomOf="@+id/tvTerminosReglas" />
 
         <Button
-            android:id="@+id/registerButton"
+            android:id="@+id/btnRegistrarReglas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="Registrarse"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/checkBox"
+            app:layout_constraintTop_toBottomOf="@+id/cbConfirmarReglas"
             style="@style/form_normal"/>
 
 

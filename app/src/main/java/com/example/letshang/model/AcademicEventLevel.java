@@ -1,6 +1,6 @@
 package com.example.letshang.model;
 
-public enum SportEventLevel{
+public enum AcademicEventLevel {
     BEGINNER,
     AMATEUR,
     INTERMEDIATE,

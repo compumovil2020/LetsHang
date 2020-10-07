@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import com.example.letshang.R;
 
-public class DescripcionEvento extends AppCompatActivity {
+public class DescripcionEventoActivity extends AppCompatActivity {
 
-    private TextView hostName;
-    private Button cancellButton;
+    private TextView tvHost;
+    private Button btnCancelar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,22 +23,22 @@ public class DescripcionEvento extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Evento");
 
-        hostName = findViewById(R.id.textViewHost);
+        tvHost = findViewById(R.id.tvHostDescripcionEvento);
 
-        hostName.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        tvHost.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
-        cancellButton = findViewById(R.id.btnCancellEvent);
+        btnCancelar = findViewById(R.id.btnCancelarDescripcionEvento);
 
-        cancellButton.setOnClickListener(new View.OnClickListener(){
+        btnCancelar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), EventosInscritos.class);
+                Intent intent = new Intent(view.getContext(), EventosInscritosActivity.class);
                 startActivity(intent);
             }
         });
 
-        hostName.setOnClickListener(new View.OnClickListener() {
+        tvHost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), PerfilHostActivity.class);

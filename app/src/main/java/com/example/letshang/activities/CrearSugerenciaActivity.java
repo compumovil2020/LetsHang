@@ -10,36 +10,50 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class EventosInscritos extends AppCompatActivity {
+public class CrearSugerenciaActivity extends AppCompatActivity {
 
+    private Button btnEnviar;
+    private EditText etSugerencia, etTiempo;
+    private Spinner spTipo;
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
-    private Button btnEventCar, btnAgregar;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_eventos_inscrito);
+        setContentView(R.layout.activity_crear_sugerencia);
 
-        getSupportActionBar().setTitle("Eventos inscritos");
+        getSupportActionBar().setTitle("Sugerencia");
         mAuth = FirebaseAuth.getInstance();
 
 
-
-        drawerLayout = findViewById(R.id.inscritos_drawer_layout);
-        navView = findViewById(R.id.inscritos_nav_view);
-        btnEventCar = findViewById(R.id.eventOnCar);
-        btnAgregar = findViewById(R.id.addEventInscription);
+        btnEnviar = findViewById(R.id.btnEnviarCrearSugerencia);
+        etSugerencia = findViewById(R.id.etSugerenciaCrearSugerencia);
+        etTiempo = findViewById(R.id.etTiempoCrearSugerencia);
+        spTipo = findViewById(R.id.spTipoEventoCrearSugerencia);
+        drawerLayout = findViewById(R.id.sugerencia_drawer_layout);
+        navView = findViewById(R.id.sugerencia_nav_view);
 
         setupMenu();
+
+        btnEnviar.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext() , PrincipalActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     void setupMenu(){
@@ -65,7 +79,7 @@ public class EventosInscritos extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
-                    Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
+                    Intent intent = new Intent(getApplicationContext() , CrearSugerenciaActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos){
@@ -73,7 +87,8 @@ public class EventosInscritos extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos_inscritos){
-                    // does nothing
+                    Intent intent = new Intent(getApplicationContext() , EventosInscritosActivity.class);
+                    startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
                     mAuth.signOut();
@@ -86,22 +101,6 @@ public class EventosInscritos extends AppCompatActivity {
 
                 }
                 return true;
-            }
-        });
-
-        btnEventCar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DescripcionEvento.class);
-                startActivity(intent);
-            }
-        });
-
-        btnAgregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), PrincipalActivity.class);
-                startActivity(intent);
             }
         });
     }

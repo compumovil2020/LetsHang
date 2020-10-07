@@ -7,7 +7,7 @@
     tools:context=".activities.PerfilHostActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/scrollView2"
+        android:id="@+id/svPerfilHost1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="1.0">
 
         <ImageView
-            android:id="@+id/imageView20"
+            android:id="@+id/ivFotoPerfilHost"
             android:layout_width="125dp"
             android:layout_height="125dp"
             android:layout_marginTop="24dp"
@@ -28,7 +28,7 @@
             app:srcCompat="@drawable/icn_profile" />
 
         <TextView
-            android:id="@+id/HostProfileName"
+            android:id="@+id/tvNombrePerfilHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -37,20 +37,20 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView20" />
+            app:layout_constraintTop_toBottomOf="@+id/ivFotoPerfilHost" />
 
         <LinearLayout
-            android:id="@+id/linearLayout10"
+            android:id="@+id/llPerfilHost1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/HostProfileName">
+            app:layout_constraintTop_toBottomOf="@+id/tvNombrePerfilHost">
 
             <TextView
-                android:id="@+id/textView28"
+                android:id="@+id/tvRankingPerfilHost"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/coves_bold"
@@ -65,7 +65,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView15"
+                    android:id="@+id/ivEstrella1PerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -74,7 +74,7 @@
                     app:srcCompat="@drawable/icn_full_star" />
 
                 <ImageView
-                    android:id="@+id/imageView16"
+                    android:id="@+id/ivEstrella2PerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -83,7 +83,7 @@
                     app:srcCompat="@drawable/icn_full_star" />
 
                 <ImageView
-                    android:id="@+id/imageView17"
+                    android:id="@+id/ivEstrella3PerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -92,7 +92,7 @@
                     app:srcCompat="@drawable/icn_full_star" />
 
                 <ImageView
-                    android:id="@+id/imageView18"
+                    android:id="@+id/ivEstrella4PerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -101,7 +101,7 @@
                     app:srcCompat="@drawable/icn_full_star" />
 
                 <ImageView
-                    android:id="@+id/imageView19"
+                    android:id="@+id/ivEstrella5PerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -112,17 +112,17 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout9"
+            android:id="@+id/llPerfilHost2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
+            app:layout_constraintTop_toBottomOf="@+id/llPerfilHost1">
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/tvRedesPerfilHost"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -131,7 +131,7 @@
                 android:text="Redes Sociales: " />
 
             <ImageView
-                android:id="@+id/imageView10"
+                android:id="@+id/ivFacebookPerfilHost"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -139,7 +139,7 @@
                 app:srcCompat="@drawable/icn_facebook" />
 
             <ImageView
-                android:id="@+id/imageView11"
+                android:id="@+id/ivInstagramPerfilHost"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -147,7 +147,7 @@
                 app:srcCompat="@drawable/icn_instagram" />
 
             <ImageView
-                android:id="@+id/imageView13"
+                android:id="@+id/ivLinkedinPerfilHost"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -156,7 +156,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView21"
+            android:id="@+id/tvEventosPerfilHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -164,27 +164,27 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout9" />
+            app:layout_constraintTop_toBottomOf="@+id/llPerfilHost2" />
 
         <LinearLayout
-            android:id="@+id/linearLayout11"
+            android:id="@+id/llPerfilHost3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView21">
+            app:layout_constraintTop_toBottomOf="@+id/tvEventosPerfilHost">
 
             <ImageView
-                android:id="@+id/imageView21"
+                android:id="@+id/ivTelefonoPerfilHost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 app:srcCompat="@drawable/icn_call" />
 
             <TextView
-                android:id="@+id/HostProfilePhone"
+                android:id="@+id/tvTelefonoPerfilHost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -192,7 +192,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView37"
+            android:id="@+id/tvInteresesPerfilHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -202,10 +202,10 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout11" />
+            app:layout_constraintTop_toBottomOf="@+id/llPerfilHost3" />
 
         <LinearLayout
-            android:id="@+id/HostProfileInterests"
+            android:id="@+id/llPerfilHost4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -213,7 +213,7 @@
             android:paddingBottom="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView37">
+            app:layout_constraintTop_toBottomOf="@+id/tvInteresesPerfilHost">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -222,7 +222,7 @@
                 android:paddingBottom="8dp">
 
                 <TextView
-                    android:id="@+id/textView38"
+                    android:id="@+id/tvDeportesPerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -233,7 +233,7 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/textView39"
+                    android:id="@+id/tvConciertosPerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -244,7 +244,7 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/textView57"
+                    android:id="@+id/tvConferenciasPerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -261,7 +261,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView58"
+                    android:id="@+id/tvCharlarPerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -272,7 +272,7 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/textView59"
+                    android:id="@+id/tvFiestasPerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -283,7 +283,7 @@
                     android:textSize="24sp" />
 
                 <TextView
-                    android:id="@+id/textView60"
+                    android:id="@+id/tvJuesgosMesaPerfilHost"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

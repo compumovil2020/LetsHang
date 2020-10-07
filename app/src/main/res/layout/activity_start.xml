@@ -15,7 +15,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/registrarseLanding"
+            android:id="@+id/btnRegistrarStart"
             style="@style/form_landing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/inicioSesionLanding"
+            android:id="@+id/btnIniciarSesionStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -35,27 +35,27 @@
             android:textAllCaps="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/registrarseLanding" />
+            app:layout_constraintTop_toBottomOf="@+id/btnRegistrarStart" />
 
         <ImageView
-            android:id="@+id/imageView9"
+            android:id="@+id/ivLogoStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
-            app:layout_constraintBottom_toTopOf="@+id/registrarseLanding"
+            app:layout_constraintBottom_toTopOf="@+id/btnRegistrarStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/logo_lets_hang" />
 
         <TextView
-            android:id="@+id/intialMessage"
+            android:id="@+id/tvMensajeStart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/initialMessage"
             style="@style/typ_description_bold"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inicioSesionLanding"
+            app:layout_constraintTop_toBottomOf="@+id/btnIniciarSesionStart"
             tools:layout_editor_absoluteX="172dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

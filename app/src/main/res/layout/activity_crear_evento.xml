@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:background="@color/backgroundColor"
     android:padding="14dp"
-    tools:context=".activities.CrearEvento">
+    tools:context=".activities.CrearEventoActivity">
 
     <TextView
-        android:id="@+id/textViewCrearEvento"
+        android:id="@+id/tvTituloCrearEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
@@ -23,7 +23,7 @@
         android:fontFamily="@font/coves_bold"/>
 
     <EditText
-        android:id="@+id/editTextNombre"
+        android:id="@+id/etNombreCrearEvento"
         style="@style/form_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,11 +33,11 @@
         android:hint="NOMBRE DEL EVENTO"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCrearEvento"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloCrearEvento"
         android:gravity="center"/>
 
     <EditText
-        android:id="@+id/editTextLugar"
+        android:id="@+id/etLugarCrearEvento"
         style="@style/form_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -47,11 +47,11 @@
         android:hint="LUGAR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNombre"
+        app:layout_constraintTop_toBottomOf="@+id/etNombreCrearEvento"
         android:gravity="center"/>
 
     <EditText
-        android:id="@+id/editTextPrice"
+        android:id="@+id/etPrecioCrearEvento"
         style="@style/form_big"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,11 +61,11 @@
         android:hint="VALOR"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextLugar"
+        app:layout_constraintTop_toBottomOf="@+id/etLugarCrearEvento"
         android:gravity="center"/>
 
     <TextView
-        android:id="@+id/textViewFechas"
+        android:id="@+id/tvFechasCrearEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -73,22 +73,22 @@
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPrice"
+        app:layout_constraintTop_toBottomOf="@+id/etPrecioCrearEvento"
         android:textColor="@color/secondaryColor"
         android:fontFamily="@font/coves_bold"/>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/llCrearEvento1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewFechas">
+        app:layout_constraintTop_toBottomOf="@+id/tvFechasCrearEvento">
 
         <EditText
-            android:id="@+id/editTextInitDate"
+            android:id="@+id/etFechaInicioCrearEvento"
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -98,7 +98,7 @@
             android:inputType="date" />
 
         <ImageView
-            android:id="@+id/imageViewFinishFecha"
+            android:id="@+id/ivCalendarCrearEvento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
             />
 
         <EditText
-            android:id="@+id/editTextFinishDate"
+            android:id="@+id/etFechaFinCrearEvento"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -117,7 +117,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textViewTipo"
+        android:id="@+id/tvTipoEventoCrearEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -125,19 +125,19 @@
         android:textSize="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/llCrearEvento1"
         android:textColor="@color/secondaryColor"
         android:fontFamily="@font/coves_bold"/>
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
+        android:id="@+id/llCrearEvento2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTipo">
+        app:layout_constraintTop_toBottomOf="@+id/tvTipoEventoCrearEvento">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -145,7 +145,7 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/checkBoxSports"
+                android:id="@+id/cbDeportivoCrearEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -153,7 +153,7 @@
                 android:text="Deportivo" />
 
             <CheckBox
-                android:id="@+id/checkBoxSocial"
+                android:id="@+id/cbSocialCrearEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -167,7 +167,7 @@
             android:orientation="horizontal">
 
             <CheckBox
-                android:id="@+id/checkBoxEmp"
+                android:id="@+id/cbEmpresarialCrearEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -175,7 +175,7 @@
                 android:text="Empresariales" />
 
             <CheckBox
-                android:id="@+id/checkBoxCatering"
+                android:id="@+id/cbCateringCrearEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -188,7 +188,7 @@
             android:layout_height="match_parent">
 
             <CheckBox
-                android:id="@+id/checkBoxFeria"
+                android:id="@+id/cbFeriaCrearEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -196,7 +196,7 @@
                 android:text="Ferias" />
 
             <CheckBox
-                android:id="@+id/checkBoxConciertos"
+                android:id="@+id/cbConciertosCrearEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -209,7 +209,7 @@
             android:layout_height="match_parent">
 
             <CheckBox
-                android:id="@+id/checkBoxEx"
+                android:id="@+id/cbExhibicionesCrearEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -217,7 +217,7 @@
                 android:text="Exhibiciones" />
 
             <CheckBox
-                android:id="@+id/checkBoxEsp"
+                android:id="@+id/cbEspectaculosCrearEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -230,7 +230,7 @@
             android:layout_height="match_parent">
 
             <CheckBox
-                android:id="@+id/checkBoxCon"
+                android:id="@+id/cbCongresosCrearEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -238,7 +238,7 @@
                 android:text="Congresos" />
 
             <CheckBox
-                android:id="@+id/checkBoxConv"
+                android:id="@+id/cbConvencionesCrearEvento"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -248,7 +248,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/createEvent"
+        android:id="@+id/btnCrearEvento"
         style="@style/form_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -258,7 +258,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+        app:layout_constraintTop_toBottomOf="@+id/llCrearEvento2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

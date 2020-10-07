@@ -11,6 +11,8 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +26,10 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
 
-    private Button buttonIniciar, buttonForgotPassword;
+    private Button btnIngresar, btnOlvidar, btnFacebook, btnGmail, btnYahoo;
+    private EditText etCorreo, etPassword;
+    private CheckBox cbRecordar;
+    private TextView tvRegistrar;
     private TextView registarText, loginTextUser, loginTextPass;
     private FirebaseAuth mAuth;
 
@@ -42,12 +47,21 @@ public class LoginActivity extends AppCompatActivity {
         loginTextPass = findViewById(R.id.password);
         buttonIniciar = findViewById(R.id.signinBtn);
         buttonForgotPassword = findViewById(R.id.forgotBtn);
+        btnIngresar = findViewById(R.id.btnIngresarLogin);
+        btnOlvidar = findViewById(R.id.btnOlvidarLogin);
+        btnFacebook = findViewById(R.id.btnFacebookLogin);
+        btnGmail = findViewById(R.id.btnGmailLogin);
+        btnYahoo = findViewById(R.id.btnYahooLogin);
 
-        registarText = findViewById(R.id.registerLogin);
+        etCorreo = findViewById(R.id.etCorreoLogin);
+        etPassword = findViewById(R.id.etPasswordLogin);
 
-        registarText.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        cbRecordar = findViewById(R.id.cbRememberLogin);
 
-        buttonIniciar.setOnClickListener(new View.OnClickListener(){
+        tvRegistrar = findViewById(R.id.tvRegistrarLogin);
+        tvRegistrar.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+
+        btnIngresar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -66,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        buttonForgotPassword.setOnClickListener(new View.OnClickListener(){
+        btnOlvidar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -75,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        registarText.setOnClickListener(new View.OnClickListener() {
+        tvRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), RegistroActivity.class);

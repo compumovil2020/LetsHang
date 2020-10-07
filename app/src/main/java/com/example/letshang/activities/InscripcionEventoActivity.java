@@ -11,19 +11,19 @@ import com.example.letshang.R;
 
 public class InscripcionEventoActivity extends AppCompatActivity {
 
-    private Button siguienteBtn;
+    private Button btnSiguiente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscripcion_evento);
 
-        siguienteBtn = findViewById(R.id.btnCancellEvent);
+        btnSiguiente = findViewById(R.id.btnSiguienteInscripcionEvento);
 
-        siguienteBtn.setOnClickListener(new View.OnClickListener() {
+        btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ReglasCondiciones.class);
+                Intent intent = new Intent(view.getContext(), ReglasCondicionesActivity.class);
                 startActivity(intent);
             }
         });

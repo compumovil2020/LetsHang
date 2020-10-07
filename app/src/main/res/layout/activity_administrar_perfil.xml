@@ -13,7 +13,7 @@
         android:padding="16dp">
 
     <TextView
-        android:id="@+id/textView45"
+        android:id="@+id/tvTitleAdministrarPerfil"
         style="@style/typ_TitleMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/etNombreAdministrarPerfil"
         style="@style/form_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,10 +36,10 @@
         android:text="Cosme Fulanito"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView45" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTitleAdministrarPerfil" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/etEmailAdministrarPerfil"
         style="@style/form_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,10 +50,10 @@
         android:text="cosme@micorreo.com"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/etNombreAdministrarPerfil" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/etTelefonoAdministrarPerfil"
         style="@style/form_medium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,27 +64,27 @@
         android:text="3248974121"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/etEmailAdministrarPerfil" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/llAministrarPerfil1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone">
+        app:layout_constraintTop_toBottomOf="@+id/etTelefonoAdministrarPerfil">
 
         <ImageView
-            android:id="@+id/imageView14"
+            android:id="@+id/ivLocationAdministrarPerfil"
             android:layout_width="109dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/icn_location" />
 
         <EditText
-            android:id="@+id/textView46"
+            android:id="@+id/etLocationAdministrarPerfil"
             style="@style/form_medium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -94,24 +94,24 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/llAdministrarPerfil2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+        app:layout_constraintTop_toBottomOf="@+id/llAministrarPerfil1">
 
         <ImageView
-            android:id="@+id/imageView22"
+            android:id="@+id/ivCalendarAministrarPerfil"
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@drawable/icn_calendar" />
 
         <EditText
-            android:id="@+id/textView47"
+            android:id="@+id/etCalendarAdministrarPerfil"
             style="@style/form_medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView64"
+        android:id="@+id/tvInteresesAdministrarPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -130,17 +130,17 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/llAdministrarPerfil2" />
 
         <LinearLayout
-            android:id="@+id/linearLayout5"
+            android:id="@+id/llAdministrarPerfil3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView64">
+            app:layout_constraintTop_toBottomOf="@+id/tvInteresesAdministrarPerfil">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -148,7 +148,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView48"
+                    android:id="@+id/tvDeportesAdministrarPerfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -158,7 +158,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView49"
+                    android:id="@+id/tvConciertosAdministrarPerfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -168,7 +168,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView50"
+                    android:id="@+id/tvConferenciasAdministrarPerfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -185,7 +185,7 @@
                 android:paddingTop="8dp">
 
                 <TextView
-                    android:id="@+id/textView51"
+                    android:id="@+id/tvCharlarAdministrarPerfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -195,7 +195,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView52"
+                    android:id="@+id/tvFiestasAdministrarPerfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -205,7 +205,7 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/textView62"
+                    android:id="@+id/tvJuegosMesaAdministrarPerfil"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -217,7 +217,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnGuardarAdministrarPerfil"
             style="@style/form_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -226,7 +226,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+            app:layout_constraintTop_toBottomOf="@+id/llAdministrarPerfil3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

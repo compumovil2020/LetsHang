@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.widget.EditText;
+import android.widget.ToggleButton;
 
 import com.example.letshang.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,6 +29,9 @@ public class RegistroActivity extends AppCompatActivity {
     private FirebaseUser user;
     private Button btnSiguiente;
     private TextView textName, textEmail, textPhone, textPass, textVerifyPass;
+    private EditText etNombre, etCorreo, etTelefono, etPassword, etVerify, etNuevo;
+    private ToggleButton tbDeportes, tbJuegosMesa, tbConciertos, tbFiesta, tbCharlar, tbConferencias;
+    private Button btnSiguiente, btnAgregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +40,22 @@ public class RegistroActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = null;
 
+        etNombre = findViewById(R.id.etNombreRegistro);
+        etCorreo = findViewById(R.id.etCorreoRegistro);
+        etTelefono = findViewById(R.id.etTelefonoRegistro);
+        etPassword = findViewById(R.id.etPasswordRegistro);
+        etVerify = findViewById(R.id.etVerifyRegistro);
+        etNuevo = findViewById(R.id.etNuevoRegistro);
+
+        tbDeportes = findViewById(R.id.tbDeportesRegistro);
+        tbJuegosMesa = findViewById(R.id.tbJuegosMesaRegistro);
+        tbConciertos = findViewById(R.id.tbConciertosRegistro);
+        tbFiesta = findViewById(R.id.tbFiestasRegistro);
+        tbCharlar = findViewById(R.id.tbCharlarRegistro);
+        tbConferencias = findViewById(R.id.tbConferenciasRegistro);
+
+        btnSiguiente = findViewById(R.id.btnSiguienteRegistro);
+        btnAgregar = findViewById(R.id.btnAgregarRegistro);
         btnSiguiente = findViewById(R.id.signupBtn);
         textName = findViewById(R.id.nameSignup);
         textEmail = findViewById(R.id.emailSignup);
@@ -137,5 +158,5 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
-
+    }
 }

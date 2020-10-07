@@ -20,8 +20,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class InformacionPerfilActivity extends AppCompatActivity {
 
-    private TextView deportesTag, conciertosTag, conferenciasTag;
-    private Button eventBtn, editPerfil;
+    private TextView tvDeportes, tvConciertos, tvConferencias;
+    private Button btnEvento, btnEditar;
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
@@ -33,36 +33,34 @@ public class InformacionPerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_informacion_perfil);
         mAuth = FirebaseAuth.getInstance();
 
-        //Inflates
-        deportesTag = findViewById(R.id.deportesInfoPerfil);
-        conciertosTag = findViewById(R.id.conciertosInfoPerfil);
-        conferenciasTag = findViewById(R.id.conferenciasInfoPerfil);
-        eventBtn = findViewById(R.id.eventOneInfoPerfil);
-        editPerfil = findViewById(R.id.editarInfoPerfil);
+        tvDeportes = findViewById(R.id.tvDeportesInformacionPerfil);
+        tvConciertos = findViewById(R.id.tvDeportesInformacionPerfil);
+        tvConferencias = findViewById(R.id.tvConferenciasInformacionPerfil);
+
+        btnEvento = findViewById(R.id.btnEvento1InformacionPerfil);
+        btnEditar = findViewById(R.id.btnEditarInformacionPerfil);
+
         drawerLayout = findViewById(R.id.informacion_perfil_drawer_layout);
         navView = findViewById(R.id.informacion_perfil_nav_view);
 
-        //Set underline
-        deportesTag.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        conciertosTag.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        conferenciasTag.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        tvDeportes.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        tvConciertos.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        tvConferencias.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
         setupMenu();
 
-
-        //Listeners
-        eventBtn.setOnClickListener(new View.OnClickListener() {
+        btnEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ModificarEvento.class);
+                Intent intent = new Intent(view.getContext(), ModificarEventoActivity.class);
                 startActivity(intent);
             }
         });
 
-        editPerfil.setOnClickListener(new View.OnClickListener() {
+        btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AdministrarPerfil.class);
+                Intent intent = new Intent(view.getContext(), AdministrarPerfilActivity.class);
                 startActivity(intent);
             }
         });
@@ -92,7 +90,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                     //does nothing
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
-                    Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
+                    Intent intent = new Intent(getApplicationContext() , CrearSugerenciaActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos){
@@ -100,7 +98,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos_inscritos){
-                    Intent intent = new Intent(getApplicationContext() , EventosInscritos.class);
+                    Intent intent = new Intent(getApplicationContext() , EventosInscritosActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){

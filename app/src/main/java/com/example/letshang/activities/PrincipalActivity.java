@@ -20,12 +20,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class PrincipalActivity extends AppCompatActivity {
 
-    private ImageView filterImage;
+    private ImageView ivFiltrar;
     private ConstraintLayout eventLayout;
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
-    private TextView textMap;
+    private TextView btnMap;
 
     // should go in utils
     private FirebaseAuth mAuth;
@@ -43,17 +43,17 @@ public class PrincipalActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Feed");
 
         //inflate elements
-        filterImage = findViewById(R.id.principalFilterIcon);
+        ivFiltrar = findViewById(R.id.ivFiltrarPrincipal);
         eventLayout = findViewById(R.id.eventLayout);
         drawerLayout = findViewById(R.id.principal_drawer_layout);
         navView = findViewById(R.id.principal_nav_view);
-        textMap = findViewById(R.id.btnListaMapa);
+        btnMap = findViewById(R.id.btnMapaPrincipal);
 
         //setup side menu
         setupMenu();
 
         //setup listeners
-        filterImage.setOnClickListener(new View.OnClickListener(){
+        ivFiltrar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
@@ -71,7 +71,7 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
-        textMap.setOnClickListener(new View.OnClickListener() {
+        btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), MapActivity.class);
@@ -105,14 +105,14 @@ public class PrincipalActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_sugerir){
-                    Intent intent = new Intent(getApplicationContext() , CrearSugerencia.class);
+                    Intent intent = new Intent(getApplicationContext() , CrearSugerenciaActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos){
                     //does nothing
                 }
                 if(item.getItemId() ==  R.id.item_menu_eventos_inscritos){
-                    Intent intent = new Intent(getApplicationContext() , EventosInscritos.class);
+                    Intent intent = new Intent(getApplicationContext() , EventosInscritosActivity.class);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
