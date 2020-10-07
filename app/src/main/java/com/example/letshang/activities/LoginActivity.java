@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText etCorreo, etPassword;
     private CheckBox cbRecordar;
     private TextView tvRegistrar;
-    private TextView registarText, loginTextUser, loginTextPass;
     private FirebaseAuth mAuth;
 
     @Override
@@ -43,10 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Login");
 
-        loginTextUser = findViewById(R.id.email);
-        loginTextPass = findViewById(R.id.password);
-        buttonIniciar = findViewById(R.id.signinBtn);
-        buttonForgotPassword = findViewById(R.id.forgotBtn);
+
         btnIngresar = findViewById(R.id.btnIngresarLogin);
         btnOlvidar = findViewById(R.id.btnOlvidarLogin);
         btnFacebook = findViewById(R.id.btnFacebookLogin);
@@ -65,11 +61,11 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                if(!isValidEmail(loginTextUser.getText() )){
+                if(!isValidEmail(etCorreo.getText() )){
                     Toast.makeText(getApplicationContext(), "El correo no es valido" ,
                             Toast.LENGTH_SHORT).show();
                 }
-                else if(loginTextPass.getText().toString().length() < 6){
+                else if(etPassword.getText().toString().length() < 6){
                     Toast.makeText(getApplicationContext(),
                             "La contraseña debe ser de mínimo 6 caracteres" ,
                             Toast.LENGTH_SHORT).show();
@@ -100,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void attemptSignIn() {
-        mAuth.signInWithEmailAndPassword(loginTextUser.getText().toString(), loginTextPass.getText().toString())
+        mAuth.signInWithEmailAndPassword(etCorreo.getText().toString(), etPassword.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -111,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Log.d("login", loginTextUser.getText().toString());
+                            Log.d("login", etCorreo.getText().toString());
                             Log.w("login", "signInWithEmail:failure", task.getException());
                             Toast.makeText(getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
@@ -138,8 +134,8 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else{
-            loginTextUser.setText("");
-            loginTextPass.setText("");
+            etCorreo.setText("");
+            etCorreo.setText("");
         }
     }
 

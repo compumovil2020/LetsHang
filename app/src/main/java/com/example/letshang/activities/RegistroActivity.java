@@ -28,10 +28,9 @@ public class RegistroActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private Button btnSiguiente;
-    private TextView textName, textEmail, textPhone, textPass, textVerifyPass;
     private EditText etNombre, etCorreo, etTelefono, etPassword, etVerify, etNuevo;
     private ToggleButton tbDeportes, tbJuegosMesa, tbConciertos, tbFiesta, tbCharlar, tbConferencias;
-    private Button btnSiguiente, btnAgregar;
+    private Button btnAgregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,17 +55,11 @@ public class RegistroActivity extends AppCompatActivity {
 
         btnSiguiente = findViewById(R.id.btnSiguienteRegistro);
         btnAgregar = findViewById(R.id.btnAgregarRegistro);
-        btnSiguiente = findViewById(R.id.signupBtn);
-        textName = findViewById(R.id.nameSignup);
-        textEmail = findViewById(R.id.emailSignup);
-        textPhone = findViewById(R.id.phoneSignup);
-        textPass = findViewById(R.id.passwordSignup);
-        textVerifyPass = findViewById(R.id.verifyPswd);
 
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(textPass.getText().toString().equals(textVerifyPass.getText().toString())) {
+                if(etPassword.getText().toString().equals(etVerify.getText().toString())) {
                     attemptSignUp();
                 }
                 else{
@@ -83,10 +76,8 @@ public class RegistroActivity extends AppCompatActivity {
             return;
         }
 
-
-
-        mAuth.createUserWithEmailAndPassword(textEmail.getText().toString(),
-                textPass.getText().toString())
+        mAuth.createUserWithEmailAndPassword(etCorreo.getText().toString(),
+                etPassword.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -111,27 +102,27 @@ public class RegistroActivity extends AppCompatActivity {
 
     private boolean validateInput(){
 
-        if(textName.getText().toString().equals("")){
+        if(etNombre.getText().toString().equals("")){
             Toast.makeText(getApplicationContext(), "El nombre es requerido.",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(textPhone.getText().toString().length() < 7){
+        if(etTelefono.getText().toString().length() < 7){
             Toast.makeText(getApplicationContext(), "El numero de telefono no es válido.",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(!isValidEmail(textEmail.getText())){
+        if(!isValidEmail(etCorreo.getText())){
             Toast.makeText(getApplicationContext(), "El correo no es válido.",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(!textVerifyPass.getText().toString().equals(textPass.getText().toString())){
+        if(!etVerify.getText().toString().equals(etPassword.getText().toString())){
             Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden.",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(textPass.getText().toString().length() < 6){
+        if(etPassword.getText().toString().length() < 6){
             Toast.makeText(getApplicationContext(),
                     "La contraseña debe tener al menos 6 caracteres.",
                     Toast.LENGTH_SHORT).show();
@@ -146,17 +137,17 @@ public class RegistroActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser u) {
         if(u == null){
-            textPass.setText("");
-            textVerifyPass.setText("");
+            etPassword.setText("");
+            etVerify.setText("");
             Toast.makeText(getApplicationContext() ,
                     "no se pudo crear el usuario :(",
                     Toast.LENGTH_SHORT).show();
         }
         else{
-            Intent intent = new Intent(getApplicationContext(),  RegistroAdicional.class);
+            Intent intent = new Intent(getApplicationContext(),  RegistroAdicionalActivity.class);
             startActivity(intent);
         }
     }
 
-    }
+
 }

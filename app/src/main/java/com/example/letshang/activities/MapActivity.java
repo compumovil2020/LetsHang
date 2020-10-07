@@ -34,8 +34,7 @@ public class MapActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        filterIcon = findViewById(R.id.imageFilterMap);
-        textList = findViewById(R.id.btnListaLista);
+
         ivFilter = findViewById(R.id.ivFiltroMap);
         btnLista = findViewById(R.id.btnListaMap);
         navView = findViewById(R.id.map_nav_view);
