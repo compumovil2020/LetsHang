@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class PrincipalActivity extends AppCompatActivity {
 
@@ -26,10 +27,17 @@ public class PrincipalActivity extends AppCompatActivity {
     private NavigationView navView;
     private TextView btnMap;
 
+    // should go in utils
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
+
+        // Initialize Firebase Auth
+        // should go in utils
+        mAuth = FirebaseAuth.getInstance();
 
         // set action bar title
         getSupportActionBar().setTitle("Feed");
@@ -108,7 +116,9 @@ public class PrincipalActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
-                    Intent intent = new Intent(getApplicationContext() , LoginActivity.class);
+                    mAuth.signOut();
+                    Intent intent = new Intent(getApplicationContext() , StartActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
                 if(item.getItemId() ==  R.id.item_menu_pago){
