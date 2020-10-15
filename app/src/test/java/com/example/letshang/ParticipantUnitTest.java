@@ -4,6 +4,7 @@ import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
 import com.example.letshang.model.Preference;
 import com.example.letshang.model.SportEvent;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.junit.Test;
 
@@ -18,20 +19,21 @@ public class ParticipantUnitTest {
     @Test
     public void lastEventShouldReturnLastEvent(){
 
+        LatLng position = new LatLng(48.856613, 2.352222);
         // prepare the data
         Preference preference = new Preference(null, null);
         ArrayList<Event> events = new ArrayList<Event>();
         Event event1 = new SportEvent("Evento 1",null, new Date(2000,01,01),
-                null, 0, 0, null, null, null, 5);
+                null, 0, 0, null, null, null, 5, position);
 
         Event event2 = new SportEvent("Evento 2",null, new Date(2020,01,01),
-                null, 0, 0, null, null, null, 3);
+                null, 0, 0, null, null, null, 3, position);
 
         Event event3 = new SportEvent("Evento 3",null, new Date(1900,01,01),
-                null, 0, 0, null, null, null, 01);
+                null, 0, 0, null, null, null, 01, position);
 
         Event event4 = new SportEvent("Evento 4",null, new Date(2010,01,01),
-                null, 0, 0, null, null, null, 1);
+                null, 0, 0, null, null, null, 1, position);
 
         events.add(event1);
         events.add(event2);
