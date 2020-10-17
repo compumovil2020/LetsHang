@@ -20,15 +20,22 @@ import java.util.List;
 // metodos se van a cambiar para que traigan datos de firebase
 //*******************
 
+//singleton class
 public class UserProvider {
 
     private User currentUser;
+    private UserProvider provider = new UserProvider();
 
+
+    public UserProvider getInsatance(){
+
+        return provider;
+    }
 
     /**
      * initializest user
      */
-    public UserProvider(){
+    private UserProvider(){
 
         // este tiene que hacer una query a la base de datos
         // estos datos son quemados

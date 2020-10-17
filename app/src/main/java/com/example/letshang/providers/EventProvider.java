@@ -15,9 +15,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+
+// Singleton class
 public class EventProvider {
 
     private List<Event> eventsList;
+
+    private EventProvider provider = new EventProvider();
+
+
+    public EventProvider getInsatance(){
+        return provider;
+    }
 
     public EventProvider(){
 
