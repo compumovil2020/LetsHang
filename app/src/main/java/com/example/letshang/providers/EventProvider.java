@@ -28,7 +28,7 @@ public class EventProvider {
         return provider;
     }
 
-    public EventProvider(){
+    private EventProvider(){
 
         eventsList = getEventsFromDBB();
     }
