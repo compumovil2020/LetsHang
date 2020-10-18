@@ -1,9 +1,10 @@
 package com.example.letshang.model;
 
 public enum AcademicEventLevel {
-    BEGINNER,
-    AMATEUR,
-    INTERMEDIATE,
-    ADVANCED,
-    PROFESSIONAL
+    PRESCHOOL,
+    ELEMENTARY,
+    JUVENILE,
+    HIGHSCHOOL,
+    UNIVERSITY,
+    PROFFESIONAL
 }

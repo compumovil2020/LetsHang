@@ -29,7 +29,7 @@ public class Participant extends User {
         }
         Event answer = pastEvents.get(0);
         for(Event e: pastEvents){
-            if(answer.getDate().compareTo(e.getDate()) < 0 ){
+            if(answer.getEndDate().compareTo(e.getEndDate()) < 0 ){
                 answer = e;
             }
         }

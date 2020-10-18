@@ -1,5 +1,7 @@
 package com.example.letshang.model;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.Collection;
 import java.util.Date;
 
@@ -23,11 +25,12 @@ public class GameEvent extends Event{
 
     public GameEvent(String title, String description, Date startDate, Date endDate,
                       long price, int maximumCapacity, Collection<String> tags,
-                      String game, GameEventLevel level, int teamSize) {
-        super(title, description, startDate, endDate, price, maximumCapacity, tags);
+                      String game, GameEventLevel level, int teamSize, LatLng location) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
         this.game = game;
         this.level = level;
         this.teamSize = teamSize;
+        this.type = EventsEnum.GAME;
     }
 
 }
