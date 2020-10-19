@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 
 public abstract class Event {
+    protected int ID;
     protected LatLng location;
     protected String title;
     protected String description;
@@ -29,6 +30,8 @@ public abstract class Event {
         this.tags = tags;
         this.location = location;
     }
+
+    public int getID() { return ID; }
 
     public static EventsEnum getType() {
         return type;
