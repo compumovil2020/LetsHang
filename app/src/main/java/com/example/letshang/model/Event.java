@@ -4,6 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Event {
     protected int ID;
@@ -16,6 +17,7 @@ public abstract class Event {
     protected int maximumCapacity;
     protected Collection<String> tags;
     protected static EventsEnum type;
+    private static AtomicInteger nextId = new AtomicInteger();
 
 
 
@@ -29,6 +31,11 @@ public abstract class Event {
         this.maximumCapacity = maximumCapacity;
         this.tags = tags;
         this.location = location;
+        setId();
+    }
+
+    private void setId() {
+        this.ID = nextId.incrementAndGet();
     }
 
     public int getID() { return ID; }

@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Host extends Participant {
 
@@ -13,10 +14,18 @@ public class Host extends Participant {
     private List<Event> hostedEvents;
 
 
-    public Host(String name, String email, Date birthDate, String phone, String facebook, String instagram, String twitter, String youtube, String linkedIn, Preference preferences, List<Event> pastEvents, URL webPage) {
+
+    public Host(String name, String email, Date birthDate, String phone, String facebook, String instagram, String twitter, String youtube, String linkedIn, Preference preferences, List<Event> pastEvents) {
+        super(name, email, birthDate, phone, facebook, instagram, twitter, youtube, linkedIn, preferences, pastEvents);
+    }
+
+    public Host(String name, String email, Date birthDate, String phone, String facebook, String instagram, String twitter, String youtube, String linkedIn, Preference preferences, List<Event> pastEvents, URL webPage, List<Event> hostedEvents) {
         super(name, email, birthDate, phone, facebook, instagram, twitter, youtube, linkedIn, preferences, pastEvents);
         this.webPage = webPage;
+        this.hostedEvents = hostedEvents;
     }
+
+
 
     public boolean createEvent(String title, String description, Date startDate, Date endDate, long price,
                                int maximumCapacity, Collection<String> tags, LatLng location, String type){
