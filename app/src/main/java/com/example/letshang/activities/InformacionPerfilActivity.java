@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.letshang.R;
+import com.example.letshang.providers.UserProvider;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -26,6 +27,9 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private FirebaseAuth mAuth;
+    private TextView tvNombre, tvCorreo;
+
+    private UserProvider usProv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,14 @@ public class InformacionPerfilActivity extends AppCompatActivity {
         tvDeportes.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         tvConciertos.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         tvConferencias.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+
+        tvNombre = findViewById(R.id.tvNombreInformacionPerfil);
+        tvCorreo = findViewById(R.id.tvCorreoInformacionPerfil);
+
+        usProv = new UserProvider();
+
+        tvNombre.setText(usProv.getCurrentUser().getName());
+        tvCorreo.setText(usProv.getCurrentUser().getEmail());
 
         setupMenu();
 
