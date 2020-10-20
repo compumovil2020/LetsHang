@@ -21,16 +21,20 @@ public class EventProvider {
 
     private List<Event> eventsList;
 
-    private EventProvider provider = new EventProvider();
+    private EventProvider provider;
 
 
     public EventProvider getInsatance(){
         return provider;
     }
 
-    private EventProvider(){
+    public EventProvider(){
 
         eventsList = getEventsFromDBB();
+    }
+
+    public List<Event> getList(){
+        return eventsList;
     }
 
     /**
