@@ -15,7 +15,6 @@ public class User {
     private String youtube;
     private String linkedIn;
     private Date birthDate;
-    protected Collection<String> tags;
 
 
     public User(String name, String email, Date birthDate,
@@ -105,11 +104,4 @@ public class User {
         this.birthDate = birthDate;
     }
 
-    public Collection<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(Collection<String> tags) {
-        this.tags = tags;
-    }
 }
