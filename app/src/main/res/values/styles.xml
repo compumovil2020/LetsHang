@@ -267,7 +267,7 @@
         <item name="android:background">@drawable/icn_hamburguer</item>
         <item name="android:layout_height">21dp</item>
         <item name="android:layout_width">21dp</item>
-        <item name="android:colorBackground">@color/primaryColor</item>
+        <item name="android:colorBackground">@color/colorPrimary</item>
     </style>
 
     <style name="icn_filter">
