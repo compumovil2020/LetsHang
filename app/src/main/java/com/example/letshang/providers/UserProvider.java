@@ -24,7 +24,7 @@ import java.util.List;
 public class UserProvider {
 
     private User currentUser;
-    private UserProvider provider = new UserProvider();
+    private UserProvider provider;
 
 
     public UserProvider getInsatance(){
@@ -35,8 +35,8 @@ public class UserProvider {
     /**
      * initializest user
      */
-    private UserProvider(){
-
+    public UserProvider(){
+        System.out.println("AAA");
         // este tiene que hacer una query a la base de datos
         // estos datos son quemados
         List<Event> pastEvents = generateEvents();
@@ -46,7 +46,7 @@ public class UserProvider {
         mapa.put(EventsEnum.PARTY , 3.7);
         mapa.put(EventsEnum.MUSIC , 4.37);
         Preference preferences = new Preference(mapa , new String[]{"futbol" , "parque" , "yoga", "fit"});
-
+        System.out.println("AAA");
         currentUser = new Participant("Juan Perez","juan@perez.com",
                 new Date(1998, 5,5),"3177963053",
                 "juan.perez","perez99","@perez",

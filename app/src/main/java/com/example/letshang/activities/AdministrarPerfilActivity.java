@@ -14,12 +14,21 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.letshang.R;
+import com.example.letshang.model.User;
+import com.example.letshang.providers.UserProvider;
 import com.google.android.material.navigation.NavigationView;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import android.util.Log;
 
 public class AdministrarPerfilActivity extends AppCompatActivity {
 
     private EditText etNombre, etEmail, etTelefono, etLocation, etFecha;
     private Button btnGuardar;
+
+    private UserProvider usrProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +44,15 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
         btnGuardar = findViewById(R.id.btnGuardarAdministrarPerfil);
 
         getSupportActionBar().setTitle("Mi perfil");
+
+        usrProvider = new UserProvider();
+        etNombre.setText(usrProvider.getCurrentUser().getName());
+        etEmail.setText(usrProvider.getCurrentUser().getEmail());
+        etTelefono.setText(usrProvider.getCurrentUser().getPhone());
+        //etLocation.setText(usrProvider.getCurrentUser().getLocation());
+        DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        String today = formatter.format(usrProvider.getCurrentUser().getBirthDate());
+        etFecha.setText(today);
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
