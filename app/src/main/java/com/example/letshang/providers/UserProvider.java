@@ -2,6 +2,7 @@ package com.example.letshang.providers;
 
 import com.example.letshang.model.Event;
 import com.example.letshang.model.EventsEnum;
+import com.example.letshang.model.Host;
 import com.example.letshang.model.Participant;
 import com.example.letshang.model.Preference;
 import com.example.letshang.model.SportEvent;
@@ -24,29 +25,34 @@ import java.util.List;
 public class UserProvider {
 
     private User currentUser;
-    private UserProvider provider;
+    private static UserProvider instance = null;
 
 
-    public UserProvider getInsatance(){
 
-        return provider;
+    public static UserProvider getInsatance(){
+        if(instance == null){
+            instance = new UserProvider();
+        }
+        return instance;
     }
+
+
 
     /**
      * initializest user
      */
-    public UserProvider(){
-        System.out.println("AAA");
+    private UserProvider(){
+
         // este tiene que hacer una query a la base de datos
         // estos datos son quemados
-        List<Event> pastEvents = generateEvents();
+        List<Event> pastEvents = generatePastEvents();
         EnumMap<EventsEnum , Double> mapa = new EnumMap<EventsEnum, Double>(EventsEnum.class);
         mapa.put(EventsEnum.ACADEMIC , 2.6);
         mapa.put(EventsEnum.SPORTS , 4.96);
         mapa.put(EventsEnum.PARTY , 3.7);
         mapa.put(EventsEnum.MUSIC , 4.37);
         Preference preferences = new Preference(mapa , new String[]{"futbol" , "parque" , "yoga", "fit"});
-        System.out.println("AAA");
+
         currentUser = new Participant("Juan Perez","juan@perez.com",
                 new Date(1998, 5,5),"3177963053",
                 "juan.perez","perez99","@perez",
@@ -81,7 +87,7 @@ public class UserProvider {
      * Helper function
      * @return list of events
      */
-    private List<Event> generateEvents(){
+    private List<Event> generatePastEvents(){
         List<Event> ans = new ArrayList<Event>();
 
         ArrayList<String> tags = new ArrayList<String>();
@@ -99,4 +105,6 @@ public class UserProvider {
         );
         return ans;
     }
+
+
 }
