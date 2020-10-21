@@ -57,7 +57,7 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
 
         btnGuardar = findViewById(R.id.btnGuardarAdministrarPerfil);
 
-        //linearLayoutContenedor = findViewById(R.id.llAdministrarPerfil3);
+        linearLayoutContenedor = findViewById(R.id.llAdministrarPerfil3);
 
         getSupportActionBar().setTitle("Mi perfil");
 
@@ -71,7 +71,7 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
         String today = formatter.format(part.getBirthDate());
         etFecha.setText(today);
 
-        /*Preference pr = part.getPreferences();
+        Preference pr = part.getPreferences();
 
         String[] tags = pr.getInterests();
 
@@ -106,7 +106,7 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
                 contadorTags = 0;
             }
             contadorTags++;
-        }*/
+        }
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override

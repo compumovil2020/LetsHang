@@ -84,6 +84,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
             }
 
             if(contadorTags < 3){
+
                 TableRow.LayoutParams lp = new TableRow.LayoutParams();
                 lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                 lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -104,7 +105,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
             if(contadorTags==2){
                 contadorTags = 0;
             }
-            contadorTags++;
+            contadorTags += 1;
         }
 
         setupMenu();
