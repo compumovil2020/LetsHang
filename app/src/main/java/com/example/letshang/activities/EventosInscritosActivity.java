@@ -7,14 +7,25 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.letshang.R;
+import com.example.letshang.model.Event;
+import com.example.letshang.model.Participant;
+import com.example.letshang.model.User;
+import com.example.letshang.providers.UserProvider;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class EventosInscritosActivity extends AppCompatActivity {
 
@@ -23,6 +34,9 @@ public class EventosInscritosActivity extends AppCompatActivity {
     private NavigationView navView;
     private Button btnEvento, btnAgregar;
     private FirebaseAuth mAuth;
+
+    private UserProvider userProvider;
+    private LinearLayout linearLayoutContenedor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +50,51 @@ public class EventosInscritosActivity extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
         navView = findViewById(R.id.inscritos_nav_view);
-        btnEvento = findViewById(R.id.btnEventoEventosInscritos);
+        //btnEvento = findViewById(R.id.btnEventoEventosInscritos);
         btnAgregar = findViewById(R.id.btnAgregarEventosInscritos);
+
+        linearLayoutContenedor = findViewById(R.id.lyListaEventosInscritos);
+
+        userProvider = new UserProvider();
+
+        Participant u = (Participant)userProvider.getCurrentUser();
+
+        List<Event> listSubscribeEvents = u.getPastEvents();
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+        int contadorEventosxLinea = 0;
+        for(Event e : listSubscribeEvents){
+            LinearLayout linearLayoutBotones;
+            Button botonEvento;
+            linearLayoutBotones = new LinearLayout(this);
+            if(contadorEventosxLinea == 0){
+                linearLayoutBotones.setOrientation(LinearLayout.HORIZONTAL);
+                linearLayoutBotones.setLayoutParams(layoutParams);
+                linearLayoutContenedor.addView(linearLayoutBotones);
+            }
+
+            if(contadorEventosxLinea < 2){
+                ContextThemeWrapper newContext = new ContextThemeWrapper(this, R.style.form_bigOrange);
+                botonEvento = new Button(newContext, null, R.style.form_bigOrange);
+
+                DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+                String fecha = formatter.format(e.getStartDate());
+
+                botonEvento.setText(e.getTitle() + "\n\n" + fecha + "\n" + e.getLocation() + "\n" + "e.getHost()");
+                botonEvento.setGravity(Gravity.CENTER);
+
+                linearLayoutBotones.addView(botonEvento);
+
+            }
+
+            if(contadorEventosxLinea == 1){
+                contadorEventosxLinea = 0;
+            }
+
+            contadorEventosxLinea += 1;
+        }
 
         setupMenu();
     }
@@ -89,13 +146,13 @@ public class EventosInscritosActivity extends AppCompatActivity {
             }
         });
 
-        btnEvento.setOnClickListener(new View.OnClickListener() {
+        /*btnEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override
