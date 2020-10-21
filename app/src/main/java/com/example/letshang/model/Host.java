@@ -51,4 +51,12 @@ public class Host extends Participant {
         //TODO: Modify the event with ID <id> and send email to participants
         return true;
     }
+
+    public void setWebPage(URL webPage) {
+        this.webPage = webPage;
+    }
+
+    public void setHostedEvents(List<Event> hostedEvents) {
+        this.hostedEvents = hostedEvents;
+    }
 }
