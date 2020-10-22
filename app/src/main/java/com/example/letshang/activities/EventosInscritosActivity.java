@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.letshang.R;
@@ -37,7 +38,8 @@ public class EventosInscritosActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     private UserProvider userProvider = UserProvider.getInsatance();
-    private LinearLayout linearLayoutContenedor;
+    private ListView listViewEvents;
+    EventsAdapter eventsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,54 +49,19 @@ public class EventosInscritosActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Eventos inscritos");
         mAuth = FirebaseAuth.getInstance();
 
-
-
+        //inflate
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
         navView = findViewById(R.id.inscritos_nav_view);
         //btnEvento = findViewById(R.id.btnEventoEventosInscritos);
         btnAgregar = findViewById(R.id.btnAgregarEventosInscritos);
+        listViewEvents = findViewById(R.id.listEventosAdapter);
 
-        linearLayoutContenedor = findViewById(R.id.lyListaEventosInscritos);
+        Participant participant = (Participant)userProvider.getCurrentUser();
 
+        List<Event> listEvents = participant.getPastEvents();
 
-        Participant u = (Participant)userProvider.getCurrentUser();
-
-        List<Event> listSubscribeEvents = u.getPastEvents();
-
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-
-        int contadorEventosxLinea = 0;
-        for(Event e : listSubscribeEvents){
-            LinearLayout linearLayoutBotones;
-            Button botonEvento;
-            linearLayoutBotones = new LinearLayout(this);
-            if(contadorEventosxLinea == 0){
-                linearLayoutBotones.setOrientation(LinearLayout.HORIZONTAL);
-                linearLayoutBotones.setLayoutParams(layoutParams);
-                linearLayoutContenedor.addView(linearLayoutBotones);
-            }
-
-            if(contadorEventosxLinea < 2){
-                ContextThemeWrapper newContext = new ContextThemeWrapper(this, R.style.form_bigOrange);
-                botonEvento = new Button(newContext, null, R.style.form_bigOrange);
-
-                DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-                String fecha = formatter.format(e.getStartDate());
-
-                botonEvento.setText(e.getTitle() + "\n\n" + fecha + "\n" + e.getLocation() + "\n" + "e.getHost()");
-                botonEvento.setGravity(Gravity.CENTER);
-
-                linearLayoutBotones.addView(botonEvento);
-
-            }
-
-            if(contadorEventosxLinea == 1){
-                contadorEventosxLinea = 0;
-            }
-
-            contadorEventosxLinea += 1;
-        }
+        eventsAdapter = new EventsAdapter(this,listEvents);
+        listViewEvents.setAdapter(eventsAdapter);
 
         setupMenu();
     }
