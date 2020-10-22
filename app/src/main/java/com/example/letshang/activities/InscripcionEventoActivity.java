@@ -3,6 +3,8 @@ package com.example.letshang.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,9 +13,12 @@ import android.widget.TextView;
 import com.example.letshang.R;
 import com.example.letshang.model.Event;
 import com.example.letshang.providers.EventProvider;
+import com.google.android.gms.maps.model.LatLng;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 public class InscripcionEventoActivity extends AppCompatActivity {
 
@@ -32,7 +37,7 @@ public class InscripcionEventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inscripcion_evento);
 
-        int numevento = getIntent().getIntExtra("numevent", 0);
+        int idEvento = getIntent().getIntExtra("idevento", 1);
 
         tvHostEvento = findViewById(R.id.tvHostInscripcionEvento);
 
@@ -49,25 +54,31 @@ public class InscripcionEventoActivity extends AppCompatActivity {
         tvDescripcionEvento = findViewById(R.id.tvResumenInscripcionEvento);
 
 
-        /*List<Event> listEvent = evProv.getList();
+        Event event = evProv.getEventByID(idEvento);
 
-        int cont = 0;
-        for(Event e : listEvent){
-            if(cont == numevento){
-                getSupportActionBar().setTitle(e.getTitle());
-                tvDescripcionEvento.setText(e.getDescription());
-                tvPrecioEvento.setText( Long.toString(e.getPrice()));
-                tvLocationEvento.setText("e.getLocation()");
-                tvHostEvento.setText("e.getUser()");
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                String fecha =  formatter.format(e.getStartDate())  + " - " + formatter.format(e.getEndDate());
-                SimpleDateFormat formatter2 = new SimpleDateFormat("HH:mm:ss");
-                String horario = formatter2.format(e.getStartDate()) + " - " + formatter2.format(e.getEndDate());
-                tvTiempoEvento.setText(horario);
-                tvFechaEvento.setText(fecha);
-            }
-            cont++;
-        }*/
+        getSupportActionBar().setTitle(event.getTitle());
+        tvDescripcionEvento.setText(event.getDescription());
+        tvPrecioEvento.setText( Long.toString(event.getPrice()));
+
+        LatLng latLng = event.getLocation();
+        String city = "";
+
+        Geocoder gcd = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = gcd.getFromLocation(latLng.latitude, latLng.longitude, 1);
+            city = addresses.get(0).getAddressLine(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        tvLocationEvento.setText(city);
+        tvHostEvento.setText(evProv.getEventHost(idEvento).getName());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha =  formatter.format(event.getStartDate())  + " - " + formatter.format(event.getEndDate());
+        SimpleDateFormat formatter2 = new SimpleDateFormat("HH:mm:ss");
+        String horario = formatter2.format(event.getStartDate()) + " - " + formatter2.format(event.getEndDate());
+        tvTiempoEvento.setText(horario);
+        tvFechaEvento.setText(fecha);
 
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
