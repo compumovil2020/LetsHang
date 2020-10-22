@@ -8,6 +8,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.location.Address;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -25,10 +26,12 @@ import com.example.letshang.model.Participant;
 import com.example.letshang.model.Preference;
 import com.example.letshang.model.User;
 import com.example.letshang.providers.UserProvider;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.navigation.NavigationView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import android.util.Log;
 
@@ -37,7 +40,7 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
     private EditText etNombre, etEmail, etTelefono, etLocation, etFecha;
     private Button btnGuardar;
 
-    private UserProvider usrProvider;
+    private UserProvider usrProvider = UserProvider.getInsatance();
     private Participant part;
 
     private LinearLayout linearLayoutContenedor;
@@ -61,12 +64,12 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("Mi perfil");
 
-        usrProvider = new UserProvider();
+
         part = (Participant)usrProvider.getCurrentUser();
         etNombre.setText(part.getName());
         etEmail.setText(part.getEmail());
         etTelefono.setText(part.getPhone());
-        //etLocation.setText(usrProvider.getCurrentUser().getLocation());
+        etLocation.setText("part.getLocation()");
         DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
         String today = formatter.format(part.getBirthDate());
         etFecha.setText(today);

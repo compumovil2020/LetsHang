@@ -37,7 +37,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private TextView tvNombre, tvCorreo;
 
-    private UserProvider usProv;
+    private UserProvider usProv = UserProvider.getInsatance();
     private LinearLayout linearLayoutContenedor;
     private LinearLayout linearLayoutTextos;
     private TextView textViewTags;
@@ -60,7 +60,6 @@ public class InformacionPerfilActivity extends AppCompatActivity {
 
         linearLayoutContenedor = findViewById(R.id.llInformacionPerfil1);
 
-        usProv = new UserProvider();
 
         Participant parti = (Participant)usProv.getCurrentUser();
 

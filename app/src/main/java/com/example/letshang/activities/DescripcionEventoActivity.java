@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Paint;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,12 +14,15 @@ import android.widget.TextView;
 import com.example.letshang.R;
 import com.example.letshang.model.Event;
 import com.example.letshang.providers.EventProvider;
+import com.google.android.gms.maps.model.LatLng;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class DescripcionEventoActivity extends AppCompatActivity {
 
@@ -29,14 +34,14 @@ public class DescripcionEventoActivity extends AppCompatActivity {
     private TextView tvPrecioEvento;
     private TextView tvDescripcionEvento;
 
-    private EventProvider evProv;
+    private EventProvider evProv = EventProvider.getInsatance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_descripcion_evento);
 
-        int numevento = getIntent().getIntExtra("numevent", 0);
+        int idEvento = getIntent().getIntExtra("idevento", 1);
 
         tvHost = findViewById(R.id.tvHostDescripcionEvento);
 
@@ -54,27 +59,33 @@ public class DescripcionEventoActivity extends AppCompatActivity {
 
         tvDescripcionEvento = findViewById(R.id.tvResumenDescripcionEvento);
 
-        evProv = new EventProvider();
 
-        List<Event> listEvent = evProv.getList();
+        Event evento = evProv.getEventByID(idEvento);
 
-        int cont = 0;
-        for(Event e : listEvent){
-            if(cont == numevento){
-                getSupportActionBar().setTitle(e.getTitle());
-                tvDescripcionEvento.setText(e.getDescription());
-                tvPrecioEvento.setText( Long.toString(e.getPrice()));
-                tvLocationEvento.setText("e.getLocation()");
-                tvHost.setText("e.getUser()");
-                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                String fecha =  formatter.format(e.getStartDate())  + " - " + formatter.format(e.getEndDate());
-                SimpleDateFormat formatter2 = new SimpleDateFormat("HH:mm:ss");
-                String horario = formatter2.format(e.getStartDate()) + " - " + formatter2.format(e.getEndDate());
-                tvTiempoEvento.setText(horario);
-                tvFechaEvento.setText(fecha);
-            }
-            cont++;
+        getSupportActionBar().setTitle(evento.getTitle());
+        tvDescripcionEvento.setText(evento.getDescription());
+        tvPrecioEvento.setText( Long.toString(evento.getPrice()));
+
+        LatLng latLng = evento.getLocation();
+        String city = "";
+
+        Geocoder gcd = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = gcd.getFromLocation(latLng.latitude, latLng.longitude, 1);
+            city = addresses.get(0).getAddressLine(0);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
+        tvLocationEvento.setText(city);
+        tvHost.setText(evProv.getEventHost(idEvento).getName());
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String fecha =  formatter.format(evento.getStartDate())  + " - " + formatter.format(evento.getEndDate());
+        SimpleDateFormat formatter2 = new SimpleDateFormat("HH:mm:ss");
+        String horario = formatter2.format(evento.getStartDate()) + " - " + formatter2.format(evento.getEndDate());
+        tvTiempoEvento.setText(horario);
+        tvFechaEvento.setText(fecha);
+
 
         btnCancelar.setOnClickListener(new View.OnClickListener(){
 

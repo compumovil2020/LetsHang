@@ -25,7 +25,7 @@ public class InscripcionEventoActivity extends AppCompatActivity {
     private TextView tvPrecioEvento;
     private TextView tvDescripcionEvento;
 
-    private EventProvider evProv;
+    private EventProvider evProv = EventProvider.getInsatance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +49,7 @@ public class InscripcionEventoActivity extends AppCompatActivity {
         tvDescripcionEvento = findViewById(R.id.tvResumenInscripcionEvento);
 
 
-        evProv = new EventProvider();
-
-        List<Event> listEvent = evProv.getList();
+        /*List<Event> listEvent = evProv.getList();
 
         int cont = 0;
         for(Event e : listEvent){
@@ -69,7 +67,7 @@ public class InscripcionEventoActivity extends AppCompatActivity {
                 tvFechaEvento.setText(fecha);
             }
             cont++;
-        }
+        }*/
 
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override

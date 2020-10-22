@@ -19,6 +19,7 @@ import com.example.letshang.R;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
 import com.example.letshang.model.User;
+import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +36,7 @@ public class EventosInscritosActivity extends AppCompatActivity {
     private Button btnEvento, btnAgregar;
     private FirebaseAuth mAuth;
 
-    private UserProvider userProvider;
+    private UserProvider userProvider = UserProvider.getInsatance();
     private LinearLayout linearLayoutContenedor;
 
     @Override
@@ -55,7 +56,6 @@ public class EventosInscritosActivity extends AppCompatActivity {
 
         linearLayoutContenedor = findViewById(R.id.lyListaEventosInscritos);
 
-        userProvider = new UserProvider();
 
         Participant u = (Participant)userProvider.getCurrentUser();
 
