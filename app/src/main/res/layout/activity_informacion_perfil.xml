@@ -76,51 +76,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvEventosInformacionPerfil"
                 app:layout_constraintVertical_bias="0.0">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="60dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/btnEvento1InformacionPerfil"
-                        style="@style/form_bigOrange"
-                        android:layout_marginBottom="20dp"
-                        android:layout_weight="1"
-                        android:text="Actividad\nFecha\nLugar\nOrganizador"
-                        android:textAlignment="center" />
-
-                    <Button
-                        android:id="@+id/btnEvento2InformacionPerfil"
-                        style="@style/form_bigOrange"
-                        android:layout_weight="1"
-                        android:text="Actividad\nFecha\nLugar\nOrganizador"
-                        android:textAlignment="center" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/btnEvento3InformacionPerfil"
-                        style="@style/form_bigOrange"
-                        android:layout_marginBottom="20dp"
-                        android:layout_weight="1"
-                        android:text="Actividad \nFecha \nLugar\nOrganizador"
-                        android:textAlignment="center" />
-
-                    <Button
-                        android:id="@+id/btnEvento4InformacionPerfil"
-                        style="@style/form_bigOrange"
-                        android:layout_weight="1"
-                        android:text="Actividad \nFecha\nLugar\nOrganizador"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                <ListView
+                    android:id="@+id/listEventosInformacionPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
             </LinearLayout>
 
             <LinearLayout

@@ -16,16 +16,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.letshang.R;
+import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
 import com.example.letshang.model.Preference;
 import com.example.letshang.providers.UserProvider;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.List;
 
 public class InformacionPerfilActivity extends AppCompatActivity {
 
@@ -41,6 +45,8 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private LinearLayout linearLayoutContenedor;
     private LinearLayout linearLayoutTextos;
     private TextView textViewTags;
+    private ListView listViewEvents;
+    EventsAdapter eventsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +55,6 @@ public class InformacionPerfilActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
-        btnEvento = findViewById(R.id.btnEvento1InformacionPerfil);
         btnEditar = findViewById(R.id.btnEditarInformacionPerfil);
 
         drawerLayout = findViewById(R.id.informacion_perfil_drawer_layout);
@@ -59,6 +64,8 @@ public class InformacionPerfilActivity extends AppCompatActivity {
         tvCorreo = findViewById(R.id.tvCorreoInformacionPerfil);
 
         linearLayoutContenedor = findViewById(R.id.llInformacionPerfil1);
+
+        listViewEvents = findViewById(R.id.listEventosInformacionPerfil);
 
 
         Participant parti = (Participant)usProv.getCurrentUser();
@@ -97,7 +104,10 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                 textViewTags.setTextSize(16);
                 textViewTags.setText(tag);
 
+                Participant participant = (Participant)usProv.getCurrentUser();
 
+                List<Event> listEvents = participant.getPastEvents();
+                eventsAdapter = new EventsAdapter(this,listEvents);
                 linearLayoutTextos.addView(textViewTags);
             }
 
@@ -107,15 +117,10 @@ public class InformacionPerfilActivity extends AppCompatActivity {
             contadorTags += 1;
         }
 
+        listViewEvents.setAdapter(eventsAdapter);
+
         setupMenu();
 
-        btnEvento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ModificarEventoActivity.class);
-                startActivity(intent);
-            }
-        });
 
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
