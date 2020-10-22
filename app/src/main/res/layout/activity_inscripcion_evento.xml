@@ -86,6 +86,7 @@
             app:layout_constraintStart_toStartOf="@+id/tvFechaInscripcionEvento"
             app:layout_constraintTop_toTopOf="@+id/ivTimeInscripcionEvento" />
 
+
         <ImageView
             android:id="@+id/ivMoneyInscripcionEvento"
             android:layout_width="30dp"
