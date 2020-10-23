@@ -8,15 +8,24 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.letshang.R;
+import com.example.letshang.model.Event;
+import com.example.letshang.model.Participant;
+import com.example.letshang.providers.EventProvider;
+import com.example.letshang.providers.UserProvider;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.List;
 
 public class PrincipalActivity extends AppCompatActivity {
 
@@ -29,6 +38,10 @@ public class PrincipalActivity extends AppCompatActivity {
 
     // should go in utils
     private FirebaseAuth mAuth;
+
+    private EventProvider eventProvider = EventProvider.getInsatance();
+    private ListView listViewEvents;
+    EventsAdapter eventsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +57,30 @@ public class PrincipalActivity extends AppCompatActivity {
 
         //inflate elements
         ivFiltrar = findViewById(R.id.ivFiltrarPrincipal);
-        eventLayout = findViewById(R.id.eventLayout);
+        //eventLayout = findViewById(R.id.eventLayout);
         drawerLayout = findViewById(R.id.principal_drawer_layout);
         navView = findViewById(R.id.principal_nav_view);
         btnMap = findViewById(R.id.btnMapaPrincipal);
+
+        listViewEvents = findViewById(R.id.listEventosPrincipal);
+
+
+        List<Event> listEvents = eventProvider.getAllEventsFromDBB();
+
+        eventsAdapter = new EventsAdapter(this,listEvents);
+        listViewEvents.setAdapter(eventsAdapter);
+
+        listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Event e = (Event) adapterView.getItemAtPosition(i);
+                Log.i("EVENTOS", String.valueOf(e.getID()));
+
+                Intent intent = new Intent(view.getContext(), InscripcionEventoActivity.class);
+                intent.putExtra("idevento", e.getID());
+                startActivity(intent);
+            }
+        });
 
         //setup side menu
         setupMenu();
@@ -58,15 +91,6 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext() , FiltersActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        eventLayout.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext() , InscripcionEventoActivity.class);
                 startActivity(intent);
             }
         });

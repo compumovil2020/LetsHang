@@ -8,8 +8,10 @@ import android.location.Geocoder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.example.letshang.model.Event;
@@ -39,13 +41,13 @@ public class EventsAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public Event getItem(int i) {
         return events.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return 0;
     }
 
     @Override
@@ -89,7 +91,6 @@ public class EventsAdapter extends BaseAdapter {
 
         return view;
     }
-
 
 
 }

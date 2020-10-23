@@ -60,7 +60,7 @@ public class DescripcionEventoActivity extends AppCompatActivity {
         tvDescripcionEvento = findViewById(R.id.tvResumenDescripcionEvento);
 
 
-        Event evento = evProv.getEventByID(idEvento);
+        Event evento = evProv.getEventByID(idEvento-2);
 
         getSupportActionBar().setTitle(evento.getTitle());
         tvDescripcionEvento.setText(evento.getDescription());

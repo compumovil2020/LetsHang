@@ -68,6 +68,8 @@ public class EventProvider {
                 AcademicEventLevel.UNIVERSITY, new LatLng(4.628640, -74.065273)
         );
 
+
+
         eventsList.add(event1);
         eventsList.add(event2);
     }
@@ -158,7 +160,7 @@ public class EventProvider {
      * Returns the array of events by querying the database
      * @return
      */
-    private List<Event> getAllEventsFromDBB(){
+    public List<Event> getAllEventsFromDBB(){
 
 
         return eventsList;

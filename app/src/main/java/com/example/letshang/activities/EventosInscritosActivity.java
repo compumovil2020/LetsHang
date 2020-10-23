@@ -7,10 +7,13 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -29,7 +32,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class EventosInscritosActivity extends AppCompatActivity {
+
+public class EventosInscritosActivity extends AppCompatActivity{
 
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
@@ -42,7 +46,7 @@ public class EventosInscritosActivity extends AppCompatActivity {
     EventsAdapter eventsAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eventos_inscrito);
 
@@ -63,7 +67,21 @@ public class EventosInscritosActivity extends AppCompatActivity {
         eventsAdapter = new EventsAdapter(this,listEvents);
         listViewEvents.setAdapter(eventsAdapter);
 
+        listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Event e = (Event) adapterView.getItemAtPosition(i);
+                Log.i("EVENTOS", String.valueOf(e.getID()));
+                Toast.makeText(EventosInscritosActivity.this, String.valueOf(i), Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
+                intent.putExtra("idevento", e.getID());
+                startActivity(intent);
+            }
+        });
+
         setupMenu();
+
     }
 
     void setupMenu(){
@@ -128,6 +146,7 @@ public class EventosInscritosActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
 
@@ -141,4 +160,5 @@ public class EventosInscritosActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 }
