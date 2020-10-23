@@ -7,6 +7,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -69,7 +70,11 @@ public class EventosInscritosActivity extends AppCompatActivity{
         listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(EventosInscritosActivity.this, "Toast por defecto", Toast.LENGTH_LONG);
+                Toast.makeText(EventosInscritosActivity.this, String.valueOf(i), Toast.LENGTH_LONG).show();
+                Event e = (Event) adapterView.getItemAtPosition(i);
+                Log.i("EVENTOS",e.getTitle());
+
+
             }
         });
 
