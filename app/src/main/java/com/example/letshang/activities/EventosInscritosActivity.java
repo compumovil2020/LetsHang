@@ -7,14 +7,27 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.letshang.R;
+import com.example.letshang.model.Event;
+import com.example.letshang.model.Participant;
+import com.example.letshang.model.User;
+import com.example.letshang.providers.EventProvider;
+import com.example.letshang.providers.UserProvider;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class EventosInscritosActivity extends AppCompatActivity {
 
@@ -24,6 +37,10 @@ public class EventosInscritosActivity extends AppCompatActivity {
     private Button btnEvento, btnAgregar;
     private FirebaseAuth mAuth;
 
+    private UserProvider userProvider = UserProvider.getInsatance();
+    private ListView listViewEvents;
+    EventsAdapter eventsAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,12 +49,19 @@ public class EventosInscritosActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Eventos inscritos");
         mAuth = FirebaseAuth.getInstance();
 
-
-
+        //inflate
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
         navView = findViewById(R.id.inscritos_nav_view);
-        btnEvento = findViewById(R.id.btnEventoEventosInscritos);
+        //btnEvento = findViewById(R.id.btnEventoEventosInscritos);
         btnAgregar = findViewById(R.id.btnAgregarEventosInscritos);
+        listViewEvents = findViewById(R.id.listEventosAdapter);
+
+        Participant participant = (Participant)userProvider.getCurrentUser();
+
+        List<Event> listEvents = participant.getPastEvents();
+
+        eventsAdapter = new EventsAdapter(this,listEvents);
+        listViewEvents.setAdapter(eventsAdapter);
 
         setupMenu();
     }
@@ -89,13 +113,13 @@ public class EventosInscritosActivity extends AppCompatActivity {
             }
         });
 
-        btnEvento.setOnClickListener(new View.OnClickListener() {
+        /*btnEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         btnAgregar.setOnClickListener(new View.OnClickListener() {
             @Override

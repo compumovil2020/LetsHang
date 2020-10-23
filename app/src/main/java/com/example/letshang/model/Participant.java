@@ -35,4 +35,20 @@ public class Participant extends User {
         }
         return answer;
     }
+
+    public List<Event> getPastEvents() {
+        return pastEvents;
+    }
+
+    public void setPastEvents(List<Event> pastEvents) {
+        this.pastEvents = pastEvents;
+    }
+
+    public Preference getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(Preference preferences) {
+        this.preferences = preferences;
+    }
 }

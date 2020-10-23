@@ -11,9 +11,6 @@
 
 
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -53,32 +50,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvInteresesInformacionPerfil">
-
-                <TextView
-                    android:id="@+id/tvDeportesInformacionPerfil"
-                    style="@style/typ_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Deportes" />
-
-                <TextView
-                    android:id="@+id/tvConciertosInformacionPerfil"
-                    style="@style/typ_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_weight="1"
-                    android:text="Conciertos" />
-
-                <TextView
-                    android:id="@+id/tvConferenciasInformacionPerfil"
-                    style="@style/typ_medium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_weight="1"
-                    android:text="Conferencias" />
             </LinearLayout>
 
             <Button
@@ -101,53 +72,14 @@
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toTopOf="@+id/btnEditarInformacionPerfil"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.495"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvEventosInformacionPerfil">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="60dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/btnEvento1InformacionPerfil"
-                        style="@style/form_bigOrange"
-                        android:layout_marginBottom="20dp"
-                        android:layout_weight="1"
-                        android:text="Actividad\nFecha\nLugar\nOrganizador"
-                        android:textAlignment="center" />
-
-                    <Button
-                        android:id="@+id/btnEvento2InformacionPerfil"
-                        style="@style/form_bigOrange"
-                        android:layout_weight="1"
-                        android:text="Actividad\nFecha\nLugar\nOrganizador"
-                        android:textAlignment="center" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <Button
-                        android:id="@+id/btnEvento3InformacionPerfil"
-                        style="@style/form_bigOrange"
-                        android:layout_marginBottom="20dp"
-                        android:layout_weight="1"
-                        android:text="Actividad \nFecha \nLugar\nOrganizador"
-                        android:textAlignment="center" />
-
-                    <Button
-                        android:id="@+id/btnEvento4InformacionPerfil"
-                        style="@style/form_bigOrange"
-                        android:layout_weight="1"
-                        android:text="Actividad \nFecha\nLugar\nOrganizador"
-                        android:textAlignment="center" />
-                </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/tvEventosInformacionPerfil"
+                app:layout_constraintVertical_bias="0.0">
+                <ListView
+                    android:id="@+id/listEventosInformacionPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
             </LinearLayout>
 
             <LinearLayout

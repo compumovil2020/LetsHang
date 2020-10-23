@@ -3,20 +3,33 @@ package com.example.letshang.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.letshang.R;
+import com.example.letshang.model.Event;
+import com.example.letshang.model.Participant;
+import com.example.letshang.model.Preference;
+import com.example.letshang.providers.UserProvider;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.List;
 
 public class InformacionPerfilActivity extends AppCompatActivity {
 
@@ -26,6 +39,14 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private FirebaseAuth mAuth;
+    private TextView tvNombre, tvCorreo;
+
+    private UserProvider usProv = UserProvider.getInsatance();
+    private LinearLayout linearLayoutContenedor;
+    private LinearLayout linearLayoutTextos;
+    private TextView textViewTags;
+    private ListView listViewEvents;
+    EventsAdapter eventsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,29 +54,73 @@ public class InformacionPerfilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_informacion_perfil);
         mAuth = FirebaseAuth.getInstance();
 
-        tvDeportes = findViewById(R.id.tvDeportesInformacionPerfil);
-        tvConciertos = findViewById(R.id.tvDeportesInformacionPerfil);
-        tvConferencias = findViewById(R.id.tvConferenciasInformacionPerfil);
 
-        btnEvento = findViewById(R.id.btnEvento1InformacionPerfil);
         btnEditar = findViewById(R.id.btnEditarInformacionPerfil);
 
         drawerLayout = findViewById(R.id.informacion_perfil_drawer_layout);
         navView = findViewById(R.id.informacion_perfil_nav_view);
 
-        tvDeportes.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        tvConciertos.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        tvConferencias.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
+        tvNombre = findViewById(R.id.tvNombreInformacionPerfil);
+        tvCorreo = findViewById(R.id.tvCorreoInformacionPerfil);
+
+        linearLayoutContenedor = findViewById(R.id.llInformacionPerfil1);
+
+        listViewEvents = findViewById(R.id.listEventosInformacionPerfil);
+
+
+        Participant parti = (Participant)usProv.getCurrentUser();
+
+        tvNombre.setText(parti.getName());
+        tvCorreo.setText(parti.getEmail());
+
+        Preference pr = parti.getPreferences();
+
+        String[] tags = pr.getInterests();
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+
+        int contadorTags = 0;
+        for(String tag : tags){
+            if(contadorTags == 0){
+                linearLayoutTextos = new LinearLayout(this);
+                linearLayoutTextos.setOrientation(LinearLayout.HORIZONTAL);
+                linearLayoutTextos.setLayoutParams(layoutParams);
+                linearLayoutContenedor.addView(linearLayoutTextos);
+            }
+
+            if(contadorTags < 3){
+
+                TableRow.LayoutParams lp = new TableRow.LayoutParams();
+                lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                lp.weight = 1;
+                lp.leftMargin = 10;
+                lp.rightMargin = 10;
+                Typeface face = ResourcesCompat.getFont(this,R.font.coves_bold);
+                textViewTags = new TextView(this);
+                textViewTags.setLayoutParams(lp);
+                textViewTags.setGravity(Gravity.CENTER);
+                textViewTags.setTextSize(16);
+                textViewTags.setText(tag);
+
+                Participant participant = (Participant)usProv.getCurrentUser();
+
+                List<Event> listEvents = participant.getPastEvents();
+                eventsAdapter = new EventsAdapter(this,listEvents);
+                linearLayoutTextos.addView(textViewTags);
+            }
+
+            if(contadorTags==2){
+                contadorTags = 0;
+            }
+            contadorTags += 1;
+        }
+
+        listViewEvents.setAdapter(eventsAdapter);
 
         setupMenu();
 
-        btnEvento.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), ModificarEventoActivity.class);
-                startActivity(intent);
-            }
-        });
 
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
