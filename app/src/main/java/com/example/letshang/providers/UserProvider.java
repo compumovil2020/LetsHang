@@ -49,7 +49,6 @@ public class UserProvider {
         EnumMap<EventsEnum , Double> mapa = new EnumMap<EventsEnum, Double>(EventsEnum.class);
         mapa.put(EventsEnum.ACADEMIC , 2.6);
         mapa.put(EventsEnum.SPORTS , 4.96);
-        mapa.put(EventsEnum.PARTY , 3.7);
         mapa.put(EventsEnum.MUSIC , 4.37);
         Preference preferences = new Preference(mapa , new String[]{"futbol" , "parque" , "yoga", "fit"});
 

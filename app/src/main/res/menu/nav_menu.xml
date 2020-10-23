@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/item_menu_eventos"
@@ -27,6 +25,11 @@
         android:id="@+id/item_menu_pago"
         android:icon="@drawable/icn_money"
         android:title="Métodos de pago"></item>
+
+    <item
+        android:id="@+id/item_menu_crear_evento"
+        android:icon="@drawable/icn_check"
+        android:title="Crear evento"></item>
 
     <item
         android:id="@+id/item_menu_logout"

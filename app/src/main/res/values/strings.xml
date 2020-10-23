@@ -46,6 +46,11 @@
     <string name="Map"><u>Mapa</u></string>
     <string name="Next">Siguiente</string>
     <string name="ProfileAdmin">ADMINISTRAR PERFIL</string>
+    <string name="nameerror">Tu evento debe tener un nombre</string>
+    <string name="priceerror">si quieres que tu evento sea gratis, escribe 0</string>
+    <string name="requirederror">Este campo es requerido</string>
+    <string name="emailerror">El correo no es valido</string>
+    <string name="passworderror">La contraseña debe tener al menos 6 caracteres</string>
 
     <string-array name="event_types">
         <item>Deportivo</item>
