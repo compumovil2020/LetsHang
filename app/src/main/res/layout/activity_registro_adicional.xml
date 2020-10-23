@@ -65,7 +65,7 @@
                     android:backgroundTint="@color/gray"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="Ciudad"
+                    android:hint="Ciudad"
                     android:textAlignment="center" />
 
 
@@ -97,7 +97,7 @@
                     android:backgroundTint="@color/gray"
                     android:ems="10"
                     android:inputType="date"
-                    android:text="Fecha de Nacimiento"
+                    android:hint="Fecha de Nacimiento"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -140,7 +140,7 @@
                     android:backgroundTint="@color/gray"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="Facebook"
+                    android:hint="Facebook"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -170,7 +170,7 @@
                     android:backgroundTint="@color/gray"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="Instagram"
+                    android:hint="Instagram"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -200,7 +200,7 @@
                     android:backgroundTint="@color/gray"
                     android:ems="10"
                     android:inputType="text"
-                    android:text="Linkedin"
+                    android:hint="Linkedin"
                     android:textAlignment="center" />
             </LinearLayout>
 

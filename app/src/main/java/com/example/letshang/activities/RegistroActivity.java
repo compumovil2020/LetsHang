@@ -5,17 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.letshang.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +32,7 @@ public class RegistroActivity extends AppCompatActivity {
     private EditText etNombre, etCorreo, etTelefono, etPassword, etVerify, etNuevo;
     private ToggleButton tbDeportes, tbJuegosMesa, tbConciertos, tbFiesta, tbCharlar, tbConferencias;
     private Button btnAgregar;
+    private AwesomeValidation validator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,13 @@ public class RegistroActivity extends AppCompatActivity {
 
         btnSiguiente = findViewById(R.id.btnSiguienteRegistro);
         btnAgregar = findViewById(R.id.btnAgregarRegistro);
+
+        validator = new AwesomeValidation(ValidationStyle.BASIC);
+
+        validator.addValidation(this, R.id.etNombreRegistro, RegexTemplate.NOT_EMPTY, R.string.requirederror);
+        validator.addValidation(this, R.id.etCorreoRegistro, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+        validator.addValidation(this, R.id.etTelefonoRegistro, "^[+]?[0-9]{10,13}$", R.string.requirederror);
+        validator.addValidation(this, R.id.etPasswordRegistro, ".{6,}", R.string.passworderror);
 
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,37 +111,16 @@ public class RegistroActivity extends AppCompatActivity {
 
     private boolean validateInput(){
 
-        if(etNombre.getText().toString().equals("")){
-            Toast.makeText(getApplicationContext(), "El nombre es requerido.",
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if(etTelefono.getText().toString().length() < 7){
-            Toast.makeText(getApplicationContext(), "El numero de telefono no es válido.",
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if(!isValidEmail(etCorreo.getText())){
-            Toast.makeText(getApplicationContext(), "El correo no es válido.",
-                    Toast.LENGTH_SHORT).show();
-            return false;
-        }
+
+
         if(!etVerify.getText().toString().equals(etPassword.getText().toString())){
             Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden.",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(etPassword.getText().toString().length() < 6){
-            Toast.makeText(getApplicationContext(),
-                    "La contraseña debe tener al menos 6 caracteres.",
-                    Toast.LENGTH_SHORT).show();
-        }
 
-        return true;
-    }
+        return validator.validate();
 
-    public static boolean isValidEmail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
     private void updateUI(FirebaseUser u) {

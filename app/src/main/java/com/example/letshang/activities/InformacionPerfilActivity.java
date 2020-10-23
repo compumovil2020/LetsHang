@@ -177,6 +177,10 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), item.getTitle() ,Toast.LENGTH_SHORT ).show();
 
                 }
+                if(item.getItemId() ==  R.id.item_menu_crear_evento){
+                    Intent intent = new Intent(getApplicationContext() , CrearEventoActivity.class);
+                    startActivity(intent);
+                }
                 return true;
             }
         });
