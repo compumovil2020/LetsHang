@@ -68,6 +68,8 @@ public class EventProvider {
                 AcademicEventLevel.UNIVERSITY, new LatLng(4.628640, -74.065273)
         );
 
+
+
         eventsList.add(event1);
         eventsList.add(event2);
     }
