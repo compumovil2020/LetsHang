@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.letshang.R;
 
 public class RegistroAdicionalActivity extends AppCompatActivity {
@@ -15,6 +18,7 @@ public class RegistroAdicionalActivity extends AppCompatActivity {
 
     private EditText etCiudad, etFecha, etFacebook, etInstagram, etLinkedin;
     private Button btnRegistrar, btnOmitir;
+    private AwesomeValidation validator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +34,20 @@ public class RegistroAdicionalActivity extends AppCompatActivity {
         btnRegistrar = findViewById(R.id.btnRegistrarRegistroAdicional);
         btnOmitir = findViewById(R.id.btnOmitirRegistroAdicional);
 
+        validator = new AwesomeValidation(ValidationStyle.BASIC);
+
+        validator.addValidation(this, R.id.etLocationRegistroAdicional, RegexTemplate.NOT_EMPTY, R.string.requirederror);
+        validator.addValidation(this, R.id.etFechaRegistroAdicional, RegexTemplate.NOT_EMPTY, R.string.requirederror);
+
+
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), PrincipalActivity.class);
-                startActivity(intent);
+                if(validator.validate()) {
+                    Intent intent = new Intent(view.getContext(), PrincipalActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

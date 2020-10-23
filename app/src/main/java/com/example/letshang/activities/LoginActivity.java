@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.letshang.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox cbRecordar;
     private TextView tvRegistrar;
     private FirebaseAuth mAuth;
+    private AwesomeValidation validator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,22 +60,20 @@ public class LoginActivity extends AppCompatActivity {
         tvRegistrar = findViewById(R.id.tvRegistrarLogin);
         tvRegistrar.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
+        validator = new AwesomeValidation(ValidationStyle.BASIC);
+
+        validator.addValidation(this, R.id.etCorreoLogin , Patterns.EMAIL_ADDRESS , R.string.emailerror);
+        validator.addValidation(this, R.id.etPasswordLogin , ".{6,}" , R.string.passworderror);
+
         btnIngresar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                if(!isValidEmail(etCorreo.getText() )){
-                    Toast.makeText(getApplicationContext(), "El correo no es valido" ,
-                            Toast.LENGTH_SHORT).show();
+                if(!validator.validate()){
+                    return;
                 }
-                else if(etPassword.getText().toString().length() < 6){
-                    Toast.makeText(getApplicationContext(),
-                            "La contraseña debe ser de mínimo 6 caracteres" ,
-                            Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    attemptSignIn();
-                }
+                attemptSignIn();
+
             }
         });
 

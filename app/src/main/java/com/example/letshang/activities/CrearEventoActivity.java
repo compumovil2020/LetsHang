@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -44,7 +45,7 @@ import java.util.List;
 
 public class CrearEventoActivity extends AppCompatActivity {
 
-    private EditText etNombre, etLugar, etPrecio, etInicio, etFin, etTags;
+    private EditText etNombre, etLugar, etPrecio, etInicio, etFin, etTags, etDescription;
     private RadioButton rbSport, rbSocial, rbMusical, rbGaming, rbAcademic;
     private Button btnCrear;
     private Date startDate, endDate;
@@ -52,6 +53,12 @@ public class CrearEventoActivity extends AppCompatActivity {
     private ChipGroup chipGroup;
     private AwesomeValidation validation;
     private RadioGroup radioGroup;
+    private LatLng location;
+
+    public static final double lowerLeftLatitude = 4.373941;
+    public static final double lowerLeftLongitude= -74.347902;
+    public static final double upperRightLatitude=  5.443858;
+    public static final double upperRigthLongitude= -73.286441;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +73,7 @@ public class CrearEventoActivity extends AppCompatActivity {
         etInicio = findViewById(R.id.etFechaInicioCrearEvento);
         etFin = findViewById(R.id.etFechaFinCrearEvento);
         etTags = findViewById(R.id.etTagsCrearEvento);
+        etDescription = findViewById(R.id.editTextTextMultiLine);
         radioGroup = findViewById(R.id.rgTipoEventoCrearEvento);
 
         rbSocial = findViewById(R.id.rbSocialCrearEvento);
@@ -74,19 +82,19 @@ public class CrearEventoActivity extends AppCompatActivity {
         rbGaming = findViewById(R.id.rbGameCrearEvento);
         rbAcademic = findViewById(R.id.rbAcademicCrearEvento);
 
-
+        chipGroup = (ChipGroup) findViewById(R.id.cgTagsCrearEvento);
         btnCrear = findViewById(R.id.btnCrearEvento);
 
-        // inicializar
+         // inicializar
         startDate = new Date();
         endDate = new Date();
         tags = new ArrayList<>();
         validation = new AwesomeValidation(ValidationStyle.BASIC);
 
-        chipGroup = (ChipGroup) findViewById(R.id.cgTagsCrearEvento);
 
         // Form validation
         validation.addValidation(this, R.id.etNombreCrearEvento, RegexTemplate.NOT_EMPTY, R.string.nameerror);
+        validation.addValidation(this, R.id.etLugarCrearEvento, RegexTemplate.NOT_EMPTY, R.string.requirederror);
         validation.addValidation(this, R.id.etPrecioCrearEvento, Range.open(0,999999), R.string.priceerror);
         validation.addValidation(this, R.id.editTextTextMultiLine, RegexTemplate.NOT_EMPTY, R.string.requirederror);
 
@@ -126,7 +134,48 @@ public class CrearEventoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(validateInput()){
-                    // enviar el intent a la actividad
+
+
+
+                    Log.i("selected location", String.valueOf(location.latitude) + " "+String.valueOf(location.longitude));
+                    Toast.makeText(getApplicationContext() , "texto: " + etLugar.getText().toString() , Toast.LENGTH_SHORT).show();
+                    Intent i= new Intent();
+
+                    /////////////////////////////////
+                    // cambiar CrearEventoActivity por la actividad que es
+                    /////////////////////////////////
+                    if(radioGroup.getCheckedRadioButtonId() == rbAcademic.getId()){
+                        i = new Intent(getApplicationContext() , CrearEventoActivity.class);
+
+                    }else if(radioGroup.getCheckedRadioButtonId() == rbSport.getId()){
+                        i = new Intent(getApplicationContext() , CrearEventoActivity.class);
+
+                    }
+                    else if(radioGroup.getCheckedRadioButtonId() == rbSocial.getId()){
+                        i = new Intent(getApplicationContext() , CrearEventoActivity.class);
+
+                    }
+                    else if(radioGroup.getCheckedRadioButtonId() == rbGaming.getId()){
+                        i = new Intent(getApplicationContext() , CrearEventoActivity.class);
+
+                    }
+                    else if(radioGroup.getCheckedRadioButtonId() == rbMusical.getId()){
+                        i = new Intent(getApplicationContext() , CrearEventoActivity.class);
+
+                    }
+                    /////////////////////////////////
+
+                    i.putExtra("name", etNombre.getText().toString());
+                    i.putExtra("location", location);
+                    i.putExtra("price" , etPrecio.getText().toString());
+                    i.putExtra("startDate" , startDate);
+                    i.putExtra("endDate" , endDate);
+                    i.putExtra("tags" , tags);
+                    i.putExtra("description" , etDescription.getText().toString());
+
+                    //startActivity(i);
+
+
                 }
             }
         });
@@ -137,6 +186,9 @@ public class CrearEventoActivity extends AppCompatActivity {
 
 
     private boolean validateInput(){
+
+
+
 
         if(etFin.getText().toString().isEmpty() || etInicio.getText().toString().isEmpty()){
             Toast.makeText(getApplicationContext() , "Selecciona las fechas para tu evento" , Toast.LENGTH_SHORT).show();
@@ -151,7 +203,18 @@ public class CrearEventoActivity extends AppCompatActivity {
             return false;
         }
 
-        return validation.validate();
+        if(!validation.validate()){
+            return false;
+        }
+
+        location = getLocationFromAddress(getApplicationContext() , etLugar.getText().toString());
+        if(location == null){
+            Toast.makeText(getApplicationContext() , "No se pudo encontrar la direccion" , Toast.LENGTH_SHORT).show();
+            //TODO: en vez de retornar false, ponerlo a escoger el punto en un  mapa
+            return false;
+        }
+
+        return true;
 
     }
 
@@ -244,18 +307,25 @@ public class CrearEventoActivity extends AppCompatActivity {
 
         try {
             // May throw an IOException
-            address = coder.getFromLocationName(inputtedAddress, 5);
+
+            address = coder.getFromLocationName(inputtedAddress, 3,
+                    lowerLeftLatitude, lowerLeftLongitude,
+                    upperRightLatitude, upperRigthLongitude);
             if (address == null) {
                 return null;
             }
 
             if (address.size() == 0) {
+
+
                 return null;
             }
 
             Address location = address.get(0);
             location.getLatitude();
             location.getLongitude();
+
+            Log.i("GetLocationFromAdress", "adress: " + location.toString());
 
             resLatLng = new LatLng(location.getLatitude(), location.getLongitude());
 
