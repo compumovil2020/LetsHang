@@ -158,7 +158,7 @@ public class EventProvider {
      * Returns the array of events by querying the database
      * @return
      */
-    private List<Event> getAllEventsFromDBB(){
+    public List<Event> getAllEventsFromDBB(){
 
 
         return eventsList;
