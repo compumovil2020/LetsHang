@@ -39,13 +39,13 @@ public class EventsAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public Event getItem(int i) {
         return events.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return 0;
     }
 
     @Override
