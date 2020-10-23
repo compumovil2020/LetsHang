@@ -23,6 +23,7 @@ import java.util.Locale;
 public class InscripcionEventoActivity extends AppCompatActivity {
 
     private Button btnSiguiente;
+    private TextView tvTituloInscriEvento;
     private TextView tvHostEvento;
     private TextView tvLocationEvento;
     private TextView tvFechaEvento;
@@ -38,6 +39,8 @@ public class InscripcionEventoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inscripcion_evento);
 
         int idEvento = getIntent().getIntExtra("idevento", 1);
+
+        tvTituloInscriEvento = findViewById(R.id.tvTituloInscripcionEvento);
 
         tvHostEvento = findViewById(R.id.tvHostInscripcionEvento);
 
@@ -56,7 +59,8 @@ public class InscripcionEventoActivity extends AppCompatActivity {
 
         Event event = evProv.getEventByID(idEvento);
 
-        getSupportActionBar().setTitle(event.getTitle());
+        getSupportActionBar().setTitle("Inscribir evento");
+        tvTituloInscriEvento.setText(event.getTitle());
         tvDescripcionEvento.setText(event.getDescription());
         tvPrecioEvento.setText( Long.toString(event.getPrice()));
 
@@ -79,6 +83,8 @@ public class InscripcionEventoActivity extends AppCompatActivity {
         String horario = formatter2.format(event.getStartDate()) + " - " + formatter2.format(event.getEndDate());
         tvTiempoEvento.setText(horario);
         tvFechaEvento.setText(fecha);
+
+
 
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override

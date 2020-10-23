@@ -8,8 +8,10 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -67,6 +69,18 @@ public class PrincipalActivity extends AppCompatActivity {
 
         eventsAdapter = new EventsAdapter(this,listEvents);
         listViewEvents.setAdapter(eventsAdapter);
+
+        listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Event e = (Event) adapterView.getItemAtPosition(i);
+                Log.i("EVENTOS", String.valueOf(e.getID()));
+
+                Intent intent = new Intent(view.getContext(), InscripcionEventoActivity.class);
+                intent.putExtra("idevento", e.getID());
+                startActivity(intent);
+            }
+        });
 
         //setup side menu
         setupMenu();
