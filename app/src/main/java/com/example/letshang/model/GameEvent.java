@@ -10,7 +10,7 @@ public class GameEvent extends Event{
     /**
      * name of the game which will be played at the event
      */
-    private String game;
+    private String gameName;
 
     /**
      * Enum represents the participants required level of expertise
@@ -27,7 +27,7 @@ public class GameEvent extends Event{
                       long price, int maximumCapacity, Collection<String> tags,
                       String game, GameEventLevel level, int teamSize, LatLng location) {
         super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
-        this.game = game;
+        this.gameName = game;
         this.level = level;
         this.teamSize = teamSize;
         this.type = EventsEnum.GAME;
