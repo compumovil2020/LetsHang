@@ -72,6 +72,10 @@ public class EventProvider {
 
         eventsList.add(event1);
         eventsList.add(event2);
+        eventsList.add(event2);
+        eventsList.add(event2);
+        eventsList.add(event2);
+        eventsList.add(event2);
     }
 
     /**

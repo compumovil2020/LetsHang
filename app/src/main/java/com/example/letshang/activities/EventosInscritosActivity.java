@@ -8,28 +8,21 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextThemeWrapper;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
-import com.example.letshang.model.User;
-import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
+import com.example.letshang.ui.adapter.EventsAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 

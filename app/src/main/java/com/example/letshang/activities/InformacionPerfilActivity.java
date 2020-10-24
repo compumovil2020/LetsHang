@@ -7,7 +7,6 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -26,6 +25,9 @@ import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
 import com.example.letshang.model.Preference;
 import com.example.letshang.providers.UserProvider;
+import com.example.letshang.ui.adapter.EventsAdapter;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -44,8 +46,8 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private UserProvider usProv = UserProvider.getInsatance();
     private LinearLayout linearLayoutContenedor;
     private LinearLayout linearLayoutTextos;
-    private TextView textViewTags;
     private ListView listViewEvents;
+    private ChipGroup chipGroup;
     EventsAdapter eventsAdapter;
 
     @Override
@@ -62,8 +64,9 @@ public class InformacionPerfilActivity extends AppCompatActivity {
 
         tvNombre = findViewById(R.id.tvNombreInformacionPerfil);
         tvCorreo = findViewById(R.id.tvCorreoInformacionPerfil);
+        chipGroup = findViewById(R.id.cgTagsInformacionPerfil);
 
-        linearLayoutContenedor = findViewById(R.id.llInformacionPerfil1);
+        chipGroup = findViewById(R.id.cgTagsInformacionPerfil);
 
         listViewEvents = findViewById(R.id.listEventosInformacionPerfil);
 
@@ -82,39 +85,12 @@ public class InformacionPerfilActivity extends AppCompatActivity {
 
         int contadorTags = 0;
         for(String tag : tags){
-            if(contadorTags == 0){
-                linearLayoutTextos = new LinearLayout(this);
-                linearLayoutTextos.setOrientation(LinearLayout.HORIZONTAL);
-                linearLayoutTextos.setLayoutParams(layoutParams);
-                linearLayoutContenedor.addView(linearLayoutTextos);
-            }
 
-            if(contadorTags < 3){
 
-                TableRow.LayoutParams lp = new TableRow.LayoutParams();
-                lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                lp.width = ViewGroup.LayoutParams.WRAP_CONTENT;
-                lp.weight = 1;
-                lp.leftMargin = 10;
-                lp.rightMargin = 10;
-                Typeface face = ResourcesCompat.getFont(this,R.font.coves_bold);
-                textViewTags = new TextView(this);
-                textViewTags.setLayoutParams(lp);
-                textViewTags.setGravity(Gravity.CENTER);
-                textViewTags.setTextSize(16);
-                textViewTags.setText(tag);
-
-                Participant participant = (Participant)usProv.getCurrentUser();
-
-                List<Event> listEvents = participant.getPastEvents();
-                eventsAdapter = new EventsAdapter(this,listEvents);
-                linearLayoutTextos.addView(textViewTags);
-            }
-
-            if(contadorTags==2){
-                contadorTags = 0;
-            }
-            contadorTags += 1;
+            Chip chip = new Chip(this);
+            chip.setText(tag);
+            chip.setCloseIconVisible(false);
+            chipGroup.addView(chip);
         }
 
         listViewEvents.setAdapter(eventsAdapter);

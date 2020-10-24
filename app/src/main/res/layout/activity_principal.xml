@@ -9,131 +9,135 @@
     android:layout_width="match_parent"
     >
 
-    <ScrollView
 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor"
-        android:fillViewport="true">
+        android:orientation="vertical">
 
+        <ScrollView
 
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".activities.PrincipalActivity">
+            android:layout_height="0dp"
+            android:layout_weight="0.95"
+            android:background="@color/backgroundColor"
+            android:fillViewport="true">
 
 
-            <TextView
-                android:id="@+id/tvTituloPrincipal"
-                android:layout_width="190dp"
-                android:layout_height="66dp"
-                android:layout_marginStart="110dp"
-                android:layout_marginTop="44dp"
-                android:layout_marginEnd="111dp"
-                android:fontFamily="@font/coves_bold"
-                android:gravity="center"
-                android:text="EVENTOS DISPONIBLES"
-                android:textColor="@color/secondaryColor"
-                android:textSize="30dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rlPrincipal1" />
-
-            <LinearLayout
-                android:id="@+id/lyListaPrincipal"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/tvTituloPrincipal"
-                tools:layout_editor_absoluteX="1dp">
+                android:layout_height="match_parent"
+                tools:context=".activities.PrincipalActivity">
 
-
-                <ListView
-                    android:id="@+id/listEventosPrincipal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-            </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/rlPrincipal1"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:padding="5dp">
 
                 <LinearLayout
-                    android:layout_width="144dp"
-                    android:layout_height="45dp"
-                    android:layout_marginEnd="-3dp"
-                    android:layout_toStartOf="@+id/ivLogoPrincipal"
-                    android:orientation="horizontal">
+                    android:id="@+id/lyListaPrincipal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/ivFiltrarPrincipal"
-                        style="@style/icn_filter"
-                        android:layout_width="44dp"
-                        android:layout_height="match_parent" />
 
                     <TextView
-                        android:id="@+id/tvFiltrarPrincipal"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:textSize="30dp"
-                        android:layout_marginLeft="15dp"
+                        android:id="@+id/tvTituloPrincipal"
+                        android:layout_width="190dp"
+                        android:layout_height="66dp"
+                        android:layout_marginStart="110dp"
+                        android:layout_marginTop="44dp"
+                        android:layout_marginEnd="111dp"
+                        android:fontFamily="@font/coves_bold"
+                        android:gravity="center"
+                        android:text="EVENTOS DISPONIBLES"
+                        android:textColor="@color/secondaryColor"
+                        android:textSize="30dp" />
+
+                    <ListView
+                        android:id="@+id/listEventosPrincipal"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:fontFamily="@font/coves_light"
-                        android:text="Filtrar" />
+                        android:scrollbars="none" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/ivLogoPrincipal"
-                    android:layout_width="260dp"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginLeft="0dp"
-                    android:foregroundGravity="right"
-                    app:srcCompat="@drawable/logo_lets_hang" />
+                <RelativeLayout
+                    android:id="@+id/rlPrincipal1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="144dp"
+                        android:layout_height="45dp"
+                        android:layout_marginEnd="-3dp"
+                        android:layout_toStartOf="@+id/ivLogoPrincipal"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivFiltrarPrincipal"
+                            style="@style/icn_filter"
+                            android:layout_width="44dp"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/tvFiltrarPrincipal"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="15dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/coves_light"
+                            android:text="Filtrar"
+                            android:textSize="30dp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivLogoPrincipal"
+                        android:layout_width="260dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginLeft="0dp"
+                        android:foregroundGravity="right"
+                        app:srcCompat="@drawable/logo_lets_hang" />
 
 
-            </RelativeLayout>
+                </RelativeLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.05"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnListaPrincipal"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_weight="1"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:text="@string/List"
+                android:textColor="@color/secondaryColor"
+                android:textSize="17dp" />
 
-                <TextView
-                    android:id="@+id/btnListaPrincipal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:text="@string/List"
-                    android:textColor="@color/secondaryColor"
-                    android:textSize="17dp" />
+            <TextView
+                android:id="@+id/btnMapaPrincipal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:inputType="textPersonName"
+                android:text="@string/Map"
+                android:textColor="@color/black"
+                android:textSize="17dp" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/btnMapaPrincipal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:inputType="textPersonName"
-                    android:text="@string/Map"
-                    android:textColor="@color/black"
-                    android:textSize="17dp" />
-            </LinearLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"

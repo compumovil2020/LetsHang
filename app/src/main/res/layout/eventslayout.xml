@@ -12,6 +12,7 @@
         android:layout_weight="0.2"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
+
         android:layout_marginBottom="10dp"
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
@@ -33,6 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:fontFamily="@font/coves_bold"
+            android:textColor="@color/white"
             android:gravity="center"/>
 
         <TextView
@@ -40,6 +43,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:fontFamily="@font/coves_bold"
+            android:textColor="@color/white"
             android:gravity="center"/>
 
         <TextView
@@ -47,6 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:fontFamily="@font/coves_bold"
+            android:textColor="@color/white"
             android:gravity="center"/>
 
         <TextView
@@ -54,6 +61,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:fontFamily="@font/coves_bold"
+            android:textColor="@color/white"
             android:gravity="center"/>
     </LinearLayout>
 </LinearLayout>

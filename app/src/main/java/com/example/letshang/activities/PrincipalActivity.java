@@ -19,9 +19,8 @@ import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.example.letshang.model.Event;
-import com.example.letshang.model.Participant;
 import com.example.letshang.providers.EventProvider;
-import com.example.letshang.providers.UserProvider;
+import com.example.letshang.ui.adapter.EventsAdapter;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
