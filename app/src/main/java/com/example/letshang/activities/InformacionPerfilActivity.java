@@ -43,7 +43,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private NavigationView navView;
     private FirebaseAuth mAuth;
     private TextView tvNombre, tvCorreo;
-    private ImageButton btnFacebook, btnInstagram, btnlinkedin;
+    private Button btnFacebook, btnInstagram, btnlinkedin;
 
     private UserProvider usProv = UserProvider.getInsatance();
     private LinearLayout linearLayoutContenedor;
