@@ -32,6 +32,7 @@
             android:id="@+id/tvTituloEventsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="TextView"
             android:gravity="center"/>
 
@@ -39,6 +40,7 @@
             android:id="@+id/tvFechaEventsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="TextView"
             android:gravity="center"/>
 
@@ -46,6 +48,7 @@
             android:id="@+id/tvLugarEventsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="TextView"
             android:gravity="center"/>
 
@@ -54,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textColor="@color/white"
             android:gravity="center"/>
     </LinearLayout>
 </LinearLayout>

@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +29,8 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
 
-    private Button btnIngresar, btnOlvidar, btnFacebook, btnGmail, btnYahoo;
+    private Button btnIngresar, btnOlvidar;
+    private ImageButton btnFacebook, btnGmail, btnYahoo;
     private EditText etCorreo, etPassword;
     private CheckBox cbRecordar;
     private TextView tvRegistrar;
