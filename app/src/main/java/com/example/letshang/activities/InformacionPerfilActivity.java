@@ -93,6 +93,12 @@ public class InformacionPerfilActivity extends AppCompatActivity {
             chipGroup.addView(chip);
         }
 
+        Participant participant = (Participant)usProv.getCurrentUser();
+
+        List<Event> listEvents = participant.getPastEvents();
+
+        eventsAdapter = new EventsAdapter(this,listEvents);
+
         listViewEvents.setAdapter(eventsAdapter);
 
         setupMenu();

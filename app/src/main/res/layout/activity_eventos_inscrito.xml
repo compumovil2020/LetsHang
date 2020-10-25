@@ -8,51 +8,59 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/backgroundColor"
-        android:padding="15dp">
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <TextView
-            android:id="@+id/tvTituloEventosInscritos"
-            style="@style/typ_TitleMedium"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Eventos \nInscritos"
-            android:textAlignment="center"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="125dp" />
+            android:layout_height="0dp"
+            android:layout_weight="0.92"
+            android:background="@color/backgroundColor"
+            android:padding="15dp">
 
-        <LinearLayout
-            android:id="@+id/lyListaEventosInscritos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/tvTituloEventosInscritos"
-            tools:layout_editor_absoluteX="1dp">
-
-
-            <ListView
-                android:id="@+id/listEventosAdapter"
+            <TextView
+                android:id="@+id/tvTituloEventosInscritos"
+                style="@style/typ_TitleMedium"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Eventos \nInscritos"
+                android:textAlignment="center"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="125dp" />
+
+            <LinearLayout
+                android:id="@+id/lyListaEventosInscritos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/tvTituloEventosInscritos"
+                tools:layout_editor_absoluteX="1dp">
+
+
+                <ListView
+                    android:id="@+id/listEventosAdapter"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
             android:id="@+id/btnAgregarEventosInscritos"
             style="@style/form_normal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="15dp"
+            android:layout_weight="0.08"
             android:text="Agregar evento"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"

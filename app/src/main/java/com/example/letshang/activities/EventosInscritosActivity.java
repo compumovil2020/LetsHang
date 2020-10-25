@@ -65,7 +65,6 @@ public class EventosInscritosActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Event e = (Event) adapterView.getItemAtPosition(i);
                 Log.i("EVENTOS", String.valueOf(e.getID()));
-                Toast.makeText(EventosInscritosActivity.this, String.valueOf(i), Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
                 intent.putExtra("idevento", e.getID());
