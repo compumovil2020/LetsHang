@@ -30,7 +30,6 @@
                 android:textColor="@color/secondaryColor"
                 android:textSize="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.535"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,11 +76,26 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etLugarCrearEvento" />
 
+            <EditText
+                android:id="@+id/etCapacidadCrearEvento"
+                style="@style/form_big"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/secondaryColor"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="CAPACIDAD MAXIMA"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPrecioCrearEvento" />
+
             <TextView
                 android:id="@+id/tvFechasCrearEvento"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="100dp"
                 android:fontFamily="@font/coves_bold"
                 android:text="Fechas"
                 android:textColor="@color/secondaryColor"
@@ -191,7 +205,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:text="Crear Evento"
+                android:text="Continuar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cgTagsCrearEvento" />
