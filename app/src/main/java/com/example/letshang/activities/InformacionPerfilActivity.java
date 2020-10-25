@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TableRow;
@@ -42,6 +43,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private NavigationView navView;
     private FirebaseAuth mAuth;
     private TextView tvNombre, tvCorreo;
+    private ImageButton btnFacebook, btnInstagram, btnlinkedin;
 
     private UserProvider usProv = UserProvider.getInsatance();
     private LinearLayout linearLayoutContenedor;
@@ -70,6 +72,9 @@ public class InformacionPerfilActivity extends AppCompatActivity {
 
         listViewEvents = findViewById(R.id.listEventosInformacionPerfil);
 
+        btnFacebook = findViewById(R.id.btnFacebookInformacionPerfil);
+        btnInstagram = findViewById(R.id.btnInstagramInformacionPerfil);
+        btnlinkedin = findViewById(R.id.btnLinkedinInformacionPerfil);
 
         Participant parti = (Participant)usProv.getCurrentUser();
 
