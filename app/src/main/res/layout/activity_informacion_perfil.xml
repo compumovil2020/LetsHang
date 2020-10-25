@@ -10,195 +10,203 @@
     android:layout_width="match_parent">
 
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
-        <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="0dp"
+
+        android:orientation="vertical">
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp">
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:layout_weight="0.9">
 
-            <TextView
-                android:id="@+id/tvInteresesInformacionPerfil"
-                style="@style/typ_medium_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Intereses:"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvEventosInformacionPerfil"
-                style="@style/typ_medium_bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Tus Eventos"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llInformacionPerfil1" />
-
-            <LinearLayout
-                android:id="@+id/llInformacionPerfil1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvInteresesInformacionPerfil">
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnEditarInformacionPerfil"
-                style="@style/form_small_blue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="Editar Perfil"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <LinearLayout
-                android:id="@+id/llInformacionPerfil2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/btnEditarInformacionPerfil"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.495"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvEventosInformacionPerfil"
-                app:layout_constraintVertical_bias="0.0">
-                <ListView
-                    android:id="@+id/listEventosInformacionPerfil"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llInformacionPerfil3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/tvInteresesInformacionPerfil"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
 
                 <TextView
-                    android:id="@+id/tvRedesInformacionPerfil"
+                    android:id="@+id/tvInteresesInformacionPerfil"
                     style="@style/typ_medium_bold"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="20dp"
-                    android:layout_weight="1"
-                    android:text="Redes Sociales:" />
+                    android:layout_height="wrap_content"
+                    android:text="Intereses:"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
-                    android:id="@+id/btnFacebookInformacionPerfil"
-                    style="@style/icn_facebook"
-                    android:layout_marginRight="30dp"
-                    android:layout_weight="1" />
+                <TextView
+                    android:id="@+id/tvEventosInformacionPerfil"
+                    style="@style/typ_medium_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Tus Eventos"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cgTagsInformacionPerfil" />
 
-                <ImageButton
-                    android:id="@+id/btnInstagramInformacionPerfil"
-                    style="@style/icn_instagram"
-                    android:layout_marginRight="30dp"
-                    android:layout_weight="1" />
-
-                <ImageButton
-                    android:id="@+id/btnLinkedinInformacionPerfil"
-                    style="@style/icn_linkedin"
-                    android:layout_weight="1" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llInformacionPerfil4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="32dp"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toTopOf="@+id/llInformacionPerfil3"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTituloInformacionPerfil"
-                app:layout_constraintVertical_bias="0.409">
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgTagsInformacionPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvInteresesInformacionPerfil"></com.google.android.material.chip.ChipGroup>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:id="@+id/llInformacionPerfil2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/btnEditarInformacionPerfil"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.495"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvEventosInformacionPerfil"
+                    app:layout_constraintVertical_bias="0.0">
 
-                    <TextView
-                        android:id="@+id/tvTituloNombreInformacionPerfil"
-                        style="@style/typ_medium_bold"
+                    <ListView
+                        android:id="@+id/listEventosInformacionPerfil"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Nombre:" />
-
-                    <TextView
-                        android:id="@+id/tvNombreInformacionPerfil"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/coves_light"
-                        android:text="Cosme Fulanito"
-                        android:textSize="15sp" />
-
-                    <TextView
-                        android:id="@+id/tvTituloCorreoInformacionPerfil"
-                        style="@style/typ_medium_bold"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:text="Correo:" />
-
-                    <TextView
-                        android:id="@+id/tvCorreoInformacionPerfil"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/coves_light"
-                        android:text="cosmefulanito@gmail.com"
-                        android:textSize="15sp" />
+                        android:layout_height="match_parent" />
                 </LinearLayout>
 
-                <ImageView
-                    android:id="@+id/ivFotoInformacionPerfil"
-                    android:layout_width="101dp"
-                    android:layout_height="101dp"
-                    android:layout_marginLeft="80dp"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/icn_profile" />
+                <LinearLayout
+                    android:id="@+id/llInformacionPerfil3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="50dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/tvInteresesInformacionPerfil"
+                    app:layout_constraintStart_toStartOf="parent">
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvRedesInformacionPerfil"
+                        style="@style/typ_medium_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="20dp"
+                        android:layout_weight="1"
+                        android:text="Redes Sociales:" />
 
-            <TextView
-                android:id="@+id/tvTituloInformacionPerfil"
-                style="@style/typ_TitleMedium"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Información \nDel Perfil"
-                android:textAlignment="center"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="10dp" />
+                    <Button
+                        android:id="@+id/btnFacebookInformacionPerfil"
+                        style="@style/icn_facebook"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+                    <Button
+                        android:id="@+id/btnInstagramInformacionPerfil"
+                        style="@style/icn_instagram"
+                        android:layout_marginRight="30dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:id="@+id/btnLinkedinInformacionPerfil"
+                        style="@style/icn_linkedin"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llInformacionPerfil4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginBottom="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/llInformacionPerfil3"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvTituloNombreInformacionPerfil"
+                            style="@style/typ_medium_bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Nombre:" />
+
+                        <TextView
+                            android:id="@+id/tvNombreInformacionPerfil"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/coves_light"
+                            android:text="Cosme Fulanito"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/tvTituloCorreoInformacionPerfil"
+                            style="@style/typ_medium_bold"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:text="Correo:" />
+
+                        <TextView
+                            android:id="@+id/tvCorreoInformacionPerfil"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/coves_light"
+                            android:text="cosmefulanito@gmail.com"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/ivFotoInformacionPerfil"
+                        android:layout_width="101dp"
+                        android:layout_height="101dp"
+                        android:layout_marginLeft="80dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/icn_profile" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvTituloInformacionPerfil"
+                    style="@style/typ_TitleMedium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="50dp"
+                    android:text="Información \nDel Perfil"
+                    android:textAlignment="center"
+                    app:layout_constraintBottom_toTopOf="@+id/llInformacionPerfil4"
+                    tools:layout_editor_absoluteX="165dp" />
+
+                <Button
+                    android:id="@+id/btnEditarInformacionPerfil"
+                    style="@style/form_small_blue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_weight="0.1"
+                    android:text="Editar Perfil"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </LinearLayout>
 
 
     <com.google.android.material.navigation.NavigationView
@@ -208,6 +216,8 @@
         android:id="@+id/informacion_perfil_nav_view"
         app:menu="@menu/nav_menu"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"/>
+        android:fitsSystemWindows="true">
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,4 +1,4 @@
-package com.example.letshang.activities;
+package com.example.letshang.ui.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,12 +19,16 @@ import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
+import com.example.letshang.ui.dialog.CircleTransform;
 import com.google.android.gms.maps.model.LatLng;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import com.squareup.picasso.Transformation;
+
 
 public class EventsAdapter extends BaseAdapter {
 
@@ -61,10 +66,13 @@ public class EventsAdapter extends BaseAdapter {
 
         //Inflar y declarar
         TextView titulo, fecha, lugar, host;
+        ImageView imagen;
         titulo = view.findViewById(R.id.tvTituloEventsLayout);
         fecha = view.findViewById(R.id.tvFechaEventsLayout);
         lugar = view.findViewById(R.id.tvLugarEventsLayout);
         host = view.findViewById(R.id.tvHostEventsLayout);
+        imagen = view.findViewById(R.id.imImagenEventsLayout);
+
 
         //Asignar titulo
         titulo.setText(events.get(i).getTitle());
@@ -89,8 +97,17 @@ public class EventsAdapter extends BaseAdapter {
         //Asignar host
         host.setText(EventProvider.getInsatance().getEventHost(events.get(i).getID()).getName());
 
+        //Asignar foto
+        String imageUri = "https://picsum.photos/200?random=" + i;
+        Picasso.with(context).load(imageUri).transform(new CircleTransform()).into(imagen);
+
         return view;
     }
+
+
+
+
+
 
 
 }
