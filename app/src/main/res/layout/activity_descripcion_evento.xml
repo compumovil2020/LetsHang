@@ -133,7 +133,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.41"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivMapDescripcionEvento" />
+            app:layout_constraintTop_toBottomOf="@+id/mpMapDescripcionEvento" />
 
         <Button
             android:id="@+id/btnCancelarDescripcionEvento"
@@ -156,11 +156,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tvTituloDescripcionEvento"
             app:srcCompat="@drawable/logo_lets_hang" />
 
-        <ImageView
-            android:id="@+id/ivMapDescripcionEvento"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.example.letshang.ui.dialog.CustomMapView
+            android:id="@+id/mpMapDescripcionEvento"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivProfileDescripcionEvento"

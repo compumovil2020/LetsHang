@@ -51,6 +51,7 @@
     <string name="requirederror">Este campo es requerido</string>
     <string name="emailerror">El correo no es valido</string>
     <string name="passworderror">La contraseña debe tener al menos 6 caracteres</string>
+    <string name="google_maps_key">AIzaSyAmQhl_pI7FB7_usAQJXDBKiezppcW06-s</string>
 
     <string-array name="event_types">
         <item>Deportivo</item>
