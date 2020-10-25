@@ -82,6 +82,7 @@ public class UserProvider {
         return null;
     }
 
+
     /**
      * Helper function
      * @return list of events

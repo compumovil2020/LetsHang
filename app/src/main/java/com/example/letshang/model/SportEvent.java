@@ -47,5 +47,33 @@ public class SportEvent extends Event{
         this.teamSize = teamSize;
         this.type = EventsEnum.SPORTS;
     }
+
+    /**
+     * Basic constructor just calls super
+     * @param title
+     * @param description
+     * @param startDate
+     * @param endDate
+     * @param price
+     * @param maximumCapacity
+     * @param tags
+     * @param location
+     */
+    public SportEvent(String title, String description, Date startDate, Date endDate, long price,
+                      int maximumCapacity, Collection<String> tags, LatLng location) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+    }
+
+    public void setSport(String sport) {
+        this.sport = sport;
+    }
+
+    public void setLevel(SportEventLevel level) {
+        this.level = level;
+    }
+
+    public void setTeamSize(int teamSize) {
+        this.teamSize = teamSize;
+    }
 }
 
