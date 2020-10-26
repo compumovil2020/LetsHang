@@ -25,6 +25,7 @@ import java.util.List;
 public class UserProvider {
 
     private User currentUser;
+    private ArrayList<Event> myEvents;
     private static UserProvider instance = null;
 
 
@@ -45,7 +46,7 @@ public class UserProvider {
 
         // este tiene que hacer una query a la base de datos
         // estos datos son quemados
-        List<Event> pastEvents = generatePastEvents();
+        myEvents = new ArrayList<>();
         EnumMap<EventsEnum , Double> mapa = new EnumMap<EventsEnum, Double>(EventsEnum.class);
         mapa.put(EventsEnum.ACADEMIC , 2.6);
         mapa.put(EventsEnum.SPORTS , 4.96);
@@ -55,7 +56,7 @@ public class UserProvider {
         currentUser = new Participant("Juan Perez","juan@perez.com",
                 new Date(1998, 5,5),"3177963053",
                 "juan.perez","perez99","@perez",
-                null,null,preferences,pastEvents );
+                null,null,preferences, myEvents );
 
     }
 
@@ -105,6 +106,4 @@ public class UserProvider {
         );
         return ans;
     }
-
-
 }
