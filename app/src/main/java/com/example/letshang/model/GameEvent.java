@@ -32,17 +32,45 @@ public class GameEvent extends Event{
      */
     private boolean adult;
 
+    private String ageRange;
 
+
+    /**
+     *
+     * @param title
+     * @param description
+     * @param startDate
+     * @param endDate
+     * @param price
+     * @param maximumCapacity
+     * @param tags
+     * @param game
+     * @param level
+     * @param location
+     */
     public GameEvent(String title, String description, Date startDate, Date endDate,
                       long price, int maximumCapacity, Collection<String> tags,
-                      String game, GameEventLevel level, String kind, String prize, boolean adult, LatLng location) {
+                      String game, GameEventLevel level, LatLng location) {
         super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
         this.game = game;
         this.level = level;
-        this.kind = kind;
-        this.prize = prize;
-        this.adult = adult;
         this.type = EventsEnum.GAME;
+    }
+
+    /**
+     * Basic constructor, just call super
+     * @param title
+     * @param description
+     * @param startDate
+     * @param endDate
+     * @param price
+     * @param maximumCapacity
+     * @param tags
+     * @param location
+     */
+    public GameEvent(String title, String description, Date startDate, Date endDate, long price,
+                      int maximumCapacity, Collection<String> tags, LatLng location) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
     }
 
     public String getGame() {
@@ -83,5 +111,13 @@ public class GameEvent extends Event{
 
     public void setAdult(boolean adult) {
         this.adult = adult;
+    }
+
+    public String getAgeRange() {
+        return ageRange;
+    }
+
+    public void setAgeRange(String ageRange) {
+        this.ageRange = ageRange;
     }
 }

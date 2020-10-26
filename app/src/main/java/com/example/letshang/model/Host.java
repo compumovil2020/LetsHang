@@ -30,7 +30,7 @@ public class Host extends Participant {
     public boolean createEvent(String title, String description, Date startDate, Date endDate, long price,
                                int maximumCapacity, Collection<String> tags, LatLng location, String type){
         //TODO: Catch what type of event it is and create the event as the type.
-        GameEvent gameEvent = new GameEvent("Juego de Catan","Este es un juego de estrategia para 4 o 6 personas",new Date("22/11/2020"),new Date("22/11/2020"),12000,6,null,"Catan",GameEventLevel.AMATEUR,1,null);
+        GameEvent gameEvent = new GameEvent("Juego de Catan","Este es un juego de estrategia para 4 o 6 personas",new Date("22/11/2020"),new Date("22/11/2020"),12000,6,null,"Catan",GameEventLevel.AMATEUR, location);
         hostedEvents.add(gameEvent);
         return true;
     }

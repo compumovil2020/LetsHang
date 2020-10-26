@@ -78,6 +78,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/etTipoDeJuegoGameEvent"
                 />
 
+            <EditText
+                android:id="@+id/etRangoEdadJuegoGameEvent"
+                style="@style/form_big"
+                android:layout_width="314dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/secondaryColor"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="RANGO DE EDAD (Ej: 20-40)"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPremioJuegoGameEvent"
+                />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
