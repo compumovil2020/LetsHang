@@ -36,7 +36,7 @@ public class EventosInscritosActivity extends AppCompatActivity{
 
     private UserProvider userProvider = UserProvider.getInsatance();
     private ListView listViewEvents;
-    EventsAdapter eventsAdapter;
+    private EventsAdapter eventsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -49,7 +49,6 @@ public class EventosInscritosActivity extends AppCompatActivity{
         //inflate
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
         navView = findViewById(R.id.inscritos_nav_view);
-        //btnEvento = findViewById(R.id.btnEventoEventosInscritos);
         btnAgregar = findViewById(R.id.btnAgregarEventosInscritos);
         listViewEvents = findViewById(R.id.listEventosAdapter);
 
@@ -65,9 +64,9 @@ public class EventosInscritosActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Event e = (Event) adapterView.getItemAtPosition(i);
                 Log.i("EVENTOS", String.valueOf(e.getID()));
-
                 Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
                 intent.putExtra("idevento", e.getID());
+                intent.putExtra("from", "Inscritos");
                 startActivity(intent);
             }
         });

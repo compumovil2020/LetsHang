@@ -7,6 +7,7 @@ import com.example.letshang.model.AcademicEventLevel;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.EventsEnum;
 import com.example.letshang.model.Host;
+import com.example.letshang.model.MusicEvent;
 import com.example.letshang.model.Preference;
 import com.example.letshang.model.SportEvent;
 import com.example.letshang.model.SportEventLevel;
@@ -56,26 +57,81 @@ public class EventProvider {
         );
 
         tags = new ArrayList<String>();
-        tags.add("futbol");
-        tags.add("parque");
-        tags.add("juvenil");
+        tags.add("Monitoria");
+        tags.add("Economía");
+        tags.add("Parcial 2");
 
         Event event2 = new AcademicEvent("Monitoría de la clase de microeconomía",
-                "Se ",
+                "Monitoria del segundo corte para la materia de microeconomia.",
                 new Date(2020, 10, 11, 10, 00),
                 new Date(2020,10,11, 15,00),
                 10000, 100, tags, "Administración de empresas",
                 AcademicEventLevel.UNIVERSITY, new LatLng(4.628640, -74.065273)
         );
 
+        tags = new ArrayList<String>();
+        tags.add("Monitoria");
+        tags.add("Pensamiento Algoritmico");
+        tags.add("Sistemas");
+        tags.add("Parcial 3");
+
+        Event event3 = new AcademicEvent("Monitoría de la clase de Pensamiento Algoritmico",
+                "Monitoria del tercer corte para la materia de pensamiento algoritmico.",
+                new Date(2020, 10, 11, 10, 00),
+                new Date(2020,10,11, 15,00),
+                5800, 25, tags, "Ingeniería de Sistemas",
+                AcademicEventLevel.UNIVERSITY, new LatLng(4.651440, -74.095273)
+        );
+
+        tags = new ArrayList<String>();
+        tags.add("Concierto");
+        tags.add("Jazz");
+        tags.add("Al aire");
+        tags.add("Parque nacional");
+
+        Event event4 = new MusicEvent("Concierto de Jazz",
+                "Concierto de Jazz en el parque nacional",
+                new Date(2020, 10, 11, 10, 00),
+                new Date(2020,10,11, 15,00),
+                12000, 30, tags, "Jazz & Blues",
+                "Artista 1, Artista 2", new LatLng(4.671360, -74.045223)
+        );
+
+        tags = new ArrayList<String>();
+        tags.add("Futbol 5");
+        tags.add("Futbol");
+        tags.add("Soccer");
+
+        Event event5 = new SportEvent("Futbol 5",
+                "Partido de futbol 5 en el Soccer de la 147",
+                new Date(2020, 10, 11, 10, 00),
+                new Date(2020,10,11, 15,00),
+                4500, 15, tags, "Futbol",
+                SportEventLevel.INTERMEDIATE, 5, new LatLng(4.751111, -74.092222)
+        );
+
+        tags = new ArrayList<String>();
+        tags.add("Concierto");
+        tags.add("Rock");
+        tags.add("Al aire");
+        tags.add("Unicentro");
+
+        Event event6 = new MusicEvent("Concierto de Rock",
+                "Concierto de Rock en el parqueadero del centro comercial unicentro",
+                new Date(2020, 10, 11, 10, 00),
+                new Date(2020,10,11, 15,00),
+                11300, 60, tags, "Rock & Roll",
+                "Artista 1, Artista 2, Artista 3", new LatLng(4.771360, -74.745223)
+        );
+
 
 
         eventsList.add(event1);
         eventsList.add(event2);
-        eventsList.add(event2);
-        eventsList.add(event2);
-        eventsList.add(event2);
-        eventsList.add(event2);
+        eventsList.add(event3);
+        eventsList.add(event4);
+        eventsList.add(event5);
+        eventsList.add(event6);
     }
 
     /**
@@ -165,7 +221,6 @@ public class EventProvider {
      * @return
      */
     public List<Event> getAllEventsFromDBB(){
-
 
         return eventsList;
 

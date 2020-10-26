@@ -75,8 +75,9 @@ public class PrincipalActivity extends AppCompatActivity {
                 Event e = (Event) adapterView.getItemAtPosition(i);
                 Log.i("EVENTOS", String.valueOf(e.getID()));
 
-                Intent intent = new Intent(view.getContext(), InscripcionEventoActivity.class);
+                Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
                 intent.putExtra("idevento", e.getID());
+                intent.putExtra("from", "Principal");
                 startActivity(intent);
             }
         });

@@ -55,9 +55,10 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
 
     private final String TAG = "DescripcionEvento";
     private int idEvento;
+    private String fromActivity;
     private Event evento;
     private TextView tvHost;
-    private Button btnCancelar;
+    private Button btnDescripcion;
     private TextView tvLocationEvento;
     private TextView tvFechaEvento;
     private TextView tvTiempoEvento;
@@ -82,12 +83,12 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         setContentView(R.layout.activity_descripcion_evento);
 
         idEvento = getIntent().getIntExtra("idevento", 1);
-
+        fromActivity = getIntent().getStringExtra("from");
 
         // inflar
         tvHost = findViewById(R.id.tvHostDescripcionEvento);
         tvHost.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        btnCancelar = findViewById(R.id.btnCancelarDescripcionEvento);
+        btnDescripcion = findViewById(R.id.btnCancelarDescripcionEvento);
         tvLocationEvento = findViewById(R.id.tvLocationDescripcionEvento);
         tvFechaEvento = findViewById(R.id.tvFechaDescripcionEvento);
         tvTiempoEvento = findViewById(R.id.tvTiempoDescripcionEvento);
@@ -95,10 +96,11 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         tvDescripcionEvento = findViewById(R.id.tvResumenDescripcionEvento);
         mapView = findViewById(R.id.mpMapDescripcionEvento);
 
-
-
-
-
+        if(fromActivity.equalsIgnoreCase("Principal")){
+            btnDescripcion.setText("Siguiente");
+        } else if(fromActivity.equalsIgnoreCase("Inscritos")){
+            btnDescripcion.setText("Cancelar");
+        }
 
 
         // set map
@@ -123,12 +125,17 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         mapView.getMapAsync(this);
 
         // listeners
-        btnCancelar.setOnClickListener(new View.OnClickListener(){
+        btnDescripcion.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), EventosInscritosActivity.class);
-                startActivity(intent);
+                if(fromActivity.equalsIgnoreCase("Principal")){
+                    Intent intent = new Intent(view.getContext(), ReglasCondicionesActivity.class);
+                    startActivity(intent);
+                } else if(fromActivity.equalsIgnoreCase("Inscritos")){
+                    Intent intent = new Intent(view.getContext(), EventosInscritosActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
