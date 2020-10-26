@@ -39,7 +39,7 @@ import java.util.List;
 
 public class CrearEventoActivity extends AppCompatActivity {
 
-    private EditText etNombre, etLugar, etPrecio, etInicio, etFin, etTags, etDescription;
+    private EditText etNombre, etLugar, etPrecio, etInicio, etFin, etTags, etDescription, etCapacidad;
     private RadioButton rbSport, rbSocial, rbMusical, rbGaming, rbAcademic;
     private Button btnCrear;
     private Date startDate, endDate;
@@ -68,6 +68,7 @@ public class CrearEventoActivity extends AppCompatActivity {
         etFin = findViewById(R.id.etFechaFinCrearEvento);
         etTags = findViewById(R.id.etTagsCrearEvento);
         etDescription = findViewById(R.id.editTextTextMultiLine);
+        etCapacidad = findViewById(R.id.etCapacidadCrearEvento);
         radioGroup = findViewById(R.id.rgTipoEventoCrearEvento);
 
         rbSocial = findViewById(R.id.rbSocialCrearEvento);
@@ -91,6 +92,7 @@ public class CrearEventoActivity extends AppCompatActivity {
         validation.addValidation(this, R.id.etLugarCrearEvento, RegexTemplate.NOT_EMPTY, R.string.requirederror);
         validation.addValidation(this, R.id.etPrecioCrearEvento, Range.open(0,999999), R.string.priceerror);
         validation.addValidation(this, R.id.editTextTextMultiLine, RegexTemplate.NOT_EMPTY, R.string.requirederror);
+        validation.addValidation(this, R.id.etCapacidadCrearEvento, RegexTemplate.NOT_EMPTY, R.string.requirederror);
 
         // listeners
         etInicio.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +144,7 @@ public class CrearEventoActivity extends AppCompatActivity {
                         i = new Intent(getApplicationContext() , CrearEventoActivity.class);
 
                     }else if(radioGroup.getCheckedRadioButtonId() == rbSport.getId()){
-                        i = new Intent(getApplicationContext() , CrearEventoActivity.class);
+                        i = new Intent(getApplicationContext() , CreateSportEventActivity.class);
 
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbSocial.getId()){
@@ -165,9 +167,10 @@ public class CrearEventoActivity extends AppCompatActivity {
                     i.putExtra("startDate" , startDate);
                     i.putExtra("endDate" , endDate);
                     i.putExtra("tags" , tags);
+                    i.putExtra("capacidad" , Integer.parseInt(etCapacidad.getText().toString()));
                     i.putExtra("description" , etDescription.getText().toString());
 
-                    //startActivity(i);
+                    startActivity(i);
 
 
                 }
