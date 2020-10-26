@@ -63,9 +63,8 @@ public class EventosInscritosActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Event e = (Event) adapterView.getItemAtPosition(i);
-                Log.i("EVENTOS", String.valueOf(e.getID()));
                 Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
-                intent.putExtra("idevento", e.getID());
+                intent.putExtra("idevento", "" + e.getID());
                 intent.putExtra("from", "Inscritos");
                 startActivity(intent);
             }

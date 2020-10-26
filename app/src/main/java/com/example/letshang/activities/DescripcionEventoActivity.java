@@ -37,6 +37,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -59,6 +60,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private Event evento;
     private TextView tvHost;
     private Button btnDescripcion;
+    private TextView tvTituloEvento;
     private TextView tvLocationEvento;
     private TextView tvFechaEvento;
     private TextView tvTiempoEvento;
@@ -68,7 +70,8 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
     private Location currentLocation;
-    private  GoogleMap map;
+    private GoogleMap map;
+    private Geocoder mGeocoder;
     private FusedLocationProviderClient mFusedLocationClient;
     private int LOCATION_PERMISSION_CODE = 101;
     private static final int REQUEST_CHECK_SETTINGS = 99;
@@ -82,13 +85,21 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_descripcion_evento);
 
-        idEvento = getIntent().getIntExtra("idevento", 1);
+        idEvento = Integer.parseInt(getIntent().getStringExtra("idevento"));
         fromActivity = getIntent().getStringExtra("from");
 
+        if(fromActivity.equalsIgnoreCase("Principal")){
+            getSupportActionBar().setTitle("Inscribir evento");
+        } else if (fromActivity.equalsIgnoreCase("Insritos")){
+            getSupportActionBar().setTitle("Descripción del evento");
+        }
+
         // inflar
+        mGeocoder = new Geocoder(getBaseContext());
         tvHost = findViewById(R.id.tvHostDescripcionEvento);
         tvHost.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
         btnDescripcion = findViewById(R.id.btnCancelarDescripcionEvento);
+        tvTituloEvento = findViewById(R.id.tvTituloDescripcionEvento);
         tvLocationEvento = findViewById(R.id.tvLocationDescripcionEvento);
         tvFechaEvento = findViewById(R.id.tvFechaDescripcionEvento);
         tvTiempoEvento = findViewById(R.id.tvTiempoDescripcionEvento);
@@ -96,12 +107,13 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         tvDescripcionEvento = findViewById(R.id.tvResumenDescripcionEvento);
         mapView = findViewById(R.id.mpMapDescripcionEvento);
 
+        initializeEvent();
+
         if(fromActivity.equalsIgnoreCase("Principal")){
             btnDescripcion.setText("Siguiente");
         } else if(fromActivity.equalsIgnoreCase("Inscritos")){
             btnDescripcion.setText("Cancelar");
         }
-
 
         // set map
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
@@ -117,7 +129,6 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
 
         if (ContextCompat.checkSelfPermission(DescripcionEventoActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
            pedirPermisos();
         }
 
@@ -149,24 +160,13 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     }
 
     private void initializeEvent(){
-        evento = evProv.getEventByID(idEvento-2);
 
-        getSupportActionBar().setTitle(evento.getTitle());
+        evento = evProv.getEventByID(idEvento);
+
+        tvTituloEvento.setText(evento.getTitle());
         tvDescripcionEvento.setText(evento.getDescription());
         tvPrecioEvento.setText( Long.toString(evento.getPrice()));
-
-        LatLng latLng = evento.getLocation();
-        String city = "";
-
-        Geocoder gcd = new Geocoder(this, Locale.getDefault());
-        try {
-            List<Address> addresses = gcd.getFromLocation(latLng.latitude, latLng.longitude, 1);
-            city = addresses.get(0).getAddressLine(0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        tvLocationEvento.setText(city);
+        tvLocationEvento.setText(geoCoderSearch(evento.getLocation()));
         tvHost.setText(evProv.getEventHost(idEvento).getName());
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String fecha =  formatter.format(evento.getStartDate())  + " - " + formatter.format(evento.getEndDate());
@@ -174,6 +174,19 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         String horario = formatter2.format(evento.getStartDate()) + " - " + formatter2.format(evento.getEndDate());
         tvTiempoEvento.setText(horario);
         tvFechaEvento.setText(fecha);
+    }
+
+    private String geoCoderSearch(LatLng latlng){
+        String address = "";
+        try{
+            List<Address> res = mGeocoder.getFromLocation(latlng.latitude, latlng.longitude, 2);
+            if(res != null && res.size() > 0){
+                address = res.get(0).getAddressLine(0);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return address;
     }
 
     protected LocationRequest createLocationRequest() {
@@ -199,7 +212,6 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
                 justificacion,
                 LOCATION_PERMISSION_CODE);
 
-
         if (ContextCompat.checkSelfPermission(DescripcionEventoActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // si me dieron el permiso
@@ -224,7 +236,11 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         Log.i(TAG, "onMapReady: ");
         map = googleMap;
 
+        map.getUiSettings().setZoomGesturesEnabled(true);
+        map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);
+        map.getUiSettings().setCompassEnabled(true);
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -240,22 +256,12 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
             e.printStackTrace();
         }
 
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(4.518640, -74.092700), 10);
-        map.animateCamera(cameraUpdate);
-        map.getUiSettings().setMapToolbarEnabled(false);
-
-        initializeEvent();
-
         LatLng eventLocation = evento.getLocation();
-
-        eventMarker = map.addMarker( new MarkerOptions().position(eventLocation).title(evento.getTitle()));
-
-
+        eventMarker = map.addMarker( new MarkerOptions().position(eventLocation).title(geoCoderSearch(eventLocation)).alpha(0.8f).snippet("Ubicación del evento").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 12));
 
     }
 
-
-    // Si no se tiene permisos...
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
