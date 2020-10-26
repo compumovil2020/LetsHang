@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.example.letshang.CreateGameEventActivity;
 import com.example.letshang.R;
 import com.example.letshang.ui.dialog.DatePickerFragment;
 import com.example.letshang.ui.dialog.TimePickerFragment;
@@ -152,7 +153,7 @@ public class CrearEventoActivity extends AppCompatActivity {
 
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbGaming.getId()){
-                        i = new Intent(getApplicationContext() , CrearEventoActivity.class);
+                        i = new Intent(getApplicationContext() , CreateGameEventActivity.class);
 
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbMusical.getId()){

@@ -31,6 +31,22 @@
                 android:textSize="30dp" />
 
             <EditText
+                android:id="@+id/etNombreJuegoGameEvent"
+                style="@style/form_big"
+                android:layout_width="314dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="10dp"
+                android:layout_marginTop="50dp"
+                android:backgroundTint="@color/secondaryColor"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="NOMBRE DE JUEGO"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvTituloGameEvent"
+                />
+
+            <EditText
                 android:id="@+id/etTipoDeJuegoGameEvent"
                 style="@style/form_big"
                 android:layout_width="314dp"
@@ -43,7 +59,7 @@
                 android:hint="TIPO DE JUEGO"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTituloGameEvent"
+                app:layout_constraintTop_toBottomOf="@+id/etNombreJuegoGameEvent"
                 />
 
             <EditText
@@ -69,10 +85,34 @@
                 android:layout_marginTop="30dp">
 
                 <TextView
+                    android:id="@+id/tvNivelGameEvent"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:text="Nivel de habilidad"
+                    style="@style/typ_medium_bold"
+                    android:gravity="center"/>
+
+                <Spinner
+                    android:id="@+id/spNivelGameEvent"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp">
+
+                <TextView
                     android:id="@+id/tvMayorEdadGameEvent"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.7"
+                    android:layout_weight="0.6"
                     android:text="¿Solo Mayores de edad?"
                     style="@style/typ_medium_bold"
                     android:gravity="center"/>
@@ -81,10 +121,8 @@
                     android:id="@+id/spMayorEdadGameEvent"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0.3"
+                    android:layout_weight="0.4"
                     android:gravity="center"/>
-
-
 
             </LinearLayout>
 
