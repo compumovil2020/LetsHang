@@ -20,7 +20,9 @@ import android.widget.Toast;
 
 import com.example.letshang.R;
 import com.example.letshang.model.Event;
+import com.example.letshang.model.Participant;
 import com.example.letshang.providers.EventProvider;
+import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.dialog.CustomMapView;
 import com.example.letshang.utils.PermissionHandler;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -77,6 +79,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private static final int REQUEST_CHECK_SETTINGS = 99;
     private String justificacion = "Se necesita el GPS para mostrar la ubicación del evento";
     private EventProvider evProv = EventProvider.getInsatance();
+    private UserProvider usProv = UserProvider.getInsatance();
     private Marker eventMarker;
 
 
@@ -112,7 +115,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         if(fromActivity.equalsIgnoreCase("Principal")){
             btnDescripcion.setText("Siguiente");
         } else if(fromActivity.equalsIgnoreCase("Inscritos")){
-            btnDescripcion.setText("Cancelar");
+            btnDescripcion.setText("Cancelar evento");
         }
 
         // set map
@@ -146,6 +149,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
                     startActivity(intent);
                 } else if(fromActivity.equalsIgnoreCase("Inscritos")){
                     Intent intent = new Intent(view.getContext(), EventosInscritosActivity.class);
+                    ((Participant) usProv.getCurrentUser()).getPastEvents().remove(evento);
                     startActivity(intent);
                 }
             }
