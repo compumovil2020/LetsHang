@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1012806434084-ulbkm83kgt8p0hcr9h4pkmbrudivm962.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.letshang",
+            "certificate_hash": "8893eb4a8835e4c4ea9976ab200bee3397e2e1c2"
+          }
+        },
+        {
           "client_id": "1012806434084-kf2pgahpt8o3acrd7df6l4lqcrb8kpd0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
