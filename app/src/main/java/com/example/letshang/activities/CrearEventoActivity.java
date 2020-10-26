@@ -24,7 +24,6 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
-import com.example.letshang.CreateGameEventActivity;
 import com.example.letshang.R;
 import com.example.letshang.ui.dialog.DatePickerFragment;
 import com.example.letshang.ui.dialog.TimePickerFragment;

@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/lets_hang_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateGameEventActivity"></activity>
+        <activity android:name=".activities.CreateGameEventActivity"></activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

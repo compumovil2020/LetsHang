@@ -1,4 +1,4 @@
-package com.example.letshang;
+package com.example.letshang.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.example.letshang.R;
 
 public class CreateGameEventActivity extends AppCompatActivity {
 
