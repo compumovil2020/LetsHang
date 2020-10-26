@@ -26,7 +26,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
-public class PrincipalActivity extends AppCompatActivity {
+public class PrincipalActivity extends AppCompatActivity{
 
     private ImageView ivFiltrar;
     private ConstraintLayout eventLayout;
