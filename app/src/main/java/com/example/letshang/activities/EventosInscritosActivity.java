@@ -56,7 +56,7 @@ public class EventosInscritosActivity extends AppCompatActivity{
 
         List<Event> listEvents = participant.getPastEvents();
 
-        eventsAdapter = new EventsAdapter(this,listEvents);
+        eventsAdapter = new EventsAdapter(this, listEvents);
         listViewEvents.setAdapter(eventsAdapter);
 
         listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener(){
