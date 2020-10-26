@@ -21,6 +21,9 @@ import com.example.letshang.R;
 import com.example.letshang.model.Event;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.ui.adapter.EventsAdapter;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -34,7 +37,7 @@ public class PrincipalActivity extends AppCompatActivity{
     private DrawerLayout drawerLayout;
     private NavigationView navView;
     private TextView btnMap;
-
+    private GoogleSignInClient mGoogleSignInClient;
     // should go in utils
     private FirebaseAuth mAuth;
 
@@ -50,7 +53,12 @@ public class PrincipalActivity extends AppCompatActivity{
         // Initialize Firebase Auth
         // should go in utils
         mAuth = FirebaseAuth.getInstance();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         // set action bar title
         getSupportActionBar().setTitle("Feed");
 
@@ -73,10 +81,9 @@ public class PrincipalActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Event e = (Event) adapterView.getItemAtPosition(i);
-                Log.i("EVENTOS", String.valueOf(e.getID()));
-
-                Intent intent = new Intent(view.getContext(), InscripcionEventoActivity.class);
-                intent.putExtra("idevento", e.getID());
+                Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
+                intent.putExtra("idevento", "" + e.getID());
+                intent.putExtra("from", "Principal");
                 startActivity(intent);
             }
         });
@@ -140,6 +147,7 @@ public class PrincipalActivity extends AppCompatActivity{
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
                     mAuth.signOut();
+                    mGoogleSignInClient.signOut();
                     Intent intent = new Intent(getApplicationContext() , StartActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

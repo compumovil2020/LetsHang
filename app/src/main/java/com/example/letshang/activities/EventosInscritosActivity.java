@@ -20,6 +20,9 @@ import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
 import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.adapter.EventsAdapter;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -36,7 +39,8 @@ public class EventosInscritosActivity extends AppCompatActivity{
 
     private UserProvider userProvider = UserProvider.getInsatance();
     private ListView listViewEvents;
-    EventsAdapter eventsAdapter;
+    private EventsAdapter eventsAdapter;
+    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)  {
@@ -45,11 +49,15 @@ public class EventosInscritosActivity extends AppCompatActivity{
 
         getSupportActionBar().setTitle("Eventos inscritos");
         mAuth = FirebaseAuth.getInstance();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         //inflate
         drawerLayout = findViewById(R.id.inscritos_drawer_layout);
         navView = findViewById(R.id.inscritos_nav_view);
-        //btnEvento = findViewById(R.id.btnEventoEventosInscritos);
         btnAgregar = findViewById(R.id.btnAgregarEventosInscritos);
         listViewEvents = findViewById(R.id.listEventosAdapter);
 
@@ -57,17 +65,16 @@ public class EventosInscritosActivity extends AppCompatActivity{
 
         List<Event> listEvents = participant.getPastEvents();
 
-        eventsAdapter = new EventsAdapter(this,listEvents);
+        eventsAdapter = new EventsAdapter(this, listEvents);
         listViewEvents.setAdapter(eventsAdapter);
 
         listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Event e = (Event) adapterView.getItemAtPosition(i);
-                Log.i("EVENTOS", String.valueOf(e.getID()));
-
                 Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
-                intent.putExtra("idevento", e.getID());
+                intent.putExtra("idevento", "" + e.getID());
+                intent.putExtra("from", "Inscritos");
                 startActivity(intent);
             }
         });
@@ -111,6 +118,7 @@ public class EventosInscritosActivity extends AppCompatActivity{
                 }
                 if(item.getItemId() ==  R.id.item_menu_logout){
                     mAuth.signOut();
+                    mGoogleSignInClient.signOut();
                     Intent intent = new Intent(getApplicationContext() , StartActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
