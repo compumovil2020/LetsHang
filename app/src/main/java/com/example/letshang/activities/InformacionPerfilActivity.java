@@ -27,6 +27,9 @@ import com.example.letshang.model.Participant;
 import com.example.letshang.model.Preference;
 import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.adapter.EventsAdapter;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.navigation.NavigationView;
@@ -51,14 +54,18 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private ListView listViewEvents;
     private ChipGroup chipGroup;
     EventsAdapter eventsAdapter;
-
+    private GoogleSignInClient mGoogleSignInClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_informacion_perfil);
         mAuth = FirebaseAuth.getInstance();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
 
-
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         btnEditar = findViewById(R.id.btnEditarInformacionPerfil);
 
         drawerLayout = findViewById(R.id.informacion_perfil_drawer_layout);
@@ -156,6 +163,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                 if(item.getItemId() ==  R.id.item_menu_logout){
 
                     mAuth.signOut();
+                    mGoogleSignInClient.signOut();
                     Intent intent = new Intent(getApplicationContext() , StartActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
