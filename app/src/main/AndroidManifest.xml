@@ -12,13 +12,17 @@
         android:roundIcon="@mipmap/lets_hang_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".CreateGameEventActivity"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-        <meta-data android:name="com.google.android.gms.version"
+        <meta-data
+            android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <activity android:name=".activities.CreateSportEventActivity"></activity>
-        <activity android:name=".activities.CreateMusicEventActivity"></activity>
+
+        <activity android:name=".activities.CreateSportEventActivity" />
+        <activity android:name=".activities.CreateMusicEventActivity" />
         <activity android:name=".activities.InformacionPerfilActivity" />
         <activity android:name=".activities.RegistroAdicionalActivity" />
         <activity android:name=".activities.AdministrarPerfilActivity" />
