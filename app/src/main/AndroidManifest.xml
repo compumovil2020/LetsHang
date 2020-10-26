@@ -36,7 +36,6 @@
         <activity android:name=".activities.ReglasCondicionesActivity" />
         <activity android:name=".activities.DescripcionEventoActivity" />
         <activity android:name=".activities.PerfilHostActivity" />
-        <activity android:name=".activities.InscripcionEventoActivity" />
         <activity android:name=".activities.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
