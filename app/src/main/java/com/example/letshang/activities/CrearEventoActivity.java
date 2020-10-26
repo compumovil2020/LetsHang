@@ -156,7 +156,7 @@ public class CrearEventoActivity extends AppCompatActivity {
 
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbMusical.getId()){
-                        i = new Intent(getApplicationContext() , CrearEventoActivity.class);
+                        i = new Intent(getApplicationContext() , CreateMusicEventActivity.class);
 
                     }
                     /////////////////////////////////
