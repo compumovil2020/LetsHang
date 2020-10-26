@@ -129,11 +129,31 @@
             android:layout_height="55dp"
             android:layout_marginTop="20dp"
             style="@style/typ_normal"
+            android:gravity="center"
             android:text="Clase para niños y adolecentes entre 10 y 14 años.  Exelente forma de pasar el fin de semana! Terminamos la clase con un partido amistoso."
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.41"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mpMapDescripcionEvento" />
+
+        <LinearLayout
+            android:id="@+id/llDescripcionEvento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvResumenDescripcionEvento">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cgTagsDescripcionEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/btnCancelarDescripcionEvento"
@@ -144,7 +164,7 @@
             android:text="Cancelar suscripción"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvResumenDescripcionEvento" />
+            app:layout_constraintTop_toBottomOf="@+id/llDescripcionEvento" />
 
         <ImageView
             android:id="@+id/ivLogoDescripcionEvento"
@@ -167,6 +187,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivProfileDescripcionEvento"
             app:srcCompat="@drawable/rute_map" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

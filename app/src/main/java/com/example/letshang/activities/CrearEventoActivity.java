@@ -292,7 +292,6 @@ public class CrearEventoActivity extends AppCompatActivity {
         });
         chip.setCloseIconVisible(true);
         chipGroup.addView(chip);
-        Log.i("crearEvento", "addTag: " + tag);
     }
 
 

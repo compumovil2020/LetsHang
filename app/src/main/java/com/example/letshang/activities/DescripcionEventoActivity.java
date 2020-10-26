@@ -61,6 +61,8 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.w3c.dom.Text;
@@ -85,6 +87,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private TextView tvTiempoEvento;
     private TextView tvPrecioEvento;
     private TextView tvDescripcionEvento;
+    private ChipGroup chipGroup;
     private CustomMapView mapView;
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
@@ -129,6 +132,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         tvTiempoEvento = findViewById(R.id.tvTiempoDescripcionEvento);
         tvPrecioEvento = findViewById(R.id.tvPrecioDescripcionEvento);
         tvDescripcionEvento = findViewById(R.id.tvResumenDescripcionEvento);
+        chipGroup = (ChipGroup) findViewById(R.id.cgTagsDescripcionEvento);
         mapView = findViewById(R.id.mpMapDescripcionEvento);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -227,6 +231,13 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         String horario = formatter2.format(evento.getStartDate()) + " - " + formatter2.format(evento.getEndDate());
         tvTiempoEvento.setText(horario);
         tvFechaEvento.setText(fecha);
+
+        for(String t: evento.getTags()){
+            Chip chip = new Chip(this);
+            chip.setText(t);
+            chipGroup.addView(chip);
+        }
+
     }
 
     private String geoCoderSearch(LatLng latlng){
