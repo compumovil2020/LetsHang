@@ -6,6 +6,7 @@
     android:id="@+id/map_drawer_layout"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:padding="10dp"
     tools:context=".activities.MapActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -25,7 +26,6 @@
                 android:id="@+id/llMap1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -34,9 +34,8 @@
                 <ImageView
                     android:id="@+id/ivFiltroMap"
                     style="@style/icn_filter"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_gravity="center"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_marginStart="15dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -44,26 +43,29 @@
                 <TextView
                     android:id="@+id/tvFiltroMap"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_height="match_parent"
                     android:text="@string/filter"
-                    android:textSize="16sp"
+                    android:textSize="30sp"
+                    android:layout_marginLeft="15dp"
+                    android:fontFamily="@font/coves_light"
                     app:layout_constraintStart_toEndOf="@+id/ivFiltroMap"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </LinearLayout>
 
-            <ImageView
+            <com.example.letshang.ui.dialog.CustomMapView
                 android:id="@+id/ivMapaMap"
-                android:layout_width="325dp"
-                android:layout_height="489dp"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginTop="30dp"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/llMap1"
                 app:srcCompat="@drawable/map" />
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
