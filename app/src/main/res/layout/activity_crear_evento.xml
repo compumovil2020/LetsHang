@@ -48,33 +48,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvTituloCrearEvento" />
 
             <EditText
-                android:id="@+id/etLugarCrearEvento"
-                style="@style/form_big"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="@color/secondaryColor"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="LUGAR"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etNombreCrearEvento" />
-
-            <EditText
                 android:id="@+id/etPrecioCrearEvento"
                 style="@style/form_big"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:backgroundTint="@color/secondaryColor"
                 android:ems="10"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:hint="VALOR"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etLugarCrearEvento" />
+                app:layout_constraintTop_toBottomOf="@+id/etNombreCrearEvento" />
 
             <EditText
                 android:id="@+id/etCapacidadCrearEvento"
@@ -199,28 +185,57 @@
                 </RadioGroup>
             </LinearLayout>
 
-            <Button
-                android:id="@+id/btnCrearEvento"
-                style="@style/form_normal"
+            <TextView
+                android:id="@+id/tvUbicacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="Continuar"
+                android:layout_marginTop="15dp"
+                android:text="Ubicación"
+                android:textColor="@color/secondaryColor"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llCrearEvento2" />
+
+            <EditText
+                android:id="@+id/etLugarCrearEvento"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:imeOptions="actionSend"
+                android:gravity="start|top"
+                android:inputType="text"
+                android:hint="Digite una ubicación o seleccione una"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llCrearEventoChip" />
+                app:layout_constraintTop_toBottomOf="@+id/tvUbicacion" />
+
+            <com.example.letshang.ui.dialog.CustomMapView
+                android:id="@+id/mpMapCrearEvento"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etLugarCrearEvento"
+                app:srcCompat="@drawable/rute_map" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:textColor="@color/secondaryColor"
+                android:layout_marginTop="15dp"
                 android:text="Descripción"
+                android:textColor="@color/secondaryColor"
                 android:textSize="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llCrearEvento2" />
+                app:layout_constraintTop_toBottomOf="@+id/mpMapCrearEvento" />
 
             <EditText
                 android:id="@+id/editTextTextMultiLine"
@@ -278,6 +293,17 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnCrearEvento"
+                style="@style/form_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="Continuar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llCrearEventoChip" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
