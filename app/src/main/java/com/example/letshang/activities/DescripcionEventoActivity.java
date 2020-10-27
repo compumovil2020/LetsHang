@@ -141,8 +141,8 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
                 if (map != null) {
-                    if (sensorEvent.values[0] < 2000) {
-                        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(DescripcionEventoActivity.this, R.raw.night));
+                    if (sensorEvent.values[0] < 2500) {
+                        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(DescripcionEventoActivity.this, R.raw.dark_style_map));
                     } else {
                         map.setMapStyle(MapStyleOptions.loadRawResourceStyle(DescripcionEventoActivity.this, R.raw.day));
                     }
@@ -176,7 +176,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
                     map.addMarker(new MarkerOptions().position(eventMarker.getPosition()).title(geoCoderSearch(eventMarker.getPosition())).snippet("Ubicación del evento").alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                     map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).snippet("Ubicación Actual").alpha(0.8f)
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                    showRoute(currentLocation.latitude, currentLocation.longitude, eventMarker.getPosition().latitude, eventMarker.getPosition().longitude);
+                    //showRoute(currentLocation.latitude, currentLocation.longitude, eventMarker.getPosition().latitude, eventMarker.getPosition().longitude);
                 }
 
             }

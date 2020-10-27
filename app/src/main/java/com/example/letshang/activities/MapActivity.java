@@ -14,6 +14,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
@@ -57,6 +58,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -77,7 +79,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private SensorManager sensorManager;
     private Sensor lightSensor;
     private SensorEventListener lightSensorListener;
-    private Geocoder gcd ;
+    private Geocoder mGeocoder;
     private LatLng currentLocation;
     private CustomMapView mapView;
     private EventProvider evProv = EventProvider.getInsatance();
@@ -91,6 +93,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
         listMarkers = new ArrayList<Marker>();
+        mGeocoder = new Geocoder(getBaseContext());
         mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -103,7 +106,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         btnLista = findViewById(R.id.btnListaMap);
         navView = findViewById(R.id.map_nav_view);
         drawerLayout = findViewById(R.id.map_drawer_layout);
-
 
         setupMenu();
 
@@ -135,10 +137,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onSensorChanged(SensorEvent event) {
                 if (mMap != null) {
-                    if (event.values[0] < 5000) {
+                    if (event.values[0] < 2500) {
                         mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapActivity.this, R.raw.dark_style_map));
                     } else {
-                        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapActivity.this, R.raw.light_style_map));
+                        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(MapActivity.this, R.raw.day));
                     }
                 }
             }
@@ -160,6 +162,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     }
 
+    private String geoCoderSearch(LatLng latlng){
+        String address = "";
+        try{
+            List<Address> res = mGeocoder.getFromLocation(latlng.latitude, latlng.longitude, 2);
+            if(res != null && res.size() > 0){
+                address = res.get(0).getAddressLine(0);
+            }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return address;
+    }
 
     void setupMenu(){
 
@@ -215,17 +229,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     private void initalizeEvents(){
-        //Llamo al event provider y sale
-        //Aca se deben obtener los eventos cercanos
-        gcd  = new Geocoder(this, Locale.getDefault());
         List<Event> listEvents = evProv.getAllEventsFromDBB();
-        for(Event actual:listEvents){
+        for(Event actual: listEvents){
             LatLng locationActual = actual.getLocation();
             listMarkers.add(mMap.addMarker(new MarkerOptions().position(locationActual).
-                    title(actual.getTitle()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))));
+                    title(geoCoderSearch(locationActual)).snippet(actual.getTitle()).alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))));
         }
     }
-    // needed to setup menu toggle button
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -238,19 +249,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Log.i(TAG, "onMapReady: ");
         mMap = googleMap;
-        mMap.clear();
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        mMap.getUiSettings().setCompassEnabled(true);
+
         if(!listMarkers.isEmpty()){
             listMarkers.clear();
         }
-        mMap.getUiSettings().setMyLocationButtonEnabled(true);
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             pedirPermisos();
         } else {
-            //Init map
             initalizeEvents();
             mMap.setMyLocationEnabled(true);
             try {
@@ -258,11 +271,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            //Lo debo hacer con mi localización
+
             upDateCurrentPosition();
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(4.518640, -74.092700), 10);
-            mMap.animateCamera(cameraUpdate);
-            mMap.getUiSettings().setMapToolbarEnabled(false);
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(4.65, -74.05), 12));
         }
 
     }
@@ -273,7 +284,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 justificacion,
                 LOCATION_PERMISSION_CODE);
-
 
         if (ContextCompat.checkSelfPermission(MapActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -297,23 +307,31 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         return locationRequest;
     }
+
     private void startLocationUpdates() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
         }
-        Log.i("...", "startLocationUpdates: entre starlocationUpdates");
     }
+
     public void upDateCurrentPosition(){
         mLocationCallback = new LocationCallback(){
             public void onLocationResult(LocationResult locationResult){
                 Location location = locationResult.getLastLocation();
                 if(location != null){
                     currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                    if(mMap != null){
+                        mMap.clear();
+                        initalizeEvents();
+                        mMap.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).snippet("Ubicación Actual").alpha(0.8f)
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                    }
                 }
             }
         };
     }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
@@ -335,7 +353,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         sensorManager.unregisterListener(lightSensorListener);
         mapView.onPause();
         stopLocationUpdates();
-
     }
 
     @Override
@@ -345,7 +362,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 SensorManager.SENSOR_DELAY_NORMAL);
         mapView.onResume();
         startLocationUpdates();
-
     }
 
     @Override
@@ -353,14 +369,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         super.onDestroy();
         mapView.onDestroy();
         stopLocationUpdates();
-
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
-
     }
 
     private void stopLocationUpdates(){
