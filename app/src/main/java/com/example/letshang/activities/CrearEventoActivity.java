@@ -179,7 +179,6 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
 
         // Form validation
         validation.addValidation(this, R.id.etNombreCrearEvento, RegexTemplate.NOT_EMPTY, R.string.nameerror);
-        validation.addValidation(this, R.id.etLugarCrearEvento, RegexTemplate.NOT_EMPTY, R.string.requirederror);
         validation.addValidation(this, R.id.etPrecioCrearEvento, Range.open(0,999999), R.string.priceerror);
         validation.addValidation(this, R.id.editTextTextMultiLine, RegexTemplate.NOT_EMPTY, R.string.requirederror);
         validation.addValidation(this, R.id.etCapacidadCrearEvento, RegexTemplate.NOT_EMPTY, R.string.requirederror);
@@ -221,15 +220,10 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
             public void onClick(View view) {
                 if(validateInput()){
 
-
-
                     Log.i("selected location", String.valueOf(location.latitude) + " "+String.valueOf(location.longitude));
                     Toast.makeText(getApplicationContext() , "texto: " + etLugar.getText().toString() , Toast.LENGTH_SHORT).show();
                     Intent i= new Intent();
 
-                    /////////////////////////////////
-                    // cambiar CrearEventoActivity por la actividad que es
-                    /////////////////////////////////
                     if(radioGroup.getCheckedRadioButtonId() == rbAcademic.getId()){
                         i = new Intent(getApplicationContext() , CrearEventoActivity.class);
 
@@ -249,7 +243,6 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                         i = new Intent(getApplicationContext() , CreateMusicEventActivity.class);
 
                     }
-                    /////////////////////////////////
 
                     i.putExtra("name", etNombre.getText().toString());
                     i.putExtra("location", location);
@@ -261,16 +254,11 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                     i.putExtra("description" , etDescription.getText().toString());
 
                     startActivity(i);
-
-
                 }
             }
         });
 
-
-
     }
-
 
     private boolean validateInput(){
 
@@ -291,10 +279,8 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
             return false;
         }
 
-        location = getLocationFromAddress(getApplicationContext() , etLugar.getText().toString());
         if(location == null){
-            Toast.makeText(getApplicationContext() , "No se pudo encontrar la direccion" , Toast.LENGTH_SHORT).show();
-            //TODO: en vez de retornar false, ponerlo a escoger el punto en un  mapa
+            Toast.makeText(getApplicationContext() , "Seleccione la ubicación del evento" , Toast.LENGTH_SHORT).show();
             return false;
         }
 
@@ -476,6 +462,20 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
         map.getUiSettings().setMyLocationButtonEnabled(true);
         map.getUiSettings().setCompassEnabled(true);
 
+        map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                location = latLng;
+                map.clear();
+                map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).snippet("Ubicación Actual").alpha(0.8f)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                map.addMarker(new MarkerOptions().position(location).title(geoCoderSearch(latLng)).snippet("Ubicación del evento").alpha(0.8f).
+                        icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+
+            }
+        });
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -491,9 +491,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
             e.printStackTrace();
         }
 
-
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(4.65, -74.05), 12));
-
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(4.65, -74.05), 13));
 
     }
 
