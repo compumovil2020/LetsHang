@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -211,6 +212,44 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                     textView.setText("");
                     return true;
                 }
+            }
+        });
+
+        etLugar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    String address = etLugar.getText().toString();
+                    if (!address.isEmpty()) {
+                        try {
+                            List<Address> addresses = mGeocoder.getFromLocationName(address, 2, lowerLeftLatitude, lowerLeftLongitude, upperRightLatitude, upperRigthLongitude);
+                            if (addresses != null && !addresses.isEmpty()) {
+                                Address res = addresses.get(0);
+                                LatLng pos = new LatLng(res.getLatitude(), res.getLongitude());
+                                if (map != null) {
+                                    map.clear();
+                                    map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).alpha(0.8f).snippet("Ubicación Actual").
+                                            icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                                    location = pos;
+                                    MarkerOptions mo = new MarkerOptions();
+                                    mo.position(location);
+                                    mo.title(res.getAddressLine(0));
+                                    mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                                    mo.alpha(0.8f);
+                                    map.addMarker(mo);
+                                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+                                }
+                            } else {
+                                Toast.makeText(CrearEventoActivity.this, "No se encontró la dirección digitada", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(CrearEventoActivity.this, "Dirección invalida!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                return false;
             }
         });
 
