@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.letshang.R;
 
@@ -17,6 +18,7 @@ public class FiltersActivity extends AppCompatActivity {
     private EditText etInicio, etFin;
     private CheckBox cbDeportivo, cbEmpresarial, cbFerias, cbExhibiciones, cbCongresos, cbSocial, cbCatering, cbConciertos, cbEspectaculos, cbConvenciones;
     private Button btnAplicar;
+    private TextView tvSeekValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class FiltersActivity extends AppCompatActivity {
         cbConciertos = findViewById(R.id.cbConciertosFilters);
         cbEspectaculos = findViewById(R.id.cbEspectaculosFilters);
         cbConvenciones = findViewById(R.id.cbConvencionesFilters);
+        tvSeekValue = findViewById(R.id.tvSeekValue);
 
         btnAplicar = findViewById(R.id.btnAplicarFilters);
 
@@ -50,6 +53,28 @@ public class FiltersActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        sbDistancia.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+                tvSeekValue.setText("" + progress*2+" Km");
+                tvSeekValue.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
+                tvSeekValue.setY(sbDistancia.getY()+50); //just added a value set this properly using screen with height aspect ratio , if you do not set it by default it will be there below seek bar
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
 
 
     }
