@@ -15,9 +15,13 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Month;
+import java.time.Year;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumMap;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Set;
 
@@ -47,11 +51,18 @@ public class EventProvider {
         tags.add("parque");
         tags.add("juvenil");
 
+        GregorianCalendar startGreo = new GregorianCalendar();
+        startGreo.set(GregorianCalendar.YEAR, 2020);
+        startGreo.set(GregorianCalendar.MONTH, 9);
+        startGreo.set(GregorianCalendar.DAY_OF_MONTH, 10);
+        startGreo.set(GregorianCalendar.HOUR, 10);
+        startGreo.set(GregorianCalendar.MINUTE, 00);
+
         Event event1 = new SportEvent("Partido de futbol",
                 "Clase para niños y adolecentes entre 10 y 14 años.  Exelente forma de " +
                         "pasar el fin de semana! Terminamos la clase con un partido amistoso.",
-                new Date(2020, 10, 11, 10, 00),
-                new Date(2020,10,11, 15,00),
+                new GregorianCalendar(2020, 9,10,10,00),
+                new GregorianCalendar(2020, 9,10,15,00),
                 10000, 100, tags, "Futbol",
                 SportEventLevel.BEGINNER, 11, new LatLng(4.713103, -74.052271)
         );
@@ -63,8 +74,8 @@ public class EventProvider {
 
         Event event2 = new AcademicEvent("Monitoría de la clase de microeconomía",
                 "Monitoria del segundo corte para la materia de microeconomia.",
-                new Date(2020, 10, 11, 10, 00),
-                new Date(2020,10,11, 15,00),
+                new GregorianCalendar(2020, 10, 11, 10, 00),
+                new GregorianCalendar(2020, 9,10,16,00),
                 10000, 100, tags, "Administración de empresas",
                 AcademicEventLevel.UNIVERSITY, new LatLng(4.628640, -74.065273)
         );
@@ -77,8 +88,8 @@ public class EventProvider {
 
         Event event3 = new AcademicEvent("Monitoría de la clase de Pensamiento Algoritmico",
                 "Monitoria del tercer corte para la materia de pensamiento algoritmico.",
-                new Date(2020, 10, 11, 10, 00),
-                new Date(2020,10,11, 15,00),
+                new GregorianCalendar(2020, 5, 1, 10, 00),
+                new GregorianCalendar(2020, 9,10,11,00),
                 5800, 25, tags, "Ingeniería de Sistemas",
                 AcademicEventLevel.UNIVERSITY, new LatLng(4.651440, -74.095273)
         );
@@ -91,8 +102,8 @@ public class EventProvider {
 
         Event event4 = new MusicEvent("Concierto de Jazz",
                 "Concierto de Jazz en el parque nacional",
-                new Date(2020, 10, 11, 10, 00),
-                new Date(2020,10,11, 15,00),
+                new GregorianCalendar(2020, 8, 30, 10, 00),
+                new GregorianCalendar(2020, 9,10,12,00),
                 12000, 30, tags, "Jazz & Blues",
                 "Artista 1, Artista 2", new LatLng(4.671360, -74.045223)
         );
@@ -104,8 +115,8 @@ public class EventProvider {
 
         Event event5 = new SportEvent("Futbol 5",
                 "Partido de futbol 5 en el Soccer de la 147",
-                new Date(2020, 10, 11, 10, 00),
-                new Date(2020,10,11, 15,00),
+                new GregorianCalendar(2020, 1, 27, 10, 00),
+                new GregorianCalendar(2020, 9,10,13,00),
                 4500, 15, tags, "Futbol",
                 SportEventLevel.INTERMEDIATE, 5, new LatLng(4.751111, -74.092222)
         );
@@ -118,8 +129,8 @@ public class EventProvider {
 
         Event event6 = new MusicEvent("Concierto de Rock",
                 "Concierto de Rock en el parqueadero del centro comercial unicentro",
-                new Date(2020, 10, 11, 10, 00),
-                new Date(2020,10,11, 15,00),
+                new GregorianCalendar(2021, 3, 5, 10, 00),
+                new GregorianCalendar(2020, 9,10,14,00),
                 11300, 60, tags, "Rock & Roll",
                 "Artista 1, Artista 2, Artista 3", new LatLng(4.771360, -74.745223)
         );
@@ -164,10 +175,10 @@ public class EventProvider {
     public boolean filter(Event e , Date minDate, Date maxDate, int maxDistance,
                            Set<EventsEnum> types, LatLng currentLocation){
 
-        if(e.getEndDate().compareTo(minDate) < 0 ){
+        if(e.getEndDate().getTime().compareTo(minDate) < 0 ){
             return false;
         }
-        if(e.getStartDate().compareTo(maxDate) > 0){
+        if(e.getStartDate().getTime().compareTo(maxDate) > 0){
             return false;
         }
 

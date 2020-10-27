@@ -4,6 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public abstract class Event {
@@ -11,8 +12,8 @@ public abstract class Event {
     protected LatLng location;
     protected String title;
     protected String description;
-    protected Date startDate;
-    protected Date endDate;
+    protected GregorianCalendar startDate;
+    protected GregorianCalendar endDate;
     protected long price;
     protected int maximumCapacity;
     protected Collection<String> tags;
@@ -21,7 +22,7 @@ public abstract class Event {
 
 
 
-    public Event(String title, String description, Date startDate, Date endDate, long price,
+    public Event(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate, long price,
                  int maximumCapacity, Collection<String> tags, LatLng location) {
         this.title = title;
         this.description = description;
@@ -49,11 +50,11 @@ public abstract class Event {
     }
 
 
-    public Date getStartDate() {
+    public GregorianCalendar getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public GregorianCalendar getEndDate() {
         return endDate;
     }
 
@@ -77,11 +78,11 @@ public abstract class Event {
         this.description = description;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(GregorianCalendar startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(GregorianCalendar endDate) {
         this.endDate = endDate;
     }
 
