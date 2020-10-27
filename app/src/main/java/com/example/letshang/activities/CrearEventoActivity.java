@@ -234,7 +234,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                                     MarkerOptions mo = new MarkerOptions();
                                     mo.position(location);
                                     mo.title(res.getAddressLine(0));
-                                    mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                                    mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                                     mo.alpha(0.8f);
                                     map.addMarker(mo);
                                     map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
@@ -402,46 +402,6 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
         chipGroup.addView(chip);
     }
 
-
-    private LatLng getLocationFromAddress(Context context, String inputtedAddress) {
-
-        Geocoder coder = new Geocoder(context);
-        List<Address> address;
-        LatLng resLatLng = null;
-
-        try {
-            // May throw an IOException
-
-            address = coder.getFromLocationName(inputtedAddress, 3,
-                    lowerLeftLatitude, lowerLeftLongitude,
-                    upperRightLatitude, upperRigthLongitude);
-            if (address == null) {
-                return null;
-            }
-
-            if (address.size() == 0) {
-
-
-                return null;
-            }
-
-            Address location = address.get(0);
-            location.getLatitude();
-            location.getLongitude();
-
-            Log.i("GetLocationFromAdress", "adress: " + location.toString());
-
-            resLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        } catch (IOException ex) {
-
-            ex.printStackTrace();
-            Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
-        }
-
-        return resLatLng;
-    }
-
     private String geoCoderSearch(LatLng latlng){
         String address = "";
         try{
@@ -510,6 +470,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
                 map.addMarker(new MarkerOptions().position(location).title(geoCoderSearch(latLng)).snippet("Ubicación del evento").alpha(0.8f).
                         icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                etLugar.setText(geoCoderSearch(location));
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
 
             }

@@ -206,8 +206,8 @@
                 android:ems="10"
                 android:imeOptions="actionSend"
                 android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:hint="Digite una ubicación o seleccione una en el mapa"
+                android:inputType="text"
+                android:hint="Digite una ubicación o seleccione una"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvUbicacion" />
