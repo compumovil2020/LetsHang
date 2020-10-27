@@ -2,21 +2,27 @@ package com.example.letshang.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SeekBar;
 
 import com.example.letshang.R;
+import com.example.letshang.ui.dialog.DatePickerFragment;
+
+import java.util.Date;
 
 public class FiltersActivity extends AppCompatActivity {
 
     private SeekBar sbDistancia;
     private EditText etInicio, etFin;
-    private CheckBox cbDeportivo, cbEmpresarial, cbFerias, cbExhibiciones, cbCongresos, cbSocial, cbCatering, cbConciertos, cbEspectaculos, cbConvenciones;
+    private CheckBox cbDeportivo, cbJuegos, cbFerias, cbAcademico, cbMusical, cbSocial, cbMucical;
     private Button btnAplicar;
+    private Date startDate, endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,20 +35,17 @@ public class FiltersActivity extends AppCompatActivity {
         etFin = findViewById(R.id.etFechaFinFilters);
 
         cbDeportivo = findViewById(R.id.cbDeportivoFilters);
-        cbEmpresarial = findViewById(R.id.cbEmpresarialFilters);
-        cbFerias = findViewById(R.id.cbFeriaFilters);
-        cbExhibiciones = findViewById(R.id.cbExhibicionesFilters);
-        cbCongresos = findViewById(R.id.cbCongresosFilters);
+        cbJuegos = findViewById(R.id.cbJuegoFilters);
+        cbAcademico = findViewById(R.id.cbAcademicoFilters);
         cbSocial = findViewById(R.id.cbSocialFilters);
-        cbCatering = findViewById(R.id.cbCateringFilters);
-        cbConciertos = findViewById(R.id.cbConciertosFilters);
-        cbEspectaculos = findViewById(R.id.cbEspectaculosFilters);
-        cbConvenciones = findViewById(R.id.cbConvencionesFilters);
+        cbMucical = findViewById(R.id.cbMusicalFilters);
 
         btnAplicar = findViewById(R.id.btnAplicarFilters);
 
         getSupportActionBar().setTitle("");
 
+        startDate = new Date();
+        endDate = new Date();
         btnAplicar.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -51,6 +54,54 @@ public class FiltersActivity extends AppCompatActivity {
             }
         });
 
+        etInicio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog(true);
+            }
+        });
 
+        etFin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDatePickerDialog(false);
+            }
+        });
+
+
+    }
+
+
+    /**
+     * calls a fragment to choose date and time
+     */
+    private void showDatePickerDialog(final boolean isStart) {
+        DatePickerFragment dateFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                // +1 because January is zero
+                String selectedDate = day + "/" + (month+1) + "/" + year + " ";
+
+                Date date = new Date();
+
+                if(isStart) {
+                    startDate.setYear(year);
+                    startDate.setMonth(month);
+                    startDate.setDate(day);
+                    etInicio.setText(selectedDate);
+                    etInicio.setText(selectedDate);
+                }
+                else{
+                    endDate.setYear(year);
+                    endDate.setMonth(month);
+                    endDate.setDate(day);
+                    etFin.setText(selectedDate);
+                }
+
+
+            }
+        });
+
+        dateFragment.show(getSupportFragmentManager(), "datePicker");
     }
 }
