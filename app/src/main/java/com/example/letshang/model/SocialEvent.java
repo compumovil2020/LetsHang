@@ -8,7 +8,7 @@ import java.util.Date;
 public class SocialEvent extends Event {
 
     /**
-     * The music genre that will be played at the party
+     * The music genre that will be played at the event
      */
     private String musicGenre;
     /**
