@@ -407,9 +407,6 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
                 route.add(polyline);
             }
         }
-
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(polyStart, 12));
-
     }
 
     @Override
