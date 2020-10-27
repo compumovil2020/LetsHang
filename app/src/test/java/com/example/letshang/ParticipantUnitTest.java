@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
@@ -23,17 +24,17 @@ public class ParticipantUnitTest {
         // prepare the data
         Preference preference = new Preference(null, null);
         ArrayList<Event> events = new ArrayList<Event>();
-        Event event1 = new SportEvent("Evento 1",null, new Date(2000,01,01),
-                new Date(2000,01,01), 0, 0, null, null, null, 5, position);
+        Event event1 = new SportEvent("Evento 1",null, new GregorianCalendar(2000,01,01),
+                new GregorianCalendar(2000,01,01), 0, 0, null, null, null, 5, position);
 
-        Event event2 = new SportEvent("Evento 2",null, new Date(2020,01,01),
-                new Date(2020,01,01), 0, 0, null, null, null, 3, position);
+        Event event2 = new SportEvent("Evento 2",null, new GregorianCalendar(2020,01,01),
+                new GregorianCalendar(2020,01,01), 0, 0, null, null, null, 3, position);
 
-        Event event3 = new SportEvent("Evento 3",null, new Date(1900,01,01),
-                new Date(1900,01,01), 0, 0, null, null, null, 01, position);
+        Event event3 = new SportEvent("Evento 3",null, new GregorianCalendar(1900,01,01),
+                new GregorianCalendar(1900,01,01), 0, 0, null, null, null, 01, position);
 
-        Event event4 = new SportEvent("Evento 4",null, new Date(2010,01,01),
-                new Date(2010,01,01), 0, 0, null, null, null, 1, position);
+        Event event4 = new SportEvent("Evento 4",null, new GregorianCalendar(2010,01,01),
+                new GregorianCalendar(2010,01,01), 0, 0, null, null, null, 1, position);
 
         events.add(event1);
         events.add(event2);
@@ -42,7 +43,7 @@ public class ParticipantUnitTest {
 
 
 
-        Participant p = new Participant("Juan Perez","juan@perez.com",new Date(1998, 15,06),
+        Participant p = new Participant("Juan Perez","juan@perez.com",new GregorianCalendar(1998, 15,06),
                 "318938928", "camiloserr", "camilo.serr", "cams", null, null, preference, events);
 
         // Execute operation
@@ -59,7 +60,7 @@ public class ParticipantUnitTest {
         Preference preference = new Preference(null, null);
         ArrayList<Event> events = new ArrayList<Event>();
 
-        Participant p = new Participant("Juan Perez","juan@perez.com",new Date(1998, 15,06),
+        Participant p = new Participant("Juan Perez","juan@perez.com",new GregorianCalendar(1998, 15,06),
                 "318938928", "camiloserr", "camilo.serr", "cams", null, null, preference, events);
 
         // Execute operation

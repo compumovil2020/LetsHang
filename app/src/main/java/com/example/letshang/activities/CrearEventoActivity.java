@@ -62,7 +62,7 @@ import com.google.common.collect.Range;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class CrearEventoActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -70,7 +70,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
     private EditText etNombre, etLugar, etPrecio, etInicio, etFin, etTags, etDescription, etCapacidad;
     private RadioButton rbSport, rbSocial, rbMusical, rbGaming, rbAcademic;
     private Button btnCrear;
-    private Date startDate, endDate;
+    private GregorianCalendar startDate, endDate;
     private ArrayList<String> tags;
     private ChipGroup chipGroup;
     private AwesomeValidation validation;
@@ -125,9 +125,9 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
 
         mapView = findViewById(R.id.mpMapCrearEvento);
 
-        // inicializar
-        startDate = new Date();
-        endDate = new Date();
+         // inicializar
+        startDate = new GregorianCalendar();
+        endDate = new GregorianCalendar();
         tags = new ArrayList<>();
         validation = new AwesomeValidation(ValidationStyle.BASIC);
 
@@ -305,7 +305,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
             Toast.makeText(getApplicationContext() , "Selecciona las fechas para tu evento" , Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(startDate.compareTo(endDate) > 0){
+        if(startDate.getTime().compareTo(endDate.getTime()) > 0){
             Toast.makeText(getApplicationContext() , "La fecha inicial debe ser antes de la fecha final" , Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -333,19 +333,18 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
         DatePickerFragment dateFragment = DatePickerFragment.newInstance(new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                // +1 because January is zero
-                String selectedDate = day + "/" + (month+1) + "/" + year + " ";
-                Date date = new Date();
+                // +1 because January is zero --> Not anymore baby
+                String selectedDate = day + "/" + (month) + "/" + year + " ";
 
                 if(isStart) {
-                    startDate.setYear(year);
-                    startDate.setMonth(month);
-                    startDate.setDate(day);
+                    startDate.set(GregorianCalendar.YEAR, year);
+                    startDate.set(GregorianCalendar.MONTH, month);
+                    startDate.set(GregorianCalendar.DAY_OF_MONTH, day);
                 }
                 else{
-                    endDate.setYear(year);
-                    endDate.setMonth(month);
-                    endDate.setDate(day);
+                    endDate.set(GregorianCalendar.YEAR, year);
+                    endDate.set(GregorianCalendar.MONTH, month);
+                    endDate.set(GregorianCalendar.DAY_OF_MONTH, day);
                 }
 
                 showTimePickerDialog( isStart, selectedDate);
@@ -362,15 +361,15 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                 Log.i("onTimeSet", "StartDate: "+startDate.toString());
                 if(isStart) {
                     Toast.makeText(getApplicationContext() , "estoy en true" , Toast.LENGTH_SHORT);
-                    startDate.setHours(hour);
-                    startDate.setMinutes(minute);
+                    startDate.set(GregorianCalendar.HOUR, hour);
+                    startDate.set(GregorianCalendar.MINUTE, minute);
                     etInicio.setText(selectedDate +  String.valueOf(hour) + ":" + String.valueOf(minute));
 
                 }
                 else{
                     Toast.makeText(getApplicationContext() , "estoy en true" , Toast.LENGTH_SHORT);
-                    endDate.setHours(hour);
-                    endDate.setMinutes(minute);
+                    endDate.set(GregorianCalendar.HOUR, hour);
+                    endDate.set(GregorianCalendar.MINUTE, minute);
                     etFin.setText(selectedDate +  String.valueOf(hour) + ":" + String.valueOf(minute));
 
                 }
