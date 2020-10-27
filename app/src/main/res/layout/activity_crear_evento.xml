@@ -208,7 +208,7 @@
                 android:text="Continuar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cgTagsCrearEvento" />
+                app:layout_constraintTop_toBottomOf="@+id/llCrearEventoChip" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -261,14 +261,23 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 android:imeOptions="actionDone"/>
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/cgTagsCrearEvento"
+            <LinearLayout
+                android:id="@+id/llCrearEventoChip"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etTagsCrearEvento" />
+                app:layout_constraintTop_toBottomOf="@+id/etTagsCrearEvento">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cgTagsCrearEvento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

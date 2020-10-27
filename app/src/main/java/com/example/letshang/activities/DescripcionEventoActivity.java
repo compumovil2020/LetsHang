@@ -1,5 +1,6 @@
 package com.example.letshang.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -7,7 +8,12 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -18,6 +24,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.directions.route.AbstractRouting;
+import com.directions.route.Route;
+import com.directions.route.RouteException;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.example.letshang.R;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
@@ -25,6 +36,8 @@ import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.dialog.CustomMapView;
 import com.example.letshang.utils.PermissionHandler;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -41,10 +54,16 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.w3c.dom.Text;
 
@@ -54,7 +73,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class DescripcionEventoActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class DescripcionEventoActivity extends AppCompatActivity implements OnMapReadyCallback, RoutingListener, GoogleApiClient.OnConnectionFailedListener {
 
     private final String TAG = "DescripcionEvento";
     private int idEvento;
@@ -68,13 +87,18 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private TextView tvTiempoEvento;
     private TextView tvPrecioEvento;
     private TextView tvDescripcionEvento;
+    private ChipGroup chipGroup;
     private CustomMapView mapView;
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
-    private Location currentLocation;
+    private LatLng currentLocation;
     private GoogleMap map;
     private Geocoder mGeocoder;
+    private SensorManager sensorManager;
+    private Sensor lightSensor;
+    private SensorEventListener lightSensorListener;
     private FusedLocationProviderClient mFusedLocationClient;
+    private List<Polyline> route = null;
     private int LOCATION_PERMISSION_CODE = 101;
     private static final int REQUEST_CHECK_SETTINGS = 99;
     private String justificacion = "Se necesita el GPS para mostrar la ubicación del evento";
@@ -108,7 +132,28 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         tvTiempoEvento = findViewById(R.id.tvTiempoDescripcionEvento);
         tvPrecioEvento = findViewById(R.id.tvPrecioDescripcionEvento);
         tvDescripcionEvento = findViewById(R.id.tvResumenDescripcionEvento);
+        chipGroup = (ChipGroup) findViewById(R.id.cgTagsDescripcionEvento);
         mapView = findViewById(R.id.mpMapDescripcionEvento);
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        lightSensorListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+                if (map != null) {
+                    if (sensorEvent.values[0] < 2500) {
+                        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(DescripcionEventoActivity.this, R.raw.dark_style_map));
+                    } else {
+                        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(DescripcionEventoActivity.this, R.raw.day));
+                    }
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+
+            }
+        };
 
         initializeEvent();
 
@@ -125,10 +170,19 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
-                currentLocation = locationResult.getLastLocation();
+                currentLocation = new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
+                if(map != null){
+                    map.clear();
+                    map.addMarker(new MarkerOptions().position(eventMarker.getPosition()).title(geoCoderSearch(eventMarker.getPosition())).snippet("Ubicación del evento").alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                    map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).snippet("Ubicación Actual").alpha(0.8f)
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                    showRoute(currentLocation.latitude, currentLocation.longitude, eventMarker.getPosition().latitude, eventMarker.getPosition().longitude);
+                }
 
             }
         };
+
+
 
         if (ContextCompat.checkSelfPermission(DescripcionEventoActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -179,6 +233,13 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         String horario = formatter2.format(evento.getStartDate()) + " - " + formatter2.format(evento.getEndDate());
         tvTiempoEvento.setText(horario);
         tvFechaEvento.setText(fecha);
+
+        for(String t: evento.getTags()){
+            Chip chip = new Chip(this);
+            chip.setText(t);
+            chipGroup.addView(chip);
+        }
+
     }
 
     private String geoCoderSearch(LatLng latlng){
@@ -196,8 +257,8 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
 
     protected LocationRequest createLocationRequest() {
         LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000); //tasa de refresco en milisegundos
-        locationRequest.setFastestInterval(5000); //máxima tasa de refresco
+        locationRequest.setInterval(80000); //tasa de refresco en milisegundos
+        locationRequest.setFastestInterval(40000); //máxima tasa de refresco
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         return locationRequest;
     }
@@ -207,7 +268,6 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
         }
-        Log.i("...", "startLocationUpdates: entre starlocationUpdates");
     }
 
     private void pedirPermisos(){
@@ -223,24 +283,19 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
             LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
             SettingsClient client = LocationServices.getSettingsClient(this);
             Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
-
             task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
                 @Override
                 public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                    startLocationUpdates(); //Todas las condiciones para recibir localizaciones
+                    startLocationUpdates();
                 }
             });
         }
     }
 
-
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
 
-        Log.i(TAG, "onMapReady: ");
         map = googleMap;
-
         map.getUiSettings().setZoomGesturesEnabled(true);
         map.getUiSettings().setZoomControlsEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);
@@ -283,20 +338,31 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         }
     }
 
+    public void showRoute(double myLat, double myLong, double otherLat, double otherLong){
+        Routing routing = new Routing.Builder()
+                .travelMode(AbstractRouting.TravelMode.DRIVING)
+                .withListener(this)
+                .alternativeRoutes(true)
+                .waypoints(new LatLng(myLat, myLong), new LatLng(otherLat, otherLong))
+                .key("AIzaSyCKD2CKSOFHTBP4jpve7iQHg-Cf9_sPphU")
+                .build();
+        routing.execute();
+    }
+
     @Override
     public void onPause(){
         super.onPause();
         mapView.onPause();
+        sensorManager.unregisterListener(lightSensorListener);
         stopLocationUpdates();
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
         mapView.onResume();
+        sensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
         startLocationUpdates();
-
     }
 
     @Override
@@ -304,14 +370,59 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         super.onDestroy();
         mapView.onDestroy();
         stopLocationUpdates();
+    }
 
+    @Override
+    public void onRoutingFailure(RouteException e) {
+        View parentLayout = findViewById(android.R.id.content);
+        Snackbar snackbar = Snackbar.make(parentLayout, e.toString(), Snackbar.LENGTH_SHORT);
+        snackbar.show();
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(ArrayList<Route> r, int index) {
+
+        if(route != null){
+            route.clear();
+        }
+        PolylineOptions pOptions = new PolylineOptions();
+        LatLng polyStart = null;
+        LatLng polyEnd = null;
+
+        route = new ArrayList<>();
+        for(int i = 0; i < r.size(); i++){
+            if(i == index){
+                pOptions.color(Color.rgb(218, 0, 255));
+                pOptions.width(12);
+                pOptions.addAll(r.get(index).getPoints());
+                Polyline polyline = map.addPolyline(pOptions);
+                polyStart = polyline.getPoints().get(0);
+                int k = polyline.getPoints().size();
+                polyEnd = polyline.getPoints().get(k - 1);
+                route.add(polyline);
+            }
+        }
+    }
+
+    @Override
+    public void onRoutingCancelled() {
+        showRoute(currentLocation.latitude, currentLocation.longitude, evento.getLocation().latitude, evento.getLocation().longitude);
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        showRoute(currentLocation.latitude, currentLocation.longitude, evento.getLocation().latitude, evento.getLocation().longitude);
     }
 
     @Override
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
-
     }
 
     private void stopLocationUpdates(){
