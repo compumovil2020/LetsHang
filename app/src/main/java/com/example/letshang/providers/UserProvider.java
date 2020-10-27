@@ -13,6 +13,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.EnumMap;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -39,6 +40,7 @@ public class UserProvider {
 
 
 
+
     /**
      * initializest user
      */
@@ -54,7 +56,7 @@ public class UserProvider {
         Preference preferences = new Preference(mapa , new String[]{"futbol" , "parque" , "yoga", "fit"});
 
         currentUser = new Participant("Juan Perez","juan@perez.com",
-                new Date(1998, 5,5),"3177963053",
+                new GregorianCalendar(1998, 5,5),"3177963053",
                 "juan.perez","perez99","@perez",
                 null,null,preferences, myEvents );
 
@@ -99,8 +101,8 @@ public class UserProvider {
         ans.add(new SportEvent("Partido de futbol",
                 "Clase para niños y adolecentes entre 10 y 14 años. " +
                         " Exelente forma de pasar el fin de semana! Terminamos la clase con un partido amistoso.",
-                new Date(2020, 10, 11, 10, 00),
-                new Date(2020,10,11, 15,00),
+                new GregorianCalendar(2020, 10, 11, 10, 00),
+                new GregorianCalendar(2020,10,11, 15,00),
                 10000, 100, tags, "Futbol", SportEventLevel.BEGINNER,
                 11, new LatLng(4.700234, -74.059253))
         );

@@ -4,6 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class GameEvent extends Event{
 
@@ -48,7 +49,7 @@ public class GameEvent extends Event{
      * @param level
      * @param location
      */
-    public GameEvent(String title, String description, Date startDate, Date endDate,
+    public GameEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate,
                       long price, int maximumCapacity, Collection<String> tags,
                       String game, GameEventLevel level, LatLng location) {
         super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
@@ -68,8 +69,8 @@ public class GameEvent extends Event{
      * @param tags
      * @param location
      */
-    public GameEvent(String title, String description, Date startDate, Date endDate, long price,
-                      int maximumCapacity, Collection<String> tags, LatLng location) {
+    public GameEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate, long price,
+                     int maximumCapacity, Collection<String> tags, LatLng location) {
         super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
     }
 
