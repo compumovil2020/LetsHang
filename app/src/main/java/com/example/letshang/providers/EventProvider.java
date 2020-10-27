@@ -280,7 +280,7 @@ public class EventProvider {
         Preference preferences = new Preference(mapa , new String[]{"futbol" , "parque" , "yoga", "fit"});
 
         Host host = new Host("Maria Gonzalez","maria@gonzalez.com",
-                new Date(1990, 2,11),"3155263542",
+                new GregorianCalendar(1990, 2,11),"3155263542",
                 "maria.gonzalez",null,null,
                 null,null,preferences,pastEvents );
 

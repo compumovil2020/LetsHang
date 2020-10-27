@@ -2,6 +2,7 @@ package com.example.letshang.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class User {
 
@@ -14,10 +15,10 @@ public class User {
     private String twitter;
     private String youtube;
     private String linkedIn;
-    private Date birthDate;
+    private GregorianCalendar birthDate;
 
 
-    public User(String name, String email, Date birthDate,
+    public User(String name, String email, GregorianCalendar birthDate,
                 String phone, String facebook,
                 String instagram, String twitter, String youtube,
                 String linkedIn) {
@@ -96,11 +97,11 @@ public class User {
         this.linkedIn = linkedIn;
     }
 
-    public Date getBirthDate() {
+    public GregorianCalendar getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(GregorianCalendar birthDate) {
         this.birthDate = birthDate;
     }
 

@@ -16,11 +16,11 @@ public class Host extends Participant {
 
 
 
-    public Host(String name, String email, Date birthDate, String phone, String facebook, String instagram, String twitter, String youtube, String linkedIn, Preference preferences, List<Event> pastEvents) {
+    public Host(String name, String email, GregorianCalendar birthDate, String phone, String facebook, String instagram, String twitter, String youtube, String linkedIn, Preference preferences, List<Event> pastEvents) {
         super(name, email, birthDate, phone, facebook, instagram, twitter, youtube, linkedIn, preferences, pastEvents);
     }
 
-    public Host(String name, String email, Date birthDate, String phone, String facebook, String instagram, String twitter, String youtube, String linkedIn, Preference preferences, List<Event> pastEvents, URL webPage, List<Event> hostedEvents) {
+    public Host(String name, String email, GregorianCalendar birthDate, String phone, String facebook, String instagram, String twitter, String youtube, String linkedIn, Preference preferences, List<Event> pastEvents, URL webPage, List<Event> hostedEvents) {
         super(name, email, birthDate, phone, facebook, instagram, twitter, youtube, linkedIn, preferences, pastEvents);
         this.webPage = webPage;
         this.hostedEvents = hostedEvents;

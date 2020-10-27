@@ -55,7 +55,7 @@ public class UserProvider {
         Preference preferences = new Preference(mapa , new String[]{"futbol" , "parque" , "yoga", "fit"});
 
         currentUser = new Participant("Juan Perez","juan@perez.com",
-                new Date(1998, 5,5),"3177963053",
+                new GregorianCalendar(1998, 5,5),"3177963053",
                 "juan.perez","perez99","@perez",
                 null,null,preferences, myEvents );
 

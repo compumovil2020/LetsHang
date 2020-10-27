@@ -2,6 +2,7 @@ package com.example.letshang.model;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Participant extends User {
@@ -10,8 +11,8 @@ public class Participant extends User {
     private List<Event> pastEvents;
     private Preference preferences;
 
-    public Participant(String name, String email, Date birthDate, String phone,
-                        String facebook, String instagram,
+    public Participant(String name, String email, GregorianCalendar birthDate, String phone,
+                       String facebook, String instagram,
                        String twitter, String youtube, String linkedIn, Preference preferences, List<Event> pastEvents) {
 
         super(name, email, birthDate, phone, facebook, instagram, twitter, youtube, linkedIn);
