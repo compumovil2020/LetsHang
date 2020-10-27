@@ -1,17 +1,26 @@
 package com.example.letshang.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -25,9 +34,28 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.letshang.R;
+import com.example.letshang.ui.dialog.CustomMapView;
 import com.example.letshang.ui.dialog.DatePickerFragment;
 import com.example.letshang.ui.dialog.TimePickerFragment;
+import com.example.letshang.utils.PermissionHandler;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.common.collect.Range;
@@ -37,7 +65,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-public class CrearEventoActivity extends AppCompatActivity {
+public class CrearEventoActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private EditText etNombre, etLugar, etPrecio, etInicio, etFin, etTags, etDescription, etCapacidad;
     private RadioButton rbSport, rbSocial, rbMusical, rbGaming, rbAcademic;
@@ -47,6 +75,19 @@ public class CrearEventoActivity extends AppCompatActivity {
     private ChipGroup chipGroup;
     private AwesomeValidation validation;
     private RadioGroup radioGroup;
+    private CustomMapView mapView;
+    private LocationRequest mLocationRequest;
+    private LocationCallback mLocationCallback;
+    private GoogleMap map;
+    private Geocoder mGeocoder;
+    private SensorManager sensorManager;
+    private Sensor lightSensor;
+    private SensorEventListener lightSensorListener;
+    private FusedLocationProviderClient mFusedLocationClient;
+    private String justificacion = "Se necesita el GPS para mostrar la ubicación del evento";
+    private static final int LOCATION_PERMISSION_CODE = 101;
+    private static final int REQUEST_CHECK_SETTINGS = 99;
+    private LatLng currentLocation;
     private LatLng location;
 
     public static final double lowerLeftLatitude = 4.373941;
@@ -60,6 +101,8 @@ public class CrearEventoActivity extends AppCompatActivity {
 
         // inflar
         setContentView(R.layout.activity_crear_evento);
+
+        mGeocoder = new Geocoder(getBaseContext());
 
         etNombre = findViewById(R.id.etNombreCrearEvento);
         etLugar = findViewById(R.id.etLugarCrearEvento);
@@ -80,16 +123,63 @@ public class CrearEventoActivity extends AppCompatActivity {
         chipGroup = (ChipGroup) findViewById(R.id.cgTagsCrearEvento);
         btnCrear = findViewById(R.id.btnCrearEvento);
 
+        mapView = findViewById(R.id.mpMapCrearEvento);
+
          // inicializar
         startDate = new GregorianCalendar();
         endDate = new GregorianCalendar();
         tags = new ArrayList<>();
         validation = new AwesomeValidation(ValidationStyle.BASIC);
 
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        lightSensorListener = new SensorEventListener() {
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+                if (map != null) {
+                    if (sensorEvent.values[0] < 2500) {
+                        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(CrearEventoActivity.this, R.raw.dark_style_map));
+                    } else {
+                        map.setMapStyle(MapStyleOptions.loadRawResourceStyle(CrearEventoActivity.this, R.raw.day));
+                    }
+                }
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+
+            }
+        };
+
+        // set map
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mLocationRequest = createLocationRequest();
+
+        mLocationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                currentLocation = new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
+                if(map != null){
+                    map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).snippet("Ubicación Actual").alpha(0.8f)
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                }
+
+            }
+        };
+
+
+
+        if (ContextCompat.checkSelfPermission(CrearEventoActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            pedirPermisos();
+        }
+
+        mapView.onCreate(savedInstanceState);
+        mapView.getMapAsync(this);
+
 
         // Form validation
         validation.addValidation(this, R.id.etNombreCrearEvento, RegexTemplate.NOT_EMPTY, R.string.nameerror);
-        validation.addValidation(this, R.id.etLugarCrearEvento, RegexTemplate.NOT_EMPTY, R.string.requirederror);
         validation.addValidation(this, R.id.etPrecioCrearEvento, Range.open(0,999999), R.string.priceerror);
         validation.addValidation(this, R.id.editTextTextMultiLine, RegexTemplate.NOT_EMPTY, R.string.requirederror);
         validation.addValidation(this, R.id.etCapacidadCrearEvento, RegexTemplate.NOT_EMPTY, R.string.requirederror);
@@ -125,21 +215,54 @@ public class CrearEventoActivity extends AppCompatActivity {
             }
         });
 
+        etLugar.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    String address = etLugar.getText().toString();
+                    if (!address.isEmpty()) {
+                        try {
+                            List<Address> addresses = mGeocoder.getFromLocationName(address, 2, lowerLeftLatitude, lowerLeftLongitude, upperRightLatitude, upperRigthLongitude);
+                            if (addresses != null && !addresses.isEmpty()) {
+                                Address res = addresses.get(0);
+                                LatLng pos = new LatLng(res.getLatitude(), res.getLongitude());
+                                if (map != null) {
+                                    map.clear();
+                                    map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).alpha(0.8f).snippet("Ubicación Actual").
+                                            icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                                    location = pos;
+                                    MarkerOptions mo = new MarkerOptions();
+                                    mo.position(location);
+                                    mo.title(res.getAddressLine(0));
+                                    mo.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                                    mo.alpha(0.8f);
+                                    map.addMarker(mo);
+                                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+                                }
+                            } else {
+                                Toast.makeText(CrearEventoActivity.this, "No se encontró la dirección digitada", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Toast.makeText(CrearEventoActivity.this, "Dirección invalida!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                return false;
+            }
+        });
+
 
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(validateInput()){
 
-
-
                     Log.i("selected location", String.valueOf(location.latitude) + " "+String.valueOf(location.longitude));
                     Toast.makeText(getApplicationContext() , "texto: " + etLugar.getText().toString() , Toast.LENGTH_SHORT).show();
                     Intent i= new Intent();
 
-                    /////////////////////////////////
-                    // cambiar CrearEventoActivity por la actividad que es
-                    /////////////////////////////////
                     if(radioGroup.getCheckedRadioButtonId() == rbAcademic.getId()){
                         i = new Intent(getApplicationContext() , CrearEventoActivity.class);
 
@@ -159,7 +282,6 @@ public class CrearEventoActivity extends AppCompatActivity {
                         i = new Intent(getApplicationContext() , CreateMusicEventActivity.class);
 
                     }
-                    /////////////////////////////////
 
                     i.putExtra("name", etNombre.getText().toString());
                     i.putExtra("location", location);
@@ -171,21 +293,13 @@ public class CrearEventoActivity extends AppCompatActivity {
                     i.putExtra("description" , etDescription.getText().toString());
 
                     startActivity(i);
-
-
                 }
             }
         });
 
-
-
     }
 
-
     private boolean validateInput(){
-
-
-
 
         if(etFin.getText().toString().isEmpty() || etInicio.getText().toString().isEmpty()){
             Toast.makeText(getApplicationContext() , "Selecciona las fechas para tu evento" , Toast.LENGTH_SHORT).show();
@@ -204,15 +318,12 @@ public class CrearEventoActivity extends AppCompatActivity {
             return false;
         }
 
-        location = getLocationFromAddress(getApplicationContext() , etLugar.getText().toString());
         if(location == null){
-            Toast.makeText(getApplicationContext() , "No se pudo encontrar la direccion" , Toast.LENGTH_SHORT).show();
-            //TODO: en vez de retornar false, ponerlo a escoger el punto en un  mapa
+            Toast.makeText(getApplicationContext() , "Seleccione la ubicación del evento" , Toast.LENGTH_SHORT).show();
             return false;
         }
 
         return true;
-
     }
 
     /**
@@ -236,10 +347,7 @@ public class CrearEventoActivity extends AppCompatActivity {
                     endDate.set(GregorianCalendar.DAY_OF_MONTH, day);
                 }
 
-
                 showTimePickerDialog( isStart, selectedDate);
-
-
             }
         });
 
@@ -293,45 +401,148 @@ public class CrearEventoActivity extends AppCompatActivity {
         chipGroup.addView(chip);
     }
 
-
-    private LatLng getLocationFromAddress(Context context, String inputtedAddress) {
-
-        Geocoder coder = new Geocoder(context);
-        List<Address> address;
-        LatLng resLatLng = null;
-
-        try {
-            // May throw an IOException
-
-            address = coder.getFromLocationName(inputtedAddress, 3,
-                    lowerLeftLatitude, lowerLeftLongitude,
-                    upperRightLatitude, upperRigthLongitude);
-            if (address == null) {
-                return null;
+    private String geoCoderSearch(LatLng latlng){
+        String address = "";
+        try{
+            List<Address> res = mGeocoder.getFromLocation(latlng.latitude, latlng.longitude, 2);
+            if(res != null && res.size() > 0){
+                address = res.get(0).getAddressLine(0);
             }
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return address;
+    }
 
-            if (address.size() == 0) {
+    protected LocationRequest createLocationRequest() {
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(80000); //tasa de refresco en milisegundos
+        locationRequest.setFastestInterval(40000); //máxima tasa de refresco
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        return locationRequest;
+    }
 
+    private void startLocationUpdates() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, null);
+        }
+    }
 
-                return null;
+    private void pedirPermisos(){
+
+        PermissionHandler.requestPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                justificacion,
+                LOCATION_PERMISSION_CODE);
+
+        if (ContextCompat.checkSelfPermission(CrearEventoActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // si me dieron el permiso
+            LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
+            SettingsClient client = LocationServices.getSettingsClient(this);
+            Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+            task.addOnSuccessListener(this, new OnSuccessListener<LocationSettingsResponse>() {
+                @Override
+                public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                    startLocationUpdates();
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        map = googleMap;
+        map.getUiSettings().setZoomGesturesEnabled(true);
+        map.getUiSettings().setZoomControlsEnabled(true);
+        map.getUiSettings().setMyLocationButtonEnabled(true);
+        map.getUiSettings().setCompassEnabled(true);
+
+        map.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
+            @Override
+            public void onMapLongClick(LatLng latLng) {
+                location = latLng;
+                map.clear();
+                map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).snippet("Ubicación Actual").alpha(0.8f)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                map.addMarker(new MarkerOptions().position(location).title(geoCoderSearch(latLng)).snippet("Ubicación del evento").alpha(0.8f).
+                        icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                etLugar.setText(geoCoderSearch(location));
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+
             }
+        });
 
-            Address location = address.get(0);
-            location.getLatitude();
-            location.getLongitude();
-
-            Log.i("GetLocationFromAdress", "adress: " + location.toString());
-
-            resLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        } catch (IOException ex) {
-
-            ex.printStackTrace();
-            Toast.makeText(context, ex.getMessage(), Toast.LENGTH_LONG).show();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            pedirPermisos();
+        } else {
+            map.setMyLocationEnabled(true);
         }
 
-        return resLatLng;
+        // initialize map
+        try {
+            MapsInitializer.initialize(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(4.65, -74.05), 13));
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CHECK_SETTINGS: {
+                if (resultCode == RESULT_OK) {
+                    startLocationUpdates();
+                } else {
+                    Toast.makeText(this,
+                            "Sin acceso a localización, hardware deshabilitado!", Toast.LENGTH_LONG).show();
+                }
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        mapView.onPause();
+        sensorManager.unregisterListener(lightSensorListener);
+        stopLocationUpdates();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+        sensorManager.registerListener(lightSensorListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL);
+        startLocationUpdates();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+        stopLocationUpdates();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
+    private void stopLocationUpdates(){
+        mFusedLocationClient.removeLocationUpdates(mLocationCallback);
+    }
+
 
 
 
