@@ -176,11 +176,13 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
                     map.addMarker(new MarkerOptions().position(eventMarker.getPosition()).title(geoCoderSearch(eventMarker.getPosition())).snippet("Ubicación del evento").alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                     map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).snippet("Ubicación Actual").alpha(0.8f)
                             .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                    //showRoute(currentLocation.latitude, currentLocation.longitude, eventMarker.getPosition().latitude, eventMarker.getPosition().longitude);
+                    showRoute(currentLocation.latitude, currentLocation.longitude, eventMarker.getPosition().latitude, eventMarker.getPosition().longitude);
                 }
 
             }
         };
+
+
 
         if (ContextCompat.checkSelfPermission(DescripcionEventoActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -255,8 +257,8 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
 
     protected LocationRequest createLocationRequest() {
         LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000); //tasa de refresco en milisegundos
-        locationRequest.setFastestInterval(5000); //máxima tasa de refresco
+        locationRequest.setInterval(80000); //tasa de refresco en milisegundos
+        locationRequest.setFastestInterval(40000); //máxima tasa de refresco
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         return locationRequest;
     }
@@ -317,6 +319,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         LatLng eventLocation = evento.getLocation();
         eventMarker = map.addMarker( new MarkerOptions().position(eventLocation).title(geoCoderSearch(eventLocation)).alpha(0.8f).snippet("Ubicación del evento").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 12));
+
     }
 
     @Override
@@ -341,7 +344,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
                 .withListener(this)
                 .alternativeRoutes(true)
                 .waypoints(new LatLng(myLat, myLong), new LatLng(otherLat, otherLong))
-                .key("AIzaSyAmQhl_pI7FB7_usAQJXDBKiezppcW06-s")
+                .key("AIzaSyCKD2CKSOFHTBP4jpve7iQHg-Cf9_sPphU")
                 .build();
         routing.execute();
     }
