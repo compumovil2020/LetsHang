@@ -152,7 +152,7 @@ public class CrearEventoActivity extends AppCompatActivity {
 
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbGaming.getId()){
-                        i = new Intent(getApplicationContext() , CrearEventoActivity.class);
+                        i = new Intent(getApplicationContext() , CreateGameEventActivity.class);
 
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbMusical.getId()){

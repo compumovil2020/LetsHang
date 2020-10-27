@@ -1,20 +1,30 @@
 package com.example.letshang.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TableRow;
@@ -25,28 +35,46 @@ import com.example.letshang.R;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
 import com.example.letshang.model.Preference;
+import com.example.letshang.model.User;
 import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.adapter.EventsAdapter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Writer;
 import java.util.List;
 
+import static com.example.letshang.utils.PermissionHandler.requestPermission;
+
 public class InformacionPerfilActivity extends AppCompatActivity {
+
+    private static final int IMAGE_PICKER_REQUEST = 201;
+    private static final int IMAGE_PICKER_PERMISSION = 211;
 
     private TextView tvDeportes, tvConciertos, tvConferencias;
     private Button btnEvento, btnEditar;
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
-    private FirebaseAuth mAuth;
     private TextView tvNombre, tvCorreo;
     private Button btnFacebook, btnInstagram, btnlinkedin;
+    private ImageView ivFotoInformacionPerfil;
 
     private UserProvider usProv = UserProvider.getInsatance();
     private LinearLayout linearLayoutContenedor;
@@ -55,9 +83,18 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private ChipGroup chipGroup;
     EventsAdapter eventsAdapter;
     private GoogleSignInClient mGoogleSignInClient;
+
+    private StorageReference mStorageRef;
+    private FirebaseAuth mAuth;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mStorageRef = FirebaseStorage.getInstance().getReference();
+
         setContentView(R.layout.activity_informacion_perfil);
         mAuth = FirebaseAuth.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -83,10 +120,13 @@ public class InformacionPerfilActivity extends AppCompatActivity {
         btnInstagram = findViewById(R.id.btnInstagramInformacionPerfil);
         btnlinkedin = findViewById(R.id.btnLinkedinInformacionPerfil);
 
+        ivFotoInformacionPerfil = findViewById(R.id.ivFotoInformacionPerfil);
+
         Participant parti = (Participant)usProv.getCurrentUser();
 
         tvNombre.setText(parti.getName());
         tvCorreo.setText(parti.getEmail());
+
 
         Preference pr = parti.getPreferences();
 
@@ -124,10 +164,30 @@ public class InformacionPerfilActivity extends AppCompatActivity {
             }
         });
 
+        ivFotoInformacionPerfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                requestPermission(InformacionPerfilActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE,"El permiso es para poder poner tu foto de perfil",IMAGE_PICKER_PERMISSION );
+
+            }
+        });
+        try{
+            setProfilePic();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private void askForImage(){
+        Intent pickImage = new Intent(Intent.ACTION_PICK);
+        pickImage.setType("image/*");
+        startActivityForResult(pickImage,IMAGE_PICKER_REQUEST);
     }
 
 
-    void setupMenu(){
+    private void setupMenu(){
 
         menuToggle = new ActionBarDrawerToggle(this,
                 drawerLayout,
@@ -191,5 +251,70 @@ public class InformacionPerfilActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case IMAGE_PICKER_REQUEST:
+                if(resultCode==RESULT_OK){
+
+                    Uri imageUri = data.getData();
+
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                    StorageReference imageRef = mStorageRef.child("images/profile/"+currentUser.getUid()+"/profilePic.jpg");
+
+                    imageRef.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(InformacionPerfilActivity.this, "Imagen Guardada",Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(InformacionPerfilActivity.this, "Falló la subida de la foto",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    try{
+                        final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                        ivFotoInformacionPerfil.setImageBitmap(selectedImage);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+        }
+    }
+
+    private void setProfilePic() throws IOException {
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        final File localFile = File.createTempFile("images","jpg");
+        StorageReference imageRef = mStorageRef.child("images/profile/"+currentUser.getUid()+"/profilePic.jpg");
+        imageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                Bitmap selectedImage = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                ivFotoInformacionPerfil.setImageBitmap(selectedImage);
+            }
+        });
+    }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case IMAGE_PICKER_PERMISSION:
+                if(ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                    askForImage();
+                }
+                return;
+        }
     }
 }
