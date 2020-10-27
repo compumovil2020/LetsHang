@@ -15,6 +15,7 @@ import com.example.letshang.R;
 import com.example.letshang.ui.dialog.DatePickerFragment;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class FiltersActivity extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class FiltersActivity extends AppCompatActivity {
     private EditText etInicio, etFin;
     private CheckBox cbDeportivo, cbJuegos, cbFerias, cbAcademico, cbMusical, cbSocial, cbMucical;
     private Button btnAplicar;
-    private Date startDate, endDate;
+    private GregorianCalendar startDate, endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,6 @@ public class FiltersActivity extends AppCompatActivity {
 
         getSupportActionBar().setTitle("");
 
-        startDate = new Date();
-        endDate = new Date();
         btnAplicar.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -82,19 +81,13 @@ public class FiltersActivity extends AppCompatActivity {
                 // +1 because January is zero
                 String selectedDate = day + "/" + (month+1) + "/" + year + " ";
 
-                Date date = new Date();
 
                 if(isStart) {
-                    startDate.setYear(year);
-                    startDate.setMonth(month);
-                    startDate.setDate(day);
-                    etInicio.setText(selectedDate);
+                    startDate = new GregorianCalendar(year, month, day);
                     etInicio.setText(selectedDate);
                 }
                 else{
-                    endDate.setYear(year);
-                    endDate.setMonth(month);
-                    endDate.setDate(day);
+                    endDate = new GregorianCalendar(year, month, day);
                     etFin.setText(selectedDate);
                 }
 
