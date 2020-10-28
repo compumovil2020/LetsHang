@@ -20,7 +20,7 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/tvTituloGameEvent"
+                android:id="@+id/tvTituloAcademicalEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
@@ -31,7 +31,7 @@
                 android:textSize="30dp" />
 
             <EditText
-                android:id="@+id/etNombreJuegoGameEvent"
+                android:id="@+id/etSubjectAcademicalEvent"
                 style="@style/form_big"
                 android:layout_width="314dp"
                 android:layout_height="wrap_content"

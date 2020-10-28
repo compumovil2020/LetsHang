@@ -76,9 +76,7 @@ public class EventProvider {
                 "Monitoria del segundo corte para la materia de microeconomia.",
                 new GregorianCalendar(2020, 10, 11, 10, 00),
                 new GregorianCalendar(2020, 9,10,16,00),
-                10000, 100, tags, "Administración de empresas",
-                AcademicEventLevel.UNIVERSITY, new LatLng(4.628640, -74.065273)
-        );
+                10000, 100, tags, new LatLng(4.628640, -74.065273));
 
         tags = new ArrayList<String>();
         tags.add("Monitoria");
@@ -90,8 +88,7 @@ public class EventProvider {
                 "Monitoria del tercer corte para la materia de pensamiento algoritmico.",
                 new GregorianCalendar(2020, 5, 1, 10, 00),
                 new GregorianCalendar(2020, 9,10,11,00),
-                5800, 25, tags, "Ingeniería de Sistemas",
-                AcademicEventLevel.UNIVERSITY, new LatLng(4.651440, -74.095273)
+                5800, 25, tags, new LatLng(4.651440, -74.095273)
         );
 
         tags = new ArrayList<String>();

@@ -264,7 +264,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                     Intent i= new Intent();
 
                     if(radioGroup.getCheckedRadioButtonId() == rbAcademic.getId()){
-                        i = new Intent(getApplicationContext() , CrearEventoActivity.class);
+                        i = new Intent(getApplicationContext() , CreateAcademicalEvent.class);
 
                     }else if(radioGroup.getCheckedRadioButtonId() == rbSport.getId()){
                         i = new Intent(getApplicationContext() , CreateSportEventActivity.class);
