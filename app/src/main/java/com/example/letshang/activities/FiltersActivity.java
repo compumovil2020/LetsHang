@@ -27,6 +27,13 @@ public class FiltersActivity extends AppCompatActivity {
     private TextView tvSeekValue;
     private GregorianCalendar startDate, endDate;
 
+
+    private TextView tvSeekValue;
+
+    private GregorianCalendar startDate, endDate;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,7 +135,6 @@ public class FiltersActivity extends AppCompatActivity {
 
             }
         });
-
 
         dateFragment.show(getSupportFragmentManager(), "datePicker");
     }
