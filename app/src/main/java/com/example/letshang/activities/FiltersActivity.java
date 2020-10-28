@@ -28,10 +28,6 @@ public class FiltersActivity extends AppCompatActivity {
     private GregorianCalendar startDate, endDate;
 
 
-    private TextView tvSeekValue;
-
-    private GregorianCalendar startDate, endDate;
-
 
 
     @Override
@@ -49,10 +45,6 @@ public class FiltersActivity extends AppCompatActivity {
         cbAcademico = findViewById(R.id.cbAcademicoFilters);
         cbSocial = findViewById(R.id.cbSocialFilters);
 
-        cbCatering = findViewById(R.id.cbCateringFilters);
-        cbConciertos = findViewById(R.id.cbConciertosFilters);
-        cbEspectaculos = findViewById(R.id.cbEspectaculosFilters);
-        cbConvenciones = findViewById(R.id.cbConvencionesFilters);
         tvSeekValue = findViewById(R.id.tvSeekValue);
 
         cbMucical = findViewById(R.id.cbMusicalFilters);
