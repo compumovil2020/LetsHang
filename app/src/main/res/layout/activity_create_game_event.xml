@@ -26,7 +26,7 @@
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/coves_bold"
                 android:gravity="center"
-                android:text="CREAR EVENTO"
+                android:text="CREAR EVENTO \nJUEGO"
                 android:textColor="@color/secondaryColor"
                 android:textSize="30dp" />
 

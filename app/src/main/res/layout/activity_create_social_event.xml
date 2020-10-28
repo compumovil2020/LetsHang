@@ -26,16 +26,16 @@
         app:layout_constraintTop_toTopOf="parent"
         android:paddingHorizontal="30dp">
 
-    <TextView
-        android:id="@+id/tvTituloCrearEventoSocial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:fontFamily="@font/coves_bold"
-        android:gravity="center"
-        android:text="CREAR EVENTO"
-        android:textColor="@color/secondaryColor"
-        android:textSize="30dp" />
+        <TextView
+            android:id="@+id/tvTituloCrearEventoSocial"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/coves_bold"
+            android:gravity="center"
+            android:text="CREAR EVENTO \nSOCIAL"
+            android:textColor="@color/secondaryColor"
+            android:textSize="30dp" />
         <EditText
             android:id="@+id/etGeneroEventoSocial"
             style="@style/form_big"
