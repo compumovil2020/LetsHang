@@ -3,6 +3,7 @@ package com.example.letshang.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,13 +23,10 @@ public class FiltersActivity extends AppCompatActivity {
 
     private SeekBar sbDistancia;
     private EditText etInicio, etFin;
-    private CheckBox cbDeportivo, cbJuegos, cbFerias, cbAcademico, cbMusical, cbSocial, cbMucical;
+    private CheckBox cbDeportivo, cbJuegos, cbAcademico, cbMusical, cbSocial;
     private Button btnAplicar;
     private TextView tvSeekValue;
     private GregorianCalendar startDate, endDate;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +42,25 @@ public class FiltersActivity extends AppCompatActivity {
         cbJuegos = findViewById(R.id.cbJuegoFilters);
         cbAcademico = findViewById(R.id.cbAcademicoFilters);
         cbSocial = findViewById(R.id.cbSocialFilters);
+        cbMusical = findViewById(R.id.cbMusicalFilters);
 
         tvSeekValue = findViewById(R.id.tvSeekValue);
 
-        cbMucical = findViewById(R.id.cbMusicalFilters);
-
 
         btnAplicar = findViewById(R.id.btnAplicarFilters);
+
+        btnAplicar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PrincipalActivity.class);
+                intent.putExtra("cbDeportivo", cbDeportivo.isChecked());
+                intent.putExtra("cbJuego", cbJuegos.isChecked());
+                intent.putExtra("cbAcademico", cbAcademico.isChecked());
+                intent.putExtra("cbSocial", cbSocial.isChecked());
+                intent.putExtra("cbMusical", cbMusical.isChecked());
+                startActivity(intent);
+            }
+        });
 
         getSupportActionBar().setTitle("");
 
@@ -83,9 +93,6 @@ public class FiltersActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         etInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,9 +107,7 @@ public class FiltersActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
 
     /**
      * calls a fragment to choose date and time
