@@ -18,7 +18,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.letshang.R;
+import com.example.letshang.model.AcademicEvent;
 import com.example.letshang.model.Event;
+import com.example.letshang.model.GameEvent;
+import com.example.letshang.model.MusicEvent;
+import com.example.letshang.model.SocialEvent;
+import com.example.letshang.model.SportEvent;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.ui.adapter.EventsAdapter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -27,6 +32,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PrincipalActivity extends AppCompatActivity{
@@ -38,11 +44,13 @@ public class PrincipalActivity extends AppCompatActivity{
     private NavigationView navView;
     private TextView btnMap;
     private GoogleSignInClient mGoogleSignInClient;
+    private boolean cbMusical, cbAcademico, cbJuego, cbSocial, cbDeporte;
     // should go in utils
     private FirebaseAuth mAuth;
 
     private EventProvider eventProvider = EventProvider.getInsatance();
     private ListView listViewEvents;
+    private List<Event> listEvents;
     EventsAdapter eventsAdapter;
 
     @Override
@@ -69,12 +77,18 @@ public class PrincipalActivity extends AppCompatActivity{
         navView = findViewById(R.id.principal_nav_view);
         btnMap = findViewById(R.id.btnMapaPrincipal);
 
+        cbAcademico = getIntent().getBooleanExtra("cbAcademico", true);
+        cbDeporte = getIntent().getBooleanExtra("cbDeporte", true);
+        cbMusical = getIntent().getBooleanExtra("cbMusical", true);
+        cbJuego = getIntent().getBooleanExtra("cbJuego", true);
+        cbSocial = getIntent().getBooleanExtra("cbSocial", true);
+
         listViewEvents = findViewById(R.id.listEventosPrincipal);
+        listEvents = eventProvider.getAllEventsFromDBB();
 
+        List<Event> filterList = filterEvents();
 
-        List<Event> listEvents = eventProvider.getAllEventsFromDBB();
-
-        eventsAdapter = new EventsAdapter(this,listEvents);
+        eventsAdapter = new EventsAdapter(this, filterList);
         listViewEvents.setAdapter(eventsAdapter);
 
         listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -110,6 +124,30 @@ public class PrincipalActivity extends AppCompatActivity{
         });
 
 
+    }
+
+    private List<Event> filterEvents(){
+
+        List<Event> filter = new ArrayList<>();
+
+        for(Event actual: listEvents){
+            if(cbSocial && actual instanceof SocialEvent){
+                filter.add(actual);
+            }
+            if(cbJuego && actual instanceof GameEvent){
+                filter.add(actual);
+            }
+            if(cbDeporte && actual instanceof SportEvent){
+                filter.add(actual);
+            }
+            if(cbAcademico && actual instanceof AcademicEvent){
+                filter.add(actual);
+            }
+            if(cbMusical && actual instanceof MusicEvent){
+                filter.add(actual);
+            }
+        }
+        return filter;
     }
 
     void setupMenu(){
