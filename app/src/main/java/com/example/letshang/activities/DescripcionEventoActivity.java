@@ -228,9 +228,9 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         tvLocationEvento.setText(geoCoderSearch(evento.getLocation()));
         tvHost.setText(evProv.getEventHost(idEvento).getName());
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String fecha =  formatter.format(evento.getStartDate())  + " - " + formatter.format(evento.getEndDate());
+        String fecha =  formatter.format(evento.getStartDate().getTime())  + " - " + formatter.format(evento.getEndDate().getTime());
         SimpleDateFormat formatter2 = new SimpleDateFormat("HH:mm:ss");
-        String horario = formatter2.format(evento.getStartDate()) + " - " + formatter2.format(evento.getEndDate());
+        String horario = formatter2.format(evento.getStartDate().getTime()) + " - " + formatter2.format(evento.getEndDate().getTime());
         tvTiempoEvento.setText(horario);
         tvFechaEvento.setText(fecha);
 

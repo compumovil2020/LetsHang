@@ -79,7 +79,7 @@ public class EventsAdapter extends BaseAdapter {
 
         //Asignar fecha
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        String deit =  formatter.format(this.events.get(i).getStartDate())  + " - " + formatter.format(events.get(i).getEndDate());
+        String deit =  formatter.format(this.events.get(i).getStartDate().getTime())  + " - " + formatter.format(events.get(i).getEndDate().getTime());
         fecha.setText(deit);
 
         //Asignar lugar

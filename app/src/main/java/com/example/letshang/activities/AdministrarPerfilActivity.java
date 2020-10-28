@@ -71,7 +71,7 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
         etTelefono.setText(part.getPhone());
         etLocation.setText("part.getLocation()");
         DateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
-        String today = formatter.format(part.getBirthDate());
+        String today = formatter.format(part.getBirthDate().getTime());
         etFecha.setText(today);
 
         Preference pr = part.getPreferences();

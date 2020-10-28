@@ -30,6 +30,7 @@
         <activity android:name=".activities.RegistroAdicionalActivity" />
         <activity android:name=".activities.AdministrarPerfilActivity" />
         <activity android:name=".activities.ModificarEventoActivity" />
+        <activity android:name=".activities.CreateGameEventActivity" />
         <activity android:name=".activities.RegistroActivity" />
         <activity android:name=".activities.MapActivity" />
         <activity android:name=".activities.LoginActivity" />

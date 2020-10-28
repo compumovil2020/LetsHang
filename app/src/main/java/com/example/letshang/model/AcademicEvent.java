@@ -4,6 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class AcademicEvent extends Event {
 
@@ -32,7 +33,7 @@ public class AcademicEvent extends Event {
      * @param subject
      * @param level
      */
-    public AcademicEvent(String title, String description, Date startDate, Date endDate,
+    public AcademicEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate,
                          long price, int maximumCapacity, Collection<String> tags,
                          String subject, AcademicEventLevel level, LatLng location) {
         super(title, description, startDate, endDate, price, maximumCapacity, tags, location);

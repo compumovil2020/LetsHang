@@ -4,6 +4,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class MusicEvent extends Event {
 
@@ -14,7 +15,7 @@ public class MusicEvent extends Event {
     private String artists;
 
 
-    public MusicEvent(String title, String description, Date startDate, Date endDate,
+    public MusicEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate,
                       long price, int maximumCapacity, Collection<String> tags,
                       String music, String artists, LatLng location) {
         super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
@@ -23,7 +24,7 @@ public class MusicEvent extends Event {
         this.type = EventsEnum.MUSIC;
     }
 
-    public MusicEvent(String title, String description, Date startDate, Date endDate, long price,
+    public MusicEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate, long price,
                       int maximumCapacity, Collection<String> tags, LatLng location) {
         super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
     }
