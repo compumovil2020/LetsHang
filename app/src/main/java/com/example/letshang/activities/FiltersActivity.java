@@ -28,9 +28,6 @@ public class FiltersActivity extends AppCompatActivity {
     private TextView tvSeekValue;
     private GregorianCalendar startDate, endDate;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,9 +92,6 @@ public class FiltersActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
         etInicio.setOnClickListener(new View.OnClickListener() {
             @Override
