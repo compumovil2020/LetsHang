@@ -31,7 +31,7 @@
                 android:textSize="30dp" />
 
             <EditText
-                android:id="@+id/etSubjectAcademicalEvent"
+                android:id="@+id/etNombreJuegoGameEvent"
                 style="@style/form_big"
                 android:layout_width="314dp"
                 android:layout_height="wrap_content"
