@@ -26,6 +26,7 @@ import com.google.common.collect.Range;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class CreateSportEventActivity extends AppCompatActivity {
@@ -67,8 +68,8 @@ public class CreateSportEventActivity extends AppCompatActivity {
         String description = (String) extras.get("description");
         int precio =  Integer.parseInt((String) extras.get("price"));
         LatLng location = (LatLng) extras.get("location");
-        Date startDate = (Date) extras.get("startDate");
-        Date endDate = (Date) extras.get("endDate");
+        GregorianCalendar startDate = (GregorianCalendar) extras.get("startDate");
+        GregorianCalendar endDate = (GregorianCalendar) extras.get("endDate");
         int capacidad = (int) extras.get("capacidad");
         ArrayList<String> tags = (ArrayList<String>) extras.get("tags");
 

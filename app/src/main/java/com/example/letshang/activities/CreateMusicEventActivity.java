@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class CreateMusicEventActivity extends AppCompatActivity {
 
@@ -47,8 +48,8 @@ public class CreateMusicEventActivity extends AppCompatActivity {
         String description = (String) extras.get("description");
         int precio =  Integer.parseInt((String) extras.get("price"));
         LatLng location = (LatLng) extras.get("location");
-        Date startDate = (Date) extras.get("startDate");
-        Date endDate = (Date) extras.get("endDate");
+        GregorianCalendar startDate = (GregorianCalendar) extras.get("startDate");
+        GregorianCalendar endDate = (GregorianCalendar) extras.get("endDate");
         int capacidad = (int) extras.get("capacidad");
         ArrayList<String> tags = (ArrayList<String>) extras.get("tags");
 
