@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.example.letshang.R;
 import com.example.letshang.ui.dialog.DatePickerFragment;
@@ -24,7 +25,11 @@ public class FiltersActivity extends AppCompatActivity {
     private EditText etInicio, etFin;
     private CheckBox cbDeportivo, cbJuegos, cbAcademico, cbMusical, cbSocial;
     private Button btnAplicar;
+    private TextView tvSeekValue;
     private GregorianCalendar startDate, endDate;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,9 @@ public class FiltersActivity extends AppCompatActivity {
         cbAcademico = findViewById(R.id.cbAcademicoFilters);
         cbSocial = findViewById(R.id.cbSocialFilters);
         cbMusical = findViewById(R.id.cbMusicalFilters);
+
+        tvSeekValue = findViewById(R.id.tvSeekValue);
+
 
         btnAplicar = findViewById(R.id.btnAplicarFilters);
 
@@ -66,6 +74,30 @@ public class FiltersActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        sbDistancia.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                int val = (progress * (seekBar.getWidth() - 2 * seekBar.getThumbOffset())) / seekBar.getMax();
+                tvSeekValue.setText("" + progress*2+" Km");
+                tvSeekValue.setX(seekBar.getX() + val + seekBar.getThumbOffset() / 2);
+                tvSeekValue.setY(sbDistancia.getY()+50); //just added a value set this properly using screen with height aspect ratio , if you do not set it by default it will be there below seek bar
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+
+
 
         etInicio.setOnClickListener(new View.OnClickListener() {
             @Override
