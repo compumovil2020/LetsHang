@@ -98,6 +98,7 @@
             android:layout_marginTop="28dp"
             android:ems="10"
             android:inputType="date"
+            android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvFechaFilters" />
@@ -119,7 +120,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
             android:ems="10"
-            android:inputType="date"
+            android:inputType="text"
+            android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etFechaInicioFilters" />
@@ -156,6 +158,14 @@
             app:layout_constraintTop_toBottomOf="@+id/sbDistanciaFilters"
             app:srcCompat="@drawable/icn_calendar" />
 
+        <TextView
+            android:id="@+id/tvSeekValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/coves_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <LinearLayout
             android:id="@+id/llFilters1"
             android:layout_width="match_parent"
@@ -190,24 +200,23 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_height="match_parent">
 
                 <CheckBox
-                    android:id="@+id/cbEmpresarialFilters"
+                    android:id="@+id/cbAcademicoFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Empresariales" />
+                    android:text="Académico" />
 
                 <CheckBox
-                    android:id="@+id/cbCateringFilters"
+                    android:id="@+id/cbMusicalFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Catering" />
+                    android:text="Musical" />
             </LinearLayout>
 
             <LinearLayout
@@ -215,63 +224,23 @@
                 android:layout_height="match_parent">
 
                 <CheckBox
-                    android:id="@+id/cbFeriaFilters"
+                    android:id="@+id/cbJuegoFilters"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:gravity="center"
-                    android:text="Ferias" />
+                    android:text="Juegos" />
 
-                <CheckBox
-                    android:id="@+id/cbConciertosFilters"
+                <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:gravity="center"
-                    android:text="Conciertos" />
+                    android:text="" />
+
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-                <CheckBox
-                    android:id="@+id/cbExhibicionesFilters"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Exhibiciones" />
-
-                <CheckBox
-                    android:id="@+id/cbEspectaculosFilters"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Espectáculos" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <CheckBox
-                    android:id="@+id/cbCongresosFilters"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Congresos" />
-
-                <CheckBox
-                    android:id="@+id/cbConvencionesFilters"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Convenciones" />
-            </LinearLayout>
 
 
         </LinearLayout>
