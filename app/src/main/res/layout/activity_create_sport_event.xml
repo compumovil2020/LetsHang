@@ -33,7 +33,7 @@
                 android:layout_marginTop="48dp"
                 android:fontFamily="@font/coves_bold"
                 android:gravity="center"
-                android:text="CREAR EVENTO"
+                android:text="CREAR EVENTO \nDEPORTIVO"
                 android:textColor="@color/secondaryColor"
                 android:textSize="30dp" />
 

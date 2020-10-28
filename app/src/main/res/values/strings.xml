@@ -67,5 +67,21 @@
         <item>Bogotá</item>
     </string-array>
 
+    <string-array name="academic_Levels">
+        <item>Prescolar</item>
+        <item>Elemental</item>
+        <item>Juvenil</item>
+        <item>Bachillerato</item>
+        <item>Universitario</item>
+        <item>Profesional</item>
+    </string-array>
+
+    <string-array name="type_academical_event">
+        <item>Taller</item>
+        <item>Seminario</item>
+        <item>Monitoria</item>
+        <item>Charla</item>
+        <item>Disertación</item>
+    </string-array>
 
 </resources>

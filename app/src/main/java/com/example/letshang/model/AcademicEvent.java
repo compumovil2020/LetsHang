@@ -18,8 +18,16 @@ public class AcademicEvent extends Event {
      */
     private AcademicEventLevel level;
 
+    /**
+     * Type of academical event, such as, Diplomes, Workshop, etc
+     * */
+    private AcademicType typeAcademicalEvent;
 
 
+    /**
+     * What is the languages of the event
+     * */
+    private String languages;
 
     /**
      *
@@ -30,16 +38,44 @@ public class AcademicEvent extends Event {
      * @param price
      * @param maximumCapacity
      * @param tags
-     * @param subject
-     * @param level
      */
     public AcademicEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate,
-                         long price, int maximumCapacity, Collection<String> tags,
-                         String subject, AcademicEventLevel level, LatLng location) {
+                         long price, int maximumCapacity, Collection<String> tags, LatLng location) {
         super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
         this.subject = subject;
         this.level = level;
         this.type = EventsEnum.ACADEMIC;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public AcademicEventLevel getLevel() {
+        return level;
+    }
+
+    public void setLevel(AcademicEventLevel level) {
+        this.level = level;
+    }
+
+    public AcademicType getTypeAcademicalEvent() {
+        return typeAcademicalEvent;
+    }
+
+    public void setTypeAcademicalEvent(AcademicType typeAcademicalEvent) {
+        this.typeAcademicalEvent = typeAcademicalEvent;
+    }
+
+    public String getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(String languages) {
+        this.languages = languages;
+    }
 }

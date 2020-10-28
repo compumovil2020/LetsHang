@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/lets_hang_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.CreateSocialEventActivity"></activity>
+        <activity android:name=".activities.CreateAcademicalEvent"></activity>
+        <activity android:name=".activities.CreateSocialEventActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
