@@ -1,17 +1,36 @@
 package com.example.letshang.providers;
 
 import android.location.Location;
+import android.util.Log;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.example.letshang.DTO.AcademicEventDTO;
+import com.example.letshang.DTO.GameEventDTO;
+import com.example.letshang.DTO.MusicEventDTO;
+import com.example.letshang.DTO.SocialEventDTO;
+import com.example.letshang.DTO.SportEventDTO;
+import com.example.letshang.DTO.Transformer;
 import com.example.letshang.model.AcademicEvent;
 import com.example.letshang.model.AcademicEventLevel;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.EventsEnum;
+import com.example.letshang.model.GameEvent;
 import com.example.letshang.model.Host;
 import com.example.letshang.model.MusicEvent;
+import com.example.letshang.model.Participant;
 import com.example.letshang.model.Preference;
+import com.example.letshang.model.SocialEvent;
 import com.example.letshang.model.SportEvent;
 import com.example.letshang.model.SportEventLevel;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -30,8 +49,11 @@ import java.util.Set;
 public class EventProvider {
 
     private List<Event> eventsList;
-
     private static EventProvider instance = null;
+
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference eventsRef = database.getReference("events");
+    private static final  String TAG = "eventProvider";
 
     /**
      * returns singleton instance of provider
@@ -39,107 +61,19 @@ public class EventProvider {
      */
     public static EventProvider getInsatance(){
         if(instance == null){
+
             instance = new EventProvider();
         }
+
         return instance;
     }
 
     private EventProvider(){
         eventsList = new ArrayList<>();
         ArrayList<String> tags = new ArrayList<String>();
-        tags.add("futbol");
-        tags.add("parque");
-        tags.add("juvenil");
 
-        GregorianCalendar startGreo = new GregorianCalendar();
-        startGreo.set(GregorianCalendar.YEAR, 2020);
-        startGreo.set(GregorianCalendar.MONTH, 9);
-        startGreo.set(GregorianCalendar.DAY_OF_MONTH, 10);
-        startGreo.set(GregorianCalendar.HOUR, 10);
-        startGreo.set(GregorianCalendar.MINUTE, 00);
+        addListeners();
 
-        Event event1 = new SportEvent("Partido de futbol",
-                "Clase para niños y adolecentes entre 10 y 14 años.  Exelente forma de " +
-                        "pasar el fin de semana! Terminamos la clase con un partido amistoso.",
-                new GregorianCalendar(2020, 9,10,10,00),
-                new GregorianCalendar(2020, 9,10,15,00),
-                10000, 100, tags, "Futbol",
-                SportEventLevel.BEGINNER, 11, new LatLng(4.713103, -74.052271)
-        );
-
-        tags = new ArrayList<String>();
-        tags.add("Monitoria");
-        tags.add("Economía");
-        tags.add("Parcial 2");
-
-        Event event2 = new AcademicEvent("Monitoría de la clase de microeconomía",
-                "Monitoria del segundo corte para la materia de microeconomia.",
-                new GregorianCalendar(2020, 10, 11, 10, 00),
-                new GregorianCalendar(2020, 9,10,16,00),
-                10000, 100, tags, new LatLng(4.628640, -74.065273));
-
-        tags = new ArrayList<String>();
-        tags.add("Monitoria");
-        tags.add("Pensamiento Algoritmico");
-        tags.add("Sistemas");
-        tags.add("Parcial 3");
-
-        Event event3 = new AcademicEvent("Monitoría de la clase de Pensamiento Algoritmico",
-                "Monitoria del tercer corte para la materia de pensamiento algoritmico.",
-                new GregorianCalendar(2020, 5, 1, 10, 00),
-                new GregorianCalendar(2020, 9,10,11,00),
-                5800, 25, tags, new LatLng(4.651440, -74.095273)
-        );
-
-        tags = new ArrayList<String>();
-        tags.add("Concierto");
-        tags.add("Jazz");
-        tags.add("Al aire");
-        tags.add("Parque nacional");
-
-        Event event4 = new MusicEvent("Concierto de Jazz",
-                "Concierto de Jazz en el parque nacional",
-                new GregorianCalendar(2020, 8, 30, 10, 00),
-                new GregorianCalendar(2020, 9,10,12,00),
-                12000, 30, tags, "Jazz & Blues",
-                "Artista 1, Artista 2", new LatLng(4.671360, -74.045223)
-        );
-
-        tags = new ArrayList<String>();
-        tags.add("Futbol 5");
-        tags.add("Futbol");
-        tags.add("Soccer");
-
-        Event event5 = new SportEvent("Futbol 5",
-                "Partido de futbol 5 en el Soccer de la 147",
-                new GregorianCalendar(2020, 1, 27, 10, 00),
-                new GregorianCalendar(2020, 9,10,13,00),
-                4500, 15, tags, "Futbol",
-                SportEventLevel.INTERMEDIATE, 5, new LatLng(4.751111, -74.092222)
-        );
-
-        tags = new ArrayList<String>();
-        tags.add("Concierto");
-        tags.add("Rock");
-        tags.add("Al aire");
-        tags.add("Unicentro");
-
-        Event event6 = new MusicEvent("Concierto de Rock",
-                "Concierto de Rock en el parqueadero del centro comercial unicentro",
-                new GregorianCalendar(2021, 3, 5, 10, 00),
-                new GregorianCalendar(2020, 9,10,14,00),
-                11300, 60, tags, "Rock & Roll",
-                "Artista 1, Artista 2, Artista 3", new LatLng(4.771360, -74.745223)
-        );
-
-
-
-        eventsList.add(event1);
-        eventsList.add(event2);
-        eventsList.add(event3);
-        eventsList.add(event4);
-        eventsList.add(event5);
-        eventsList.add(event6);
     }
 
     /**
@@ -288,6 +222,189 @@ public class EventProvider {
         }
         return host;
     }
+
+
+    // Sets a listener for all 5 database references to listen for all types of events
+    private void addListeners(){
+
+
+        ChildEventListener listenerSport = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
+                eventsList.add(Transformer.transform(dataSnapshot.getValue(SportEventDTO.class)));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
+
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "postComments:onCancelled", databaseError.toException());
+                Log.i(TAG, "onCancelled: Failed to load data");
+            }
+        };
+
+        ChildEventListener listenerAcademic = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
+                eventsList.add(Transformer.transform(dataSnapshot.getValue(AcademicEventDTO.class)));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
+
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "postComments:onCancelled", databaseError.toException());
+                Log.i(TAG, "onCancelled: Failed to load data");
+            }
+        };
+
+        ChildEventListener listenerGame = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
+                eventsList.add(Transformer.transform(dataSnapshot.getValue(GameEventDTO.class)));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
+
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "postComments:onCancelled", databaseError.toException());
+                Log.i(TAG, "onCancelled: Failed to load data");
+            }
+        };
+
+        ChildEventListener listenerMusic = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
+                eventsList.add(Transformer.transform(dataSnapshot.getValue(MusicEventDTO.class)));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
+
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "postComments:onCancelled", databaseError.toException());
+                Log.i(TAG, "onCancelled: Failed to load data");
+            }
+        };
+
+
+        ChildEventListener listenerSocial = new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
+                eventsList.add(Transformer.transform(dataSnapshot.getValue(SocialEventDTO.class)));
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildChanged:" + dataSnapshot.getKey());
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+                Log.d(TAG, "onChildRemoved:" + dataSnapshot.getKey());
+
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
+                Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w(TAG, "postComments:onCancelled", databaseError.toException());
+                Log.i(TAG, "onCancelled: Failed to load data");
+            }
+        };
+
+        eventsRef.child("sport-event").addChildEventListener(listenerSport);
+        eventsRef.child("academic-event").addChildEventListener(listenerAcademic);
+        eventsRef.child("game-event").addChildEventListener(listenerGame);
+        eventsRef.child("social-event").addChildEventListener(listenerSocial);
+        eventsRef.child("music-event").addChildEventListener(listenerMusic);
+
+
+    }
+
+
+
 
 
 }

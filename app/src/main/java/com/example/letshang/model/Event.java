@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
+
 public abstract class Event {
     protected int ID;
     protected LatLng location;

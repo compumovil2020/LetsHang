@@ -58,6 +58,20 @@ public class GameEvent extends Event{
         this.type = EventsEnum.GAME;
     }
 
+
+    public GameEvent(String title, String description, GregorianCalendar startDate,
+                     GregorianCalendar endDate, long price, int maximumCapacity,
+                     Collection<String> tags, LatLng location, String game, GameEventLevel level,
+                     String kind, String prize, boolean adult, String ageRange) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+        this.game = game;
+        this.level = level;
+        this.kind = kind;
+        this.prize = prize;
+        this.adult = adult;
+        this.ageRange = ageRange;
+    }
+
     /**
      * Basic constructor, just call super
      * @param title

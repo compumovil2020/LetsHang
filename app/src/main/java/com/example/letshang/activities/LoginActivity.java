@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.letshang.R;
+import com.example.letshang.providers.EventProvider;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -46,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private AwesomeValidation validator;
     private GoogleSignInClient mGoogleSignInClient;
+    private EventProvider ep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
         validator.addValidation(this, R.id.etCorreoLogin , Patterns.EMAIL_ADDRESS , R.string.emailerror);
         validator.addValidation(this, R.id.etPasswordLogin , ".{6,}" , R.string.passworderror);
+        ep.getInsatance();
 
         btnIngresar.setOnClickListener(new View.OnClickListener(){
 

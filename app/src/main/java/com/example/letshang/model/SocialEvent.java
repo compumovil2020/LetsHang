@@ -60,4 +60,22 @@ public class SocialEvent extends Event {
     public void setRules(String rules) {
         this.rules = rules;
     }
+
+    public String getMusicGenre() {
+        return musicGenre;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public int getMinimumAge() {
+        return minimumAge;
+    }
+
+    public String getRules() {
+        return rules;
+    }
 }
+
+

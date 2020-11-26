@@ -5,6 +5,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.xml.datatype.Duration;
 
@@ -65,6 +66,8 @@ public class SportEvent extends Event{
         super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
     }
 
+
+
     public void setSport(String sport) {
         this.sport = sport;
     }
@@ -75,6 +78,18 @@ public class SportEvent extends Event{
 
     public void setTeamSize(int teamSize) {
         this.teamSize = teamSize;
+    }
+
+    public String getSport() {
+        return sport;
+    }
+
+    public SportEventLevel getLevel() {
+        return level;
+    }
+
+    public int getTeamSize() {
+        return teamSize;
     }
 }
 

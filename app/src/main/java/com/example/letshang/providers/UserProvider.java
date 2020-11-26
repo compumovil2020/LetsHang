@@ -1,5 +1,7 @@
 package com.example.letshang.providers;
 
+import android.util.Log;
+
 import com.example.letshang.model.Event;
 import com.example.letshang.model.EventsEnum;
 import com.example.letshang.model.Host;
@@ -9,6 +11,11 @@ import com.example.letshang.model.SportEvent;
 import com.example.letshang.model.SportEventLevel;
 import com.example.letshang.model.User;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,6 +36,11 @@ public class UserProvider {
     private ArrayList<Event> myEvents;
     private static UserProvider instance = null;
 
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference userRef = database.getReference("users");
+    private static final  String TAG = "UserProvider";
+
+
 
 
     public static UserProvider getInsatance(){
@@ -45,6 +57,22 @@ public class UserProvider {
      * initializest user
      */
     private UserProvider(){
+
+        // Read from the database
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                currentUser = dataSnapshot.getValue(Participant.class);
+                Log.d(TAG, "CurrentUser = " + currentUser.getName());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
 
         // este tiene que hacer una query a la base de datos
         // estos datos son quemados
