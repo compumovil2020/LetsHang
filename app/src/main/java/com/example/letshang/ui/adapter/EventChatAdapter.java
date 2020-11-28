@@ -78,8 +78,10 @@ public class EventChatAdapter extends BaseAdapter {
             fechaTu.setText(eventChats.get(i).getFecha().toString());
             cuerpoTu.setText(eventChats.get(i).getCuerpo());
 
-            llRemitente.setVisibility(View.INVISIBLE);
+            //llRemitente.setVisibility(View.INVISIBLE);
             llTu.setBackgroundColor(R.color.secondaryColor);
+            llRemitente.removeAllViews();
+            llTu.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT));
         } else {
 
             nombreTu.setVisibility(View.INVISIBLE);
@@ -91,7 +93,9 @@ public class EventChatAdapter extends BaseAdapter {
             cuerpoRemitente.setText(eventChats.get(i).getCuerpo());
 
             llRemitente.setBackgroundColor(R.color.colorPrimary);
-            llTu.setVisibility(View.INVISIBLE);
+            //llTu.setVisibility(View.INVISIBLE);
+            llTu.removeAllViews();
+            llRemitente.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT));
         }
 
         return view;

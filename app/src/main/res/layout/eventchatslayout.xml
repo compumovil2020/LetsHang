@@ -19,18 +19,19 @@
                 android:id="@+id/tvNombreRemitenteEventsChat"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.6"
-                android:gravity="center"
+                android:layout_weight="0.7"
+                android:fontFamily="@font/coves_bold"
+                android:gravity="start|center"
                 android:text="Nombre Enviador"
-                android:textSize="15dp"
                 android:textColor="@color/secondaryColor"
-                android:fontFamily="@font/coves_bold"/>
+                android:textSize="15dp"
+                android:layout_marginLeft="10dp"/>
 
             <TextView
                 android:id="@+id/tvFechaRemitenteEventsChat"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.4"
+                android:layout_weight="0.3"
                 android:gravity="center"
                 android:text="FechaEnvio"
                 android:textSize="10dp" />
@@ -44,7 +45,8 @@
             android:gravity="center"
             android:text="Cuerpo"
             android:textSize="13dp"
-            android:fontFamily="@font/coves_bold"/>
+            android:fontFamily="@font/coves_bold"
+            android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
 
@@ -61,24 +63,25 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvNombreTuEventsChat"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Tú"
-                android:textSize="15dp"
-                android:textColor="@color/secondaryColor"
-                android:fontFamily="@font/coves_bold"/>
-
-            <TextView
                 android:id="@+id/tvFechaTuEventsChat"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.4"
                 android:gravity="center"
                 android:text="Fecha Envio Tú"
                 android:textSize="10dp" />
+
+            <TextView
+                android:id="@+id/tvNombreTuEventsChat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.6"
+                android:fontFamily="@font/coves_bold"
+                android:gravity="end|center"
+                android:text="Tú"
+                android:textColor="@color/secondaryColor"
+                android:textSize="15dp"
+                android:layout_marginRight="10dp"/>
         </LinearLayout>
 
         <TextView
@@ -88,6 +91,7 @@
             android:gravity="center"
             android:text="Cuerpo tú"
             android:textSize="13dp"
-            android:fontFamily="@font/coves_bold"/>
+            android:fontFamily="@font/coves_bold"
+            android:layout_marginBottom="10dp"/>
     </LinearLayout>
 </LinearLayout>

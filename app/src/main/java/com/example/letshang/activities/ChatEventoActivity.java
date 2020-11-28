@@ -33,7 +33,7 @@ public class ChatEventoActivity extends AppCompatActivity {
         EventChat eC = new EventChat("Tu","MENSAJE NUMERO 1 PARA INTENTO DE TU","2020-09-18");
         listEventChat.add(eC);
 
-        EventChat eC2 = new EventChat("Otro1","MENSAJE NUMERO 1 PARA INTENTO DE OTRO1","2020-09-19");
+        EventChat eC2 = new EventChat("Otro1","MENSAJE NUMERO 1 PARA INTENTO DE OTRO1 MENSAJE NUMERO 1 PARA INTENTO DE OTRO1 MENSAJE NUMERO 1 PARA INTENTO DE OTRO1 MENSAJE NUMERO 1 PARA INTENTO DE OTRO1 MENSAJE NUMERO 1 PARA INTENTO DE OTRO1","2020-09-19");
         listEventChat.add(eC2);
 
         EventChat eC3 = new EventChat("Otro2","MENSAJE NUMERO 1 PARA INTENTO DE OTRO2","2020-09-18");
