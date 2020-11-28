@@ -23,6 +23,7 @@ import com.example.letshang.model.SportEventLevel;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +40,8 @@ public class CreateGameEventActivity extends AppCompatActivity {
     private EventProvider eventProvider;
     private GameEvent gameEvent;
     private Button button;
+    private FirebaseAuth mAuth;
+
 
 
     @Override
@@ -58,9 +61,10 @@ public class CreateGameEventActivity extends AppCompatActivity {
 
         button = findViewById(R.id.bCrearEventoGameEvent);
 
-        userProvider = UserProvider.getInsatance();
+        userProvider = UserProvider.getInstance();
         eventProvider = EventProvider.getInsatance();
 
+        mAuth = FirebaseAuth.getInstance();
         //Spinner de nivel
         List<String> spinnerArray =  new ArrayList<String>();
         spinnerArray.add("Principiante");
@@ -152,7 +156,7 @@ public class CreateGameEventActivity extends AppCompatActivity {
                     }
 
                     // agrega el evento con el provider
-                    eventProvider.createEvent(gameEvent, null );
+                    eventProvider.createEvent(gameEvent, mAuth.getUid() );
 
                     Intent i = new Intent(getApplicationContext() , PrincipalActivity.class);
                     startActivity(i);

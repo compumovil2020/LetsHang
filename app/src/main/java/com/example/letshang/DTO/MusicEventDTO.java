@@ -12,8 +12,10 @@ public class MusicEventDTO extends EventDTO{
         this.artists = artists;
     }
 
-    public MusicEventDTO(double latitud, double longitud, String title, String description, long startDate, long endDate, long price, int maximumCapacity, List<String> tags, String music, String artists) {
-        super(latitud, longitud, title, description, startDate, endDate, price, maximumCapacity, tags);
+    public MusicEventDTO(double latitud, double longitud, String title, String description,
+                         long startDate, long endDate, long price, int maximumCapacity,
+                         List<String> tags, String music, String artists, String hostName) {
+        super(latitud, longitud, title, description, startDate, endDate, price, maximumCapacity, tags, hostName);
         this.music = music;
         this.artists = artists;
     }

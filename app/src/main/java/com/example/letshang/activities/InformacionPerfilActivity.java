@@ -76,7 +76,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private Button btnFacebook, btnInstagram, btnlinkedin;
     private ImageView ivFotoInformacionPerfil;
 
-    private UserProvider usProv = UserProvider.getInsatance();
+    private UserProvider usProv = UserProvider.getInstance();
     private LinearLayout linearLayoutContenedor;
     private LinearLayout linearLayoutTextos;
     private ListView listViewEvents;

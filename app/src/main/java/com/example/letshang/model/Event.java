@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 
 public abstract class Event {
-    protected int ID;
+    protected String ID;
     protected LatLng location;
     protected String title;
     protected String description;
@@ -34,14 +34,13 @@ public abstract class Event {
         this.maximumCapacity = maximumCapacity;
         this.tags = tags;
         this.location = location;
-        setId();
     }
 
-    private void setId() {
-        this.ID = nextId.incrementAndGet();
+    private void setId(String id) {
+        this.ID =id;
     }
 
-    public int getID() { return ID; }
+    public String getID() { return ID; }
 
     public static EventsEnum getType() {
         return type;
@@ -114,5 +113,9 @@ public abstract class Event {
 
     public static void setType(EventsEnum type) {
         Event.type = type;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
     }
 }

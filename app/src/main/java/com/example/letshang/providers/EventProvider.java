@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 
 import com.example.letshang.DTO.AcademicEventDTO;
 import com.example.letshang.DTO.GameEventDTO;
+import com.example.letshang.DTO.HostDTO;
 import com.example.letshang.DTO.MusicEventDTO;
 import com.example.letshang.DTO.SocialEventDTO;
 import com.example.letshang.DTO.SportEventDTO;
@@ -25,6 +26,7 @@ import com.example.letshang.model.SocialEvent;
 import com.example.letshang.model.SportEvent;
 import com.example.letshang.model.SportEventLevel;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +43,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 
@@ -50,9 +54,14 @@ public class EventProvider {
 
     private List<Event> eventsList;
     private static EventProvider instance = null;
+    private Map<String, String> hostName;
+    private UserProvider userProvider;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference eventsRef = database.getReference("events");
+    private DatabaseReference hostsRef = database.getReference("host-event");
+    private FirebaseAuth mAuth;
+
     private static final  String TAG = "eventProvider";
 
     /**
@@ -70,11 +79,14 @@ public class EventProvider {
 
     private EventProvider(){
         eventsList = new ArrayList<>();
-        ArrayList<String> tags = new ArrayList<String>();
+        hostName = new HashMap<>();
+        userProvider.getInstance();
 
-        addListeners();
+        addEventListeners();
 
     }
+
+
 
     /**
      *
@@ -174,9 +186,9 @@ public class EventProvider {
      * @param eventID
      * @return
      */
-    public Event getEventByID(int eventID){
+    public Event getEventByID(String eventID){
         for(Event e: eventsList){
-            if(e.getID() == eventID){
+            if(e.getID().equals( eventID)){
                 return e;
             }
         }
@@ -187,52 +199,109 @@ public class EventProvider {
     /**
      * creates an event and puts it in the DB
      * @param event
-     * @param host
+     * @param hostID
      */
-    public void createEvent(Event event, Host host){
-        eventsList.add(event);
+    public void createEvent(Event event, String hostID){
+        String eventID = addEventToFirebase(event);
+        addEventHostToFirebase(eventID, hostID);
+    }
+
+    private void addEventHostToFirebase(String eventID, String hostID) {
+        Log.i(TAG, "addEventHostToFirebase: " + eventID);
+        hostsRef.child(hostID).child(eventID).setValue(true);
+
+    }
+
+    private String addEventToFirebase(Event event) {
+
+        mAuth.getInstance();
+        //TODO: cambiar esto por el nombre de verdad
+        String myName = "Camilo Serrano";
+
+        DatabaseReference ref;
+        String key = null;
+
+        if(event.getClass() == SportEvent.class){
+            Log.i(TAG, "addEventToFirebase: sport");
+            ref = eventsRef.child("sport-event");
+            key = ref.push().getKey();
+            ref.child(key).setValue(Transformer.transform((SportEvent)event,  myName));
+
+        }
+        else if(event.getClass() == AcademicEvent.class){
+            Log.i(TAG, "addEventToFirebase: academic");
+
+            ref = eventsRef.child("academic-event");
+            key = ref.push().getKey();
+            ref.child(key).setValue(Transformer.transform((AcademicEvent) event,  myName));
+
+        }
+        else if(event.getClass() == MusicEvent.class){
+            Log.i(TAG, "addEventToFirebase: music");
+
+            ref = eventsRef.child("music-event");
+            key = ref.push().getKey();
+            ref.child(key).setValue(Transformer.transform((MusicEvent) event,  myName));
+        }
+        else if(event.getClass() == SocialEvent.class){
+            Log.i(TAG, "addEventToFirebase: spcial");
+
+            ref = eventsRef.child("social-event");
+            key = ref.push().getKey();
+            ref.child(key).setValue(Transformer.transform((SocialEvent) event,  myName));
+
+        }
+        else if(event.getClass() == GameEvent.class){
+            Log.i(TAG, "addEventToFirebase: game");
+
+            ref = eventsRef.child("game-event");
+            key = ref.push().getKey();
+            ref.child(key).setValue(Transformer.transform((GameEvent) event,  myName));
+
+        }
+
+        hostName.put(key, myName);
+
+        return key;
     }
 
 
     /**
-     * returns the Host associated to the event ID
+     * returns the name of the host associated to the event ID
+     * Does not return the whloe Host object to save
      * @param eventID
      * @return
      */
-    public Host getEventHost(int eventID){
-
-        // siempre devuelve el mismo host
-        // deberia hacer una query en firebase para sacar el host
-        List<Event> pastEvents = new ArrayList<>();
-        EnumMap<EventsEnum , Double> mapa = new EnumMap<EventsEnum, Double>(EventsEnum.class);
-        mapa.put(EventsEnum.ACADEMIC , 0.0);
-        mapa.put(EventsEnum.SPORTS , 2.0);
-        mapa.put(EventsEnum.MUSIC , 2.1);
-        Preference preferences = new Preference(mapa , new String[]{"futbol" , "parque" , "yoga", "fit"});
-
-        Host host = new Host("Maria Gonzalez","maria@gonzalez.com",
-                new GregorianCalendar(1990, 2,11),"3155263542",
-                "maria.gonzalez",null,null,
-                null,null,preferences,pastEvents );
-
-        try {
-            host.setWebPage(new URL("https://drinkinggamezone.com/"));
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
+    public String getEventHostName(String eventID){
+        //Log.i(TAG, "hostnameMap: " + hostName.toString());
+        if(hostName.containsKey(eventID)){
+            //Log.i(TAG, "getEventHostName: encontrado ->" + hostName.get(eventID));
+           return hostName.get(eventID);
         }
-        return host;
+        //Log.i(TAG, "getEventHostName: nombre no encontrado");
+        return null;
+
+
+        ///////////
+
     }
 
 
-    // Sets a listener for all 5 database references to listen for all types of events
-    private void addListeners(){
+    /**
+     *     Sets a listener for all 5 database references to listen for all types of events
+     */
+    private void addEventListeners(){
 
 
         ChildEventListener listenerSport = new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                 Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
-                eventsList.add(Transformer.transform(dataSnapshot.getValue(SportEventDTO.class)));
+                SportEventDTO dto = dataSnapshot.getValue(SportEventDTO.class);
+                hostName.put(dataSnapshot.getKey() , dto.getHostName());
+                SportEvent se = Transformer.transform(dto);
+                se.setID(dataSnapshot.getKey());
+                eventsList.add(se);
             }
 
             @Override
@@ -265,7 +334,11 @@ public class EventProvider {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                 Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
-                eventsList.add(Transformer.transform(dataSnapshot.getValue(AcademicEventDTO.class)));
+                AcademicEventDTO dto = dataSnapshot.getValue(AcademicEventDTO.class);
+                hostName.put(dataSnapshot.getKey() , dto.getHostName());
+                AcademicEvent e = Transformer.transform(dto);
+                e.setID(dataSnapshot.getKey());
+                eventsList.add(e);
             }
 
             @Override
@@ -298,8 +371,11 @@ public class EventProvider {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                 Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
-                eventsList.add(Transformer.transform(dataSnapshot.getValue(GameEventDTO.class)));
-            }
+                GameEventDTO dto = dataSnapshot.getValue(GameEventDTO.class);
+                hostName.put(dataSnapshot.getKey() , dto.getHostName());
+                GameEvent e = Transformer.transform(dto);
+                e.setID(dataSnapshot.getKey());
+                eventsList.add(e);            }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
@@ -331,8 +407,11 @@ public class EventProvider {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                 Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
-                eventsList.add(Transformer.transform(dataSnapshot.getValue(MusicEventDTO.class)));
-            }
+                MusicEventDTO dto = dataSnapshot.getValue(MusicEventDTO.class);
+                hostName.put(dataSnapshot.getKey() , dto.getHostName());
+                MusicEvent e = Transformer.transform(dto);
+                e.setID(dataSnapshot.getKey());
+                eventsList.add(e);            }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
@@ -365,8 +444,11 @@ public class EventProvider {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
                 Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
-                eventsList.add(Transformer.transform(dataSnapshot.getValue(SocialEventDTO.class)));
-            }
+                SocialEventDTO dto = dataSnapshot.getValue(SocialEventDTO.class);
+                hostName.put(dataSnapshot.getKey() , dto.getHostName());
+                SocialEvent e = Transformer.transform(dto);
+                e.setID(dataSnapshot.getKey());
+                eventsList.add(e);            }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String previousChildName) {
@@ -402,9 +484,5 @@ public class EventProvider {
 
 
     }
-
-
-
-
 
 }

@@ -3,6 +3,7 @@ package com.example.letshang.DTO;
 import com.example.letshang.model.AcademicEvent;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.GameEvent;
+import com.example.letshang.model.Host;
 import com.example.letshang.model.MusicEvent;
 import com.example.letshang.model.SocialEvent;
 import com.example.letshang.model.SportEvent;
@@ -20,53 +21,53 @@ public class Transformer {
     // object to DTO
 
     // transforms a SportEvent into something that firebase can understand
-    public static SportEventDTO transform(SportEvent e){
+    public static SportEventDTO transform(SportEvent e, String hostName){
 
 
         return new SportEventDTO(e.getLocation().latitude, e.getLocation().longitude, e.getTitle(),
                 e.getDescription(), e.getStartDate().getTimeInMillis(),
                 e.getEndDate().getTimeInMillis(), e.getPrice(), e.getMaximumCapacity(),
-                transformTags(e.getTags()), e.getSport(), e.getLevel(), e.getTeamSize());
+                transformTags(e.getTags()), e.getSport(), e.getLevel(), e.getTeamSize(), hostName);
 
     }
 
-    public static AcademicEventDTO transform(AcademicEvent e){
+    public static AcademicEventDTO transform(AcademicEvent e, String hostName){
 
 
         return new AcademicEventDTO(e.getLocation().latitude, e.getLocation().longitude, e.getTitle(),
                 e.getDescription(), e.getStartDate().getTimeInMillis(),
                 e.getEndDate().getTimeInMillis(), e.getPrice(), e.getMaximumCapacity(),
-                transformTags(e.getTags()),e.getSubject(), e.getLevel(), e.getTypeAcademicalEvent(), e.getLanguages());
+                transformTags(e.getTags()),e.getSubject(), e.getLevel(), e.getTypeAcademicalEvent(), e.getLanguages(), hostName);
 
     }
 
-    public static GameEventDTO transform(GameEvent e){
+    public static GameEventDTO transform(GameEvent e, String hostName){
 
 
         return new GameEventDTO(e.getLocation().latitude, e.getLocation().longitude, e.getTitle(),
                 e.getDescription(), e.getStartDate().getTimeInMillis(),
                 e.getEndDate().getTimeInMillis(), e.getPrice(), e.getMaximumCapacity(),
-                transformTags(e.getTags()),e.getGame(), e.getLevel(), e.getKind(), e.getPrize(), e.isAdult(), e.getAgeRange());
+                transformTags(e.getTags()),e.getGame(), e.getLevel(), e.getKind(), e.getPrize(), e.isAdult(), e.getAgeRange(), hostName);
 
     }
 
-    public static MusicEventDTO transform(MusicEvent e){
+    public static MusicEventDTO transform(MusicEvent e, String hostName){
 
 
         return new MusicEventDTO(e.getLocation().latitude, e.getLocation().longitude, e.getTitle(),
                 e.getDescription(), e.getStartDate().getTimeInMillis(),
                 e.getEndDate().getTimeInMillis(), e.getPrice(), e.getMaximumCapacity(),
-                transformTags(e.getTags()),e.getMusic(), e.getArtists());
+                transformTags(e.getTags()),e.getMusic(), e.getArtists(), hostName);
 
     }
 
-    public static SocialEventDTO transform(SocialEvent e){
+    public static SocialEventDTO transform(SocialEvent e, String hostName){
 
 
         return new SocialEventDTO(e.getLocation().latitude, e.getLocation().longitude, e.getTitle(),
                 e.getDescription(), e.getStartDate().getTimeInMillis(),
                 e.getEndDate().getTimeInMillis(), e.getPrice(), e.getMaximumCapacity(),
-                transformTags(e.getTags()),e.getMusicGenre(), e.getTheme(), e.getMinimumAge(), e.getRules() );
+                transformTags(e.getTags()),e.getMusicGenre(), e.getTheme(), e.getMinimumAge(), e.getRules(), hostName );
 
     }
 
@@ -148,4 +149,6 @@ public class Transformer {
 
         return e;
     }
+
+
 }

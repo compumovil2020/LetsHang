@@ -32,7 +32,7 @@ public class ModificarEventoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        int idEvento = getIntent().getIntExtra("idevento", 1);
+        String idEvento = getIntent().getStringExtra("idevento");
 
         setContentView(R.layout.activity_modificar_evento);
 

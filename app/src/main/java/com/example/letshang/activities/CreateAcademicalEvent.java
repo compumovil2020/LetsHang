@@ -23,6 +23,7 @@ import com.example.letshang.model.AcademicType;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,6 +39,9 @@ public class CreateAcademicalEvent extends AppCompatActivity {
     private AcademicEvent academicEvent;
     private UserProvider userProvider;
     private EventProvider eventProvider;
+    private FirebaseAuth mAuth;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +53,11 @@ public class CreateAcademicalEvent extends AppCompatActivity {
         tipoEventoAcademico = findViewById(R.id.spTipoEventoAcademicalEvent);
         crearEventBtn = findViewById(R.id.btnCrearEventoAcademico);
 
-        userProvider = UserProvider.getInsatance();
+        userProvider = UserProvider.getInstance();
         eventProvider = EventProvider.getInsatance();
+
+        mAuth = FirebaseAuth.getInstance();
+
 
         //Lo que viene de la actividad anterior
         Bundle extras = getIntent().getExtras();
@@ -125,7 +132,7 @@ public class CreateAcademicalEvent extends AppCompatActivity {
                             academicEvent.setTypeAcademicalEvent(AcademicType.DISERTACION);
                             break;
                     }
-                    eventProvider.createEvent(academicEvent,null);
+                    eventProvider.createEvent(academicEvent, mAuth.getUid());
                     Intent i = new Intent(getApplicationContext() , PrincipalActivity.class);
                     startActivity(i);
                     finish();

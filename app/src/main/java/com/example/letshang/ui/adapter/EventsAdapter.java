@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.location.Address;
 import android.location.Geocoder;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 import com.squareup.picasso.Transformation;
+
+import static android.content.ContentValues.TAG;
 
 
 public class EventsAdapter extends BaseAdapter {
@@ -95,7 +98,8 @@ public class EventsAdapter extends BaseAdapter {
         lugar.setText(city);
 
         //Asignar host
-        host.setText(EventProvider.getInsatance().getEventHost(events.get(i).getID()).getName());
+        Log.i(TAG, "llamando al metodo el evento " + events.get(i).getTitle() + " con id " + events.get(i).getID());
+        host.setText(EventProvider.getInsatance().getEventHostName(events.get(i).getID()));
 
         //Asignar foto
         String imageUri = "https://picsum.photos/200?random=" + i;

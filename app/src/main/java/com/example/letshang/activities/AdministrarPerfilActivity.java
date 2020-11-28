@@ -40,7 +40,7 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
     private EditText etNombre, etEmail, etTelefono, etLocation, etFecha;
     private Button btnGuardar;
 
-    private UserProvider usrProvider = UserProvider.getInsatance();
+    private UserProvider usrProvider = UserProvider.getInstance();
     private Participant part;
 
     private LinearLayout linearLayoutContenedor;

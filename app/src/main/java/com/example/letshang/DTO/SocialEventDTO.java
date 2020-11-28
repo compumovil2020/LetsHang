@@ -10,8 +10,10 @@ public class SocialEventDTO extends EventDTO{
     private String rules;
 
 
-    public SocialEventDTO(double latitud, double longitud, String title, String description, long startDate, long endDate, long price, int maximumCapacity, List<String> tags, String musicGenre, String theme, int minimumAge, String rules) {
-        super(latitud, longitud, title, description, startDate, endDate, price, maximumCapacity, tags);
+    public SocialEventDTO(double latitud, double longitud, String title, String description,
+                          long startDate, long endDate, long price, int maximumCapacity,
+                          List<String> tags, String musicGenre, String theme, int minimumAge, String rules, String hostName) {
+        super(latitud, longitud, title, description, startDate, endDate, price, maximumCapacity, tags, hostName);
         this.musicGenre = musicGenre;
         this.theme = theme;
         this.minimumAge = minimumAge;

@@ -28,8 +28,11 @@ public class AcademicEventDTO extends EventDTO {
 
 
 
-    public AcademicEventDTO(double latitud, double longitud, String title, String description, long startDate, long endDate, long price, int maximumCapacity, List<String> tags, String subject, AcademicEventLevel level, AcademicType typeAcademicalEvent, String languages) {
-        super(latitud, longitud, title, description, startDate, endDate, price, maximumCapacity, tags);
+    public AcademicEventDTO(double latitud, double longitud, String title, String description,
+                            long startDate, long endDate, long price, int maximumCapacity,
+                            List<String> tags, String subject, AcademicEventLevel level,
+                            AcademicType typeAcademicalEvent, String languages, String hostname) {
+        super(latitud, longitud, title, description, startDate, endDate, price, maximumCapacity, tags, hostname);
         this.subject = subject;
         this.level = level;
         this.typeAcademicalEvent = typeAcademicalEvent;

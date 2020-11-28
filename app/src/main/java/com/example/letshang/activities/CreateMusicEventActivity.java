@@ -17,6 +17,7 @@ import com.example.letshang.model.SportEvent;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +31,8 @@ public class CreateMusicEventActivity extends AppCompatActivity {
     private EventProvider ep;
     private UserProvider up;
     private MusicEvent event;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,9 @@ public class CreateMusicEventActivity extends AppCompatActivity {
         botonCrear = findViewById(R.id.btnCrearEventoMusical);
 
         ep = EventProvider.getInsatance();
-        up = UserProvider.getInsatance();
+        up = UserProvider.getInstance();
+
+        mAuth = FirebaseAuth.getInstance();
 
         Bundle extras = getIntent().getExtras();
         String eventName = (String) extras.get("name");
@@ -64,7 +69,7 @@ public class CreateMusicEventActivity extends AppCompatActivity {
             public void onClick(View view) {
                 event.setMusic(etGenero.getText().toString());
                 event.setArtists(etArtistas.getText().toString());
-                ep.createEvent(event, null);
+                ep.createEvent(event, mAuth.getUid());
 
                 Intent i = new Intent(getApplicationContext() , PrincipalActivity.class);
                 startActivity(i);

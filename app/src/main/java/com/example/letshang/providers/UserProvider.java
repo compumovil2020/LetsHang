@@ -2,6 +2,8 @@ package com.example.letshang.providers;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.example.letshang.model.Event;
 import com.example.letshang.model.EventsEnum;
 import com.example.letshang.model.Host;
@@ -43,7 +45,7 @@ public class UserProvider {
 
 
 
-    public static UserProvider getInsatance(){
+    public static UserProvider getInstance(){
         if(instance == null){
             instance = new UserProvider();
         }
@@ -63,7 +65,7 @@ public class UserProvider {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                currentUser = dataSnapshot.getValue(Participant.class);
+                currentUser = dataSnapshot.getValue(User.class);
                 Log.d(TAG, "CurrentUser = " + currentUser.getName());
             }
 
@@ -136,4 +138,6 @@ public class UserProvider {
         );
         return ans;
     }
+
+
 }

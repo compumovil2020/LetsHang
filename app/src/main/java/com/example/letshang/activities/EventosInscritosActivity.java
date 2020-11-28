@@ -37,7 +37,7 @@ public class EventosInscritosActivity extends AppCompatActivity{
     private Button btnEvento, btnAgregar;
     private FirebaseAuth mAuth;
 
-    private UserProvider userProvider = UserProvider.getInsatance();
+    private UserProvider userProvider = UserProvider.getInstance();
     private ListView listViewEvents;
     private EventsAdapter eventsAdapter;
     private GoogleSignInClient mGoogleSignInClient;

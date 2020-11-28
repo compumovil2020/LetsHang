@@ -37,7 +37,7 @@ public class Host extends Participant {
         return true;
     }
 
-    public boolean cancelEvent(int id){
+    public boolean cancelEvent(String id){
         //TODO: Delete the event with ID <id> and send email to participants
         for(Event e:hostedEvents){
             if (e.getID() == id){
