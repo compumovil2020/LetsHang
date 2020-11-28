@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/lets_hang_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ChatEventoActivity"></activity>
+        <activity android:name=".activities.ChatEventoActivity" android:windowSoftInputMode="adjustPan"></activity>
         <activity android:name=".activities.CreateAcademicalEvent" />
         <activity android:name=".activities.CreateSocialEventActivity" />
 

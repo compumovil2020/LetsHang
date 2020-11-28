@@ -24,7 +24,6 @@ public class EventChatAdapter extends BaseAdapter {
     public EventChatAdapter (Context context, List<EventChat> eventChats){
         this.context = context;
         this.eventChats = eventChats;
-        System.out.println("NOMBEEE");
     }
 
     @Override
@@ -55,8 +54,7 @@ public class EventChatAdapter extends BaseAdapter {
 
         }
 
-
-
+        //Inflar
         TextView nombreRemitente, fechaRemitente, cuerpoRemitente, nombreTu, fechaTu, cuerpoTu;
         LinearLayout llRemitente, llTu;
         nombreRemitente = view.findViewById(R.id.tvNombreRemitenteEventsChat);
@@ -69,17 +67,18 @@ public class EventChatAdapter extends BaseAdapter {
         llTu = view.findViewById(R.id.llTuEventsChat);
 
 
+        //Si es tu enviado o si es otro
         if(eventChats.get(i).getIdUsuario().equals("Tu")){
             nombreRemitente.setVisibility(View.INVISIBLE);
             fechaRemitente.setVisibility(View.INVISIBLE);
             cuerpoRemitente.setVisibility(View.INVISIBLE);
 
-            nombreTu.setText(eventChats.get(i).getIdUsuario().toString());
-            fechaTu.setText(eventChats.get(i).getFecha().toString());
+            nombreTu.setText(eventChats.get(i).getIdUsuario());
+            fechaTu.setText(eventChats.get(i).getFecha());
             cuerpoTu.setText(eventChats.get(i).getCuerpo());
 
             //llRemitente.setVisibility(View.INVISIBLE);
-            llTu.setBackgroundColor(R.color.secondaryColor);
+            //llTu.setBackgroundColor(R.color.tuColor);
             llRemitente.removeAllViews();
             llTu.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT));
         } else {
@@ -92,7 +91,7 @@ public class EventChatAdapter extends BaseAdapter {
             fechaRemitente.setText(eventChats.get(i).getFecha());
             cuerpoRemitente.setText(eventChats.get(i).getCuerpo());
 
-            llRemitente.setBackgroundColor(R.color.colorPrimary);
+            //llRemitente.setBackgroundColor(R.color.colorPrimary);
             //llTu.setVisibility(View.INVISIBLE);
             llTu.removeAllViews();
             llRemitente.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT));

@@ -42,11 +42,12 @@
             android:id="@+id/tvCuerpoRemitenteEventsChat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="start|center"
             android:text="Cuerpo"
             android:textSize="13dp"
             android:fontFamily="@font/coves_bold"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"/>
 
     </LinearLayout>
 
@@ -88,10 +89,11 @@
             android:id="@+id/tvCuerpoTuEventsChat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="end|center"
             android:text="Cuerpo tú"
             android:textSize="13dp"
             android:fontFamily="@font/coves_bold"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"/>
     </LinearLayout>
 </LinearLayout>
