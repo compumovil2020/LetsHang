@@ -204,7 +204,8 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
             @Override
             public void onClick(View view) {
                 if(fromActivity.equalsIgnoreCase("Principal")){
-                    Intent intent = new Intent(view.getContext(), ReglasCondicionesActivity.class);
+                    //TODO: CAMBIAR AL QUE ES
+                    Intent intent = new Intent(view.getContext(), ChatEventoActivity.class);
                     intent.putExtra("idevento", "" + evento.getID());
                     startActivity(intent);
                 } else if(fromActivity.equalsIgnoreCase("Inscritos")){

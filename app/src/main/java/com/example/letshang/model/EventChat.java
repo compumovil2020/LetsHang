@@ -6,7 +6,7 @@ public class EventChat {
     String cuerpo;
     String fecha;
 
-    public void EventChat(){
+    public EventChat(){
 
     }
 

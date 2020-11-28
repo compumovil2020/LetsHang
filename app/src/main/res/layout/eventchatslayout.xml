@@ -4,9 +4,11 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="205dp"
-        android:layout_height="150dp"
-        android:orientation="vertical">
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:id="@+id/llRemitenteEventsChat">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,7 +22,9 @@
                 android:layout_weight="0.6"
                 android:gravity="center"
                 android:text="Nombre Enviador"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                android:textColor="@color/secondaryColor"
+                android:fontFamily="@font/coves_bold"/>
 
             <TextView
                 android:id="@+id/tvFechaRemitenteEventsChat"
@@ -30,7 +34,7 @@
                 android:gravity="center"
                 android:text="FechaEnvio"
                 android:textSize="10dp" />
-"/>
+            "/>
         </LinearLayout>
 
         <TextView
@@ -39,14 +43,17 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="Cuerpo"
-            android:textSize="13dp" />
+            android:textSize="13dp"
+            android:fontFamily="@font/coves_bold"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="205dp"
-        android:layout_height="150dp"
-        android:orientation="vertical">
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical"
+        android:id="@+id/llTuEventsChat">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,26 +65,29 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:text="Tú"
                 android:textSize="15dp"
-                android:gravity="center"/>
+                android:textColor="@color/secondaryColor"
+                android:fontFamily="@font/coves_bold"/>
 
             <TextView
                 android:id="@+id/tvFechaTuEventsChat"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Fecha Envio Tú"
                 android:gravity="center"
-                android:textSize="10dp"/>
+                android:text="Fecha Envio Tú"
+                android:textSize="10dp" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvCuerpoTuEventsChat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:text="Cuerpo tú"
             android:textSize="13dp"
-            android:gravity="center"/>
+            android:fontFamily="@font/coves_bold"/>
     </LinearLayout>
 </LinearLayout>

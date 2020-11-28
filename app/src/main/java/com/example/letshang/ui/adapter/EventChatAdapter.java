@@ -1,11 +1,15 @@
 package com.example.letshang.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.letshang.R;
 import com.example.letshang.model.EventChat;
@@ -20,6 +24,7 @@ public class EventChatAdapter extends BaseAdapter {
     public EventChatAdapter (Context context, List<EventChat> eventChats){
         this.context = context;
         this.eventChats = eventChats;
+        System.out.println("NOMBEEE");
     }
 
     @Override
@@ -37,15 +42,58 @@ public class EventChatAdapter extends BaseAdapter {
         return 0;
     }
 
+    @SuppressLint("ResourceAsColor")
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         //Verificar vista
+
         if(view == null){
             LayoutInflater layoutInflater = (LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+
             view = LayoutInflater.from(this.context).inflate(R.layout.eventchatslayout,viewGroup,false);
+
         }
 
-        return null;
+
+
+        TextView nombreRemitente, fechaRemitente, cuerpoRemitente, nombreTu, fechaTu, cuerpoTu;
+        LinearLayout llRemitente, llTu;
+        nombreRemitente = view.findViewById(R.id.tvNombreRemitenteEventsChat);
+        fechaRemitente = view.findViewById(R.id.tvFechaRemitenteEventsChat);
+        cuerpoRemitente = view.findViewById(R.id.tvCuerpoRemitenteEventsChat);
+        nombreTu = view.findViewById(R.id.tvNombreTuEventsChat);
+        fechaTu = view.findViewById(R.id.tvFechaTuEventsChat);
+        cuerpoTu = view.findViewById(R.id.tvCuerpoTuEventsChat);
+        llRemitente = view.findViewById(R.id.llRemitenteEventsChat);
+        llTu = view.findViewById(R.id.llTuEventsChat);
+
+
+        if(eventChats.get(i).getIdUsuario().equals("Tu")){
+            nombreRemitente.setVisibility(View.INVISIBLE);
+            fechaRemitente.setVisibility(View.INVISIBLE);
+            cuerpoRemitente.setVisibility(View.INVISIBLE);
+
+            nombreTu.setText(eventChats.get(i).getIdUsuario().toString());
+            fechaTu.setText(eventChats.get(i).getFecha().toString());
+            cuerpoTu.setText(eventChats.get(i).getCuerpo());
+
+            llRemitente.setVisibility(View.INVISIBLE);
+            llTu.setBackgroundColor(R.color.secondaryColor);
+        } else {
+
+            nombreTu.setVisibility(View.INVISIBLE);
+            fechaTu.setVisibility(View.INVISIBLE);
+            cuerpoTu.setVisibility(View.INVISIBLE);
+
+            nombreRemitente.setText(eventChats.get(i).getIdUsuario());
+            fechaRemitente.setText(eventChats.get(i).getFecha());
+            cuerpoRemitente.setText(eventChats.get(i).getCuerpo());
+
+            llRemitente.setBackgroundColor(R.color.colorPrimary);
+            llTu.setVisibility(View.INVISIBLE);
+        }
+
+        return view;
     }
 }
