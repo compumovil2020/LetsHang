@@ -28,13 +28,15 @@ public class ProvidersUnitTest {
     public MockitoRule mockitoRule = MockitoJUnit.rule();
 
 
-    @Test
+    /*@Test
     public void UserProviderShouldReturnCurrentUser(){
         UserProvider up = UserProvider.getInstance();
 
         User u = up.getCurrentUser();
         assertNotNull(u);
     }
+
+     */
 
     //@Test
     /*public void EventProviderShouldAddEvent(){
