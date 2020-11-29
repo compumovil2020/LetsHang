@@ -68,6 +68,8 @@ public class CreateAcademicalEvent extends AppCompatActivity {
         GregorianCalendar startDate = (GregorianCalendar) extras.get("startDate");
         GregorianCalendar endDate = (GregorianCalendar) extras.get("endDate");
         int capacidad = (int) extras.get("capacidad");
+        String locationName = (String) extras.get("locationName");
+
         ArrayList<String> tags = (ArrayList<String>) extras.get("tags");
         List<String> spinnerList1 = Arrays.asList(getResources().getStringArray(R.array.type_academical_event));
         List<String> spinnerList2 = Arrays.asList(getResources().getStringArray(R.array.academic_Levels));
@@ -78,7 +80,7 @@ public class CreateAcademicalEvent extends AppCompatActivity {
         validation.addValidation(this, R.id.spTipoEventoAcademicalEvent,RegexTemplate.NOT_EMPTY, R.string.requirederror);
         validation.addValidation(this, R.id.spNivelEventoAcademicaEvent,RegexTemplate.NOT_EMPTY, R.string.requirederror);
 
-        academicEvent = new AcademicEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location);
+        academicEvent = new AcademicEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location, locationName);
 
         final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,spinnerList1);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

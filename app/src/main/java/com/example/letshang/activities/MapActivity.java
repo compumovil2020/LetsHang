@@ -63,6 +63,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static android.content.ContentValues.TAG;
+
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private static final String TAG = "MapActivity";
@@ -165,6 +167,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private String geoCoderSearch(LatLng latlng){
         String address = "";
         try{
+            Log.i(TAG, "latitud: " + latlng.latitude);
+            Log.i(TAG, "longitud: " + latlng.longitude);
             List<Address> res = mGeocoder.getFromLocation(latlng.latitude, latlng.longitude, 2);
             if(res != null && res.size() > 0){
                 address = res.get(0).getAddressLine(0);
@@ -233,7 +237,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         for(Event actual: listEvents){
             LatLng locationActual = actual.getLocation();
             listMarkers.add(mMap.addMarker(new MarkerOptions().position(locationActual).
-                    title(geoCoderSearch(locationActual)).snippet(actual.getTitle()).alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))));
+                    title(actual.getLocationName()).snippet(actual.getTitle()).alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))));
         }
     }
 

@@ -291,6 +291,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                     i.putExtra("tags" , tags);
                     i.putExtra("capacidad" , Integer.parseInt(etCapacidad.getText().toString()));
                     i.putExtra("description" , etDescription.getText().toString());
+                    i.putExtra("locationName" , etLugar.getText().toString());
 
                     startActivity(i);
                 }

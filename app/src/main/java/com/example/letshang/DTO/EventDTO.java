@@ -13,12 +13,14 @@ public abstract class EventDTO {
     protected int maximumCapacity;
     protected List<String> tags;
     protected String hostName;
+    protected String locationName;
 
     public EventDTO() {
     }
 
     public EventDTO(double latitud, double longitud, String title, String description,
-                    long startDate, long endDate, long price, int maximumCapacity, List<String> tags, String hostName) {
+                    long startDate, long endDate, long price, int maximumCapacity, List<String> tags,
+                    String hostName, String locationName) {
         this.latitud = latitud;
         this.longitud = longitud;
         this.title = title;
@@ -29,6 +31,7 @@ public abstract class EventDTO {
         this.maximumCapacity = maximumCapacity;
         this.tags = tags;
         this.hostName = hostName;
+        this.locationName = locationName;
     }
 
     public double getLatitud() {
@@ -109,5 +112,13 @@ public abstract class EventDTO {
 
     public void setHostName(String hostName) {
         this.hostName = hostName;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }

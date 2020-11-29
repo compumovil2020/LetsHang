@@ -57,12 +57,14 @@ public class CreateMusicEventActivity extends AppCompatActivity {
         GregorianCalendar endDate = (GregorianCalendar) extras.get("endDate");
         int capacidad = (int) extras.get("capacidad");
         ArrayList<String> tags = (ArrayList<String>) extras.get("tags");
+        String locationName = (String) extras.get("locationName");
+
 
         validation = new AwesomeValidation(ValidationStyle.BASIC);
         validation.addValidation(this, R.id.etGeneroEventoMusical, RegexTemplate.NOT_EMPTY, R.string.nameerror);
         validation.addValidation(this, R.id.etArtistasEventoMusical, RegexTemplate.NOT_EMPTY, R.string.requirederror);
 
-        event = new MusicEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location );
+        event = new MusicEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location, locationName );
 
         botonCrear.setOnClickListener(new View.OnClickListener() {
             @Override

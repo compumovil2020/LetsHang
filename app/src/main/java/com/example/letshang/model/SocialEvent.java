@@ -29,16 +29,21 @@ public class SocialEvent extends Event {
     /**
      * General Constructor from abstract Event
      */
-    public SocialEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate, long price, int maximumCapacity, Collection<String> tags, LatLng location) {
-        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+    public SocialEvent(String title, String description, GregorianCalendar startDate,
+                       GregorianCalendar endDate, long price, int maximumCapacity,
+                       Collection<String> tags, LatLng location,  String locationName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locationName);
 
     }
 
     /**
      * Specific Constructor from Party Event
      */
-    public SocialEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate, long price, int maximumCapacity, Collection<String> tags, LatLng location, String musicGenre, String theme, int minimumAge, String rules) {
-        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+    public SocialEvent(String title, String description, GregorianCalendar startDate,
+                       GregorianCalendar endDate, long price, int maximumCapacity,
+                       Collection<String> tags, LatLng location, String musicGenre,
+                       String theme, int minimumAge, String rules, String locationName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locationName);
         this.musicGenre = musicGenre;
         this.theme = theme;
         this.minimumAge = minimumAge;

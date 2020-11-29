@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public abstract class Event {
     protected String ID;
     protected LatLng location;
+    protected String locationName;
     protected String title;
     protected String description;
     protected GregorianCalendar startDate;
@@ -25,7 +26,7 @@ public abstract class Event {
 
 
     public Event(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate, long price,
-                 int maximumCapacity, Collection<String> tags, LatLng location) {
+                 int maximumCapacity, Collection<String> tags, LatLng location, String locationName) {
         this.title = title;
         this.description = description;
         this.startDate = startDate;
@@ -34,6 +35,7 @@ public abstract class Event {
         this.maximumCapacity = maximumCapacity;
         this.tags = tags;
         this.location = location;
+        this.locationName = locationName;
     }
 
     private void setId(String id) {
@@ -117,5 +119,13 @@ public abstract class Event {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }

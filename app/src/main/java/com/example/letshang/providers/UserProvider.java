@@ -123,7 +123,7 @@ public class UserProvider {
     private List<Event> generatePastEvents(){
         List<Event> ans = new ArrayList<Event>();
 
-        ArrayList<String> tags = new ArrayList<String>();
+        /**ArrayList<String> tags = new ArrayList<String>();
         tags.add("futbol");
         tags.add("parque");
         tags.add("juvenil");
@@ -135,7 +135,7 @@ public class UserProvider {
                 new GregorianCalendar(2020,10,11, 15,00),
                 10000, 100, tags, "Futbol", SportEventLevel.BEGINNER,
                 11, new LatLng(4.700234, -74.059253))
-        );
+        );*/
         return ans;
     }
 

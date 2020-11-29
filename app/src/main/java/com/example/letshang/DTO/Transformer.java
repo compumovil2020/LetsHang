@@ -27,7 +27,7 @@ public class Transformer {
         return new SportEventDTO(e.getLocation().latitude, e.getLocation().longitude, e.getTitle(),
                 e.getDescription(), e.getStartDate().getTimeInMillis(),
                 e.getEndDate().getTimeInMillis(), e.getPrice(), e.getMaximumCapacity(),
-                transformTags(e.getTags()), e.getSport(), e.getLevel(), e.getTeamSize(), hostName);
+                transformTags(e.getTags()), e.getSport(), e.getLevel(), e.getTeamSize(), hostName, e.getLocationName());
 
     }
 
@@ -37,7 +37,7 @@ public class Transformer {
         return new AcademicEventDTO(e.getLocation().latitude, e.getLocation().longitude, e.getTitle(),
                 e.getDescription(), e.getStartDate().getTimeInMillis(),
                 e.getEndDate().getTimeInMillis(), e.getPrice(), e.getMaximumCapacity(),
-                transformTags(e.getTags()),e.getSubject(), e.getLevel(), e.getTypeAcademicalEvent(), e.getLanguages(), hostName);
+                transformTags(e.getTags()),e.getSubject(), e.getLevel(), e.getTypeAcademicalEvent(), e.getLanguages(), hostName, e.getLocationName());
 
     }
 
@@ -47,7 +47,7 @@ public class Transformer {
         return new GameEventDTO(e.getLocation().latitude, e.getLocation().longitude, e.getTitle(),
                 e.getDescription(), e.getStartDate().getTimeInMillis(),
                 e.getEndDate().getTimeInMillis(), e.getPrice(), e.getMaximumCapacity(),
-                transformTags(e.getTags()),e.getGame(), e.getLevel(), e.getKind(), e.getPrize(), e.isAdult(), e.getAgeRange(), hostName);
+                transformTags(e.getTags()),e.getGame(), e.getLevel(), e.getKind(), e.getPrize(), e.isAdult(), e.getAgeRange(), hostName, e.getLocationName());
 
     }
 
@@ -57,7 +57,7 @@ public class Transformer {
         return new MusicEventDTO(e.getLocation().latitude, e.getLocation().longitude, e.getTitle(),
                 e.getDescription(), e.getStartDate().getTimeInMillis(),
                 e.getEndDate().getTimeInMillis(), e.getPrice(), e.getMaximumCapacity(),
-                transformTags(e.getTags()),e.getMusic(), e.getArtists(), hostName);
+                transformTags(e.getTags()),e.getMusic(), e.getArtists(), hostName, e.getLocationName());
 
     }
 
@@ -67,7 +67,7 @@ public class Transformer {
         return new SocialEventDTO(e.getLocation().latitude, e.getLocation().longitude, e.getTitle(),
                 e.getDescription(), e.getStartDate().getTimeInMillis(),
                 e.getEndDate().getTimeInMillis(), e.getPrice(), e.getMaximumCapacity(),
-                transformTags(e.getTags()),e.getMusicGenre(), e.getTheme(), e.getMinimumAge(), e.getRules(), hostName );
+                transformTags(e.getTags()),e.getMusicGenre(), e.getTheme(), e.getMinimumAge(), e.getRules(), hostName , e.getLocationName());
 
     }
 
@@ -93,7 +93,7 @@ public class Transformer {
         endDate.setTimeInMillis(dto.getEndDate());
         SportEvent e = new SportEvent(dto.getTitle(), dto.getDescription(), startDate, endDate,
                 dto.getPrice(), dto.getMaximumCapacity(), dto.getTags(), dto.getSport(),
-                dto.getLevel(), dto.getTeamSize(), new LatLng(dto.getLatitud(), dto.getLongitud()));
+                dto.getLevel(), dto.getTeamSize(), new LatLng(dto.getLatitud(), dto.getLongitud()), dto.getLocationName());
 
         return  e;
     }
@@ -106,7 +106,7 @@ public class Transformer {
         endDate.setTimeInMillis(dto.getEndDate());
         AcademicEvent e = new AcademicEvent(dto.getTitle(), dto.getDescription(), startDate, endDate,
                 dto.getPrice(), dto.getMaximumCapacity(), dto.getTags(),new LatLng(dto.getLatitud(),
-                dto.getLongitud()), dto.getSubject(), dto.getLevel(), dto.getTypeAcademicalEvent(),dto.getLanguages());
+                dto.getLongitud()), dto.getSubject(), dto.getLevel(), dto.getTypeAcademicalEvent(),dto.getLanguages(), dto.getLocationName());
         
         return e;
     }
@@ -119,7 +119,7 @@ public class Transformer {
         endDate.setTimeInMillis(dto.getEndDate());
         GameEvent e = new GameEvent(dto.getTitle(), dto.getDescription(), startDate, endDate,
                 dto.getPrice(), dto.getMaximumCapacity(), dto.getTags(),new LatLng(dto.getLatitud(),
-                dto.getLongitud()), dto.getGame(), dto.getLevel(), dto.getKind(), dto.getPrize(), dto.isAdult(), dto.getAgeRange());
+                dto.getLongitud()), dto.getGame(), dto.getLevel(), dto.getKind(), dto.getPrize(), dto.isAdult(), dto.getAgeRange(), dto.getLocationName());
 
         return e;
     }
@@ -131,7 +131,7 @@ public class Transformer {
         endDate.setTimeInMillis(dto.getEndDate());
         MusicEvent e = new MusicEvent(dto.getTitle(), dto.getDescription(), startDate, endDate,
                 dto.getPrice(), dto.getMaximumCapacity(), dto.getTags(), dto.getMusic(), dto.getArtists(),new LatLng(dto.getLatitud(),
-                dto.getLongitud()));
+                dto.getLongitud()), dto.getLocationName());
 
         return e;
 
@@ -145,7 +145,7 @@ public class Transformer {
         endDate.setTimeInMillis(dto.getEndDate());
         SocialEvent e = new SocialEvent(dto.getTitle(), dto.getDescription(), startDate, endDate,
                 dto.getPrice(), dto.getMaximumCapacity(), dto.getTags(), new LatLng(dto.getLatitud(),
-                dto.getLongitud()), dto.getMusicGenre(), dto.getRules(),dto.getMinimumAge(), dto.getRules());
+                dto.getLongitud()), dto.getMusicGenre(), dto.getRules(),dto.getMinimumAge(), dto.getRules(), dto.getLocationName());
 
         return e;
     }

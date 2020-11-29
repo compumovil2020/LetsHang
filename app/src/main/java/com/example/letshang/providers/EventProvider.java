@@ -465,8 +465,6 @@ public class EventProvider {
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
                 Log.d(TAG, "onChildMoved:" + dataSnapshot.getKey());
-
-
             }
 
             @Override

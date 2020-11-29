@@ -67,6 +67,7 @@ public class CreateSocialEventActivity extends AppCompatActivity {
         // obtener datos del evento
         Bundle extras = getIntent().getExtras();
         String eventName = (String) extras.get("name");
+        String locationName = (String) extras.get("locationName");
         String description = (String) extras.get("description");
         int precio =  Integer.parseInt((String) extras.get("price"));
         LatLng location = (LatLng) extras.get("location");
@@ -75,7 +76,7 @@ public class CreateSocialEventActivity extends AppCompatActivity {
         int capacidad = (int) extras.get("capacidad");
         ArrayList<String> tags = (ArrayList<String>) extras.get("tags");
 
-        socialEvent = new SocialEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location );
+        socialEvent = new SocialEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location, locationName );
 
 
         //Listeners

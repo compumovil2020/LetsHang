@@ -76,6 +76,8 @@ public class CreateSportEventActivity extends AppCompatActivity {
         GregorianCalendar endDate = (GregorianCalendar) extras.get("endDate");
         int capacidad = (int) extras.get("capacidad");
         ArrayList<String> tags = (ArrayList<String>) extras.get("tags");
+        String locationName = (String) extras.get("locationName");
+
 
         // Form validation
         validation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -84,7 +86,7 @@ public class CreateSportEventActivity extends AppCompatActivity {
 
 
 
-        event = new SportEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location );
+        event = new SportEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location, locationName );
 
 
 

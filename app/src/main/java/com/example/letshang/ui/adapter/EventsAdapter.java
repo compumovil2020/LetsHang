@@ -32,7 +32,6 @@ import com.squareup.picasso.Transformation;
 
 import static android.content.ContentValues.TAG;
 
-
 public class EventsAdapter extends BaseAdapter {
 
     private Context context;
@@ -90,6 +89,7 @@ public class EventsAdapter extends BaseAdapter {
         String city = "";
         Geocoder gcd = new Geocoder(context, Locale.getDefault());
         try {
+
             List<Address> addresses = gcd.getFromLocation(latLng.latitude, latLng.longitude, 1);
             city = addresses.get(0).getAddressLine(0);
         } catch (IOException e) {

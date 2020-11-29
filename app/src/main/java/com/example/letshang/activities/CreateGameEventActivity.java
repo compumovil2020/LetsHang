@@ -88,6 +88,8 @@ public class CreateGameEventActivity extends AppCompatActivity {
         GregorianCalendar endDate = (GregorianCalendar) extras.get("endDate");
         int capacidad = (int) extras.get("capacidad");
         ArrayList<String> tags = (ArrayList<String>) extras.get("tags");
+        String locationName = (String) extras.get("locationName");
+
 
         // Form validation
         validation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -96,7 +98,7 @@ public class CreateGameEventActivity extends AppCompatActivity {
         validation.addValidation(this, R.id.etNombreJuegoGameEvent, RegexTemplate.NOT_EMPTY, R.string.requirederror);
         validation.addValidation(this, R.id.etRangoEdadJuegoGameEvent, RegexTemplate.NOT_EMPTY, R.string.requirederror);
 
-        gameEvent = new GameEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location );
+        gameEvent = new GameEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location, locationName );
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);

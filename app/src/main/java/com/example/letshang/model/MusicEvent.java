@@ -17,16 +17,16 @@ public class MusicEvent extends Event {
 
     public MusicEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate,
                       long price, int maximumCapacity, Collection<String> tags,
-                      String music, String artists, LatLng location) {
-        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+                      String music, String artists, LatLng location, String locationName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locationName);
         this.music = music;
         this.artists = artists;
         this.type = EventsEnum.MUSIC;
     }
 
     public MusicEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate, long price,
-                      int maximumCapacity, Collection<String> tags, LatLng location) {
-        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+                      int maximumCapacity, Collection<String> tags, LatLng location, String locationName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locationName);
     }
 
     public String getMusic() {

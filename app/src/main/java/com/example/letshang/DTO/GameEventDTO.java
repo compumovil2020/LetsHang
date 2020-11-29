@@ -16,8 +16,11 @@ public class GameEventDTO  extends EventDTO{
     public GameEventDTO() {
     }
 
-    public GameEventDTO(double latitud, double longitud, String title, String description, long startDate, long endDate, long price, int maximumCapacity, List<String> tags, String game, GameEventLevel level, String kind, String prize, boolean adult, String ageRange, String hostName) {
-        super(latitud, longitud, title, description, startDate, endDate, price, maximumCapacity, tags, hostName);
+    public GameEventDTO(double latitud, double longitud, String title, String description,
+                        long startDate, long endDate, long price, int maximumCapacity,
+                        List<String> tags, String game, GameEventLevel level, String kind,
+                        String prize, boolean adult, String ageRange, String hostName, String locationName) {
+        super(latitud, longitud, title, description, startDate, endDate, price, maximumCapacity, tags, hostName, locationName);
         this.game = game;
         this.level = level;
         this.kind = kind;
