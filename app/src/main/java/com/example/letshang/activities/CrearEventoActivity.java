@@ -307,105 +307,125 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                     //Host host = (Host) userProvider.getCurrentUser();
 
                     if(radioGroup.getCheckedRadioButtonId() == rbAcademic.getId()){
+                        AwesomeValidation validationAcademic = new AwesomeValidation(ValidationStyle.BASIC);
+
+
                         EditText materia = findViewById(R.id.etSubjectAcademicalEvent);
                         EditText idioma = findViewById(R.id.etIdiomaCreateAcademicalEvent);
                         Spinner tipo = findViewById(R.id.spTipoEventoAcademicalEvent);
                         Spinner nivel = findViewById(R.id.spNivelEventoAcademicaEvent);
 
-                        AcademicEvent academicEvent = new AcademicEvent(nombre,descripcion,startDate,endDate,valor,capacidad,tags,location);
+                        validationAcademic.addValidation(CrearEventoActivity.this, R.id.etSubjectAcademicalEvent, RegexTemplate.NOT_EMPTY, R.string.materiaerror);
+                        validationAcademic.addValidation(CrearEventoActivity.this, R.id.etIdiomaCreateAcademicalEvent, RegexTemplate.NOT_EMPTY, R.string.idiomaerror);
 
-                        academicEvent.setLanguages(idioma.getText().toString());
-                        academicEvent.setSubject(materia.getText().toString());
-                        switch (nivel.getSelectedItem().toString()){
-                            case "Prescolar":
-                                academicEvent.setLevel(AcademicEventLevel.PRESCHOOL);
-                                break;
-                            case "Elemental":
-                                academicEvent.setLevel(AcademicEventLevel.ELEMENTARY);
-                                break;
-                            case "Juvenil":
-                                academicEvent.setLevel(AcademicEventLevel.JUVENILE);
-                                break;
-                            case "Bachillerato":
-                                academicEvent.setLevel(AcademicEventLevel.HIGHSCHOOL);
-                                break;
-                            case "Universitario":
-                                academicEvent.setLevel(AcademicEventLevel.UNIVERSITY);
-                                break;
-                            case "Profesional":
-                                academicEvent.setLevel(AcademicEventLevel.PROFFESIONAL);
-                                break;
-                        }
+                        if(validationAcademic.validate()) {
+                            AcademicEvent academicEvent = new AcademicEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location);
 
-                        switch (tipo.getSelectedItem().toString()){
-                            case "Taller":
-                                academicEvent.setTypeAcademicalEvent(AcademicType.TALLER);
-                                break;
-                            case "Seminario":
-                                academicEvent.setTypeAcademicalEvent(AcademicType.SEMINARIO);
-                                break;
-                            case "Monitoria":
-                                academicEvent.setTypeAcademicalEvent(AcademicType.MONITORIA);
-                                break;
-                            case "Charla":
-                                academicEvent.setTypeAcademicalEvent(AcademicType.CHARLA);
-                                break;
-                            case "Disertación":
-                                academicEvent.setTypeAcademicalEvent(AcademicType.DISERTACION);
-                                break;
+                            academicEvent.setLanguages(idioma.getText().toString());
+                            academicEvent.setSubject(materia.getText().toString());
+                            switch (nivel.getSelectedItem().toString()) {
+                                case "Prescolar":
+                                    academicEvent.setLevel(AcademicEventLevel.PRESCHOOL);
+                                    break;
+                                case "Elemental":
+                                    academicEvent.setLevel(AcademicEventLevel.ELEMENTARY);
+                                    break;
+                                case "Juvenil":
+                                    academicEvent.setLevel(AcademicEventLevel.JUVENILE);
+                                    break;
+                                case "Bachillerato":
+                                    academicEvent.setLevel(AcademicEventLevel.HIGHSCHOOL);
+                                    break;
+                                case "Universitario":
+                                    academicEvent.setLevel(AcademicEventLevel.UNIVERSITY);
+                                    break;
+                                case "Profesional":
+                                    academicEvent.setLevel(AcademicEventLevel.PROFFESIONAL);
+                                    break;
+                            }
+
+                            switch (tipo.getSelectedItem().toString()) {
+                                case "Taller":
+                                    academicEvent.setTypeAcademicalEvent(AcademicType.TALLER);
+                                    break;
+                                case "Seminario":
+                                    academicEvent.setTypeAcademicalEvent(AcademicType.SEMINARIO);
+                                    break;
+                                case "Monitoria":
+                                    academicEvent.setTypeAcademicalEvent(AcademicType.MONITORIA);
+                                    break;
+                                case "Charla":
+                                    academicEvent.setTypeAcademicalEvent(AcademicType.CHARLA);
+                                    break;
+                                case "Disertación":
+                                    academicEvent.setTypeAcademicalEvent(AcademicType.DISERTACION);
+                                    break;
+                            }
+                            eventProvider.createEvent(academicEvent, host);
+                            confirm();
                         }
-                        eventProvider.createEvent(academicEvent, host);
 
                     }else if(radioGroup.getCheckedRadioButtonId() == rbSport.getId()){
-                        SportEvent sportEvent = new SportEvent(nombre,descripcion,startDate,endDate,valor,capacidad,tags,location);
+                        AwesomeValidation validationSport = new AwesomeValidation(ValidationStyle.BASIC);
 
                         EditText deporte = findViewById(R.id.etDeporteEventoDeportivo);
                         EditText equipo = findViewById(R.id.etEquipoEventoDeportivo);
                         Spinner nivel = findViewById(R.id.spLevelEventoDeportivo);
 
-                        sportEvent.setSport(deporte.getText().toString());
-                        sportEvent.setTeamSize(Integer.parseInt(equipo.getText().toString()));
+                        validationSport.addValidation(deporte,RegexTemplate.NOT_EMPTY,"Ingresa el deporte");
+                        validationSport.addValidation(equipo,RegexTemplate.NOT_EMPTY,"Ingresa el tamaño del equipo");
+                        validationSport.addValidation(equipo,Range.open(1,20),"Ingresa un numero valido");
 
-                        if(nivel.getSelectedItemPosition() == 0){
-                            sportEvent.setLevel(SportEventLevel.BEGINNER);
+                        if(validationSport.validate()) {
+                            SportEvent sportEvent = new SportEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location);
+                            sportEvent.setSport(deporte.getText().toString());
+                            sportEvent.setTeamSize(Integer.parseInt(equipo.getText().toString()));
+
+                            if (nivel.getSelectedItemPosition() == 0) {
+                                sportEvent.setLevel(SportEventLevel.BEGINNER);
+                            } else if (nivel.getSelectedItemPosition() == 1) {
+                                sportEvent.setLevel(SportEventLevel.AMATEUR);
+                            } else if (nivel.getSelectedItemPosition() == 2) {
+                                sportEvent.setLevel(SportEventLevel.INTERMEDIATE);
+                            } else if (nivel.getSelectedItemPosition() == 3) {
+                                sportEvent.setLevel(SportEventLevel.ADVANCED);
+                            } else if (nivel.getSelectedItemPosition() == 4) {
+                                sportEvent.setLevel(SportEventLevel.PROFESSIONAL);
+                            }
+
+                            eventProvider.createEvent(sportEvent, host);
+                            confirm();
                         }
-
-                        else if(nivel.getSelectedItemPosition() == 1){
-                            sportEvent.setLevel(SportEventLevel.AMATEUR);
-                        }
-
-                        else if(nivel.getSelectedItemPosition() == 2){
-                            sportEvent.setLevel(SportEventLevel.INTERMEDIATE);
-                        }
-
-                        else if(nivel.getSelectedItemPosition() == 3){
-                            sportEvent.setLevel(SportEventLevel.ADVANCED);
-                        }
-
-                        else if(nivel.getSelectedItemPosition() == 4){
-                            sportEvent.setLevel(SportEventLevel.PROFESSIONAL);
-                        }
-
-                        eventProvider.createEvent(sportEvent,host);
 
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbSocial.getId()){
-                        SocialEvent socialEvent = new SocialEvent(nombre,descripcion,startDate,endDate,valor,capacidad,tags,location);
+                        AwesomeValidation validationSocial = new AwesomeValidation(ValidationStyle.BASIC);
 
                         EditText genero = findViewById(R.id.etGeneroEventoSocial);
                         EditText tematica = findViewById(R.id.etTematicaEventoSocial);
                         EditText edadMinima = findViewById(R.id.etEdadMinimaEventoSocial);
                         EditText reglas = findViewById(R.id.etEdadMinimaEventoSocial);
 
-                        socialEvent.setMusicGenre(genero.getText().toString());
-                        socialEvent.setTheme(tematica.getText().toString());
-                        socialEvent.setMinimumAge(Integer.parseInt(edadMinima.getText().toString()));
-                        socialEvent.setRules(reglas.getText().toString());
+                        validationSocial.addValidation(genero,RegexTemplate.NOT_EMPTY,"Ingrese un genero de musica");
+                        validationSocial.addValidation(tematica,RegexTemplate.NOT_EMPTY,"Ingrese una tematica");
+                        validationSocial.addValidation(edadMinima,RegexTemplate.NOT_EMPTY,"Ingrese una edad");
+                        validationSocial.addValidation(edadMinima,Range.open(0,100),"Ingrese una edad entre 0 y 100");
+                        validationSocial.addValidation(reglas,RegexTemplate.NOT_EMPTY,"Ingrese las reglas del evento");
 
-                        eventProvider.createEvent(socialEvent,host);
+                        if(validationSocial.validate()) {
+                            SocialEvent socialEvent = new SocialEvent(nombre,descripcion,startDate,endDate,valor,capacidad,tags,location);
+                            socialEvent.setMusicGenre(genero.getText().toString());
+                            socialEvent.setTheme(tematica.getText().toString());
+                            socialEvent.setMinimumAge(Integer.parseInt(edadMinima.getText().toString()));
+                            socialEvent.setRules(reglas.getText().toString());
+
+                            eventProvider.createEvent(socialEvent, host);
+                            confirm();
+                        }
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbGaming.getId()){
-                        GameEvent gameEvent = new GameEvent(nombre,descripcion,startDate,endDate,valor,capacidad,tags,location);
+                        AwesomeValidation validationGame = new AwesomeValidation(ValidationStyle.BASIC);
+
 
                         EditText nombreJuego = findViewById(R.id.etNombreJuegoGameEvent);
                         EditText tipoJuego = findViewById(R.id.etTipoDeJuegoGameEvent);
@@ -414,50 +434,59 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                         Spinner respuestaNivel = findViewById(R.id.spNivelGameEvent);
                         Spinner mayorEdad = findViewById(R.id.spMayorEdadGameEvent);
 
-                        gameEvent.setGame(nombreJuego.getText().toString());
-                        gameEvent.setKind(tipoJuego.getText().toString());
-                        gameEvent.setPrize(premio.getText().toString());
-                        gameEvent.setAgeRange(rangoEdad.getText().toString());
+                        validationGame.addValidation(nombreJuego,RegexTemplate.NOT_EMPTY,"Ingrese el nombre del juego");
+                        validationGame.addValidation(tipoJuego,RegexTemplate.NOT_EMPTY,"Ingrese el tipo del juego");
+                        validationGame.addValidation(premio,RegexTemplate.NOT_EMPTY,"Ingrese un premio");
+                        validationGame.addValidation(rangoEdad,RegexTemplate.NOT_EMPTY,"Ingrese un rango de edad");
 
-                        if(mayorEdad.getSelectedItemPosition() == 0){
-                            gameEvent.setAdult(true);
-                        } else if(mayorEdad.getSelectedItemPosition() == 1){
-                            gameEvent.setAdult(false);
+                        if(validationGame.validate()) {
+                            GameEvent gameEvent = new GameEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location);
+                            gameEvent.setGame(nombreJuego.getText().toString());
+                            gameEvent.setKind(tipoJuego.getText().toString());
+                            gameEvent.setPrize(premio.getText().toString());
+                            gameEvent.setAgeRange(rangoEdad.getText().toString());
+
+                            if (mayorEdad.getSelectedItemPosition() == 0) {
+                                gameEvent.setAdult(true);
+                            } else if (mayorEdad.getSelectedItemPosition() == 1) {
+                                gameEvent.setAdult(false);
+                            }
+
+                            if (respuestaNivel.getSelectedItemPosition() == 0) {
+                                gameEvent.setLevel(GameEventLevel.BEGINNER);
+                            } else if (respuestaNivel.getSelectedItemPosition() == 1) {
+                                gameEvent.setLevel(GameEventLevel.AMATEUR);
+                            } else if (respuestaNivel.getSelectedItemPosition() == 2) {
+                                gameEvent.setLevel(GameEventLevel.INTERMEDIATE);
+                            } else if (respuestaNivel.getSelectedItemPosition() == 3) {
+                                gameEvent.setLevel(GameEventLevel.ADVANCED);
+                            } else if (respuestaNivel.getSelectedItemPosition() == 4) {
+                                gameEvent.setLevel(GameEventLevel.PROFESSIONAL);
+                            }
+
+                            eventProvider.createEvent(gameEvent, host);
+                            confirm();
                         }
-
-                        if(respuestaNivel.getSelectedItemPosition() == 0){
-                            gameEvent.setLevel(GameEventLevel.BEGINNER);
-                        }
-
-                        else if(respuestaNivel.getSelectedItemPosition() == 1){
-                            gameEvent.setLevel(GameEventLevel.AMATEUR);
-                        }
-
-                        else if(respuestaNivel.getSelectedItemPosition() == 2){
-                            gameEvent.setLevel(GameEventLevel.INTERMEDIATE);
-                        }
-
-                        else if(respuestaNivel.getSelectedItemPosition() == 3){
-                            gameEvent.setLevel(GameEventLevel.ADVANCED);
-                        }
-
-                        else if(respuestaNivel.getSelectedItemPosition() == 4){
-                            gameEvent.setLevel(GameEventLevel.PROFESSIONAL);
-                        }
-
-                        eventProvider.createEvent(gameEvent, host );
 
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbMusical.getId()){
-                        MusicEvent musicEvent = new MusicEvent(nombre,descripcion,startDate,endDate,valor,capacidad,tags,location);
+                        AwesomeValidation validationMusic = new AwesomeValidation(ValidationStyle.BASIC);
+
 
                         EditText genero = findViewById(R.id.etGeneroEventoMusical);
                         EditText artistas = findViewById(R.id.etArtistasEventoMusical);
 
-                        musicEvent.setMusic(genero.getText().toString());
-                        musicEvent.setArtists(artistas.getText().toString());
+                        validationMusic.addValidation(genero,RegexTemplate.NOT_EMPTY,"Ingrese un genero musical");
+                        validationMusic.addValidation(artistas,RegexTemplate.NOT_EMPTY,"Ingrese artistas invitados");
 
-                        eventProvider.createEvent(musicEvent,host);
+                        if(validationMusic.validate()) {
+                            MusicEvent musicEvent = new MusicEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location);
+                            musicEvent.setMusic(genero.getText().toString());
+                            musicEvent.setArtists(artistas.getText().toString());
+
+                            eventProvider.createEvent(musicEvent, host);
+                            confirm();
+                        }
 
                     }
 
@@ -491,6 +520,12 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
             }
         });
 
+    }
+
+    private void confirm() {
+        Intent i = new Intent(this,PrincipalActivity.class);
+        Toast.makeText(this,"Evento Guardado con Exito",Toast.LENGTH_SHORT).show();
+        startActivity(i);
     }
 
     private void clearSpecificEvent() {
