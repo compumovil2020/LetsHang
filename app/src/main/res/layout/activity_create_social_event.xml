@@ -6,25 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".activities.CreateSocialEventActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="647dp"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:paddingHorizontal="30dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvTituloCrearEventoSocial"
@@ -36,26 +27,27 @@
             android:text="CREAR EVENTO \nSOCIAL"
             android:textColor="@color/secondaryColor"
             android:textSize="30dp" />
+
         <EditText
             android:id="@+id/etGeneroEventoSocial"
             style="@style/form_big"
-            android:layout_marginVertical="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/secondaryColor"
             android:ems="10"
             android:gravity="center"
             android:hint="GÉNERO MUSICAL"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/etTematicaEventoSocial"
             style="@style/form_big"
-            android:layout_marginVertical="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/secondaryColor"
             android:ems="10"
@@ -67,23 +59,24 @@
         <EditText
             android:id="@+id/etEdadMinimaEventoSocial"
             style="@style/form_big"
-            android:inputType="number"
-            android:layout_marginVertical="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/secondaryColor"
             android:ems="10"
             android:gravity="center"
             android:hint="EDAD MINIMA"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"  />
+            app:layout_constraintStart_toStartOf="parent" />
+
         <EditText
             android:id="@+id/etReglasEventoSocial"
             style="@style/form_big"
-            android:layout_marginVertical="10dp"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
+            android:layout_marginVertical="10dp"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/secondaryColor"
             android:ems="10"
@@ -91,18 +84,8 @@
             android:hint="REGLAS DEL EVENTO"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-        <Button
-            android:id="@+id/btnCrearEventoSocial"
-            style="@style/form_normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Crear Evento"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etArtistasEventoMusical" />
 
 
     </LinearLayout>
-    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

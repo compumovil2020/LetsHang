@@ -7,120 +7,106 @@
     tools:context=".activities.CreateAcademicalEvent"
     android:padding="20dp">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="336dp">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvTituloAcademicalEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:fontFamily="@font/coves_bold"
+            android:gravity="center"
+            android:text="CREAR EVENTO ACADÉMICO"
+            android:textColor="@color/secondaryColor"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/etSubjectAcademicalEvent"
+            style="@style/form_big"
+            android:layout_width="314dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="TEMA DEL EVENTO"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTituloGameEvent" />
+
+        <EditText
+            android:id="@+id/etIdiomaCreateAcademicalEvent"
+            style="@style/form_big"
+            android:layout_width="314dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginTop="50dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="IDIOMA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPremioJuegoGameEvent" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvTituloAcademicalEvent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:fontFamily="@font/coves_bold"
-                android:gravity="center"
-                android:text="CREAR EVENTO ACADÉMICO"
-                android:textColor="@color/secondaryColor"
-                android:textSize="30dp" />
-
-            <EditText
-                android:id="@+id/etSubjectAcademicalEvent"
-                style="@style/form_big"
-                android:layout_width="314dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:layout_marginTop="50dp"
-                android:backgroundTint="@color/secondaryColor"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="TEMA DEL EVENTO"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTituloGameEvent" />
-
-            <EditText
-                android:id="@+id/etIdiomaCreateAcademicalEvent"
-                style="@style/form_big"
-                android:layout_width="314dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:layout_marginTop="50dp"
-                android:backgroundTint="@color/secondaryColor"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="IDIOMA"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etPremioJuegoGameEvent" />
-
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txTipoEventoCreateAcademicalEvent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/coves_bold"
-                    android:text="Tipo de evento académico:"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <Spinner
-                    android:id="@+id/spTipoEventoAcademicalEvent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="10" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tvNivelEventoAcademicaEvent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:fontFamily="@font/coves_bold"
-                    android:text="Nivel del Evento:"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <Spinner
-                    android:id="@+id/spNivelEventoAcademicaEvent"
-                    android:layout_marginLeft="15dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="20" />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnCrearEventoAcademico"
-                style="@style/form_normal"
+                android:id="@+id/txTipoEventoCreateAcademicalEvent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="Crear Evento"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etArtistasEventoMusical" />
+                android:layout_weight="1"
+                android:fontFamily="@font/coves_bold"
+                android:text="Tipo de evento académico:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
+            <Spinner
+                android:id="@+id/spTipoEventoAcademicalEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="10" />
         </LinearLayout>
-    </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvNivelEventoAcademicaEvent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/coves_bold"
+                android:text="Nivel del Evento:"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spNivelEventoAcademicaEvent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="20"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

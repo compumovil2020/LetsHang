@@ -47,7 +47,6 @@ public class CreateAcademicalEvent extends AppCompatActivity {
         idioma = findViewById(R.id.etIdiomaCreateAcademicalEvent);
         nivelEventoAcademico = findViewById(R.id.spNivelEventoAcademicaEvent);
         tipoEventoAcademico = findViewById(R.id.spTipoEventoAcademicalEvent);
-        crearEventBtn = findViewById(R.id.btnCrearEventoAcademico);
 
         userProvider = UserProvider.getInsatance();
         eventProvider = EventProvider.getInsatance();

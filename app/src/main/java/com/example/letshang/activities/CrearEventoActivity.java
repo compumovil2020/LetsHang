@@ -1,13 +1,13 @@
 package com.example.letshang.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
@@ -17,15 +17,19 @@ import android.hardware.SensorManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -62,6 +66,7 @@ import com.google.common.collect.Range;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -73,6 +78,8 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
     private GregorianCalendar startDate, endDate;
     private ArrayList<String> tags;
     private ChipGroup chipGroup;
+
+
     private AwesomeValidation validation;
     private RadioGroup radioGroup;
     private CustomMapView mapView;
@@ -95,6 +102,12 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
     public static final double upperRightLatitude=  5.443858;
     public static final double upperRigthLongitude= -73.286441;
 
+    private ConstraintLayout lyEventoMusical;
+    private ConstraintLayout lyEventoAcademico;
+    private ConstraintLayout lyEventoGame;
+    private ConstraintLayout lyEventoSocial;
+    private ConstraintLayout lyEventoDeportivo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,6 +126,12 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
         etDescription = findViewById(R.id.editTextTextMultiLine);
         etCapacidad = findViewById(R.id.etCapacidadCrearEvento);
         radioGroup = findViewById(R.id.rgTipoEventoCrearEvento);
+
+        lyEventoMusical = findViewById(R.id.lyEventoMusical);
+        lyEventoAcademico = findViewById(R.id.lyEventoAcademico);
+        lyEventoGame = findViewById(R.id.lyEventoGame);
+        lyEventoSocial = findViewById(R.id.lyEventoSocial);
+        lyEventoDeportivo = findViewById(R.id.lyEventoDeportivo);
 
         rbSocial = findViewById(R.id.rbSocialCrearEvento);
         rbSport = findViewById(R.id.rbSportCrearEvento);
@@ -296,6 +315,120 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                 }
             }
         });
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                clearSpecificEvent();
+                if(i == rbAcademic.getId()){
+                    setAcademicEvent();
+
+                }else if(i == rbSport.getId()){
+                    setSportEvent();
+
+                }
+                else if(i == rbSocial.getId()){
+                    setSocialEvent();
+
+                }
+                else if(i == rbGaming.getId()){
+                    setGamingEvent();
+
+                }
+                else if(i == rbMusical.getId()){
+                    setMusicalEvent();
+
+                }
+            }
+        });
+
+    }
+
+    private void clearSpecificEvent() {
+        lyEventoMusical.setVisibility(View.GONE);
+        lyEventoAcademico.setVisibility(View.GONE);
+        lyEventoGame.setVisibility(View.GONE);
+        lyEventoSocial.setVisibility(View.GONE);
+        lyEventoDeportivo.setVisibility(View.GONE);
+    }
+
+
+    private void setMusicalEvent() {
+        lyEventoMusical.setVisibility(View.VISIBLE);
+    }
+
+    private void setGamingEvent() {
+        Spinner respuestaMayorEdad, respuestaNivel;
+        respuestaMayorEdad = findViewById(R.id.spMayorEdadGameEvent);
+        respuestaNivel = findViewById(R.id.spNivelGameEvent);
+        //Spinner de nivel
+        List<String> spinnerArray =  new ArrayList<String>();
+        spinnerArray.add("Principiante");
+        spinnerArray.add("Amateur");
+        spinnerArray.add("Intermedio");
+        spinnerArray.add("Avanzado");
+        spinnerArray.add("Profesional");
+
+        //Spiner mayor edad
+        List<String> spinnerEdad = new ArrayList<String>();
+        spinnerEdad.add("Si");
+        spinnerEdad.add("No");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        respuestaNivel.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerEdad);
+
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        respuestaMayorEdad.setAdapter(adapter2);
+
+        lyEventoGame.setVisibility(View.VISIBLE);
+
+
+    }
+
+    private void setSocialEvent() {
+        lyEventoSocial.setVisibility(View.VISIBLE);
+
+    }
+
+    private void setSportEvent() {
+        Spinner spinner;
+        spinner = findViewById(R.id.spLevelEventoDeportivo);
+        // llenar spinner
+        List<String> spinnerArray =  new ArrayList<String>();
+        spinnerArray.add("Principiante");
+        spinnerArray.add("Amateur");
+        spinnerArray.add("Intermedio");
+        spinnerArray.add("Avanzado");
+        spinnerArray.add("Profesional");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        lyEventoDeportivo.setVisibility(View.VISIBLE);
+
+    }
+
+    private void setAcademicEvent() {
+
+        Spinner nivelEventoAcademico, tipoEventoAcademico;
+        nivelEventoAcademico = findViewById(R.id.spNivelEventoAcademicaEvent);
+        tipoEventoAcademico = findViewById(R.id.spTipoEventoAcademicalEvent);
+        List<String> spinnerList1 = Arrays.asList(getResources().getStringArray(R.array.type_academical_event));
+        List<String> spinnerList2 = Arrays.asList(getResources().getStringArray(R.array.academic_Levels));
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,spinnerList1);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipoEventoAcademico.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,spinnerList2);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        nivelEventoAcademico.setAdapter(adapter1);
+        lyEventoAcademico.setVisibility(View.VISIBLE);
 
     }
 

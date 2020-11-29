@@ -52,7 +52,6 @@ public class CreateSocialEventActivity extends AppCompatActivity {
         etTematicaEventoSocial = findViewById(R.id.etTematicaEventoSocial);
         etEdadMinimaEventoSocial = findViewById(R.id.etEdadMinimaEventoSocial);
         etReglasEventoSocial = findViewById(R.id.etReglasEventoSocial);
-        btnCrearEventoSocial = findViewById(R.id.btnCrearEventoSocial);
 
         //Validators
         validation.addValidation(this, R.id.etGeneroEventoSocial, RegexTemplate.NOT_EMPTY, R.string.requirederror);

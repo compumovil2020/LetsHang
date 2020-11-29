@@ -47,7 +47,6 @@ public class CreateSportEventActivity extends AppCompatActivity {
         spinner = findViewById(R.id.spLevelEventoDeportivo);
         etDeporte = findViewById(R.id.etDeporteEventoDeportivo);
         etEquipo = findViewById(R.id.etEquipoEventoDeportivo);
-        botonCrear = findViewById(R.id.btnCrearEventoDeportivo);
 
         ep = EventProvider.getInsatance();
         up = UserProvider.getInsatance();

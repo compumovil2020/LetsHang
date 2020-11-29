@@ -38,7 +38,6 @@ public class CreateMusicEventActivity extends AppCompatActivity {
 
         etGenero = findViewById(R.id.etGeneroEventoMusical);
         etArtistas = findViewById(R.id.etArtistasEventoMusical);
-        botonCrear = findViewById(R.id.btnCrearEventoMusical);
 
         ep = EventProvider.getInsatance();
         up = UserProvider.getInsatance();

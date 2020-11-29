@@ -56,7 +56,6 @@ public class CreateGameEventActivity extends AppCompatActivity {
         respuestaNivel = findViewById(R.id.spNivelGameEvent);
         rangoEdad = findViewById(R.id.etRangoEdadJuegoGameEvent);
 
-        button = findViewById(R.id.bCrearEventoGameEvent);
 
         userProvider = UserProvider.getInsatance();
         eventProvider = EventProvider.getInsatance();
