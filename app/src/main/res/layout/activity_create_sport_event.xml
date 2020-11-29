@@ -4,103 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.CreateSportEventActivity">
+    tools:context=".activities.CrearEventoActivity">
 
-    <ScrollView
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvTituloEventoDeportivo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="647dp"
+            android:layout_marginTop="48dp"
+            android:fontFamily="@font/coves_bold"
             android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="CREAR EVENTO \nDEPORTIVO"
+            android:textColor="@color/secondaryColor"
+            android:textSize="30dp" />
+
+        <EditText
+            android:id="@+id/etDeporteEventoDeportivo"
+            style="@style/form_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_marginTop="32dp"
+            android:backgroundTint="@color/secondaryColor"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="DEPORTE"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTituloCrearEvento" />
+
+        <EditText
+            android:id="@+id/etEquipoEventoDeportivo"
+            style="@style/form_big"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/secondaryColor"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="TAMAÑO DEL EQUIPO"
+            android:inputType="number" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal"
             android:paddingHorizontal="30dp">
 
             <TextView
-                android:id="@+id/tvTituloEventoDeportivo"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvNivelEventoDeportivo"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:fontFamily="@font/coves_bold"
-                android:gravity="center"
-                android:text="CREAR EVENTO \nDEPORTIVO"
-                android:textColor="@color/secondaryColor"
-                android:textSize="30dp" />
-
-            <EditText
-                android:id="@+id/etDeporteEventoDeportivo"
-                style="@style/form_big"
-                android:layout_marginVertical="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:backgroundTint="@color/secondaryColor"
-                android:ems="10"
-                android:gravity="center"
-                android:hint="DEPORTE"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvTituloCrearEvento" />
-
-            <EditText
-                android:id="@+id/etEquipoEventoDeportivo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="10dp"
-                android:backgroundTint="@color/secondaryColor"
-                style="@style/form_big"
-                android:gravity="center"
-                android:hint="TAMAÑO DEL EQUIPO"
                 android:layout_weight="1"
-                android:ems="10"
-                android:inputType="number" />
+                android:text="Nivel" />
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="10dp"
-                android:orientation="horizontal"
-                android:paddingHorizontal="30dp">
-
-                <TextView
-                    android:id="@+id/tvNivelEventoDeportivo"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Nivel" />
-
-                <Spinner
-                    android:id="@+id/spLevelEventoDeportivo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/btnCrearEventoDeportivo"
-                style="@style/form_normal"
+            <Spinner
+                android:id="@+id/spLevelEventoDeportivo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:text="Crear Evento"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cgTagsCrearEvento" />
-
+                android:layout_weight="1" />
 
         </LinearLayout>
-    </ScrollView>
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

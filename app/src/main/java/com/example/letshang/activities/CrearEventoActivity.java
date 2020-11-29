@@ -1,13 +1,13 @@
 package com.example.letshang.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
@@ -17,15 +17,19 @@ import android.hardware.SensorManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -34,6 +38,18 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.letshang.R;
+import com.example.letshang.model.AcademicEvent;
+import com.example.letshang.model.AcademicEventLevel;
+import com.example.letshang.model.AcademicType;
+import com.example.letshang.model.GameEvent;
+import com.example.letshang.model.GameEventLevel;
+import com.example.letshang.model.Host;
+import com.example.letshang.model.MusicEvent;
+import com.example.letshang.model.SocialEvent;
+import com.example.letshang.model.SportEvent;
+import com.example.letshang.model.SportEventLevel;
+import com.example.letshang.providers.EventProvider;
+import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.dialog.CustomMapView;
 import com.example.letshang.ui.dialog.DatePickerFragment;
 import com.example.letshang.ui.dialog.TimePickerFragment;
@@ -59,9 +75,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.common.collect.Range;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -73,6 +91,8 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
     private GregorianCalendar startDate, endDate;
     private ArrayList<String> tags;
     private ChipGroup chipGroup;
+
+
     private AwesomeValidation validation;
     private RadioGroup radioGroup;
     private CustomMapView mapView;
@@ -95,6 +115,15 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
     public static final double upperRightLatitude=  5.443858;
     public static final double upperRigthLongitude= -73.286441;
 
+    private ConstraintLayout lyEventoMusical;
+    private ConstraintLayout lyEventoAcademico;
+    private ConstraintLayout lyEventoGame;
+    private ConstraintLayout lyEventoSocial;
+    private ConstraintLayout lyEventoDeportivo;
+
+    private UserProvider userProvider;
+    private EventProvider eventProvider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +132,9 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
         setContentView(R.layout.activity_crear_evento);
 
         mGeocoder = new Geocoder(getBaseContext());
+
+        userProvider = UserProvider.getInstance();
+        eventProvider = EventProvider.getInsatance();
 
         etNombre = findViewById(R.id.etNombreCrearEvento);
         etLugar = findViewById(R.id.etLugarCrearEvento);
@@ -113,6 +145,12 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
         etDescription = findViewById(R.id.editTextTextMultiLine);
         etCapacidad = findViewById(R.id.etCapacidadCrearEvento);
         radioGroup = findViewById(R.id.rgTipoEventoCrearEvento);
+
+        lyEventoMusical = findViewById(R.id.lyEventoMusical);
+        lyEventoAcademico = findViewById(R.id.lyEventoAcademico);
+        lyEventoGame = findViewById(R.id.lyEventoGame);
+        lyEventoSocial = findViewById(R.id.lyEventoSocial);
+        lyEventoDeportivo = findViewById(R.id.lyEventoDeportivo);
 
         rbSocial = findViewById(R.id.rbSocialCrearEvento);
         rbSport = findViewById(R.id.rbSportCrearEvento);
@@ -258,44 +296,324 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
             @Override
             public void onClick(View view) {
                 if(validateInput()){
-
                     Log.i("selected location", String.valueOf(location.latitude) + " "+String.valueOf(location.longitude));
                     Toast.makeText(getApplicationContext() , "texto: " + etLugar.getText().toString() , Toast.LENGTH_SHORT).show();
-                    Intent i= new Intent();
+                    String nombre = etNombre.getText().toString();
+                    Long valor = Long.parseLong(etPrecio.getText().toString());
+                    int capacidad = Integer.parseInt(etCapacidad.getText().toString());
+                    String descripcion = etDescription.getText().toString();
+                    String locationName = etLugar.getText().toString();
+
+
+
+                    String host = FirebaseAuth.getInstance().getUid();
 
                     if(radioGroup.getCheckedRadioButtonId() == rbAcademic.getId()){
-                        i = new Intent(getApplicationContext() , CreateAcademicalEvent.class);
+                        AwesomeValidation validationAcademic = new AwesomeValidation(ValidationStyle.BASIC);
+
+
+                        EditText materia = findViewById(R.id.etSubjectAcademicalEvent);
+                        EditText idioma = findViewById(R.id.etIdiomaCreateAcademicalEvent);
+                        Spinner tipo = findViewById(R.id.spTipoEventoAcademicalEvent);
+                        Spinner nivel = findViewById(R.id.spNivelEventoAcademicaEvent);
+
+                        validationAcademic.addValidation(CrearEventoActivity.this, R.id.etSubjectAcademicalEvent, RegexTemplate.NOT_EMPTY, R.string.materiaerror);
+                        validationAcademic.addValidation(CrearEventoActivity.this, R.id.etIdiomaCreateAcademicalEvent, RegexTemplate.NOT_EMPTY, R.string.idiomaerror);
+
+                        if(validationAcademic.validate()) {
+                            AcademicEvent academicEvent = new AcademicEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location,locationName);
+
+                            academicEvent.setLanguages(idioma.getText().toString());
+                            academicEvent.setSubject(materia.getText().toString());
+                            switch (nivel.getSelectedItem().toString()) {
+                                case "Prescolar":
+                                    academicEvent.setLevel(AcademicEventLevel.PRESCHOOL);
+                                    break;
+                                case "Elemental":
+                                    academicEvent.setLevel(AcademicEventLevel.ELEMENTARY);
+                                    break;
+                                case "Juvenil":
+                                    academicEvent.setLevel(AcademicEventLevel.JUVENILE);
+                                    break;
+                                case "Bachillerato":
+                                    academicEvent.setLevel(AcademicEventLevel.HIGHSCHOOL);
+                                    break;
+                                case "Universitario":
+                                    academicEvent.setLevel(AcademicEventLevel.UNIVERSITY);
+                                    break;
+                                case "Profesional":
+                                    academicEvent.setLevel(AcademicEventLevel.PROFFESIONAL);
+                                    break;
+                            }
+
+                            switch (tipo.getSelectedItem().toString()) {
+                                case "Taller":
+                                    academicEvent.setTypeAcademicalEvent(AcademicType.TALLER);
+                                    break;
+                                case "Seminario":
+                                    academicEvent.setTypeAcademicalEvent(AcademicType.SEMINARIO);
+                                    break;
+                                case "Monitoria":
+                                    academicEvent.setTypeAcademicalEvent(AcademicType.MONITORIA);
+                                    break;
+                                case "Charla":
+                                    academicEvent.setTypeAcademicalEvent(AcademicType.CHARLA);
+                                    break;
+                                case "Disertación":
+                                    academicEvent.setTypeAcademicalEvent(AcademicType.DISERTACION);
+                                    break;
+                            }
+                            eventProvider.createEvent(academicEvent, host);
+                            confirm();
+                        }
 
                     }else if(radioGroup.getCheckedRadioButtonId() == rbSport.getId()){
-                        i = new Intent(getApplicationContext() , CreateSportEventActivity.class);
+                        AwesomeValidation validationSport = new AwesomeValidation(ValidationStyle.BASIC);
+
+                        EditText deporte = findViewById(R.id.etDeporteEventoDeportivo);
+                        EditText equipo = findViewById(R.id.etEquipoEventoDeportivo);
+                        Spinner nivel = findViewById(R.id.spLevelEventoDeportivo);
+
+                        validationSport.addValidation(deporte,RegexTemplate.NOT_EMPTY,"Ingresa el deporte");
+                        validationSport.addValidation(equipo,RegexTemplate.NOT_EMPTY,"Ingresa el tamaño del equipo");
+                        validationSport.addValidation(equipo,Range.open(1,20),"Ingresa un numero valido");
+
+                        if(validationSport.validate()) {
+                            SportEvent sportEvent = new SportEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location,locationName);
+                            sportEvent.setSport(deporte.getText().toString());
+                            sportEvent.setTeamSize(Integer.parseInt(equipo.getText().toString()));
+
+                            if (nivel.getSelectedItemPosition() == 0) {
+                                sportEvent.setLevel(SportEventLevel.BEGINNER);
+                            } else if (nivel.getSelectedItemPosition() == 1) {
+                                sportEvent.setLevel(SportEventLevel.AMATEUR);
+                            } else if (nivel.getSelectedItemPosition() == 2) {
+                                sportEvent.setLevel(SportEventLevel.INTERMEDIATE);
+                            } else if (nivel.getSelectedItemPosition() == 3) {
+                                sportEvent.setLevel(SportEventLevel.ADVANCED);
+                            } else if (nivel.getSelectedItemPosition() == 4) {
+                                sportEvent.setLevel(SportEventLevel.PROFESSIONAL);
+                            }
+
+                            eventProvider.createEvent(sportEvent, host);
+                            confirm();
+                        }
 
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbSocial.getId()){
-                        i = new Intent(getApplicationContext() , CreateSocialEventActivity.class);
+                        AwesomeValidation validationSocial = new AwesomeValidation(ValidationStyle.BASIC);
 
+                        EditText genero = findViewById(R.id.etGeneroEventoSocial);
+                        EditText tematica = findViewById(R.id.etTematicaEventoSocial);
+                        EditText edadMinima = findViewById(R.id.etEdadMinimaEventoSocial);
+                        EditText reglas = findViewById(R.id.etEdadMinimaEventoSocial);
+
+                        validationSocial.addValidation(genero,RegexTemplate.NOT_EMPTY,"Ingrese un genero de musica");
+                        validationSocial.addValidation(tematica,RegexTemplate.NOT_EMPTY,"Ingrese una tematica");
+                        validationSocial.addValidation(edadMinima,RegexTemplate.NOT_EMPTY,"Ingrese una edad");
+                        validationSocial.addValidation(edadMinima,Range.open(0,100),"Ingrese una edad entre 0 y 100");
+                        validationSocial.addValidation(reglas,RegexTemplate.NOT_EMPTY,"Ingrese las reglas del evento");
+
+                        if(validationSocial.validate()) {
+                            SocialEvent socialEvent = new SocialEvent(nombre,descripcion,startDate,endDate,valor,capacidad,tags,location,locationName);
+                            socialEvent.setMusicGenre(genero.getText().toString());
+                            socialEvent.setTheme(tematica.getText().toString());
+                            socialEvent.setMinimumAge(Integer.parseInt(edadMinima.getText().toString()));
+                            socialEvent.setRules(reglas.getText().toString());
+
+                            eventProvider.createEvent(socialEvent, host);
+                            confirm();
+                        }
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbGaming.getId()){
-                        i = new Intent(getApplicationContext() , CreateGameEventActivity.class);
+                        AwesomeValidation validationGame = new AwesomeValidation(ValidationStyle.BASIC);
+
+
+                        EditText nombreJuego = findViewById(R.id.etNombreJuegoGameEvent);
+                        EditText tipoJuego = findViewById(R.id.etTipoDeJuegoGameEvent);
+                        EditText premio = findViewById(R.id.etPremioJuegoGameEvent);
+                        EditText rangoEdad = findViewById(R.id.etRangoEdadJuegoGameEvent);
+                        Spinner respuestaNivel = findViewById(R.id.spNivelGameEvent);
+                        Spinner mayorEdad = findViewById(R.id.spMayorEdadGameEvent);
+
+                        validationGame.addValidation(nombreJuego,RegexTemplate.NOT_EMPTY,"Ingrese el nombre del juego");
+                        validationGame.addValidation(tipoJuego,RegexTemplate.NOT_EMPTY,"Ingrese el tipo del juego");
+                        validationGame.addValidation(premio,RegexTemplate.NOT_EMPTY,"Ingrese un premio");
+                        validationGame.addValidation(rangoEdad,RegexTemplate.NOT_EMPTY,"Ingrese un rango de edad");
+
+                        if(validationGame.validate()) {
+                            GameEvent gameEvent = new GameEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location,locationName);
+                            gameEvent.setGame(nombreJuego.getText().toString());
+                            gameEvent.setKind(tipoJuego.getText().toString());
+                            gameEvent.setPrize(premio.getText().toString());
+                            gameEvent.setAgeRange(rangoEdad.getText().toString());
+
+                            if (mayorEdad.getSelectedItemPosition() == 0) {
+                                gameEvent.setAdult(true);
+                            } else if (mayorEdad.getSelectedItemPosition() == 1) {
+                                gameEvent.setAdult(false);
+                            }
+
+                            if (respuestaNivel.getSelectedItemPosition() == 0) {
+                                gameEvent.setLevel(GameEventLevel.BEGINNER);
+                            } else if (respuestaNivel.getSelectedItemPosition() == 1) {
+                                gameEvent.setLevel(GameEventLevel.AMATEUR);
+                            } else if (respuestaNivel.getSelectedItemPosition() == 2) {
+                                gameEvent.setLevel(GameEventLevel.INTERMEDIATE);
+                            } else if (respuestaNivel.getSelectedItemPosition() == 3) {
+                                gameEvent.setLevel(GameEventLevel.ADVANCED);
+                            } else if (respuestaNivel.getSelectedItemPosition() == 4) {
+                                gameEvent.setLevel(GameEventLevel.PROFESSIONAL);
+                            }
+
+                            eventProvider.createEvent(gameEvent, host);
+                            confirm();
+                        }
 
                     }
                     else if(radioGroup.getCheckedRadioButtonId() == rbMusical.getId()){
-                        i = new Intent(getApplicationContext() , CreateMusicEventActivity.class);
+                        AwesomeValidation validationMusic = new AwesomeValidation(ValidationStyle.BASIC);
+
+                        EditText genero = findViewById(R.id.etGeneroEventoMusical);
+                        EditText artistas = findViewById(R.id.etArtistasEventoMusical);
+
+                        validationMusic.addValidation(genero,RegexTemplate.NOT_EMPTY,"Ingrese un genero musical");
+                        validationMusic.addValidation(artistas,RegexTemplate.NOT_EMPTY,"Ingrese artistas invitados");
+
+                        if(validationMusic.validate()) {
+                            MusicEvent musicEvent = new MusicEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location,locationName);
+                            musicEvent.setMusic(genero.getText().toString());
+                            musicEvent.setArtists(artistas.getText().toString());
+
+                            eventProvider.createEvent(musicEvent, host);
+                            confirm();
+                        }
 
                     }
 
-                    i.putExtra("name", etNombre.getText().toString());
-                    i.putExtra("location", location);
-                    i.putExtra("price" , etPrecio.getText().toString());
-                    i.putExtra("startDate" , startDate);
-                    i.putExtra("endDate" , endDate);
-                    i.putExtra("tags" , tags);
-                    i.putExtra("capacidad" , Integer.parseInt(etCapacidad.getText().toString()));
-                    i.putExtra("description" , etDescription.getText().toString());
-
-                    startActivity(i);
                 }
             }
         });
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                clearSpecificEvent();
+                if(i == rbAcademic.getId()){
+                    setAcademicEvent();
+
+                }else if(i == rbSport.getId()){
+                    setSportEvent();
+
+                }
+                else if(i == rbSocial.getId()){
+                    setSocialEvent();
+
+                }
+                else if(i == rbGaming.getId()){
+                    setGamingEvent();
+
+                }
+                else if(i == rbMusical.getId()){
+                    setMusicalEvent();
+
+                }
+            }
+        });
+
+    }
+
+    private void confirm() {
+        Intent i = new Intent(this,PrincipalActivity.class);
+        Toast.makeText(this,"Evento Guardado con Exito",Toast.LENGTH_SHORT).show();
+        startActivity(i);
+    }
+
+    private void clearSpecificEvent() {
+        lyEventoMusical.setVisibility(View.GONE);
+        lyEventoAcademico.setVisibility(View.GONE);
+        lyEventoGame.setVisibility(View.GONE);
+        lyEventoSocial.setVisibility(View.GONE);
+        lyEventoDeportivo.setVisibility(View.GONE);
+    }
+
+
+    private void setMusicalEvent() {
+        lyEventoMusical.setVisibility(View.VISIBLE);
+    }
+
+    private void setGamingEvent() {
+        Spinner respuestaMayorEdad, respuestaNivel;
+        respuestaMayorEdad = findViewById(R.id.spMayorEdadGameEvent);
+        respuestaNivel = findViewById(R.id.spNivelGameEvent);
+        //Spinner de nivel
+        List<String> spinnerArray =  new ArrayList<String>();
+        spinnerArray.add("Principiante");
+        spinnerArray.add("Amateur");
+        spinnerArray.add("Intermedio");
+        spinnerArray.add("Avanzado");
+        spinnerArray.add("Profesional");
+
+        //Spiner mayor edad
+        List<String> spinnerEdad = new ArrayList<String>();
+        spinnerEdad.add("Si");
+        spinnerEdad.add("No");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        respuestaNivel.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerEdad);
+
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        respuestaMayorEdad.setAdapter(adapter2);
+
+        lyEventoGame.setVisibility(View.VISIBLE);
+
+
+    }
+
+    private void setSocialEvent() {
+        lyEventoSocial.setVisibility(View.VISIBLE);
+
+    }
+
+    private void setSportEvent() {
+        Spinner spinner;
+        spinner = findViewById(R.id.spLevelEventoDeportivo);
+        // llenar spinner
+        List<String> spinnerArray =  new ArrayList<String>();
+        spinnerArray.add("Principiante");
+        spinnerArray.add("Amateur");
+        spinnerArray.add("Intermedio");
+        spinnerArray.add("Avanzado");
+        spinnerArray.add("Profesional");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        lyEventoDeportivo.setVisibility(View.VISIBLE);
+
+    }
+
+    private void setAcademicEvent() {
+
+        Spinner nivelEventoAcademico, tipoEventoAcademico;
+        nivelEventoAcademico = findViewById(R.id.spNivelEventoAcademicaEvent);
+        tipoEventoAcademico = findViewById(R.id.spTipoEventoAcademicalEvent);
+        List<String> spinnerList1 = Arrays.asList(getResources().getStringArray(R.array.type_academical_event));
+        List<String> spinnerList2 = Arrays.asList(getResources().getStringArray(R.array.academic_Levels));
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,spinnerList1);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipoEventoAcademico.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,spinnerList2);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        nivelEventoAcademico.setAdapter(adapter1);
+        lyEventoAcademico.setVisibility(View.VISIBLE);
 
     }
 

@@ -24,7 +24,11 @@ public class PerfilHostActivity extends AppCompatActivity {
 
         //Por el momento el host lo saca del evento, toca cambiarlo
         // para que saque de la bd un host en especifico.
-        Host host = eventProvider.getEventHost(1);
+        //TODO: descomentarear esto
+        //Host host = eventProvider.getEventHost(1);
+
+        Host host = null;
+
 
         tvNombrePerfilHost.setText("Host: " + host.getName());
 

@@ -18,11 +18,24 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.letshang.R;
+import com.example.letshang.model.Event;
+import com.example.letshang.model.EventsEnum;
+import com.example.letshang.model.Participant;
+import com.example.letshang.model.Preference;
+import com.example.letshang.model.User;
+import com.example.letshang.providers.UserProvider;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.GregorianCalendar;
 
 public class RegistroActivity extends AppCompatActivity {
 
@@ -33,6 +46,7 @@ public class RegistroActivity extends AppCompatActivity {
     private ToggleButton tbDeportes, tbJuegosMesa, tbConciertos, tbFiesta, tbCharlar, tbConferencias;
     private Button btnAgregar;
     private AwesomeValidation validator;
+    private UserProvider userProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +54,7 @@ public class RegistroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registro);
         mAuth = FirebaseAuth.getInstance();
         user = null;
+        userProvider = userProvider.getInstance();
 
         etNombre = findViewById(R.id.etNombreRegistro);
         etCorreo = findViewById(R.id.etCorreoRegistro);
@@ -95,6 +110,9 @@ public class RegistroActivity extends AppCompatActivity {
                             Log.d("signup", "createUserWithEmail:success");
                             user = mAuth.getCurrentUser();
 
+                            //TODO: crear un campo para la fecha de nacimiento
+                            Participant dbUser = crearUsuario();
+                            userProvider.setUser(dbUser, mAuth.getUid());
                             updateUI(user);
 
                         } else {
@@ -108,6 +126,34 @@ public class RegistroActivity extends AppCompatActivity {
                     }
                 });
     }
+
+
+    /**
+     * crea un objeto usuario usando los campos que se llenaron
+     * @return
+     */
+    private Participant crearUsuario(){
+        //TODO: hacer una lista de intereses bonita con tags
+
+        //TODO: si este arraylist es nulo, va a haber problemas con firebase
+        //toca poner obligatorio al menos un interes
+        ArrayList<String> tags = new ArrayList<>();
+        tags.add("Futbol");
+
+        Participant p = new Participant(etNombre.getText().toString(),
+                etCorreo.getText().toString(), new GregorianCalendar(),
+                etTelefono.getText().toString(),"", "", "", "",
+                "" , new Preference( new EnumMap<EventsEnum, Double>(EventsEnum.class), tags), new ArrayList<Event>());
+
+        // aca le pomgo cualquier valor porque igual en la proxima pantalla se va a actualizar
+        p.setLocation(new LatLng(4,-72));
+
+        return p;
+
+
+    }
+
+
 
     private boolean validateInput(){
 

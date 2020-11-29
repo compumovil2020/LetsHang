@@ -32,12 +32,12 @@ public class Host extends Participant {
                                int maximumCapacity, Collection<String> tags, LatLng location, String type){
         //TODO: Catch what type of event it is and create the event as the type.
 
-            GameEvent gameEvent = new GameEvent("Juego de Catan","Este es un juego de estrategia para 4 o 6 personas",new GregorianCalendar(2020,11,22),new GregorianCalendar(2020,11,22),12000,6,null,"Catan",GameEventLevel.AMATEUR, location);
-        hostedEvents.add(gameEvent);
+            //GameEvent gameEvent = new GameEvent("Juego de Catan","Este es un juego de estrategia para 4 o 6 personas",new GregorianCalendar(2020,11,22),new GregorianCalendar(2020,11,22),12000,6,null,"Catan",GameEventLevel.AMATEUR, location);
+        //hostedEvents.add(gameEvent);
         return true;
     }
 
-    public boolean cancelEvent(int id){
+    public boolean cancelEvent(String id){
         //TODO: Delete the event with ID <id> and send email to participants
         for(Event e:hostedEvents){
             if (e.getID() == id){

@@ -82,7 +82,7 @@ import java.util.Locale;
 public class DescripcionEventoActivity extends AppCompatActivity implements OnMapReadyCallback, RoutingListener, GoogleApiClient.OnConnectionFailedListener {
 
     private final String TAG = "DescripcionEvento";
-    private int idEvento;
+    private String idEvento;
     private String fromActivity;
     private Event evento;
     private TextView tvHost;
@@ -109,7 +109,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private static final int REQUEST_CHECK_SETTINGS = 99;
     private String justificacion = "Se necesita el GPS para mostrar la ubicación del evento";
     private EventProvider evProv = EventProvider.getInsatance();
-    private UserProvider usProv = UserProvider.getInsatance();
+    private UserProvider usProv = UserProvider.getInstance();
     private Marker eventMarker;
 
 
@@ -118,7 +118,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_descripcion_evento);
 
-        idEvento = Integer.parseInt(getIntent().getStringExtra("idevento"));
+        idEvento = getIntent().getStringExtra("idevento");
         fromActivity = getIntent().getStringExtra("from");
 
         if(fromActivity.equalsIgnoreCase("Principal")){
@@ -233,7 +233,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         tvDescripcionEvento.setText(evento.getDescription());
         tvPrecioEvento.setText( Long.toString(evento.getPrice()));
         tvLocationEvento.setText(geoCoderSearch(evento.getLocation()));
-        tvHost.setText(evProv.getEventHost(idEvento).getName());
+        tvHost.setText(evProv.getEventHostName(idEvento));
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String fecha =  formatter.format(evento.getStartDate().getTime())  + " - " + formatter.format(evento.getEndDate().getTime());
         SimpleDateFormat formatter2 = new SimpleDateFormat("HH:mm:ss");
@@ -249,6 +249,9 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
 
     }
 
+    //TODO: no se deberia utilizar geocoder porque el evento ya tiene la direccion.
+    // es necesario tener un objeto evento, no traer todos los atributos con el intent sino solo
+    // trar el id del evento y usar el event provider para traer el objeto
     private String geoCoderSearch(LatLng latlng){
         String address = "";
         try{
