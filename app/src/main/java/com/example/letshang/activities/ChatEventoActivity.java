@@ -24,10 +24,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ChatEventoActivity extends AppCompatActivity {
+
+    //Constante
+    private static final String PATH_CHAT_EVENT = "chats-evento";
 
     //Variables extras
     private String idEvento;
@@ -83,15 +94,25 @@ public class ChatEventoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                crearMensaje();
-                setAdapter();
+                crearMensaje("PRUEBAIDEVENTO", mensajeAEnviar.getText().toString(), mAuth.getUid());
                 mensajeAEnviar.setText("");
             }
         });
     }
 
-    public void crearMensaje(){
+    public void crearMensaje(String idEvento, String mensaje, String idUsuario){
+        //Today date
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd");
 
+        Map<String, String> dato = new HashMap<>();
+        dato.put("IDUsuario", idUsuario);
+        dato.put("cuerpo", mensaje);
+        dato.put("fecha", dtf.format(c).toString());
+
+        //Crear en firebase
+        String key = databaseReferenceUsuario.push().getKey();
+        databaseReferenceUsuario.child("chats-evento").child(idEvento).child(key).setValue(dato);
     }
 
     public void verifyChat(final String idEvento){
