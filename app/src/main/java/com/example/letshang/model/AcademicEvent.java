@@ -40,11 +40,23 @@ public class AcademicEvent extends Event {
      * @param tags
      */
     public AcademicEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate,
-                         long price, int maximumCapacity, Collection<String> tags, LatLng location) {
-        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+                         long price, int maximumCapacity, Collection<String> tags, LatLng location, String locationName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locationName);
         this.subject = subject;
         this.level = level;
         this.type = EventsEnum.ACADEMIC;
+    }
+
+    public AcademicEvent(String title, String description, GregorianCalendar startDate,
+                         GregorianCalendar endDate, long price, int maximumCapacity,
+                         Collection<String> tags, LatLng location, String subject,
+                         AcademicEventLevel level, AcademicType typeAcademicalEvent,
+                         String languages, String locationName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locationName);
+        this.subject = subject;
+        this.level = level;
+        this.typeAcademicalEvent = typeAcademicalEvent;
+        this.languages = languages;
     }
 
     public String getSubject() {

@@ -23,6 +23,7 @@ import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.common.collect.Range;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -38,6 +39,8 @@ public class CreateSportEventActivity extends AppCompatActivity {
     private EventProvider ep;
     private UserProvider up;
     private SportEvent event;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +53,8 @@ public class CreateSportEventActivity extends AppCompatActivity {
         botonCrear = findViewById(R.id.btnCrearEventoDeportivo);
 
         ep = EventProvider.getInsatance();
-        up = UserProvider.getInsatance();
+        up = UserProvider.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
 
         // llenar spinner
@@ -72,6 +76,8 @@ public class CreateSportEventActivity extends AppCompatActivity {
         GregorianCalendar endDate = (GregorianCalendar) extras.get("endDate");
         int capacidad = (int) extras.get("capacidad");
         ArrayList<String> tags = (ArrayList<String>) extras.get("tags");
+        String locationName = (String) extras.get("locationName");
+
 
         // Form validation
         validation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -80,7 +86,7 @@ public class CreateSportEventActivity extends AppCompatActivity {
 
 
 
-        event = new SportEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location );
+        event = new SportEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location, locationName );
 
 
 
@@ -125,8 +131,7 @@ public class CreateSportEventActivity extends AppCompatActivity {
                     }
 
                     // agrega el evento con el provider
-                    // TODO: cambiar ese null por un host de verdad
-                    ep.createEvent(event, null );
+                    ep.createEvent(event, mAuth.getUid() );
 
                     Intent i = new Intent(getApplicationContext() , PrincipalActivity.class);
                     startActivity(i);

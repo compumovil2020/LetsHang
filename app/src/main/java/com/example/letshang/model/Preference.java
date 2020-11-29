@@ -2,6 +2,7 @@ package com.example.letshang.model;
 
 
 import java.util.EnumMap;
+import java.util.List;
 
 public class Preference {
 
@@ -14,9 +15,9 @@ public class Preference {
     /**
      * contains key words of potential events
      */
-    private String[] interests;
+    private List<String> interests;
 
-    public Preference(EnumMap<EventsEnum , Double> categories, String[] interests) {
+    public Preference(EnumMap<EventsEnum , Double> categories, List<String> interests) {
         this.categories = categories;
         this.interests = interests;
     }
@@ -52,11 +53,11 @@ public class Preference {
         this.categories = categories;
     }
 
-    public String[] getInterests() {
+    public List<String> getInterests() {
         return interests;
     }
 
-    public void setInterests(String[] interests) {
+    public void setInterests(List<String> interests) {
         this.interests = interests;
     }
 }

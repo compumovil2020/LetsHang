@@ -5,6 +5,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.xml.datatype.Duration;
 
@@ -41,8 +42,8 @@ public class SportEvent extends Event{
      */
     public SportEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate,
                       long price, int maximumCapacity, Collection<String> tags,
-                      String sport, SportEventLevel level, int teamSize, LatLng location) {
-        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+                      String sport, SportEventLevel level, int teamSize, LatLng location, String locationName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locationName);
         this.sport = sport;
         this.level = level;
         this.teamSize = teamSize;
@@ -61,9 +62,11 @@ public class SportEvent extends Event{
      * @param location
      */
     public SportEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate, long price,
-                      int maximumCapacity, Collection<String> tags, LatLng location) {
-        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+                      int maximumCapacity, Collection<String> tags, LatLng location, String locationName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locationName);
     }
+
+
 
     public void setSport(String sport) {
         this.sport = sport;
@@ -75,6 +78,18 @@ public class SportEvent extends Event{
 
     public void setTeamSize(int teamSize) {
         this.teamSize = teamSize;
+    }
+
+    public String getSport() {
+        return sport;
+    }
+
+    public SportEventLevel getLevel() {
+        return level;
+    }
+
+    public int getTeamSize() {
+        return teamSize;
     }
 }
 
