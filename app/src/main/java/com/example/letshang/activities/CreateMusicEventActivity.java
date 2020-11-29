@@ -17,6 +17,7 @@ import com.example.letshang.model.SportEvent;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,6 +31,8 @@ public class CreateMusicEventActivity extends AppCompatActivity {
     private EventProvider ep;
     private UserProvider up;
     private MusicEvent event;
+    private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,9 @@ public class CreateMusicEventActivity extends AppCompatActivity {
         etArtistas = findViewById(R.id.etArtistasEventoMusical);
 
         ep = EventProvider.getInsatance();
-        up = UserProvider.getInsatance();
+        up = UserProvider.getInstance();
+
+        mAuth = FirebaseAuth.getInstance();
 
         Bundle extras = getIntent().getExtras();
         String eventName = (String) extras.get("name");
@@ -51,19 +56,21 @@ public class CreateMusicEventActivity extends AppCompatActivity {
         GregorianCalendar endDate = (GregorianCalendar) extras.get("endDate");
         int capacidad = (int) extras.get("capacidad");
         ArrayList<String> tags = (ArrayList<String>) extras.get("tags");
+        String locationName = (String) extras.get("locationName");
+
 
         validation = new AwesomeValidation(ValidationStyle.BASIC);
         validation.addValidation(this, R.id.etGeneroEventoMusical, RegexTemplate.NOT_EMPTY, R.string.nameerror);
         validation.addValidation(this, R.id.etArtistasEventoMusical, RegexTemplate.NOT_EMPTY, R.string.requirederror);
 
-        event = new MusicEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location );
+        event = new MusicEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location, locationName );
 
         botonCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 event.setMusic(etGenero.getText().toString());
                 event.setArtists(etArtistas.getText().toString());
-                ep.createEvent(event, null);
+                ep.createEvent(event, mAuth.getUid());
 
                 Intent i = new Intent(getApplicationContext() , PrincipalActivity.class);
                 startActivity(i);

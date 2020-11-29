@@ -20,7 +20,7 @@ public class ReglasCondicionesActivity extends AppCompatActivity {
     private CheckBox cbConfirmar;
     private Event evento;
     private EventProvider evProv = EventProvider.getInsatance();
-    private UserProvider usProv = UserProvider.getInsatance();
+    private UserProvider usProv = UserProvider.getInstance();
     private Button btnRegistrar;
 
     @Override
@@ -28,7 +28,7 @@ public class ReglasCondicionesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reglas_condiciones);
 
-        evento = evProv.getEventByID(Integer.parseInt(getIntent().getStringExtra("idevento")));
+        evento = evProv.getEventByID(getIntent().getStringExtra("idevento"));
 
         cbConfirmar = findViewById(R.id.cbConfirmarReglas);
 

@@ -51,11 +51,25 @@ public class GameEvent extends Event{
      */
     public GameEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate,
                       long price, int maximumCapacity, Collection<String> tags,
-                      String game, GameEventLevel level, LatLng location) {
-        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+                      String game, GameEventLevel level, LatLng location, String locationName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locationName);
         this.game = game;
         this.level = level;
         this.type = EventsEnum.GAME;
+    }
+
+
+    public GameEvent(String title, String description, GregorianCalendar startDate,
+                     GregorianCalendar endDate, long price, int maximumCapacity,
+                     Collection<String> tags, LatLng location, String game, GameEventLevel level,
+                     String kind, String prize, boolean adult, String ageRange, String locatinoName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locatinoName);
+        this.game = game;
+        this.level = level;
+        this.kind = kind;
+        this.prize = prize;
+        this.adult = adult;
+        this.ageRange = ageRange;
     }
 
     /**
@@ -70,8 +84,8 @@ public class GameEvent extends Event{
      * @param location
      */
     public GameEvent(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate, long price,
-                     int maximumCapacity, Collection<String> tags, LatLng location) {
-        super(title, description, startDate, endDate, price, maximumCapacity, tags, location);
+                     int maximumCapacity, Collection<String> tags, LatLng location, String locatinoName) {
+        super(title, description, startDate, endDate, price, maximumCapacity, tags, location, locatinoName);
     }
 
     public String getGame() {

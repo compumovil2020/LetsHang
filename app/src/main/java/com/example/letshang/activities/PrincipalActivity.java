@@ -25,6 +25,7 @@ import com.example.letshang.model.MusicEvent;
 import com.example.letshang.model.SocialEvent;
 import com.example.letshang.model.SportEvent;
 import com.example.letshang.providers.EventProvider;
+import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.adapter.EventsAdapter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -52,6 +53,7 @@ public class PrincipalActivity extends AppCompatActivity{
     private ListView listViewEvents;
     private List<Event> listEvents;
     EventsAdapter eventsAdapter;
+    private UserProvider up;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class PrincipalActivity extends AppCompatActivity{
         // Initialize Firebase Auth
         // should go in utils
         mAuth = FirebaseAuth.getInstance();
+        up.getInstance();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()

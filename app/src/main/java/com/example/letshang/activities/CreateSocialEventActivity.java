@@ -19,6 +19,7 @@ import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.common.collect.Range;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,6 +34,7 @@ public class CreateSocialEventActivity extends AppCompatActivity {
     private EditText etEdadMinimaEventoSocial;
     private EditText etReglasEventoSocial;
     private Button btnCrearEventoSocial;
+    private FirebaseAuth mAuth;
 
     private SocialEvent socialEvent;
     private EventProvider eventProvider;
@@ -44,8 +46,9 @@ public class CreateSocialEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_social_event);
 
         validation = new AwesomeValidation(ValidationStyle.BASIC);
-        userProvider = UserProvider.getInsatance();
+        userProvider = UserProvider.getInstance();
         eventProvider = EventProvider.getInsatance();
+        mAuth = FirebaseAuth.getInstance();
 
         //Inflate
         etGeneroEventoSocial = findViewById(R.id.etGeneroEventoSocial);
@@ -63,6 +66,7 @@ public class CreateSocialEventActivity extends AppCompatActivity {
         // obtener datos del evento
         Bundle extras = getIntent().getExtras();
         String eventName = (String) extras.get("name");
+        String locationName = (String) extras.get("locationName");
         String description = (String) extras.get("description");
         int precio =  Integer.parseInt((String) extras.get("price"));
         LatLng location = (LatLng) extras.get("location");
@@ -71,7 +75,7 @@ public class CreateSocialEventActivity extends AppCompatActivity {
         int capacidad = (int) extras.get("capacidad");
         ArrayList<String> tags = (ArrayList<String>) extras.get("tags");
 
-        socialEvent = new SocialEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location );
+        socialEvent = new SocialEvent(eventName , description, startDate, endDate, precio, capacidad, tags, location, locationName );
 
 
         //Listeners
@@ -86,7 +90,7 @@ public class CreateSocialEventActivity extends AppCompatActivity {
                     socialEvent.setRules(etReglasEventoSocial.getText().toString());
 
                     // agrega el evento con el provider
-                    eventProvider.createEvent(socialEvent, null );
+                    eventProvider.createEvent(socialEvent, mAuth.getUid() );
 
                     Intent i = new Intent(CreateSocialEventActivity.this , PrincipalActivity.class);
                     startActivity(i);

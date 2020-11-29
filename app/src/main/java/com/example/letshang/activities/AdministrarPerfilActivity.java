@@ -40,7 +40,7 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
     private EditText etNombre, etEmail, etTelefono, etLocation, etFecha;
     private Button btnGuardar;
 
-    private UserProvider usrProvider = UserProvider.getInsatance();
+    private UserProvider usrProvider = UserProvider.getInstance();
     private Participant part;
 
     private LinearLayout linearLayoutContenedor;
@@ -76,7 +76,7 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
 
         Preference pr = part.getPreferences();
 
-        String[] tags = pr.getInterests();
+        List<String> tags = pr.getInterests();
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
