@@ -60,6 +60,7 @@ public class ChatEventoActivity extends AppCompatActivity {
         //Inflate Elements
         btEnviarMensaje = findViewById(R.id.btEnviarChatEvento);
         mensajeAEnviar = findViewById(R.id.etEscribirMensajeChatEvento);
+        listViewChatEventos = findViewById(R.id.lvChatsEventoChat);
 
         //Instances
         mAuth = FirebaseAuth.getInstance();
@@ -78,28 +79,19 @@ public class ChatEventoActivity extends AppCompatActivity {
         //Verificar si el evento ya tiene mensajes
         verifyChat(idEvento);
 
-        //Asignar adapter
-        listViewChatEventos = findViewById(R.id.lvChatsEventoChat);
-        /*EventChat eC = new EventChat("Tu","MENSAJE NUMERO 1 PARA INTENTO DE TU","2020-09-18");
-        listEventChat.add(eC);
-
-        EventChat eC2 = new EventChat("Otro1","MENSAJE NUMERO 1 PARA INTENTO DE OTRO1 MENSAJE NUMERO 1 PARA INTENTO DE OTRO1 MENSAJE NUMERO 1 PARA INTENTO DE OTRO1 MENSAJE NUMERO 1 PARA INTENTO DE OTRO1 MENSAJE NUMERO 1 PARA INTENTO DE OTRO1","2020-09-19");
-        listEventChat.add(eC2);
-
-        EventChat eC3 = new EventChat("Otro2","MENSAJE NUMERO 1 PARA INTENTO DE OTRO2","2020-09-18");
-        listEventChat.add(eC3);*/
-
-        //Boton de enviar mensaje
         btEnviarMensaje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EventChat enviar = new EventChat("Tu", mensajeAEnviar.getText().toString(), "2020-11-28");
-                listEventChat.add(enviar);
-                eventChatAdapter = new EventChatAdapter(context, listEventChat);
-                listViewChatEventos.setAdapter(eventChatAdapter);
+
+                crearMensaje();
+                setAdapter();
                 mensajeAEnviar.setText("");
             }
         });
+    }
+
+    public void crearMensaje(){
+
     }
 
     public void verifyChat(final String idEvento){
@@ -112,6 +104,7 @@ public class ChatEventoActivity extends AppCompatActivity {
                     if(ds.getKey().equals(idEvento)){
                         Log.i("DATABASESTATUS",ds.getKey());
                         listEventChat.clear();
+
                         getMensajes(idEvento);
                     }
                 }
@@ -132,6 +125,7 @@ public class ChatEventoActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot ds : snapshot.getChildren()){
                     Log.i("DATABASESTATUS",ds.getKey());
+                    listEventChat.clear();
                     getInfoMensajes(idEvento , ds.getKey());
                 }
             }
@@ -145,10 +139,12 @@ public class ChatEventoActivity extends AppCompatActivity {
 
     public void getInfoMensajes(String idEvento, String idMensaje){
         databaseReferenceInfoMensajes = database.getReference("chats-evento/"+idEvento+"/"+idMensaje);
+        listEventChat.clear();
         databaseReferenceInfoMensajes.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 EventChat eCInfoMensajes = new EventChat();
+
                 int cont = 0;
                 for(DataSnapshot ds : snapshot.getChildren()){
                     Log.i("DATABASESTATUS",ds.getKey());

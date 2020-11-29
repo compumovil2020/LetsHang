@@ -44,7 +44,7 @@
             android:layout_height="match_parent"
             android:gravity="start|center"
             android:text="Cuerpo"
-            android:textSize="13dp"
+            android:textSize="16dp"
             android:fontFamily="@font/coves_bold"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"/>
@@ -91,7 +91,7 @@
             android:layout_height="match_parent"
             android:gravity="end|center"
             android:text="Cuerpo tú"
-            android:textSize="13dp"
+            android:textSize="16dp"
             android:fontFamily="@font/coves_bold"
             android:layout_marginBottom="10dp"
             android:layout_marginRight="10dp"/>
