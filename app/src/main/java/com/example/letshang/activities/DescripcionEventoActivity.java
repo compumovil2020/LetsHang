@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -37,7 +38,10 @@ import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.dialog.CustomMapView;
 import com.example.letshang.utils.PermissionHandler;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -45,6 +49,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -59,6 +64,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
@@ -76,7 +82,7 @@ import java.util.Locale;
 public class DescripcionEventoActivity extends AppCompatActivity implements OnMapReadyCallback, RoutingListener, GoogleApiClient.OnConnectionFailedListener {
 
     private final String TAG = "DescripcionEvento";
-    private int idEvento;
+    private String idEvento;
     private String fromActivity;
     private Event evento;
     private TextView tvHost;
@@ -103,7 +109,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private static final int REQUEST_CHECK_SETTINGS = 99;
     private String justificacion = "Se necesita el GPS para mostrar la ubicación del evento";
     private EventProvider evProv = EventProvider.getInsatance();
-    private UserProvider usProv = UserProvider.getInsatance();
+    private UserProvider usProv = UserProvider.getInstance();
     private Marker eventMarker;
 
 
@@ -112,7 +118,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_descripcion_evento);
 
-        idEvento = Integer.parseInt(getIntent().getStringExtra("idevento"));
+        idEvento = getIntent().getStringExtra("idevento");
         fromActivity = getIntent().getStringExtra("from");
 
         if(fromActivity.equalsIgnoreCase("Principal")){
@@ -226,7 +232,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         tvDescripcionEvento.setText(evento.getDescription());
         tvPrecioEvento.setText( Long.toString(evento.getPrice()));
         tvLocationEvento.setText(geoCoderSearch(evento.getLocation()));
-        tvHost.setText(evProv.getEventHost(idEvento).getName());
+        tvHost.setText(evProv.getEventHostName(idEvento));
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         String fecha =  formatter.format(evento.getStartDate().getTime())  + " - " + formatter.format(evento.getEndDate().getTime());
         SimpleDateFormat formatter2 = new SimpleDateFormat("HH:mm:ss");
@@ -242,6 +248,9 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
 
     }
 
+    //TODO: no se deberia utilizar geocoder porque el evento ya tiene la direccion.
+    // es necesario tener un objeto evento, no traer todos los atributos con el intent sino solo
+    // trar el id del evento y usar el event provider para traer el objeto
     private String geoCoderSearch(LatLng latlng){
         String address = "";
         try{
@@ -319,6 +328,32 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         LatLng eventLocation = evento.getLocation();
         eventMarker = map.addMarker( new MarkerOptions().position(eventLocation).title(geoCoderSearch(eventLocation)).alpha(0.8f).snippet("Ubicación del evento").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(eventLocation, 12));
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
+        SettingsClient client = LocationServices.getSettingsClient(this);
+        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+
+        /*Si el GPS esta apagado pregunta si lo puede prender*/
+        task.addOnFailureListener(this, new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                int statusCode = ((ApiException) e).getStatusCode();
+                switch (statusCode){
+                    case CommonStatusCodes
+                            .RESOLUTION_REQUIRED:
+                        try{
+                            ResolvableApiException resolvableApiException = (ResolvableApiException) e;
+                            resolvableApiException.startResolutionForResult(DescripcionEventoActivity.this,REQUEST_CHECK_SETTINGS); //Empieza una actividad.
+                        } catch (IntentSender.SendIntentException ex) {
+                            ex.printStackTrace();
+                        }
+                        break;
+                    case LocationSettingsStatusCodes
+                            .SETTINGS_CHANGE_UNAVAILABLE:
+                        break;
+                }
+            }
+        });
 
     }
 

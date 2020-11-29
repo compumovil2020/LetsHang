@@ -75,6 +75,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.common.collect.Range;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -132,7 +133,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
 
         mGeocoder = new Geocoder(getBaseContext());
 
-        userProvider = UserProvider.getInsatance();
+        userProvider = UserProvider.getInstance();
         eventProvider = EventProvider.getInsatance();
 
         etNombre = findViewById(R.id.etNombreCrearEvento);
@@ -301,10 +302,11 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                     Long valor = Long.parseLong(etPrecio.getText().toString());
                     int capacidad = Integer.parseInt(etCapacidad.getText().toString());
                     String descripcion = etDescription.getText().toString();
+                    String locationName = etLugar.getText().toString();
 
-                    //TODO: Obtener HOST
-                    Host host = null;
-                    //Host host = (Host) userProvider.getCurrentUser();
+
+
+                    String host = FirebaseAuth.getInstance().getUid();
 
                     if(radioGroup.getCheckedRadioButtonId() == rbAcademic.getId()){
                         AwesomeValidation validationAcademic = new AwesomeValidation(ValidationStyle.BASIC);
@@ -319,7 +321,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                         validationAcademic.addValidation(CrearEventoActivity.this, R.id.etIdiomaCreateAcademicalEvent, RegexTemplate.NOT_EMPTY, R.string.idiomaerror);
 
                         if(validationAcademic.validate()) {
-                            AcademicEvent academicEvent = new AcademicEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location);
+                            AcademicEvent academicEvent = new AcademicEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location,locationName);
 
                             academicEvent.setLanguages(idioma.getText().toString());
                             academicEvent.setSubject(materia.getText().toString());
@@ -377,7 +379,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                         validationSport.addValidation(equipo,Range.open(1,20),"Ingresa un numero valido");
 
                         if(validationSport.validate()) {
-                            SportEvent sportEvent = new SportEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location);
+                            SportEvent sportEvent = new SportEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location,locationName);
                             sportEvent.setSport(deporte.getText().toString());
                             sportEvent.setTeamSize(Integer.parseInt(equipo.getText().toString()));
 
@@ -413,7 +415,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                         validationSocial.addValidation(reglas,RegexTemplate.NOT_EMPTY,"Ingrese las reglas del evento");
 
                         if(validationSocial.validate()) {
-                            SocialEvent socialEvent = new SocialEvent(nombre,descripcion,startDate,endDate,valor,capacidad,tags,location);
+                            SocialEvent socialEvent = new SocialEvent(nombre,descripcion,startDate,endDate,valor,capacidad,tags,location,locationName);
                             socialEvent.setMusicGenre(genero.getText().toString());
                             socialEvent.setTheme(tematica.getText().toString());
                             socialEvent.setMinimumAge(Integer.parseInt(edadMinima.getText().toString()));
@@ -440,7 +442,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                         validationGame.addValidation(rangoEdad,RegexTemplate.NOT_EMPTY,"Ingrese un rango de edad");
 
                         if(validationGame.validate()) {
-                            GameEvent gameEvent = new GameEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location);
+                            GameEvent gameEvent = new GameEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location,locationName);
                             gameEvent.setGame(nombreJuego.getText().toString());
                             gameEvent.setKind(tipoJuego.getText().toString());
                             gameEvent.setPrize(premio.getText().toString());
@@ -472,7 +474,6 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                     else if(radioGroup.getCheckedRadioButtonId() == rbMusical.getId()){
                         AwesomeValidation validationMusic = new AwesomeValidation(ValidationStyle.BASIC);
 
-
                         EditText genero = findViewById(R.id.etGeneroEventoMusical);
                         EditText artistas = findViewById(R.id.etArtistasEventoMusical);
 
@@ -480,7 +481,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                         validationMusic.addValidation(artistas,RegexTemplate.NOT_EMPTY,"Ingrese artistas invitados");
 
                         if(validationMusic.validate()) {
-                            MusicEvent musicEvent = new MusicEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location);
+                            MusicEvent musicEvent = new MusicEvent(nombre, descripcion, startDate, endDate, valor, capacidad, tags, location,locationName);
                             musicEvent.setMusic(genero.getText().toString());
                             musicEvent.setArtists(artistas.getText().toString());
 

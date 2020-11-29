@@ -76,7 +76,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
     private Button btnFacebook, btnInstagram, btnlinkedin;
     private ImageView ivFotoInformacionPerfil;
 
-    private UserProvider usProv = UserProvider.getInsatance();
+    private UserProvider usProv = UserProvider.getInstance();
     private LinearLayout linearLayoutContenedor;
     private LinearLayout linearLayoutTextos;
     private ListView listViewEvents;
@@ -130,15 +130,13 @@ public class InformacionPerfilActivity extends AppCompatActivity {
 
         Preference pr = parti.getPreferences();
 
-        String[] tags = pr.getInterests();
+        List<String> tags = pr.getInterests();
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
         int contadorTags = 0;
         for(String tag : tags){
-
-
             Chip chip = new Chip(this);
             chip.setText(tag);
             chip.setCloseIconVisible(false);

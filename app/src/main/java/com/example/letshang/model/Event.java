@@ -7,9 +7,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
+
 public abstract class Event {
-    protected int ID;
+    protected String ID;
     protected LatLng location;
+    protected String locationName;
     protected String title;
     protected String description;
     protected GregorianCalendar startDate;
@@ -23,7 +26,7 @@ public abstract class Event {
 
 
     public Event(String title, String description, GregorianCalendar startDate, GregorianCalendar endDate, long price,
-                 int maximumCapacity, Collection<String> tags, LatLng location) {
+                 int maximumCapacity, Collection<String> tags, LatLng location, String locationName) {
         this.title = title;
         this.description = description;
         this.startDate = startDate;
@@ -32,14 +35,14 @@ public abstract class Event {
         this.maximumCapacity = maximumCapacity;
         this.tags = tags;
         this.location = location;
-        setId();
+        this.locationName = locationName;
     }
 
-    private void setId() {
-        this.ID = nextId.incrementAndGet();
+    private void setId(String id) {
+        this.ID =id;
     }
 
-    public int getID() { return ID; }
+    public String getID() { return ID; }
 
     public static EventsEnum getType() {
         return type;
@@ -112,5 +115,17 @@ public abstract class Event {
 
     public static void setType(EventsEnum type) {
         Event.type = type;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getLocationName() {
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
     }
 }

@@ -1,49 +1,40 @@
-package com.example.letshang.model;
+package com.example.letshang.DTO;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import java.util.Collection;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class User {
+public class UserDTO {
 
-    private String name;
-    private String email;
-    private String phone;
-    private String facebook;
-    private String instagram;
-    private String twitter;
-    private String youtube;
-    private String linkedIn;
-    private LatLng location;
-    private GregorianCalendar birthDate;
+    protected String name;
+    protected String email;
+    protected String phone;
+    protected String facebook;
+    protected String instagram;
+    protected String twitter;
+    protected String youtube;
+    protected String linkedIn;
+    protected double latitud;
+    protected double longitud;
+    protected long birthDate;
 
-
-    public User(String name, String email, GregorianCalendar birthDate,
-                String phone, String facebook,
-                String instagram, String twitter, String youtube,
-                String linkedIn) {
+    public UserDTO(String name, String email, String phone, String facebook, String instagram,
+                   String twitter, String youtube, String linkedIn, double latitud, double longitud,
+                   long birthDate) {
         this.name = name;
         this.email = email;
-        this.birthDate = birthDate;
         this.phone = phone;
         this.facebook = facebook;
         this.instagram = instagram;
         this.twitter = twitter;
         this.youtube = youtube;
         this.linkedIn = linkedIn;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.birthDate = birthDate;
     }
 
-    public LatLng getLocation() {
-        return location;
-    }
-
-    public void setLocation(LatLng location) {
-        this.location = location;
-    }
-
-    public User(){ }
+    public UserDTO(){};
 
     public String getName() {
         return name;
@@ -109,12 +100,27 @@ public class User {
         this.linkedIn = linkedIn;
     }
 
-    public GregorianCalendar getBirthDate() {
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public long getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(GregorianCalendar birthDate) {
+    public void setBirthDate(long birthDate) {
         this.birthDate = birthDate;
     }
-
 }

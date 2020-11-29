@@ -7,6 +7,7 @@ import com.example.letshang.model.Preference;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.EnumMap;
 
 import static org.junit.Assert.assertEquals;
@@ -23,7 +24,10 @@ public class PreferenceUnitTest {
         map.put(EventsEnum.MUSIC , 3.0);
         map.put(EventsEnum.ACADEMIC , 2.8);
         map.put(EventsEnum.SOCIAL , 4.2);
-        String[] tags  =  new String[] {"tag 1" , "tag 2" , "tag 3"};
+        ArrayList<String>  tags  =  new ArrayList<>();
+        tags.add("tag 1");
+        tags.add("tag 2");
+        tags.add("tag 3");
 
         Preference p = new Preference(map ,tags);
 
@@ -40,8 +44,10 @@ public class PreferenceUnitTest {
         // prepare data
         EnumMap<EventsEnum , Double> map = new EnumMap<EventsEnum, Double>(EventsEnum.class);
 
-        String[] tags  =  new String[] {"tag 1" , "tag 2" , "tag 3"};
-
+        ArrayList<String>  tags  =  new ArrayList<>();
+        tags.add("tag 1");
+        tags.add("tag 2");
+        tags.add("tag 3");
         Preference p = new Preference(map ,tags);
 
         // execute
