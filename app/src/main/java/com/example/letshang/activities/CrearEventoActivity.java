@@ -302,7 +302,9 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                     int capacidad = Integer.parseInt(etCapacidad.getText().toString());
                     String descripcion = etDescription.getText().toString();
 
-                    Host host = (Host) userProvider.getCurrentUser();
+                    //TODO: Obtener HOST
+                    Host host = null;
+                    //Host host = (Host) userProvider.getCurrentUser();
 
                     if(radioGroup.getCheckedRadioButtonId() == rbAcademic.getId()){
                         EditText materia = findViewById(R.id.etSubjectAcademicalEvent);
