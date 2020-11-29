@@ -29,6 +29,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -53,6 +55,8 @@ public class ChatEventoActivity extends AppCompatActivity {
 
     //Database
     private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReferenceNombre;
     private DatabaseReference databaseReferenceUsuario;
     private DatabaseReference databaseReferenceMensajes;
     private DatabaseReference databaseReferenceInfoMensajes;
@@ -94,7 +98,7 @@ public class ChatEventoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                crearMensaje("PRUEBAIDEVENTO", mensajeAEnviar.getText().toString(), mAuth.getUid());
+                crearMensaje(idEvento, mensajeAEnviar.getText().toString(), mAuth.getUid());
                 mensajeAEnviar.setText("");
             }
         });
@@ -112,7 +116,8 @@ public class ChatEventoActivity extends AppCompatActivity {
 
         //Crear en firebase
         String key = databaseReferenceUsuario.push().getKey();
-        databaseReferenceUsuario.child("chats-evento").child(idEvento).child(key).setValue(dato);
+        databaseReference = database.getReference("chats-evento");
+        databaseReference.child(idEvento).child(key).setValue(dato);
     }
 
     public void verifyChat(final String idEvento){
@@ -190,6 +195,31 @@ public class ChatEventoActivity extends AppCompatActivity {
 
                 if(cont == 3){
                     cont = 0;
+                    getNameOfUser(eCInfoMensajes);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.i("DATABASESTATUS","PROBLEMAS", error.toException());
+            }
+        });
+    }
+
+    public void getNameOfUser(final EventChat eCInfoMensajes){
+        databaseReferenceNombre = database.getReference("users/"+mAuth.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int c = 0;
+                for(DataSnapshot ds : snapshot.getChildren()){
+                    if(ds.getKey().equals("name")){
+                        eCInfoMensajes.setNombre(ds.getValue().toString());
+                        c++;
+                    }
+                }
+                if(c == 1){
+                    c = 0;
                     setAdapter();
                 }
             }
@@ -202,7 +232,7 @@ public class ChatEventoActivity extends AppCompatActivity {
     }
 
     public void setAdapter(){
-        eventChatAdapter = new EventChatAdapter(context, listEventChat);
+        eventChatAdapter = new EventChatAdapter(mAuth.getUid(),context, listEventChat);
         listViewChatEventos.setAdapter(eventChatAdapter);
     }
 }

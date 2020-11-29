@@ -3,6 +3,7 @@ package com.example.letshang.model;
 public class EventChat {
 
     String idUsuario;
+    String nombre;
     String cuerpo;
     String fecha;
 
@@ -10,8 +11,9 @@ public class EventChat {
 
     }
 
-    public EventChat(String idUsuario, String cuerpo, String fecha) {
+    public EventChat(String idUsuario,String nombre, String cuerpo, String fecha) {
         this.idUsuario = idUsuario;
+        this.nombre = nombre;
         this.cuerpo = cuerpo;
         this.fecha = fecha;
     }
@@ -38,5 +40,13 @@ public class EventChat {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }
