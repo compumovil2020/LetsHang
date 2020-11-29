@@ -242,6 +242,9 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
 
     }
 
+    //TODO: no se deberia utilizar geocoder porque el evento ya tiene la direccion.
+    // es necesario tener un objeto evento, no traer todos los atributos con el intent sino solo
+    // trar el id del evento y usar el event provider para traer el objeto
     private String geoCoderSearch(LatLng latlng){
         String address = "";
         try{

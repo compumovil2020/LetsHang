@@ -1,12 +1,15 @@
 package com.example.letshang.DTO;
 
+import com.example.letshang.model.EventsEnum;
+
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 public class ParticipantDTO extends UserDTO{
 
     private List<String> interests;
-    private Map<String, String> categories;
+    private EnumMap<EventsEnum, Double> categories;
 
     public ParticipantDTO() {
     }
@@ -14,7 +17,7 @@ public class ParticipantDTO extends UserDTO{
     public ParticipantDTO(String name, String email, String phone, String facebook,
                           String instagram, String twitter, String youtube, String linkedIn,
                           double latitud, double longitud, long birthDate, List<String> interests,
-                          Map<String, String> categories) {
+                          EnumMap<EventsEnum, Double> categories) {
         super(name, email, phone, facebook, instagram, twitter, youtube, linkedIn, latitud, longitud, birthDate);
         this.interests = interests;
         this.categories = categories;
@@ -29,11 +32,11 @@ public class ParticipantDTO extends UserDTO{
         this.interests = interests;
     }
 
-    public Map<String, String> getCategories() {
+    public EnumMap<EventsEnum, Double>getCategories() {
         return categories;
     }
 
-    public void setCategories(Map<String, String> categories) {
+    public void setCategories(EnumMap<EventsEnum, Double> categories) {
         this.categories = categories;
     }
 }

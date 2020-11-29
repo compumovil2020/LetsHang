@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.letshang.DTO.ParticipantDTO;
+import com.example.letshang.DTO.Transformer;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.EventsEnum;
 import com.example.letshang.model.Host;
@@ -13,6 +15,8 @@ import com.example.letshang.model.SportEvent;
 import com.example.letshang.model.SportEventLevel;
 import com.example.letshang.model.User;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,11 +41,11 @@ public class UserProvider {
     private User currentUser;
     private ArrayList<Event> myEvents;
     private static UserProvider instance = null;
-
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference userRef = database.getReference("users");
     private static final  String TAG = "UserProvider";
-
+    final ArrayList<String> eventsKeys = new ArrayList<>();
 
 
 
@@ -60,12 +64,21 @@ public class UserProvider {
      */
     private UserProvider(){
 
+
+
         // Read from the database
-        userRef.addValueEventListener(new ValueEventListener() {
+        userRef.child(mAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                currentUser = dataSnapshot.getValue(User.class);
+                currentUser = Transformer.transform(dataSnapshot.getValue(ParticipantDTO.class));
+                currentUser = (Participant)currentUser;
+
+                //TODO: cambiar esto por el metodo que de verdad hace la query por los eventos pasados
+                ((Participant) currentUser).setPastEvents( new ArrayList<Event>());
+                if(((Participant) currentUser).getPreferences().getInterests() == null){
+                    ((Participant) currentUser).getPreferences().setInterests(new ArrayList<String>());
+                }
                 Log.d(TAG, "CurrentUser = " + currentUser.getName());
             }
 
@@ -76,9 +89,11 @@ public class UserProvider {
             }
         });
 
+
+
         // este tiene que hacer una query a la base de datos
         // estos datos son quemados
-        myEvents = new ArrayList<>();
+        /*myEvents = new ArrayList<>();
         EnumMap<EventsEnum , Double> mapa = new EnumMap<EventsEnum, Double>(EventsEnum.class);
         mapa.put(EventsEnum.ACADEMIC , 2.6);
         mapa.put(EventsEnum.SPORTS , 4.96);
@@ -88,7 +103,7 @@ public class UserProvider {
         currentUser = new Participant("Juan Perez","juan@perez.com",
                 new GregorianCalendar(1998, 5,5),"3177963053",
                 "juan.perez","perez99","@perez",
-                null,null,preferences, myEvents );
+                null,null,preferences, myEvents );*/
 
     }
 
@@ -140,4 +155,66 @@ public class UserProvider {
     }
 
 
+    public void setUser(Participant user, String uid) {
+        Log.i(TAG, "setUser: " + uid);
+        userRef.child(uid).setValue(Transformer.transform(user));
+    }
+
+    private void getUserPastEvents(){
+        final ArrayList<Event> pastEvents = new ArrayList<>();
+
+        ((Participant) currentUser).setPastEvents(pastEvents);
+        DatabaseReference pastEventsRef = database.getReference().child("user-event-list").child(mAuth.getUid());
+        pastEventsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.i(TAG, "onDataChange: leyendo los eventos del usuario");
+                for(DataSnapshot data: dataSnapshot.getChildren()){
+                    eventsKeys.add(data.getValue(String.class));
+                }
+
+                fillUserPastEvents();
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+
+
+    }
+
+    private void fillUserPastEvents() {
+        for(String i: eventsKeys) {
+            DatabaseReference sportEventsRef = database.getReference().child("event").child("sport-event");
+            DatabaseReference academicEventRef = database.getReference().child("event").child("academic-event");
+            DatabaseReference musicEventRef = database.getReference().child("event").child("music-event");
+            DatabaseReference socialEventRef = database.getReference().child("event").child("social-event");
+            DatabaseReference cameEventRef = database.getReference().child("event").child("game-event");
+            ValueEventListener listener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        eventsKeys.add(data.getValue(String.class));
+                    }
+
+                    fillUserPastEvents();
+
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            };
+        }
+
+    }
 }

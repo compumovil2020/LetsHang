@@ -1,12 +1,17 @@
 package com.example.letshang.DTO;
 
+import android.provider.Telephony;
+
 import com.example.letshang.model.AcademicEvent;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.GameEvent;
 import com.example.letshang.model.Host;
 import com.example.letshang.model.MusicEvent;
+import com.example.letshang.model.Participant;
+import com.example.letshang.model.Preference;
 import com.example.letshang.model.SocialEvent;
 import com.example.letshang.model.SportEvent;
+import com.example.letshang.model.User;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
@@ -150,5 +155,21 @@ public class Transformer {
         return e;
     }
 
+    public static UserDTO transform(Participant u){
+        return new ParticipantDTO(u.getName(), u.getEmail(),
+                u.getPhone(), u.getFacebook(), u.getInstagram(), u.getTwitter(), u.getYoutube(),
+                u.getLinkedIn(), u.getLocation().latitude, u.getLocation().longitude,
+                u.getBirthDate().getTimeInMillis(), u.getPreferences().getInterests(),
+                u.getPreferences().getCategories() );
+    }
 
+
+    public static Participant transform(ParticipantDTO dto) {
+        GregorianCalendar birthDate = new GregorianCalendar();
+        birthDate.setTimeInMillis(dto.getBirthDate());
+        return new Participant(dto.getName(), dto.getEmail(),birthDate , dto.getPhone(),
+                dto.getFacebook(), dto.getInstagram(), dto.getTwitter(), dto.getYoutube(),
+                dto.getLinkedIn(), new Preference(dto.getCategories(), dto.getInterests()),
+                null);
+    }
 }

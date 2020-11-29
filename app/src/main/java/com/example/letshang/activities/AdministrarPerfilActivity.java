@@ -76,7 +76,7 @@ public class AdministrarPerfilActivity extends AppCompatActivity {
 
         Preference pr = part.getPreferences();
 
-        String[] tags = pr.getInterests();
+        List<String> tags = pr.getInterests();
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);

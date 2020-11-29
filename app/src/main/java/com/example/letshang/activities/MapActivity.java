@@ -161,7 +161,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         mLocationRequest = createLocationRequest();
 
-
     }
 
     private String geoCoderSearch(LatLng latlng){
