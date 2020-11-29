@@ -88,8 +88,9 @@ public class ChatEventoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         //TODO: CAMBIAR AL EXTRA QUE ES
-        //idEvento = extras.getString("idevento");
-        idEvento = "IDEvento1";
+        idEvento = extras.getString("idevento");
+        Log.i("DATABASESTATUS",idEvento);
+        //idEvento = "IDEvento1";
 
         //Verificar si el evento ya tiene mensajes
         verifyChat(idEvento);

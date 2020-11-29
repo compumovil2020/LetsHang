@@ -32,6 +32,7 @@ public class EventChatAdapter extends BaseAdapter {
     private String userAuthId;
     private Context context;
     private List<EventChat> eventChats;
+    private View v;
 
     //Database for de name of the user
     private FirebaseDatabase database;
@@ -78,7 +79,6 @@ public class EventChatAdapter extends BaseAdapter {
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
             view = LayoutInflater.from(this.context).inflate(R.layout.eventchatslayout,viewGroup,false);
-
         }
 
         //Inflar
