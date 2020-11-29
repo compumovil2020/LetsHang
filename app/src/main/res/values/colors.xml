@@ -9,6 +9,6 @@
     <color name="white">#ffffff</color>
     <color name="gray">#696969</color>
 
-    <color name="tuColor">#FFE8B8</color>
-    <color name="remitenteColor">#C1FBFF</color>
+    <color name="tuColor">#F1F0EE</color>
+    <color name="remitenteColor">#F8BD66</color>
 </resources>

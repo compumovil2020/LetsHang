@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 
 import com.example.letshang.R;
 import com.example.letshang.model.EventChat;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -80,7 +82,7 @@ public class EventChatAdapter extends BaseAdapter {
         }
 
         //Inflar
-        TextView nombreRemitente, fechaRemitente, cuerpoRemitente, nombreTu, fechaTu, cuerpoTu;
+        TextView nombreRemitente, fechaRemitente, nombreTu, fechaTu, cuerpoRemitente, cuerpoTu;
         LinearLayout llRemitente, llTu;
         nombreRemitente = view.findViewById(R.id.tvNombreRemitenteEventsChat);
         fechaRemitente = view.findViewById(R.id.tvFechaRemitenteEventsChat);
@@ -99,14 +101,16 @@ public class EventChatAdapter extends BaseAdapter {
             fechaRemitente.setVisibility(View.INVISIBLE);
             cuerpoRemitente.setVisibility(View.INVISIBLE);
 
-            nombreTu.setText(eventChats.get(i).getNombre());
+            nombreTu.setText("Tu");
             fechaTu.setText(eventChats.get(i).getFecha());
             cuerpoTu.setText(eventChats.get(i).getCuerpo());
 
             //llRemitente.setVisibility(View.INVISIBLE);
-            llTu.setBackgroundColor(R.color.tuColor);
+            //llTu.setBackgroundColor(R.color.tuColor);
             llRemitente.removeAllViews();
+
             llTu.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT));
+
         } else {
 
             nombreTu.setVisibility(View.INVISIBLE);
@@ -117,9 +121,10 @@ public class EventChatAdapter extends BaseAdapter {
             fechaRemitente.setText(eventChats.get(i).getFecha());
             cuerpoRemitente.setText(eventChats.get(i).getCuerpo());
 
-            llRemitente.setBackgroundColor(R.color.colorPrimary);
+            //llRemitente.setBackgroundColor(R.color.colorPrimary);
             //llTu.setVisibility(View.INVISIBLE);
             llTu.removeAllViews();
+
             llRemitente.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT));
         }
 

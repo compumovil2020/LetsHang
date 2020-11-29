@@ -641,6 +641,11 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
             return false;
         }
 
+        if(chipGroup.getChildCount() == 0){
+            Toast.makeText(getApplicationContext() , "Porfavor ingrese como minimo 1 tag" , Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         return true;
     }
 

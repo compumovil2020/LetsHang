@@ -207,8 +207,8 @@ public class ChatEventoActivity extends AppCompatActivity {
     }
 
     public void getNameOfUser(final EventChat eCInfoMensajes){
-        databaseReferenceNombre = database.getReference("users/"+mAuth.getUid());
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReferenceNombre = database.getReference("users/"+eCInfoMensajes.getIdUsuario());
+        databaseReferenceNombre.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 int c = 0;
