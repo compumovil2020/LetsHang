@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
+
         getSupportActionBar().setTitle("Login");
 
         btnIngresar = findViewById(R.id.btnIngresarLogin);

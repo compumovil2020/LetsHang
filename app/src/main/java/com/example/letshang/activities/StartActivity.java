@@ -22,7 +22,7 @@ public class StartActivity extends AppCompatActivity {
 
 
         // esto es para que el provider vaya llamando a firebase y no se demore tanto en cargar los eventos
-        ep.getInsatance();
+        //ep.getInsatance();
 
         btnIniciar = findViewById(R.id.btnIniciarSesionStart);
         btnRegistro = findViewById(R.id.btnRegistrarStart);

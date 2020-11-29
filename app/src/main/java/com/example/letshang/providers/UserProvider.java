@@ -64,8 +64,13 @@ public class UserProvider {
      */
     private UserProvider(){
 
+        if(mAuth.getUid() != null){
+            getCurrentUserFromDB();
+        }
+    }
 
 
+    private void getCurrentUserFromDB(){
         // Read from the database
         userRef.child(mAuth.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
@@ -75,6 +80,7 @@ public class UserProvider {
                 currentUser = (Participant)currentUser;
 
                 //TODO: cambiar esto por el metodo que de verdad hace la query por los eventos pasados
+
                 ((Participant) currentUser).setPastEvents( new ArrayList<Event>());
                 if(((Participant) currentUser).getPreferences().getInterests() == null){
                     ((Participant) currentUser).getPreferences().setInterests(new ArrayList<String>());
@@ -88,26 +94,10 @@ public class UserProvider {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-
-
-
-        // este tiene que hacer una query a la base de datos
-        // estos datos son quemados
-        /*myEvents = new ArrayList<>();
-        EnumMap<EventsEnum , Double> mapa = new EnumMap<EventsEnum, Double>(EventsEnum.class);
-        mapa.put(EventsEnum.ACADEMIC , 2.6);
-        mapa.put(EventsEnum.SPORTS , 4.96);
-        mapa.put(EventsEnum.MUSIC , 4.37);
-        Preference preferences = new Preference(mapa , new String[]{"futbol" , "parque" , "yoga", "fit"});
-
-        currentUser = new Participant("Juan Perez","juan@perez.com",
-                new GregorianCalendar(1998, 5,5),"3177963053",
-                "juan.perez","perez99","@perez",
-                null,null,preferences, myEvents );*/
-
     }
 
     public void updateCurrentUser(User user){
+
         currentUser = user;
     }
 
@@ -116,6 +106,9 @@ public class UserProvider {
      * @return user currently logged into the aplication
      */
     public User getCurrentUser(){
+        if(currentUser ==null){
+            getCurrentUserFromDB();
+        }
         return currentUser;
 
     }

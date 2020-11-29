@@ -165,6 +165,9 @@ public class Transformer {
 
 
     public static Participant transform(ParticipantDTO dto) {
+        if(dto == null){
+            return null;
+        }
         GregorianCalendar birthDate = new GregorianCalendar();
         birthDate.setTimeInMillis(dto.getBirthDate());
         return new Participant(dto.getName(), dto.getEmail(),birthDate , dto.getPhone(),

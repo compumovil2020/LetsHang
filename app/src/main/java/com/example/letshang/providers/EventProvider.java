@@ -70,7 +70,6 @@ public class EventProvider {
      */
     public static EventProvider getInsatance(){
         if(instance == null){
-
             instance = new EventProvider();
         }
 
