@@ -171,6 +171,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearBotonesInteresesRegistro"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -212,22 +213,43 @@
                 android:id="@+id/etNuevoRegistro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:ems="10"
                 android:hint="@string/AddNew"
                 android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:imeOptions="actionDone"
+                app:layout_constraintTop_toBottomOf="@+id/llRegistro1" />
+
+
+            <LinearLayout
+                android:id="@+id/llRegistroChip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toTopOf="@+id/btnSiguienteRegistro"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llRegistro1" />
+                app:layout_constraintTop_toBottomOf="@+id/etNuevoRegistro" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cgTagsCrearEvento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etNuevoRegistro" />
 
             <Button
                 android:id="@+id/btnAgregarRegistro"
                 style="@style/icn_plus"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                app:layout_constraintBottom_toTopOf="@+id/btnSiguienteRegistro"
+                app:layout_constraintBottom_toBottomOf="@+id/etNuevoRegistro"
                 app:layout_constraintEnd_toStartOf="@+id/etNuevoRegistro"
-                app:layout_constraintTop_toBottomOf="@+id/llRegistro1" />
+                app:layout_constraintTop_toTopOf="@+id/etNuevoRegistro" />
 
             <Button
                 android:id="@+id/btnSiguienteRegistro"

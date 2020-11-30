@@ -14,6 +14,7 @@ import com.example.letshang.model.Participant;
 import com.example.letshang.model.User;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ReglasCondicionesActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class ReglasCondicionesActivity extends AppCompatActivity {
     private EventProvider evProv = EventProvider.getInsatance();
     private UserProvider usProv = UserProvider.getInstance();
     private Button btnRegistrar;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,14 @@ public class ReglasCondicionesActivity extends AppCompatActivity {
 
         btnRegistrar = findViewById(R.id.btnRegistrarReglas);
 
+
         btnRegistrar.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), PrincipalActivity.class);
+
+                evProv.inscribirEvento(mAuth.getUid(), evento.getID());
                 ((Participant) usProv.getCurrentUser()).getPastEvents().add(evento);
                 startActivity(intent);
             }

@@ -7,8 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import android.widget.EditText;
@@ -27,6 +29,8 @@ import com.example.letshang.providers.UserProvider;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,6 +40,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class RegistroActivity extends AppCompatActivity {
 
@@ -47,6 +52,9 @@ public class RegistroActivity extends AppCompatActivity {
     private Button btnAgregar;
     private AwesomeValidation validator;
     private UserProvider userProvider;
+    private ChipGroup chipGroup;
+    private List<String> tags;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +77,14 @@ public class RegistroActivity extends AppCompatActivity {
         tbFiesta = findViewById(R.id.tbFiestasRegistro);
         tbCharlar = findViewById(R.id.tbCharlarRegistro);
         tbConferencias = findViewById(R.id.tbConferenciasRegistro);
+        chipGroup = (ChipGroup) findViewById(R.id.cgTagsCrearEvento);
+
 
         btnSiguiente = findViewById(R.id.btnSiguienteRegistro);
         btnAgregar = findViewById(R.id.btnAgregarRegistro);
 
         validator = new AwesomeValidation(ValidationStyle.BASIC);
+        tags = new ArrayList<>();
 
         validator.addValidation(this, R.id.etNombreRegistro, RegexTemplate.NOT_EMPTY, R.string.requirederror);
         validator.addValidation(this, R.id.etCorreoRegistro, Patterns.EMAIL_ADDRESS, R.string.emailerror);
@@ -93,6 +104,43 @@ public class RegistroActivity extends AppCompatActivity {
             }
         });
 
+        etNuevo.setOnEditorActionListener(new EditText.OnEditorActionListener(){
+
+            @Override
+            public boolean onEditorAction(TextView textView, int actionID, KeyEvent keyEvent) {
+                if(textView.getText().toString().isEmpty()) {
+                    return false;
+                }
+                else{
+                    addTag(textView.getText().toString());
+                    textView.setText("");
+                    return true;
+                }
+            }
+        });
+
+    }
+
+    private void addTag(String tag){
+        for(String s: tags){
+            if(s.equals(tag)){
+                return;
+            }
+        }
+        tags.add(tag);
+        Chip chip = new Chip(this);
+        chip.setText(tag);
+        chip.setOnCloseIconClickListener(new Chip.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Chip currentChip = (Chip) view;
+                chipGroup.removeView(view);
+                tags.remove(currentChip.getText().toString());
+            }
+        });
+        chip.setCloseIconVisible(true);
+        chipGroup.addView(chip);
     }
 
     private void attemptSignUp(){
@@ -133,12 +181,6 @@ public class RegistroActivity extends AppCompatActivity {
      * @return
      */
     private Participant crearUsuario(){
-        //TODO: hacer una lista de intereses bonita con tags
-
-        //TODO: si este arraylist es nulo, va a haber problemas con firebase
-        //toca poner obligatorio al menos un interes
-        ArrayList<String> tags = new ArrayList<>();
-        tags.add("Futbol");
 
         Participant p = new Participant(etNombre.getText().toString(),
                 etCorreo.getText().toString(), new GregorianCalendar(),
@@ -150,7 +192,6 @@ public class RegistroActivity extends AppCompatActivity {
 
         return p;
 
-
     }
 
 
@@ -161,6 +202,12 @@ public class RegistroActivity extends AppCompatActivity {
 
         if(!etVerify.getText().toString().equals(etPassword.getText().toString())){
             Toast.makeText(getApplicationContext(), "Las contraseñas no coinciden.",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        if(chipGroup.getChildCount() == 0){
+            Toast.makeText(getApplicationContext(), "Escribe al menos un interes!",
                     Toast.LENGTH_SHORT).show();
             return false;
         }
