@@ -307,23 +307,33 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView3"
                 android:imeOptions="actionDone"/>
 
-            <LinearLayout
-                android:id="@+id/llCrearEventoChip"
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/swChips"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical"
-                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/etTagsCrearEvento">
 
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/cgTagsCrearEvento"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                <LinearLayout
+                    android:id="@+id/llCrearEventoChip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent">
 
-            </LinearLayout>
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/cgTagsCrearEvento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
 
             <Button
                 android:id="@+id/btnCrearEvento"
@@ -332,10 +342,81 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:text="Continuar"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/llCrearEventoChip" />
+                app:layout_constraintTop_toBottomOf="@+id/infoClimaCardView" />
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/infoClimaCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:elevation="4dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/swChips"
+                app:layout_goneMarginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvPrediccionClima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="Predicción Clima"
+                        android:textSize="20dp"
+                        android:textColor="@color/secondaryColor"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+                    <TextView
+                        android:id="@+id/tvCuidadCrearEvento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/coves_bold"
+                        android:text="Bogotá"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                    <ImageView
+                        android:id="@+id/ivClimaCrearEvento"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/wheather" />
+
+                    <TextView
+                        android:id="@+id/tvTempCrearEvento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/coves_bold"
+                        android:text="15 °C"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                    <TextView
+                        android:id="@+id/tvDescrCrearEvento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/coves_bold"
+                        android:text="Descripción"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                    <TextView
+                        android:id="@+id/tvAviso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/coves_bold"
+                        android:textStyle="bold"
+                        android:text="¡Atencion! ¡La predicción es de dos días desde la fecha actual!"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
