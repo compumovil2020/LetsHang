@@ -32,6 +32,7 @@ import com.directions.route.Route;
 import com.directions.route.RouteException;
 import com.directions.route.Routing;
 import com.directions.route.RoutingListener;
+import com.example.letshang.DTO.UserDTO;
 import com.example.letshang.R;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
@@ -72,6 +73,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -131,6 +139,13 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private UserProvider usProv = UserProvider.getInstance();
     private Marker eventMarker;
 
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
+    private UserDTO data;
+    private FirebaseDatabase mDatabase;
+    private DatabaseReference mRef;
+    private boolean initRoute;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,6 +154,11 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
 
         idEvento = getIntent().getStringExtra("idevento");
         fromActivity = getIntent().getStringExtra("from");
+
+        initRoute = false;
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
 
         if(fromActivity.equalsIgnoreCase("Principal")){
             getSupportActionBar().setTitle("Inscribir evento");
@@ -205,14 +225,33 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         mLocationCallback = new LocationCallback() {
             @Override
             public void onLocationResult(LocationResult locationResult) {
-                currentLocation = new LatLng(locationResult.getLastLocation().getLatitude(), locationResult.getLastLocation().getLongitude());
-                if(map != null){
-                    map.clear();
-                    map.addMarker(new MarkerOptions().position(eventMarker.getPosition()).title(geoCoderSearch(eventMarker.getPosition())).snippet("Ubicación del evento").alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
-                    map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).snippet("Ubicación Actual").alpha(0.8f)
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                    showRoute(currentLocation.latitude, currentLocation.longitude, eventMarker.getPosition().latitude, eventMarker.getPosition().longitude);
+                Location location = locationResult.getLastLocation();
+                if (location != null && data != null) {
+                    currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                    if(map != null){
+                        map.addMarker(new MarkerOptions().position(eventMarker.getPosition()).title(geoCoderSearch(eventMarker.getPosition())).snippet("Ubicación del evento").alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                        map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).snippet("Ubicación Actual").alpha(0.8f)
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                        showRoute(currentLocation.latitude, currentLocation.longitude, eventMarker.getPosition().latitude, eventMarker.getPosition().longitude);
+
+                        if(location.getLatitude() != data.getLatitud() && location.getLongitude() != data.getLongitud()){
+                            map.clear();
+                            map.addMarker(new MarkerOptions().position(eventMarker.getPosition()).title(geoCoderSearch(eventMarker.getPosition())).snippet("Ubicación del evento").alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                            map.addMarker(new MarkerOptions().position(currentLocation).title(geoCoderSearch(currentLocation)).snippet("Ubicación Actual").alpha(0.8f)
+                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                            data.setLongitud(location.getLongitude());
+                            data.setLatitud(location.getLatitude());
+                            mRef = mDatabase.getReference("users/"+user.getUid()+"/latitud");
+                            mRef.setValue(location.getLatitude());
+                            mRef = mDatabase.getReference("users/"+user.getUid()+"/longitud");
+                            mRef.setValue(location.getLongitude());
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 14));
+                            showRoute(currentLocation.latitude, currentLocation.longitude, eventMarker.getPosition().latitude, eventMarker.getPosition().longitude);
+                        }
+
+                    }
                 }
+
 
             }
         };
@@ -263,6 +302,30 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        user = mAuth.getCurrentUser();
+        initUser(user);
+    }
+
+    private void initUser(FirebaseUser user) {
+        if(user != null){
+            mRef = mDatabase.getReference("users/" + user.getUid());
+            mRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    data = dataSnapshot.getValue(UserDTO.class);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    }
+
     private void initializeEvent(){
 
         evento = evProv.getEventByID(idEvento);
@@ -306,8 +369,8 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
 
     protected LocationRequest createLocationRequest() {
         LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setInterval(80000); //tasa de refresco en milisegundos
-        locationRequest.setFastestInterval(40000); //máxima tasa de refresco
+        locationRequest.setInterval(10000); //tasa de refresco en milisegundos
+        locationRequest.setFastestInterval(5000); //máxima tasa de refresco
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         return locationRequest;
     }
