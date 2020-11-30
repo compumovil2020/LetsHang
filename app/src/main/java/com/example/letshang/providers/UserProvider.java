@@ -4,13 +4,22 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.letshang.DTO.AcademicEventDTO;
+import com.example.letshang.DTO.GameEventDTO;
+import com.example.letshang.DTO.MusicEventDTO;
 import com.example.letshang.DTO.ParticipantDTO;
+import com.example.letshang.DTO.SocialEventDTO;
+import com.example.letshang.DTO.SportEventDTO;
 import com.example.letshang.DTO.Transformer;
+import com.example.letshang.model.AcademicEvent;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.EventsEnum;
+import com.example.letshang.model.GameEvent;
 import com.example.letshang.model.Host;
+import com.example.letshang.model.MusicEvent;
 import com.example.letshang.model.Participant;
 import com.example.letshang.model.Preference;
+import com.example.letshang.model.SocialEvent;
 import com.example.letshang.model.SportEvent;
 import com.example.letshang.model.SportEventLevel;
 import com.example.letshang.model.User;
@@ -27,7 +36,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.EnumMap;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 //*******************
@@ -39,13 +50,13 @@ import java.util.List;
 public class UserProvider {
 
     private User currentUser;
-    private ArrayList<Event> myEvents;
     private static UserProvider instance = null;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference userRef = database.getReference("users");
     private static final  String TAG = "UserProvider";
-    final ArrayList<String> eventsKeys = new ArrayList<>();
+    private final ArrayList<String> eventsKeys = new ArrayList<>();
+    private ArrayList<Event> pastEvents;
 
 
 
@@ -81,7 +92,7 @@ public class UserProvider {
 
                 //TODO: cambiar esto por el metodo que de verdad hace la query por los eventos pasados
 
-                ((Participant) currentUser).setPastEvents( new ArrayList<Event>());
+                getUserPastEvents();
                 if(((Participant) currentUser).getPreferences().getInterests() == null){
                     ((Participant) currentUser).getPreferences().setInterests(new ArrayList<String>());
                 }
@@ -124,49 +135,26 @@ public class UserProvider {
     }
 
 
-    /**
-     * Helper function
-     * @return list of events
-     */
-    private List<Event> generatePastEvents(){
-        List<Event> ans = new ArrayList<Event>();
-
-        /**ArrayList<String> tags = new ArrayList<String>();
-        tags.add("futbol");
-        tags.add("parque");
-        tags.add("juvenil");
-
-        ans.add(new SportEvent("Partido de futbol",
-                "Clase para niños y adolecentes entre 10 y 14 años. " +
-                        " Exelente forma de pasar el fin de semana! Terminamos la clase con un partido amistoso.",
-                new GregorianCalendar(2020, 10, 11, 10, 00),
-                new GregorianCalendar(2020,10,11, 15,00),
-                10000, 100, tags, "Futbol", SportEventLevel.BEGINNER,
-                11, new LatLng(4.700234, -74.059253))
-        );*/
-        return ans;
-    }
-
-
     public void setUser(Participant user, String uid) {
         Log.i(TAG, "setUser: " + uid);
         userRef.child(uid).setValue(Transformer.transform(user));
     }
 
     private void getUserPastEvents(){
-        final ArrayList<Event> pastEvents = new ArrayList<>();
 
+        pastEvents  = new ArrayList<>();
         ((Participant) currentUser).setPastEvents(pastEvents);
         DatabaseReference pastEventsRef = database.getReference().child("user-event-list").child(mAuth.getUid());
-        pastEventsRef.addValueEventListener(new ValueEventListener() {
+        pastEventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.i(TAG, "onDataChange: leyendo los eventos del usuario");
                 for(DataSnapshot data: dataSnapshot.getChildren()){
-                    eventsKeys.add(data.getValue(String.class));
+                    eventsKeys.add(data.getKey());
                 }
 
                 fillUserPastEvents();
+                Log.i(TAG, "lista de llaves: " + eventsKeys.toString());
 
 
             }
@@ -180,25 +168,31 @@ public class UserProvider {
 
 
 
+
     }
 
     private void fillUserPastEvents() {
-        for(String i: eventsKeys) {
-            DatabaseReference sportEventsRef = database.getReference().child("event").child("sport-event");
-            DatabaseReference academicEventRef = database.getReference().child("event").child("academic-event");
-            DatabaseReference musicEventRef = database.getReference().child("event").child("music-event");
-            DatabaseReference socialEventRef = database.getReference().child("event").child("social-event");
-            DatabaseReference cameEventRef = database.getReference().child("event").child("game-event");
-            ValueEventListener listener = new ValueEventListener() {
+
+
+        for(String k: eventsKeys) {
+            Log.i(TAG, "buscando la llave: " + k);
+            DatabaseReference sportEventsRef = database.getReference().child("events").child("sport-event").child(k);
+            DatabaseReference academicEventRef = database.getReference().child("events").child("academic-event").child(k);
+            DatabaseReference musicEventRef = database.getReference().child("events").child("music-event").child(k);
+            DatabaseReference socialEventRef = database.getReference().child("events").child("social-event").child(k);
+            DatabaseReference gameEventRef = database.getReference().child("events").child("game-event").child(k);
+            ValueEventListener sportListener = new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    for (DataSnapshot data : dataSnapshot.getChildren()) {
-                        eventsKeys.add(data.getValue(String.class));
+                    SportEventDTO dto = dataSnapshot.getValue(SportEventDTO.class);
+                    if(dto == null){
+                        return;
                     }
+                    Log.i(TAG, "onDataChange: sport" + dataSnapshot.getKey());
 
-                    fillUserPastEvents();
-
-
+                    SportEvent e =Transformer.transform(dto);
+                    e.setID(dataSnapshot.getKey());
+                    pastEvents.add(e);
                 }
 
                 @Override
@@ -207,7 +201,115 @@ public class UserProvider {
                     Log.w(TAG, "Failed to read value.", error.toException());
                 }
             };
+
+            ValueEventListener academicListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    //Log.i(TAG, "snapshot: " + dataSnapshot.getValue().toString());
+                    AcademicEventDTO dto = dataSnapshot.getValue(AcademicEventDTO.class);
+                    if(dto == null){
+                        return;
+                    }
+                    Log.i(TAG, "onDataChange: academic" + dataSnapshot.getKey());
+
+                    AcademicEvent e = Transformer.transform(dto);
+                    e.setID(dataSnapshot.getKey());
+
+                    pastEvents.add(e);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            };
+
+            ValueEventListener musicListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    MusicEventDTO dto = dataSnapshot.getValue(MusicEventDTO.class);
+                    if(dto == null){
+                        return;
+                    }
+                    Log.i(TAG, "onDataChange: music" + dataSnapshot.getKey());
+
+                    MusicEvent e = Transformer.transform(dto);
+                    e.setID(dataSnapshot.getKey());
+
+                    pastEvents.add(e);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            };
+
+            ValueEventListener socialListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    SocialEventDTO dto = dataSnapshot.getValue(SocialEventDTO.class);
+                    if(dto == null){
+                        return;
+                    }
+                    Log.i(TAG, "onDataChange: social" + dataSnapshot.getKey());
+
+                    SocialEvent e= Transformer.transform(dto);
+                    e.setID(dataSnapshot.getKey());
+
+                    pastEvents.add(e);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            };
+
+            ValueEventListener gameListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    GameEventDTO dto = dataSnapshot.getValue(GameEventDTO.class);
+                    if(dto == null){
+                        return;
+                    }
+                    Log.i(TAG, "onDataChange: game" + dataSnapshot.getKey());
+
+                    GameEvent e = Transformer.transform(dto);
+                    e.setID(dataSnapshot.getKey());
+
+                    pastEvents.add(e);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            };
+
+            sportEventsRef.addListenerForSingleValueEvent(sportListener);
+            gameEventRef.addListenerForSingleValueEvent(gameListener);
+            socialEventRef.addListenerForSingleValueEvent(socialListener);
+            musicEventRef.addListenerForSingleValueEvent(musicListener);
+            academicEventRef.addListenerForSingleValueEvent(academicListener);
         }
+
+    }
+
+    public void desinscribirEvento(Event event) {
+        Log.i(TAG, "tam antes: " + pastEvents.size());
+
+        for (int i = 0 ; i < pastEvents.size() ; ++i){
+            if(pastEvents.get(i).getID().equals(event.getID())){
+                pastEvents.remove(i);
+            }
+        }
+        Log.i(TAG, "tam despues: " + pastEvents.size());
+
 
     }
 }
