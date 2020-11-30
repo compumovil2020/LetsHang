@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    tools:context=".activities.ChatEventoActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="0.05"
+        android:fontFamily="@font/coves_bold"
+        android:gravity="center"
+        android:text="Chat de Evento"
+        android:textColor="@color/secondaryColor"
+        android:textSize="30dp" />
+
+    <ListView
+        android:id="@+id/lvChatsEventoChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6">
+
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.05"
+        android:gravity="center|bottom"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etEscribirMensajeChatEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Enviar mensaje"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/btEnviarChatEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Enviar" />
+
+    </LinearLayout>
+
+</LinearLayout>

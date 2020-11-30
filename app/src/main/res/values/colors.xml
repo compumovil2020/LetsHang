@@ -8,4 +8,7 @@
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="gray">#696969</color>
+
+    <color name="tuColor">#F1F0EE</color>
+    <color name="remitenteColor">#F8BD66</color>
 </resources>

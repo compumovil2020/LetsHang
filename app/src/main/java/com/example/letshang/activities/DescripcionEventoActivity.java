@@ -87,6 +87,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private Event evento;
     private TextView tvHost;
     private Button btnDescripcion;
+    private Button btnChatEvento;
     private TextView tvTituloEvento;
     private TextView tvLocationEvento;
     private TextView tvFechaEvento;
@@ -140,6 +141,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         tvDescripcionEvento = findViewById(R.id.tvResumenDescripcionEvento);
         chipGroup = (ChipGroup) findViewById(R.id.cgTagsDescripcionEvento);
         mapView = findViewById(R.id.mpMapDescripcionEvento);
+        btnChatEvento = findViewById(R.id.btChatDescripcionEvento);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
@@ -164,6 +166,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         initializeEvent();
 
         if(fromActivity.equalsIgnoreCase("Principal")){
+            btnChatEvento.setVisibility(View.GONE);
             btnDescripcion.setText("Siguiente");
         } else if(fromActivity.equalsIgnoreCase("Inscritos")){
             btnDescripcion.setText("Cancelar evento");
@@ -219,6 +222,15 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), PerfilHostActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnChatEvento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ChatEventoActivity.class);
+                intent.putExtra("idevento", "" + evento.getID());
                 startActivity(intent);
             }
         });
