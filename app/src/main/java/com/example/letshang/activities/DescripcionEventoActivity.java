@@ -19,9 +19,11 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +73,10 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
@@ -78,6 +84,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class DescripcionEventoActivity extends AppCompatActivity implements OnMapReadyCallback, RoutingListener, GoogleApiClient.OnConnectionFailedListener {
 
@@ -95,6 +107,12 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private TextView tvPrecioEvento;
     private TextView tvDescripcionEvento;
     private ChipGroup chipGroup;
+
+    private TextView tvCuidad;
+    private TextView tvTemp;
+    private TextView tvDescripcion;
+    private ImageView ivClima;
+
     private CustomMapView mapView;
     private LocationRequest mLocationRequest;
     private LocationCallback mLocationCallback;
@@ -142,6 +160,14 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
         chipGroup = (ChipGroup) findViewById(R.id.cgTagsDescripcionEvento);
         mapView = findViewById(R.id.mpMapDescripcionEvento);
         btnChatEvento = findViewById(R.id.btChatDescripcionEvento);
+
+        tvCuidad = findViewById(R.id.tvCuidadDescripcion);
+        tvCuidad.setText("");
+        tvTemp = findViewById(R.id.tvTempDescripcion);
+        tvTemp.setText("");
+        tvDescripcion = findViewById(R.id.tvDescrDescripcion);
+        tvDescripcion.setText("");
+        ivClima = findViewById(R.id.ivClimaDescripcion);
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
@@ -226,6 +252,7 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
             }
         });
 
+
         btnChatEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -257,6 +284,10 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
             chip.setText(t);
             chipGroup.addView(chip);
         }
+
+        api_key(String.valueOf(evento.getLocation().latitude),
+                String.valueOf(evento.getLocation().longitude),
+                evento.getLocationName());
 
     }
 
@@ -472,4 +503,111 @@ public class DescripcionEventoActivity extends AppCompatActivity implements OnMa
     private void stopLocationUpdates(){
         mFusedLocationClient.removeLocationUpdates(mLocationCallback);
     }
+    private void api_key(String lat, String lng, final String City){
+        OkHttpClient client = new OkHttpClient();
+        String url2 = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lng+"&appid=8a998cbdb679f9c2baca0dfa1a2e7b20&units=metric";
+        Log.i("LlamadaREST","Entre1");
+        Request request = new Request.Builder()
+                .url(url2)
+                .get()
+                .build();
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            Response response = client.newCall(request).execute();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    Log.i("LamadaREST","No pude");
+                }
+
+                @Override
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    String responseData = response.body().string();
+                    try {
+                        Log.i("LlamadaREST","Entre");
+                        JSONObject jsonObject  = new JSONObject(responseData);
+                        JSONArray array = jsonObject.getJSONArray("weather");
+                        JSONObject object = array.getJSONObject(0);
+
+                        String description = object.getString("description");
+                        String icons = object.getString("icon");
+
+                        JSONObject templ = jsonObject.getJSONObject("main");
+                        Double temperatura = templ.getDouble("temp");
+
+                        setText(tvCuidad,City);
+
+                        String temps = Math.round(temperatura)+" °C";
+                        setText(tvTemp,temps);
+
+                        setText(tvDescripcion,description);
+
+                        setImage(ivClima,icons);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void setText(final TextView text, final String value){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                text.setText(value);
+            }
+        });
+    }
+    private void setImage(final ImageView imageView, final String value){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                switch (value){
+                    case "01d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d01d));
+                        break;
+                    case "01n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d01d));
+                        break;
+                    case "02d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d02d));
+                        break;
+                    case "02n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d02d));
+                        break;
+                    case "03d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d03d));
+                        break;
+                    case "03n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d03d));
+                        break;
+                    case "04d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d04d));
+                        break;
+                    case "04n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d04d));
+                        break;
+                    case "09d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d09d));
+                        break;
+                    case "09n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d09d));
+                        break;
+                    case "10d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d10d));
+                        break;
+                    case "10n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d10d));
+                        break;
+                    case "11d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d11d));
+                        break;
+                    case "11n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d11d));
+                        break;
+                    case "13d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d13d));
+                        break;
+                    case "13n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d13d));
+                        break;
+                    default:
+                        imageView.setImageDrawable(getResources().getDrawable(R.drawable.wheather));
+
+                }
+            }
+        });
+    }
+
 }

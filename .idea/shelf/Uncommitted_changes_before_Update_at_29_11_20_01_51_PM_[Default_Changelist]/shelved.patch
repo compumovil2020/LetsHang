@@ -1,0 +1,92 @@
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Tue Sep 01 19:45:28 COT 2020\ndistributionBase=GRADLE_USER_HOME\ndistributionPath=wrapper/dists\nzipStoreBase=GRADLE_USER_HOME\nzipStorePath=wrapper/dists\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-6.1.1-all.zip\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision 207bd00cfe833c87a80a5c3dd70cb14d25949a88)
++++ gradle/wrapper/gradle-wrapper.properties	(date 1606675752000)
+@@ -1,6 +1,6 @@
+-#Tue Sep 01 19:45:28 COT 2020
++#Sun Nov 29 11:06:09 COT 2020
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-6.1.1-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-bin.zip
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_1_7\" default=\"true\" project-jdk-name=\"1.8\" project-jdk-type=\"JavaSDK\">\n    <output url=\"file://$PROJECT_DIR$/build/classes\" />\n  </component>\n  <component name=\"ProjectType\">\n    <option name=\"id\" value=\"Android\" />\n  </component>\n  <component name=\"masterDetails\">\n    <states>\n      <state key=\"ProjectJDKs.UI\">\n        <settings>\n          <last-edited>1.8</last-edited>\n          <splitter-proportions>\n            <option name=\"proportions\">\n              <list>\n                <option value=\"0.2\" />\n              </list>\n            </option>\n          </splitter-proportions>\n        </settings>\n      </state>\n    </states>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/misc.xml	(revision 207bd00cfe833c87a80a5c3dd70cb14d25949a88)
++++ .idea/misc.xml	(date 1606675752000)
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/build/classes" />
+   </component>
+   <component name="ProjectType">
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\n  <component name=\"GradleSettings\">\n    <option name=\"linkedExternalProjectsSettings\">\n      <GradleProjectSettings>\n        <option name=\"testRunner\" value=\"PLATFORM\" />\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"modules\">\n          <set>\n            <option value=\"$PROJECT_DIR$\" />\n            <option value=\"$PROJECT_DIR$/app\" />\n          </set>\n        </option>\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\n      </GradleProjectSettings>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision 207bd00cfe833c87a80a5c3dd70cb14d25949a88)
++++ .idea/gradle.xml	(date 1606675752000)
+@@ -14,6 +14,7 @@
+           </set>
+         </option>
+         <option name="resolveModulePerSourceSet" value="false" />
++        <option name="useQualifiedModuleNames" value="true" />
+       </GradleProjectSettings>
+     </option>
+   </component>
+Index: app/google-services.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\n  \"project_info\": {\n    \"project_number\": \"1012806434084\",\n    \"firebase_url\": \"https://lets-hang-7c528.firebaseio.com\",\n    \"project_id\": \"lets-hang-7c528\",\n    \"storage_bucket\": \"lets-hang-7c528.appspot.com\"\n  },\n  \"client\": [\n    {\n      \"client_info\": {\n        \"mobilesdk_app_id\": \"1:1012806434084:android:397339df57bbf01d96c7b1\",\n        \"android_client_info\": {\n          \"package_name\": \"com.example.letshang\"\n        }\n      },\n      \"oauth_client\": [\n        {\n          \"client_id\": \"1012806434084-ulbkm83kgt8p0hcr9h4pkmbrudivm962.apps.googleusercontent.com\",\n          \"client_type\": 1,\n          \"android_info\": {\n            \"package_name\": \"com.example.letshang\",\n            \"certificate_hash\": \"8893eb4a8835e4c4ea9976ab200bee3397e2e1c2\"\n          }\n        },\n        {\n          \"client_id\": \"1012806434084-kf2pgahpt8o3acrd7df6l4lqcrb8kpd0.apps.googleusercontent.com\",\n          \"client_type\": 1,\n          \"android_info\": {\n            \"package_name\": \"com.example.letshang\",\n            \"certificate_hash\": \"73ffe668f2c5a7bdca47026a8da7341b81295043\"\n          }\n        },\n        {\n          \"client_id\": \"1012806434084-rhfpll7a8r76p901de28bgfcv0ge7fgm.apps.googleusercontent.com\",\n          \"client_type\": 3\n        }\n      ],\n      \"api_key\": [\n        {\n          \"current_key\": \"AIzaSyAmQhl_pI7FB7_usAQJXDBKiezppcW06-s\"\n        }\n      ],\n      \"services\": {\n        \"appinvite_service\": {\n          \"other_platform_oauth_client\": [\n            {\n              \"client_id\": \"1012806434084-rhfpll7a8r76p901de28bgfcv0ge7fgm.apps.googleusercontent.com\",\n              \"client_type\": 3\n            }\n          ]\n        }\n      }\n    }\n  ],\n  \"configuration_version\": \"1\"\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/google-services.json	(revision 207bd00cfe833c87a80a5c3dd70cb14d25949a88)
++++ app/google-services.json	(date 1606675752000)
+@@ -15,6 +15,30 @@
+       },
+       "oauth_client": [
+         {
++          "client_id": "1012806434084-hje0ol2vhupg2c7ucm1e1pu11civemfc.apps.googleusercontent.com",
++          "client_type": 1,
++          "android_info": {
++            "package_name": "com.example.letshang",
++            "certificate_hash": "c0ee8d377bf0e1d775507869a8e8db10a6c2e2fb"
++          }
++        },
++        {
++          "client_id": "1012806434084-n4q994ocrftpnpqdd16lh9fvo7o6rsj2.apps.googleusercontent.com",
++          "client_type": 1,
++          "android_info": {
++            "package_name": "com.example.letshang",
++            "certificate_hash": "cd8ed4354bb1fa22f0989da5af43a3533c98028f"
++          }
++        },
++        {
++          "client_id": "1012806434084-v9e3vh2kevrmeel8dupd21a7s235craj.apps.googleusercontent.com",
++          "client_type": 1,
++          "android_info": {
++            "package_name": "com.example.letshang",
++            "certificate_hash": "1474ada9e07715a845f33311842117d696f5bcbf"
++          }
++        },
++        {
+           "client_id": "1012806434084-ulbkm83kgt8p0hcr9h4pkmbrudivm962.apps.googleusercontent.com",
+           "client_type": 1,
+           "android_info": {

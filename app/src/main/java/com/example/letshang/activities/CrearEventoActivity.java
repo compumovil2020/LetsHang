@@ -17,7 +17,7 @@ import android.hardware.SensorManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.text.Layout;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -26,14 +26,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
@@ -43,7 +42,6 @@ import com.example.letshang.model.AcademicEventLevel;
 import com.example.letshang.model.AcademicType;
 import com.example.letshang.model.GameEvent;
 import com.example.letshang.model.GameEventLevel;
-import com.example.letshang.model.Host;
 import com.example.letshang.model.MusicEvent;
 import com.example.letshang.model.SocialEvent;
 import com.example.letshang.model.SportEvent;
@@ -77,11 +75,23 @@ import com.google.android.material.chip.ChipGroup;
 import com.google.common.collect.Range;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
 
 public class CrearEventoActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -92,6 +102,10 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
     private ArrayList<String> tags;
     private ChipGroup chipGroup;
 
+    private TextView tvCuidad;
+    private TextView tvTemp;
+    private TextView tvDescripcion;
+    private ImageView ivClima;
 
     private AwesomeValidation validation;
     private RadioGroup radioGroup;
@@ -163,6 +177,13 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
 
         mapView = findViewById(R.id.mpMapCrearEvento);
 
+        tvCuidad = findViewById(R.id.tvCuidadCrearEvento);
+        tvCuidad.setText("");
+        tvTemp = findViewById(R.id.tvTempCrearEvento);
+        tvTemp.setText("");
+        tvDescripcion = findViewById(R.id.tvDescrCrearEvento);
+        tvDescripcion.setText("");
+        ivClima = findViewById(R.id.ivClimaCrearEvento);
          // inicializar
         startDate = new GregorianCalendar();
         endDate = new GregorianCalendar();
@@ -276,6 +297,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                                     mo.alpha(0.8f);
                                     map.addMarker(mo);
                                     map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+                                    api_key(String.valueOf(pos.latitude),String.valueOf(pos.longitude),res.getLocality());
                                 }
                             } else {
                                 Toast.makeText(CrearEventoActivity.this, "No se encontró la dirección digitada", Toast.LENGTH_SHORT).show();
@@ -794,6 +816,7 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
                         icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                 etLugar.setText(geoCoderSearch(location));
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 15));
+                api_key(String.valueOf(location.latitude),String.valueOf(location.longitude),geoCoderSearch(location));
 
             }
         });
@@ -866,7 +889,111 @@ public class CrearEventoActivity extends AppCompatActivity implements OnMapReady
         mFusedLocationClient.removeLocationUpdates(mLocationCallback);
     }
 
+    private void api_key(String lat, String lng, final String City){
+        OkHttpClient client = new OkHttpClient();
+        String url2 = "https://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+lng+"&appid=8a998cbdb679f9c2baca0dfa1a2e7b20&units=metric";
+        Log.i("LlamadaREST","Entre1");
+        Request request = new Request.Builder()
+                .url(url2)
+                .get()
+                .build();
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        try {
+            Response response = client.newCall(request).execute();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    Log.i("LamadaREST","No pude");
+                }
 
+                @Override
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    String responseData = response.body().string();
+                    try {
+                        Log.i("LlamadaREST","Entre");
+                        JSONObject jsonObject  = new JSONObject(responseData);
+                        JSONArray array = jsonObject.getJSONArray("weather");
+                        JSONObject object = array.getJSONObject(0);
+
+                        String description = object.getString("description");
+                        String icons = object.getString("icon");
+
+                        JSONObject templ = jsonObject.getJSONObject("main");
+                        Double temperatura = templ.getDouble("temp");
+
+                        setText(tvCuidad,City);
+
+                        String temps = Math.round(temperatura)+" °C";
+                        setText(tvTemp,temps);
+
+                        setText(tvDescripcion,description);
+
+                        setImage(ivClima,icons);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void setText(final TextView text, final String value){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                text.setText(value);
+            }
+        });
+    }
+    private void setImage(final ImageView imageView, final String value){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                switch (value){
+                    case "01d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d01d));
+                        break;
+                    case "01n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d01d));
+                        break;
+                    case "02d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d02d));
+                        break;
+                    case "02n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d02d));
+                        break;
+                    case "03d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d03d));
+                        break;
+                    case "03n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d03d));
+                        break;
+                    case "04d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d04d));
+                        break;
+                    case "04n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d04d));
+                        break;
+                    case "09d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d09d));
+                        break;
+                    case "09n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d09d));
+                        break;
+                    case "10d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d10d));
+                        break;
+                    case "10n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d10d));
+                        break;
+                    case "11d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d11d));
+                        break;
+                    case "11n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d11d));
+                        break;
+                    case "13d": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d13d));
+                        break;
+                    case "13n": imageView.setImageDrawable(getResources().getDrawable(R.drawable.d13d));
+                        break;
+                    default:
+                        imageView.setImageDrawable(getResources().getDrawable(R.drawable.wheather));
+
+                }
+            }
+        });
+    }
 
 }

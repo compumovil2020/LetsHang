@@ -164,7 +164,7 @@
             android:text="Cancelar suscripción"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/llDescripcionEvento" />
+            app:layout_constraintTop_toBottomOf="@+id/infoClimaCardViewDescripcion" />
 
         <ImageView
             android:id="@+id/ivLogoDescripcionEvento"
@@ -187,6 +187,78 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivProfileDescripcionEvento"
             app:srcCompat="@drawable/rute_map" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/infoClimaCardViewDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llDescripcionEvento"
+            app:layout_goneMarginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvPrediccionClimaDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="Predicción Clima"
+                    android:textColor="@color/secondaryColor"
+                    android:textSize="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+
+                <TextView
+                    android:id="@+id/tvCuidadDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/coves_bold"
+                    android:text="Bogotá"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <ImageView
+                    android:id="@+id/ivClimaDescripcion"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/wheather" />
+
+                <TextView
+                    android:id="@+id/tvTempDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/coves_bold"
+                    android:text="15 °C"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/tvDescrDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/coves_bold"
+                    android:text="Descripción"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+                <TextView
+                    android:id="@+id/tvAvisoDescripcion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/coves_bold"
+                    android:text="¡Atencion! ¡La predicción es de dos días desde la fecha actual!"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <Button
             android:id="@+id/btChatDescripcionEvento"
