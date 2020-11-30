@@ -32,17 +32,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Month;
-import java.time.Year;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.EnumMap;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +51,9 @@ public class EventProvider {
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference eventsRef = database.getReference("events");
     private DatabaseReference hostsRef = database.getReference("host-event");
-    private FirebaseAuth mAuth;
+    private DatabaseReference userEventsRef = database.getReference("user-event-list");
+
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     private static final  String TAG = "eventProvider";
 
@@ -79,12 +72,10 @@ public class EventProvider {
     private EventProvider(){
         eventsList = new ArrayList<>();
         hostName = new HashMap<>();
-        userProvider.getInstance();
-
+        userProvider = userProvider.getInstance();
         addEventListeners();
 
     }
-
 
 
     /**
@@ -214,8 +205,7 @@ public class EventProvider {
     private String addEventToFirebase(Event event) {
 
         mAuth.getInstance();
-        //TODO: cambiar esto por el nombre de verdad
-        String myName = "Camilo Serrano";
+        String myName = userProvider.getCurrentUser().getName();
 
         DatabaseReference ref;
         String key = null;
@@ -225,7 +215,6 @@ public class EventProvider {
             ref = eventsRef.child("sport-event");
             key = ref.push().getKey();
             ref.child(key).setValue(Transformer.transform((SportEvent)event,  myName));
-
         }
         else if(event.getClass() == AcademicEvent.class){
             Log.i(TAG, "addEventToFirebase: academic");
@@ -337,6 +326,7 @@ public class EventProvider {
                 hostName.put(dataSnapshot.getKey() , dto.getHostName());
                 AcademicEvent e = Transformer.transform(dto);
                 e.setID(dataSnapshot.getKey());
+
                 eventsList.add(e);
             }
 
@@ -482,4 +472,25 @@ public class EventProvider {
 
     }
 
+
+    /**
+     * adds the id of the event to the list of current events in firebase
+     * @param idUser
+     * @param idEvento
+     */
+    public void inscribirEvento(String idUser, String idEvento){
+        DatabaseReference userEventList = database.getReference("user-event-list").child(idUser).child(idEvento);
+        userEventList.setValue(true);
+
+    }
+
+    /**
+     * quita de firebase la relacion del usuario con el evento
+     * @param event
+     */
+    public void desinscribirEvento(Event event) {
+        userProvider.desinscribirEvento(event);
+        userEventsRef.child(mAuth.getUid()).child(event.getID()).setValue(null);
+
+    }
 }

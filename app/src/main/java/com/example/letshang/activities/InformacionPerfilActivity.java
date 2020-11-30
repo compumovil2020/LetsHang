@@ -66,6 +66,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
 
     private static final int IMAGE_PICKER_REQUEST = 201;
     private static final int IMAGE_PICKER_PERMISSION = 211;
+    private final static String TAG = "Informacion perfil";
 
     private TextView tvDeportes, tvConciertos, tvConferencias;
     private Button btnEvento, btnEditar;
@@ -285,7 +286,6 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                     }
 
                 }
-
         }
     }
 
