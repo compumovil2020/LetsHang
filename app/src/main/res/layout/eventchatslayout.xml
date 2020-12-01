@@ -16,6 +16,12 @@
             android:layout_height="40dp"
             android:orientation="horizontal">
 
+            <ImageView
+                android:id="@+id/cvImagenRemitente"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                />
+
             <TextView
                 android:id="@+id/tvNombreRemitenteEventsChat"
                 android:layout_width="0dp"
@@ -83,6 +89,12 @@
                 android:text="Tú"
                 android:textColor="@color/secondaryColor"
                 android:textSize="15dp" />
+
+            <ImageView
+                android:id="@+id/cvTu"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                />
         </LinearLayout>
 
         <TextView

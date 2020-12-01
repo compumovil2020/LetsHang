@@ -3,19 +3,26 @@ package com.example.letshang.ui.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 
 import com.example.letshang.R;
 import com.example.letshang.model.EventChat;
+import com.example.letshang.ui.dialog.CircleTransform;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +31,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class EventChatAdapter extends BaseAdapter {
@@ -33,6 +46,7 @@ public class EventChatAdapter extends BaseAdapter {
     private Context context;
     private List<EventChat> eventChats;
     private View v;
+    private ImageView cardRemitente, cardTu;
 
     //Database for de name of the user
     private FirebaseDatabase database;
@@ -92,7 +106,8 @@ public class EventChatAdapter extends BaseAdapter {
         cuerpoTu = view.findViewById(R.id.tvCuerpoTuEventsChat);
         llRemitente = view.findViewById(R.id.llRemitenteEventsChat);
         llTu = view.findViewById(R.id.llTuEventsChat);
-
+        cardRemitente = view.findViewById(R.id.cvImagenRemitente);
+        cardTu = view.findViewById(R.id.cvTu);
 
         //Si es tu enviado o si es otro
         if(eventChats.get(i).getIdUsuario().equals(this.getUserAuthId())){
@@ -104,6 +119,13 @@ public class EventChatAdapter extends BaseAdapter {
             nombreTu.setText("Tu");
             fechaTu.setText(eventChats.get(i).getFecha());
             cuerpoTu.setText(eventChats.get(i).getCuerpo());
+
+            if(eventChats.get(i).getFoto() != null){
+                cardTu.setImageBitmap(eventChats.get(i).getFoto());
+            } else
+            {
+                cardTu.setImageResource(R.drawable.icn_profile);
+            }
 
             //llRemitente.setVisibility(View.INVISIBLE);
             //llTu.setBackgroundColor(R.color.tuColor);
@@ -120,6 +142,13 @@ public class EventChatAdapter extends BaseAdapter {
             nombreRemitente.setText(eventChats.get(i).getNombre());
             fechaRemitente.setText(eventChats.get(i).getFecha());
             cuerpoRemitente.setText(eventChats.get(i).getCuerpo());
+
+            if(eventChats.get(i).getFoto() != null){
+                cardRemitente.setImageBitmap(eventChats.get(i).getFoto());
+            } else
+            {
+                cardRemitente.setImageResource(R.drawable.icn_profile);
+            }
 
             //llRemitente.setBackgroundColor(R.color.colorPrimary);
             //llTu.setVisibility(View.INVISIBLE);
