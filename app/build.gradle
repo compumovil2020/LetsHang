@@ -53,4 +53,5 @@ dependencies {
     implementation 'com.github.jd-alexander:library:1.1.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.0'
     implementation 'com.squareup.okhttp3:mockwebserver:4.9.0'
+    implementation 'com.github.clans:fab:1.6.4'
 }

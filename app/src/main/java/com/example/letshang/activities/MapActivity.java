@@ -32,6 +32,7 @@ import com.example.letshang.model.Event;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.ui.dialog.CustomMapView;
 import com.example.letshang.utils.PermissionHandler;
+import com.github.clans.fab.FloatingActionButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -82,7 +83,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     private static final String TAG = "MapActivity";
     private ImageView ivFilter;
-    private TextView btnLista;
+    private FloatingActionButton btnLista;
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
