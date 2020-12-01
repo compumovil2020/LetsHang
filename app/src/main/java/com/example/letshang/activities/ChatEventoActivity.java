@@ -1,9 +1,9 @@
 package com.example.letshang.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,12 +16,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.example.letshang.R;
-import com.example.letshang.model.EventChat;
+import com.example.letshang.model.Chat;
+import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.adapter.EventChatAdapter;
-import com.example.letshang.ui.adapter.EventsAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,14 +35,9 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,9 +55,10 @@ public class ChatEventoActivity extends AppCompatActivity {
 
     //Adapter
     private ListView listViewChatEventos;
-    private List<EventChat> listEventChat = new ArrayList<EventChat>();
+    private List<Chat> listChat = new ArrayList<Chat>();
     private EventChatAdapter eventChatAdapter;
-
+    private Map<String, Bitmap> foticos;
+    private UserProvider userProvider;
     //Database
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -82,7 +79,7 @@ public class ChatEventoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_evento);
         getSupportActionBar().setTitle("Chat");
-
+        userProvider = UserProvider.getInstance();
         //Inflate Elements
         btEnviarMensaje = findViewById(R.id.btEnviarChatEvento);
         mensajeAEnviar = findViewById(R.id.etEscribirMensajeChatEvento);
@@ -103,7 +100,7 @@ public class ChatEventoActivity extends AppCompatActivity {
         idEvento = extras.getString("idevento");
         Log.i("DATABASESTATUS",idEvento);
         //idEvento = "IDEvento1";
-
+        foticos = new HashMap<String, Bitmap>();
         //Verificar si el evento ya tiene mensajes
         verifyChat(idEvento);
 
@@ -124,6 +121,7 @@ public class ChatEventoActivity extends AppCompatActivity {
 
         Map<String, String> dato = new HashMap<>();
         dato.put("IDUsuario", idUsuario);
+        dato.put("Nombre",userProvider.getCurrentUser().getName());
         dato.put("cuerpo", mensaje);
         dato.put("fecha", dtf.format(c).toString());
 
@@ -134,117 +132,58 @@ public class ChatEventoActivity extends AppCompatActivity {
     }
 
     public void verifyChat(final String idEvento){
-        databaseReferenceUsuario = database.getReference("chats-evento");
-        databaseReferenceUsuario.addValueEventListener(new ValueEventListener() {
+        databaseReferenceUsuario = database.getReference("chats-evento").child(idEvento);
+        databaseReferenceUsuario.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for(DataSnapshot ds : snapshot.getChildren()){
-                    if(ds.getKey().equals(idEvento)){
-                        Log.i("DATABASESTATUS",ds.getKey());
-                        listEventChat.clear();
-
-                        getMensajes(idEvento);
-                    }
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("DATABASESTATUS","PROBLEMAS", error.toException());
-            }
-        });
-    }
-
-    public void getMensajes(final String idEvento){
-        databaseReferenceMensajes = database.getReference("chats-evento/"+idEvento);
-        databaseReferenceMensajes.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot ds : snapshot.getChildren()){
-                    Log.i("DATABASESTATUS",ds.getKey());
-                    listEventChat.clear();
-                    getInfoMensajes(idEvento , ds.getKey());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("DATABASESTATUS","PROBLEMAS", error.toException());
-            }
-        });
-    }
-
-    public void getInfoMensajes(String idEvento, String idMensaje){
-        databaseReferenceInfoMensajes = database.getReference("chats-evento/"+idEvento+"/"+idMensaje);
-        listEventChat.clear();
-        databaseReferenceInfoMensajes.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                EventChat eCInfoMensajes = new EventChat();
-
-                int cont = 0;
-                for(DataSnapshot ds : snapshot.getChildren()){
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Chat eCInfoMensajes = new Chat();
+                for(DataSnapshot ds:snapshot.getChildren()){
                     Log.i("DATABASESTATUS",ds.getKey());
                     if(ds.getKey().equals("IDUsuario")){
                         eCInfoMensajes.setIdUsuario(ds.getValue().toString());
-                        cont++;
                     }
-
+                    if(ds.getKey().equals("Nombre")){
+                        eCInfoMensajes.setNombre(ds.getValue().toString());
+                    }
                     if(ds.getKey().equals("cuerpo")){
                         eCInfoMensajes.setCuerpo(ds.getValue().toString());
-                        cont++;
                     }
 
                     if(ds.getKey().equals("fecha")){
                         eCInfoMensajes.setFecha(ds.getValue().toString());
-                        cont++;
                     }
-
                 }
+                listChat.add(eCInfoMensajes);
+                setAdapter();
+            }
 
-                listEventChat.add(eCInfoMensajes);
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                if(cont == 3){
-                    cont = 0;
-                    getNameOfUser(eCInfoMensajes);
-                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("DATABASESTATUS","PROBLEMAS", error.toException());
+
             }
+
         });
     }
 
-    public void getNameOfUser(final EventChat eCInfoMensajes){
-        databaseReferenceNombre = database.getReference("users/"+eCInfoMensajes.getIdUsuario());
-        databaseReferenceNombre.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int c = 0;
-                for(DataSnapshot ds : snapshot.getChildren()){
-                    if(ds.getKey().equals("name")){
-                        eCInfoMensajes.setNombre(ds.getValue().toString());
-                        c++;
-                    }
-                }
-                if(c == 1){
-                    c = 0;
-                    getProfilePhoto(eCInfoMensajes);
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.i("DATABASESTATUS","PROBLEMAS", error.toException());
-            }
-        });
-    }
 
-    public void getProfilePhoto(final EventChat eCInfoMensajes){
+
+    public void getProfilePhoto(final Chat eCInfoMensajes){
         try {
             final File localFile = File.createTempFile("images","jpg");
             StorageReference imageRef = mStorageRef.child("images/profile/"+eCInfoMensajes.getIdUsuario()+"/profilePic.jpg");
@@ -253,8 +192,7 @@ public class ChatEventoActivity extends AppCompatActivity {
                 public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                     Bitmap selectedImage = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                     eCInfoMensajes.setFoto(selectedImage);
-                    listEventChat.add(eCInfoMensajes);
-                    setAdapter();
+                    foticos.put(eCInfoMensajes.getIdUsuario(),selectedImage);
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -268,7 +206,7 @@ public class ChatEventoActivity extends AppCompatActivity {
     }
 
     public void setAdapter(){
-        eventChatAdapter = new EventChatAdapter(mAuth.getUid(),context, listEventChat);
+        eventChatAdapter = new EventChatAdapter(mAuth.getUid(),context, listChat);
         listViewChatEventos.setAdapter(eventChatAdapter);
     }
 }

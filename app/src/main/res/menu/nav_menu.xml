@@ -32,6 +32,11 @@
         android:title="Crear evento"></item>
 
     <item
+        android:id="@+id/item_menu_chat_admin"
+        android:icon="@drawable/icn_go"
+        android:title="Chat Admin"></item>
+
+    <item
         android:id="@+id/item_menu_logout"
         android:icon="@drawable/icn_salir"
         android:title="Cerrar sesión"></item>

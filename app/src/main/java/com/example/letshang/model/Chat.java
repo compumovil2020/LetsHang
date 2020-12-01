@@ -2,7 +2,7 @@ package com.example.letshang.model;
 
 import android.graphics.Bitmap;
 
-public class EventChat {
+public class Chat {
 
     String idUsuario;
     String nombre;
@@ -10,11 +10,11 @@ public class EventChat {
     String fecha;
     Bitmap foto = null;
 
-    public EventChat(){
+    public Chat(){
 
     }
 
-    public EventChat(String idUsuario,String nombre, String cuerpo, String fecha, Bitmap foto) {
+    public Chat(String idUsuario, String nombre, String cuerpo, String fecha, Bitmap foto) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.cuerpo = cuerpo;

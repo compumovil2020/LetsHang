@@ -3,11 +3,11 @@ package com.example.letshang.ui.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,49 +18,40 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
-public class EventChatAdapter extends BaseAdapter {
-
-    private String userAuthId;
+public class AdminChatAdapter extends BaseAdapter {
+    private String userAuthid;
     private Context context;
     private List<Chat> chats;
-    private View v;
-    private ImageView cardRemitente, cardTu;
 
     //Database for de name of the user
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
-    public EventChatAdapter (String userAuthId, Context context, List<Chat> chats){
-        this.userAuthId = userAuthId;
+    public AdminChatAdapter(String userAuthid, Context context, List<Chat> chats){
+        this.userAuthid = userAuthid;
         this.context = context;
         this.chats = chats;
     }
 
-    public String getUserAuthId() {
-        return userAuthId;
-    }
+    public String getUserAuthid(){return this.userAuthid;}
 
     public void setUserAuthId(String userAuthId) {
-        this.userAuthId = userAuthId;
+        this.userAuthid = userAuthId;
     }
 
-    @Override
     public int getCount() {
         return chats.size();
     }
 
-    @Override
     public Chat getItem(int i) {
         return chats.get(i);
     }
 
-    @Override
     public long getItemId(int i) {
         return 0;
     }
 
     @SuppressLint("ResourceAsColor")
-    @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         //Verificar vista
 
@@ -70,45 +61,41 @@ public class EventChatAdapter extends BaseAdapter {
             LayoutInflater layoutInflater = (LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
-            view = LayoutInflater.from(this.context).inflate(R.layout.eventchatslayout,viewGroup,false);
+            view = LayoutInflater.from(this.context).inflate(R.layout.adminchatlayout,viewGroup,false);
         }
 
         //Inflar
         TextView nombreRemitente, fechaRemitente, nombreTu, fechaTu, cuerpoRemitente, cuerpoTu;
         LinearLayout llRemitente, llTu;
-        nombreRemitente = view.findViewById(R.id.tvNombreRemitenteEventsChat);
-        fechaRemitente = view.findViewById(R.id.tvFechaRemitenteEventsChat);
-        cuerpoRemitente = view.findViewById(R.id.tvCuerpoRemitenteEventsChat);
-        nombreTu = view.findViewById(R.id.tvNombreTuEventsChat);
-        fechaTu = view.findViewById(R.id.tvFechaTuEventsChat);
-        cuerpoTu = view.findViewById(R.id.tvCuerpoTuEventsChat);
-        llRemitente = view.findViewById(R.id.llRemitenteEventsChat);
-        llTu = view.findViewById(R.id.llTuEventsChat);
-        cardRemitente = view.findViewById(R.id.cvImagenRemitente);
-        cardTu = view.findViewById(R.id.cvTu);
+        nombreRemitente = view.findViewById(R.id.tvAdminNombre);
+        fechaRemitente = view.findViewById(R.id.tvFechaChatAdmin);
+        cuerpoRemitente = view.findViewById(R.id.tvCuerpoAdminChat);
+        nombreTu = view.findViewById(R.id.tvNombreTuAdminChat);
+        fechaTu = view.findViewById(R.id.tvFechaTuAdminChat);
+        cuerpoTu = view.findViewById(R.id.tvCuerpoTuAdminChat);
+        llRemitente = view.findViewById(R.id.llAdminChat);
+        llTu = view.findViewById(R.id.llTuAdminChat);
+
+        Log.i("Nuevo mensaje",chats.get(i).getIdUsuario());
 
         //Si es tu enviado o si es otro
-        if(chats.get(i).getIdUsuario().equals(this.getUserAuthId())){
+        if(chats.get(i).getIdUsuario().equals(this.getUserAuthid())){
 
-            if(nombreRemitente != null && fechaRemitente != null && cuerpoRemitente != null){
+            if(nombreRemitente != null){
                 nombreRemitente.setVisibility(View.INVISIBLE);
+            }
+            if(fechaRemitente != null){
                 fechaRemitente.setVisibility(View.INVISIBLE);
+            }
+            if(cuerpoRemitente != null){
                 cuerpoRemitente.setVisibility(View.INVISIBLE);
             }
 
-            if(nombreTu!= null && fechaTu != null && cuerpoTu!= null && cardTu != null){
-                nombreTu.setText("Tu");
+            if(nombreTu != null && fechaTu != null && cuerpoTu!= null){
+                nombreTu.setText(chats.get(i).getNombre());
                 fechaTu.setText(chats.get(i).getFecha());
                 cuerpoTu.setText(chats.get(i).getCuerpo());
-
-                if(chats.get(i).getFoto() != null){
-                    cardTu.setImageBitmap(chats.get(i).getFoto());
-                } else
-                {
-                    cardTu.setImageResource(R.drawable.icn_profile);
-                }
             }
-
 
             llRemitente.removeAllViews();
 
@@ -116,22 +103,20 @@ public class EventChatAdapter extends BaseAdapter {
 
         } else {
 
-            if(nombreTu!= null && fechaTu != null && cuerpoTu!= null){
+            if(nombreTu  != null){
                 nombreTu.setVisibility(View.INVISIBLE);
+            }
+            if(fechaTu != null){
                 fechaTu.setVisibility(View.INVISIBLE);
+            }
+            if(cuerpoTu != null){
                 cuerpoTu.setVisibility(View.INVISIBLE);
             }
 
-            if(nombreRemitente != null && fechaRemitente != null && cuerpoRemitente != null && cardRemitente != null) {
+            if(nombreRemitente != null && fechaRemitente != null && cuerpoRemitente != null){
                 nombreRemitente.setText(chats.get(i).getNombre());
                 fechaRemitente.setText(chats.get(i).getFecha());
                 cuerpoRemitente.setText(chats.get(i).getCuerpo());
-                if(chats.get(i).getFoto() != null){
-                    cardRemitente.setImageBitmap(chats.get(i).getFoto());
-                } else
-                {
-                    cardRemitente.setImageResource(R.drawable.icn_profile);
-                }
             }
 
             llTu.removeAllViews();

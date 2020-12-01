@@ -114,6 +114,10 @@ public class CrearSugerenciaActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext() , CrearEventoActivity.class);
                     startActivity(intent);
                 }
+                if(item.getItemId() == R.id.item_menu_chat_admin){
+                    Intent intent = new Intent(getApplicationContext(), ChatAdminActivity.class);
+                    startActivity(intent);
+                }
                 return true;
             }
         });

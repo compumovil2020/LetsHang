@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:id="@+id/llRemitenteEventsChat"
+        android:id="@+id/llAdminChat"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_weight="0.4"
@@ -15,37 +15,34 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
-
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="200dp"
                 android:elevation="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0">
-                    <ImageView
-                        android:id="@+id/cvImagenRemitente"
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/administracion"/>
             </androidx.cardview.widget.CardView>
-
             <TextView
-                android:id="@+id/tvNombreRemitenteEventsChat"
+                android:id="@+id/tvAdminNombre"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_weight="0.7"
+                android:layout_weight="0.5"
                 android:fontFamily="@font/coves_bold"
                 android:gravity="start|center"
-                android:text="Nombre Enviador"
+                android:text="Admin"
                 android:textColor="@color/secondaryColor"
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/tvFechaRemitenteEventsChat"
+                android:id="@+id/tvFechaChatAdmin"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.3"
+                android:layout_weight="0.4"
                 android:gravity="center"
                 android:text="FechaEnvio"
                 android:textSize="10dp" />
@@ -53,19 +50,19 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvCuerpoRemitenteEventsChat"
+            android:id="@+id/tvCuerpoAdminChat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/coves_bold"
             android:gravity="start|center"
-            android:text="Cuerpo Remitente"
+            android:text="Cuerpo Admin"
             android:background="@drawable/rounded_corner_remitente"
             android:padding="10dp"/>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/llTuEventsChat"
+        android:id="@+id/llTuAdminChat"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_weight="0.4"
@@ -77,42 +74,40 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvFechaTuEventsChat"
+                android:id="@+id/tvFechaTuAdminChat"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.4"
                 android:gravity="center"
-                android:text="Fecha Envio Tú"
+                android:text="Fecha Envio"
                 android:textSize="10dp" />
 
             <TextView
-                android:id="@+id/tvNombreTuEventsChat"
+                android:id="@+id/tvNombreTuAdminChat"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
-                android:layout_weight="0.6"
+                android:layout_weight="0.5"
                 android:fontFamily="@font/coves_bold"
                 android:gravity="end|center"
                 android:text="Tú"
                 android:textColor="@color/secondaryColor"
                 android:textSize="15dp" />
-
             <androidx.cardview.widget.CardView
                 app:cardCornerRadius="200dp"
                 android:elevation="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0">
-                    <ImageView
-                        android:id="@+id/cvTu"
-                        android:layout_width="50dp"
-                        android:layout_height="match_parent"
-                        />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/usuario"/>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvCuerpoTuEventsChat"
+            android:id="@+id/tvCuerpoTuAdminChat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/coves_bold"
@@ -120,6 +115,7 @@
             android:text="Cuerpo Tu"
             android:background="@drawable/rounded_corner_tu"
             android:padding="10dp"/>
+
 
 
     </LinearLayout>
