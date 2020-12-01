@@ -87,32 +87,42 @@ public class EventChatAdapter extends BaseAdapter {
         //Si es tu enviado o si es otro
         if(chats.get(i).getIdUsuario().equals(this.getUserAuthId())){
 
-            nombreRemitente.setVisibility(View.INVISIBLE);
-            fechaRemitente.setVisibility(View.INVISIBLE);
-            cuerpoRemitente.setVisibility(View.INVISIBLE);
+            if(nombreRemitente != null){
+                nombreRemitente.setVisibility(View.INVISIBLE);
+            }
+            if(fechaRemitente != null){
+                fechaRemitente.setVisibility(View.INVISIBLE);
+            }
+            if(cuerpoRemitente != null){
+                cuerpoRemitente.setVisibility(View.INVISIBLE);
+            }
 
-            nombreTu.setText("Tu");
-            fechaTu.setText(chats.get(i).getFecha());
-            cuerpoTu.setText(chats.get(i).getCuerpo());
-
-            //llRemitente.setVisibility(View.INVISIBLE);
-            //llTu.setBackgroundColor(R.color.tuColor);
+            if(nombreTu != null && fechaTu != null && cuerpoTu!= null){
+                nombreTu.setText("Tu");
+                fechaTu.setText(chats.get(i).getFecha());
+                cuerpoTu.setText(chats.get(i).getCuerpo());
+            }
             llRemitente.removeAllViews();
 
             llTu.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT));
 
         } else {
 
-            nombreTu.setVisibility(View.INVISIBLE);
-            fechaTu.setVisibility(View.INVISIBLE);
-            cuerpoTu.setVisibility(View.INVISIBLE);
+            if(nombreTu  != null){
+                nombreTu.setVisibility(View.INVISIBLE);
+            }
+            if(fechaTu != null){
+                fechaTu.setVisibility(View.INVISIBLE);
+            }
+            if(cuerpoTu != null){
+                cuerpoTu.setVisibility(View.INVISIBLE);
+            }
 
-            nombreRemitente.setText(chats.get(i).getNombre());
-            fechaRemitente.setText(chats.get(i).getFecha());
-            cuerpoRemitente.setText(chats.get(i).getCuerpo());
-
-            //llRemitente.setBackgroundColor(R.color.colorPrimary);
-            //llTu.setVisibility(View.INVISIBLE);
+            if(nombreRemitente != null && fechaRemitente != null && cuerpoRemitente != null){
+                nombreRemitente.setText(chats.get(i).getNombre());
+                fechaRemitente.setText(chats.get(i).getFecha());
+                cuerpoRemitente.setText(chats.get(i).getCuerpo());
+            }
             llTu.removeAllViews();
 
             llRemitente.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT));

@@ -89,9 +89,11 @@ public class AdminChatAdapter extends BaseAdapter {
                 cuerpoRemitente.setVisibility(View.INVISIBLE);
             }
 
-            nombreTu.setText("Tu");
-            fechaTu.setText(chats.get(i).getFecha());
-            cuerpoTu.setText(chats.get(i).getCuerpo());
+            if(nombreTu != null && fechaTu != null && cuerpoTu!= null){
+                nombreTu.setText(chats.get(i).getNombre());
+                fechaTu.setText(chats.get(i).getFecha());
+                cuerpoTu.setText(chats.get(i).getCuerpo());
+            }
 
             llRemitente.removeAllViews();
 
@@ -109,12 +111,12 @@ public class AdminChatAdapter extends BaseAdapter {
                 cuerpoTu.setVisibility(View.INVISIBLE);
             }
 
-            nombreRemitente.setText(chats.get(i).getNombre());
-            fechaRemitente.setText(chats.get(i).getFecha());
-            cuerpoRemitente.setText(chats.get(i).getCuerpo());
+            if(nombreRemitente != null && fechaRemitente != null && cuerpoRemitente != null){
+                nombreRemitente.setText(chats.get(i).getNombre());
+                fechaRemitente.setText(chats.get(i).getFecha());
+                cuerpoRemitente.setText(chats.get(i).getCuerpo());
+            }
 
-            //llRemitente.setBackgroundColor(R.color.colorPrimary);
-            //llTu.setVisibility(View.INVISIBLE);
             llTu.removeAllViews();
 
             llRemitente.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT));
