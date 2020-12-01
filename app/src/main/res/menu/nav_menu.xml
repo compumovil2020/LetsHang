@@ -30,6 +30,10 @@
         android:id="@+id/item_menu_crear_evento"
         android:icon="@drawable/icn_check"
         android:title="Crear evento"></item>
+    <item
+        android:id="@+id/item_menu_chatAdmin"
+        android:icon="@drawable/icn_suggest"
+        android:title="Chat Admin"></item>
 
     <item
         android:id="@+id/item_menu_logout"

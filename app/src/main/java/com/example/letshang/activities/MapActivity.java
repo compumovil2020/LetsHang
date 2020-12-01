@@ -270,6 +270,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     Intent intent = new Intent(getApplicationContext() , CrearEventoActivity.class);
                     startActivity(intent);
                 }
+                if(item.getItemId() == R.id.item_menu_chatAdmin){
+                    Intent intent = new Intent(getApplicationContext() , ChatAdminActivity.class);
+                    startActivity(intent);
+                }
                 return true;
             }
         });
