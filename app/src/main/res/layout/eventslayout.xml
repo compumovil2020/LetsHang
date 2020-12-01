@@ -25,14 +25,14 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        style="@style/form_bigOrange">
+        android:layout_marginBottom="10dp">
 
         <TextView
             android:id="@+id/tvTituloEventsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
             android:text="TextView"
             android:fontFamily="@font/coves_bold"
             android:gravity="center"/>
@@ -41,7 +41,7 @@
             android:id="@+id/tvFechaEventsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="TextView"
             android:fontFamily="@font/coves_bold"
             android:gravity="center"/>
@@ -50,7 +50,7 @@
             android:id="@+id/tvLugarEventsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="TextView"
             android:fontFamily="@font/coves_bold"
             android:gravity="center"/>
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:fontFamily="@font/coves_bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:gravity="center"/>
     </LinearLayout>
 </LinearLayout>
