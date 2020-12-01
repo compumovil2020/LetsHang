@@ -19,6 +19,7 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        ep = EventProvider.getInsatance();
 
 
         // esto es para que el provider vaya llamando a firebase y no se demore tanto en cargar los eventos
