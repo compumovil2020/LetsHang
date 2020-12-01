@@ -71,6 +71,7 @@ public class InformacionPerfilActivity extends AppCompatActivity implements Bott
     private static final int CAMERA_PERMISSION = 66;
     private static final int REQUEST_IMAGE_CAPTURE = 55;
     private final static String TAG = "Informacion perfil";
+    private boolean existe = false;
 
     private TextView tvDeportes, tvConciertos, tvConferencias;
     private Button btnEvento, btnEditar;
@@ -284,6 +285,7 @@ public class InformacionPerfilActivity extends AppCompatActivity implements Bott
                     });
 
                     try{
+                        existe = true;
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         ivFotoInformacionPerfil.setImageBitmap(selectedImage);
@@ -292,7 +294,7 @@ public class InformacionPerfilActivity extends AppCompatActivity implements Bott
                     }
 
                 }
-
+                break;
             case REQUEST_IMAGE_CAPTURE:
                 if(resultCode == RESULT_OK){
                     Bundle imageUri = data.getExtras();
@@ -317,6 +319,7 @@ public class InformacionPerfilActivity extends AppCompatActivity implements Bott
                     });
 
                     try{
+                        existe = true;
                         final InputStream imageStream = getContentResolver().openInputStream(Uri.parse(path));
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         ivFotoInformacionPerfil.setImageBitmap(selectedImage);
@@ -337,6 +340,7 @@ public class InformacionPerfilActivity extends AppCompatActivity implements Bott
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 Bitmap selectedImage = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                 ivFotoInformacionPerfil.setImageBitmap(selectedImage);
+                existe = true;
             }
         });
     }
@@ -367,8 +371,9 @@ public class InformacionPerfilActivity extends AppCompatActivity implements Bott
     }
 
     @Override
-    public void onButtonClicked(Bitmap imagen) {
-        if(imagen == null){
+    public void onButtonClicked(String imagen) {
+        if(imagen.equals("Eliminar") && existe){
+            existe = false;
             ivFotoInformacionPerfil.setImageBitmap(null);
             StorageReference imageRefDelete = mStorageRef.child("images/profile/"+mAuth.getUid()+"/profilePic.jpg");
             imageRefDelete.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -386,6 +391,8 @@ public class InformacionPerfilActivity extends AppCompatActivity implements Bott
             });
 
             ivFotoInformacionPerfil.setImageResource(R.drawable.icn_profile);
+        } else {
+            Toast.makeText(InformacionPerfilActivity.this, "No tiene foto para borrar :)",Toast.LENGTH_SHORT).show();
         }
     }
 }

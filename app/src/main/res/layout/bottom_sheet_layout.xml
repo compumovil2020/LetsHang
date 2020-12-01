@@ -14,34 +14,39 @@
         android:text="Foto de perfil"
         android:textColor="@color/secondaryColor"
         android:fontFamily="@font/coves_bold"
-        android:textSize="30dp"/>
+        android:textSize="30dp"
+        android:layout_marginBottom="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <Button
             android:id="@+id/btEliminarFotoSheet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Eliminar" />
+            android:text="Eliminar"
+            android:layout_margin="5dp"/>
 
         <Button
             android:id="@+id/btFotoGaleriaSheet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Galeria" />
+            android:text="Galeria"
+            android:layout_margin="5dp"/>
 
         <Button
             android:id="@+id/btFotoCamaraSheet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Camara" />
+            android:text="Camara"
+            android:layout_margin="5dp"/>
     </LinearLayout>
 
 </LinearLayout>

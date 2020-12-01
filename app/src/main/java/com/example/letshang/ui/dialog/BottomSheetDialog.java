@@ -50,7 +50,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 Log.i("SHEETBOTTOM","Eliminar");
-                mListener.onButtonClicked(null);
+                mListener.onButtonClicked("Eliminar");
                 dismiss();
             }
         });
@@ -81,7 +81,7 @@ public class BottomSheetDialog extends BottomSheetDialogFragment {
     }
 
     public interface BottomSheetListener{
-        void onButtonClicked(Bitmap imagen);
+        void onButtonClicked(String imagen);
     }
 
     @Override
