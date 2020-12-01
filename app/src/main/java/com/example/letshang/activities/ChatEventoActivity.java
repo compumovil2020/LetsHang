@@ -117,7 +117,7 @@ public class ChatEventoActivity extends AppCompatActivity {
     public void crearMensaje(String idEvento, String mensaje, String idUsuario){
         //Today date
         Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd h:mm:ss a");
 
         Map<String, String> dato = new HashMap<>();
         dato.put("IDUsuario", idUsuario);
@@ -153,8 +153,7 @@ public class ChatEventoActivity extends AppCompatActivity {
                         eCInfoMensajes.setFecha(ds.getValue().toString());
                     }
                 }
-                listChat.add(eCInfoMensajes);
-                setAdapter();
+                getProfilePhoto(eCInfoMensajes);
             }
 
             @Override
@@ -184,25 +183,31 @@ public class ChatEventoActivity extends AppCompatActivity {
 
 
     public void getProfilePhoto(final Chat eCInfoMensajes){
-        try {
-            final File localFile = File.createTempFile("images","jpg");
-            StorageReference imageRef = mStorageRef.child("images/profile/"+eCInfoMensajes.getIdUsuario()+"/profilePic.jpg");
-            imageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                    Bitmap selectedImage = BitmapFactory.decodeFile(localFile.getAbsolutePath());
-                    eCInfoMensajes.setFoto(selectedImage);
-                    foticos.put(eCInfoMensajes.getIdUsuario(),selectedImage);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.i("ERROR", "NO SE CARGO IMAGEN");
-                }
-            });
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(!foticos.containsKey(eCInfoMensajes.getIdUsuario())){
+            try {
+                final File localFile = File.createTempFile("images","jpg");
+                StorageReference imageRef = mStorageRef.child("images/profile/"+eCInfoMensajes.getIdUsuario()+"/profilePic.jpg");
+                imageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                        Bitmap selectedImage = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                        eCInfoMensajes.setFoto(selectedImage);
+                        foticos.put(eCInfoMensajes.getIdUsuario(),selectedImage);
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.i("ERROR", "NO SE CARGO IMAGEN");
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else{
+            eCInfoMensajes.setFoto(foticos.get(eCInfoMensajes.getIdUsuario()));
         }
+        listChat.add(eCInfoMensajes);
+        setAdapter();
     }
 
     public void setAdapter(){
