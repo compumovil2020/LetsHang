@@ -178,7 +178,7 @@ public class EventProvider {
      */
     public Event getEventByID(String eventID){
         for(Event e: eventsList){
-            if(e.getID().equals( eventID)){
+            if(e.getID().equals(eventID)){
                 return e;
             }
         }
