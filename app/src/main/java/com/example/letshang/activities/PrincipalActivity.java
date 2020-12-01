@@ -49,7 +49,7 @@ public class PrincipalActivity extends AppCompatActivity{
     // should go in utils
     private FirebaseAuth mAuth;
 
-    private EventProvider eventProvider = EventProvider.getInsatance();
+    private EventProvider eventProvider;
     private ListView listViewEvents;
     private List<Event> listEvents;
     EventsAdapter eventsAdapter;
@@ -73,6 +73,8 @@ public class PrincipalActivity extends AppCompatActivity{
         // set action bar title
         getSupportActionBar().setTitle("Feed");
 
+        eventProvider = EventProvider.getInsatance();
+
         //inflate elements
         ivFiltrar = findViewById(R.id.ivFiltrarPrincipal);
         //eventLayout = findViewById(R.id.eventLayout);
@@ -80,30 +82,13 @@ public class PrincipalActivity extends AppCompatActivity{
         navView = findViewById(R.id.principal_nav_view);
         btnMap = findViewById(R.id.btnMapaPrincipal);
 
+        listViewEvents = findViewById(R.id.listEventosPrincipal);
+
         cbAcademico = getIntent().getBooleanExtra("cbAcademico", true);
         cbDeporte = getIntent().getBooleanExtra("cbDeporte", true);
         cbMusical = getIntent().getBooleanExtra("cbMusical", true);
         cbJuego = getIntent().getBooleanExtra("cbJuego", true);
         cbSocial = getIntent().getBooleanExtra("cbSocial", true);
-
-        listViewEvents = findViewById(R.id.listEventosPrincipal);
-        listEvents = eventProvider.getAllEventsFromDBB();
-
-        List<Event> filterList = filterEvents();
-
-        eventsAdapter = new EventsAdapter(this, filterList);
-        listViewEvents.setAdapter(eventsAdapter);
-
-        listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Event e = (Event) adapterView.getItemAtPosition(i);
-                Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
-                intent.putExtra("idevento", "" + e.getID());
-                intent.putExtra("from", "Principal");
-                startActivity(intent);
-            }
-        });
 
         //setup side menu
         setupMenu();
@@ -126,6 +111,29 @@ public class PrincipalActivity extends AppCompatActivity{
             }
         });
 
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        listEvents = eventProvider.getAllEventsFromDBB();
+
+        Log.i("TAM", "" + listEvents.size());
+
+        eventsAdapter = new EventsAdapter(this, listEvents);
+        listViewEvents.setAdapter(eventsAdapter);
+
+        listViewEvents.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Event e = (Event) adapterView.getItemAtPosition(i);
+                Intent intent = new Intent(view.getContext(), DescripcionEventoActivity.class);
+                intent.putExtra("idevento", "" + e.getID());
+                intent.putExtra("from", "Principal");
+                startActivity(intent);
+            }
+        });
 
     }
 
