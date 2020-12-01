@@ -9,21 +9,20 @@ import android.widget.Button;
 
 import com.example.letshang.R;
 import com.example.letshang.providers.EventProvider;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class StartActivity extends AppCompatActivity {
 
     private Button btnIniciar, btnRegistro;
     private EventProvider ep;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-        ep = EventProvider.getInsatance();
 
-
-        // esto es para que el provider vaya llamando a firebase y no se demore tanto en cargar los eventos
-        //ep.getInsatance();
+        mAuth = FirebaseAuth.getInstance();
 
         btnIniciar = findViewById(R.id.btnIniciarSesionStart);
         btnRegistro = findViewById(R.id.btnRegistrarStart);
@@ -47,5 +46,11 @@ public class StartActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (mAuth.getCurrentUser() != null){
+            ep = EventProvider.getInsatance();
+        }
+    }
 }

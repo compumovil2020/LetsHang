@@ -160,6 +160,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser) {
         if(currentUser != null){
+            ep = EventProvider.getInsatance();
             Intent intent = new Intent(getApplicationContext() , PrincipalActivity.class);
             startActivity(intent);
         }
