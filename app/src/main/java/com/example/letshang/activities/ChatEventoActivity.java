@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,13 +19,20 @@ import com.example.letshang.R;
 import com.example.letshang.model.EventChat;
 import com.example.letshang.ui.adapter.EventChatAdapter;
 import com.example.letshang.ui.adapter.EventsAdapter;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -61,6 +70,8 @@ public class ChatEventoActivity extends AppCompatActivity {
     private DatabaseReference databaseReferenceMensajes;
     private DatabaseReference databaseReferenceInfoMensajes;
 
+    private StorageReference mStorageRef;
+
     //Layout Elements
     private Button btEnviarMensaje;
     private EditText mensajeAEnviar;
@@ -80,6 +91,7 @@ public class ChatEventoActivity extends AppCompatActivity {
         //Instances
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
         //Save context
         context = this;
@@ -221,7 +233,7 @@ public class ChatEventoActivity extends AppCompatActivity {
                 }
                 if(c == 1){
                     c = 0;
-                    setAdapter();
+                    getProfilePhoto(eCInfoMensajes);
                 }
             }
 
@@ -230,6 +242,29 @@ public class ChatEventoActivity extends AppCompatActivity {
                 Log.i("DATABASESTATUS","PROBLEMAS", error.toException());
             }
         });
+    }
+
+    public void getProfilePhoto(final EventChat eCInfoMensajes){
+        try {
+            final File localFile = File.createTempFile("images","jpg");
+            StorageReference imageRef = mStorageRef.child("images/profile/"+eCInfoMensajes.getIdUsuario()+"/profilePic.jpg");
+            imageRef.getFile(localFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                    Bitmap selectedImage = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                    eCInfoMensajes.setFoto(selectedImage);
+                    listEventChat.add(eCInfoMensajes);
+                    setAdapter();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.i("ERROR", "NO SE CARGO IMAGEN");
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setAdapter(){
