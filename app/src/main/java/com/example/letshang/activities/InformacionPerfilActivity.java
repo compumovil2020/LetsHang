@@ -17,6 +17,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -38,6 +39,7 @@ import com.example.letshang.model.Preference;
 import com.example.letshang.model.User;
 import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.adapter.EventsAdapter;
+import com.example.letshang.ui.dialog.BottomSheetDialog;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -62,11 +64,14 @@ import java.util.List;
 
 import static com.example.letshang.utils.PermissionHandler.requestPermission;
 
-public class InformacionPerfilActivity extends AppCompatActivity {
+public class InformacionPerfilActivity extends AppCompatActivity implements BottomSheetDialog.BottomSheetListener {
 
     private static final int IMAGE_PICKER_REQUEST = 201;
     private static final int IMAGE_PICKER_PERMISSION = 211;
+    private static final int CAMERA_PERMISSION = 66;
+    private static final int REQUEST_IMAGE_CAPTURE = 55;
     private final static String TAG = "Informacion perfil";
+    private boolean existe = false;
 
     private TextView tvDeportes, tvConciertos, tvConferencias;
     private Button btnEvento, btnEditar;
@@ -166,8 +171,10 @@ public class InformacionPerfilActivity extends AppCompatActivity {
         ivFotoInformacionPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                requestPermission(InformacionPerfilActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE,"El permiso es para poder poner tu foto de perfil",IMAGE_PICKER_PERMISSION );
 
+                BottomSheetDialog bSheetDialogPermissions = new BottomSheetDialog();
+                bSheetDialogPermissions.BottomSheetListener(InformacionPerfilActivity.this);
+                bSheetDialogPermissions.show(getSupportFragmentManager(),"exampleBottomSheet");
             }
         });
         try{
@@ -282,6 +289,7 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                     });
 
                     try{
+                        existe = true;
                         final InputStream imageStream = getContentResolver().openInputStream(imageUri);
                         final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                         ivFotoInformacionPerfil.setImageBitmap(selectedImage);
@@ -290,6 +298,40 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                     }
 
                 }
+                break;
+            case REQUEST_IMAGE_CAPTURE:
+                if(resultCode == RESULT_OK){
+                    Bundle imageUri = data.getExtras();
+                    Bitmap imagensota = (Bitmap) imageUri.get("data");
+
+                    String path = MediaStore.Images.Media.insertImage(this.getContentResolver(),imagensota,"FotoPerfil",null);
+
+                    FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                    StorageReference imageRef = mStorageRef.child("images/profile/"+currentUser.getUid()+"/profilePic.jpg");
+
+                    imageRef.putFile(Uri.parse(path)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            Toast.makeText(InformacionPerfilActivity.this, "Imagen Guardada",Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(InformacionPerfilActivity.this, "Falló la subida de la foto",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    try{
+                        existe = true;
+                        final InputStream imageStream = getContentResolver().openInputStream(Uri.parse(path));
+                        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                        ivFotoInformacionPerfil.setImageBitmap(selectedImage);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+                break;
         }
     }
 
@@ -302,11 +344,17 @@ public class InformacionPerfilActivity extends AppCompatActivity {
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 Bitmap selectedImage = BitmapFactory.decodeFile(localFile.getAbsolutePath());
                 ivFotoInformacionPerfil.setImageBitmap(selectedImage);
+                existe = true;
             }
         });
     }
 
-
+    private void takePicture(){
+        Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(takePicture.resolveActivity(getPackageManager())!= null){
+            startActivityForResult(takePicture,REQUEST_IMAGE_CAPTURE);
+        }
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -317,6 +365,38 @@ public class InformacionPerfilActivity extends AppCompatActivity {
                     askForImage();
                 }
                 return;
+
+            case CAMERA_PERMISSION:
+                if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+                    takePicture();
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void onButtonClicked(String imagen) {
+        if(imagen.equals("Eliminar") && existe){
+            existe = false;
+            ivFotoInformacionPerfil.setImageBitmap(null);
+            StorageReference imageRefDelete = mStorageRef.child("images/profile/"+mAuth.getUid()+"/profilePic.jpg");
+            imageRefDelete.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    // File deleted successfully
+                    Toast.makeText(InformacionPerfilActivity.this, "Foto borrada correctamente",Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Uh-oh, an error occurred!
+                    Toast.makeText(InformacionPerfilActivity.this, "Falló para borrar foto",Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            ivFotoInformacionPerfil.setImageResource(R.drawable.icn_profile);
+        } else {
+            Toast.makeText(InformacionPerfilActivity.this, "No tiene foto para borrar :)",Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -12,6 +12,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.letshang.R;
+import com.example.letshang.providers.EventProvider;
 
 public class RegistroAdicionalActivity extends AppCompatActivity {
 
@@ -19,6 +20,7 @@ public class RegistroAdicionalActivity extends AppCompatActivity {
     private EditText etCiudad, etFecha, etFacebook, etInstagram, etLinkedin;
     private Button btnRegistrar, btnOmitir;
     private AwesomeValidation validator;
+    private EventProvider ep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class RegistroAdicionalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(validator.validate()) {
+                    ep = EventProvider.getInsatance();
                     Intent intent = new Intent(view.getContext(), PrincipalActivity.class);
                     startActivity(intent);
                 }

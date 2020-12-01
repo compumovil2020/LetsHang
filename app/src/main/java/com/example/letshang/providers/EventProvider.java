@@ -1,12 +1,14 @@
 package com.example.letshang.providers;
 
 import android.location.Location;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.letshang.DTO.AcademicEventDTO;
+import com.example.letshang.DTO.EventDTO;
 import com.example.letshang.DTO.GameEventDTO;
 import com.example.letshang.DTO.HostDTO;
 import com.example.letshang.DTO.MusicEventDTO;
@@ -32,6 +34,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -69,14 +73,12 @@ public class EventProvider {
         return instance;
     }
 
-    private EventProvider(){
+    private EventProvider() {
         eventsList = new ArrayList<>();
         hostName = new HashMap<>();
         userProvider = userProvider.getInstance();
         addEventListeners();
-
     }
-
 
     /**
      *
