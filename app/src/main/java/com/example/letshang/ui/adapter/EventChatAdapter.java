@@ -3,6 +3,7 @@ package com.example.letshang.ui.adapter;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +92,7 @@ public class EventChatAdapter extends BaseAdapter {
         cardTu = view.findViewById(R.id.cvTu);
 
         //Si es tu enviado o si es otro
+        Log.i("CagadaSerrano",chats.get(i).getIdUsuario());
         if(chats.get(i).getIdUsuario().equals(this.getUserAuthId())){
 
             if(nombreRemitente != null && fechaRemitente != null && cuerpoRemitente != null){
