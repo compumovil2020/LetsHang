@@ -127,6 +127,10 @@ public class EventosInscritosActivity extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), item.getTitle() ,Toast.LENGTH_SHORT ).show();
 
                 }
+                if(item.getItemId() == R.id.item_menu_chat_admin){
+                    Intent intent = new Intent(getApplicationContext(), ChatAdminActivity.class);
+                    startActivity(intent);
+                }
                 return true;
             }
         });
