@@ -85,7 +85,8 @@ public class NotificationService extends IntentService {
                     }
                     if(ds.getKey().equals("admin")){
                         Log.i("CHATADMIN",ds.getValue()+" ");
-                        nuevoChat.setIdUsuario("admin");
+                        if((Boolean)ds.getValue() == true)
+                            nuevoChat.setIdUsuario("admin");
                         nuevoChat.setNombre("Admin");
                     }
                     if(ds.getKey().equals("cuerpo")){
@@ -101,7 +102,9 @@ public class NotificationService extends IntentService {
                 }
 
                 Log.i(TAG, "fecha " + nuevoChat.getFecha());
-                if(unixTime < nuevoChat.getFecha()){
+                Log.i(TAG, "nuevochat: " + nuevoChat.getIdUsuario());
+                Log.i(TAG, "user: " + user.getId());
+                if(unixTime < nuevoChat.getFecha() && !nuevoChat.getIdUsuario().equals(user.getId())){
                     Log.i(TAG, "onChildAdded:  mensaje nuevo!" );
                     Log.i(TAG, "onChildAdded: " + snapshot.getValue());
                     notificarChatAdmin(nuevoChat);
@@ -267,7 +270,6 @@ public class NotificationService extends IntentService {
                 Log.i(TAG, "onChildAdded: path" + snapshot.getRef());
 
                 if( (System.currentTimeMillis() / 1000L) - 5 < unixTime){
-
                     return;
                 }
 
