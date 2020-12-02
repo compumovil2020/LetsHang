@@ -29,6 +29,8 @@ import android.widget.Toast;
 import com.example.letshang.DTO.UserDTO;
 import com.example.letshang.R;
 import com.example.letshang.model.Event;
+import com.example.letshang.model.EventsEnum;
+import com.example.letshang.model.SportEvent;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.ui.dialog.CustomMapView;
 import com.example.letshang.utils.PermissionHandler;
@@ -284,8 +286,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         List<Event> listEvents = evProv.getAllEventsFromDBB();
         for(Event actual: listEvents){
             LatLng locationActual = actual.getLocation();
-            listMarkers.add(mMap.addMarker(new MarkerOptions().position(locationActual).
-                    title(actual.getLocationName()).snippet(actual.getTitle()).alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))));
+            if(actual.getType() == EventsEnum.SPORTS) {
+                listMarkers.add(mMap.addMarker(new MarkerOptions().position(locationActual).
+                        title(actual.getLocationName()).snippet(actual.getTitle()).alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))));
+            }else if(actual.getType() == EventsEnum.GAME) {
+                listMarkers.add(mMap.addMarker(new MarkerOptions().position(locationActual).
+                        title(actual.getLocationName()).snippet(actual.getTitle()).alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA))));
+            }
+            else if(actual.getType() == EventsEnum.SOCIAL) {
+                listMarkers.add(mMap.addMarker(new MarkerOptions().position(locationActual).
+                        title(actual.getLocationName()).snippet(actual.getTitle()).alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))));
+            }
+            else if(actual.getType() == EventsEnum.MUSIC) {
+                listMarkers.add(mMap.addMarker(new MarkerOptions().position(locationActual).
+                        title(actual.getLocationName()).snippet(actual.getTitle()).alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW))));
+            }
+            else if(actual.getType() == EventsEnum.ACADEMIC) {
+                listMarkers.add(mMap.addMarker(new MarkerOptions().position(locationActual).
+                        title(actual.getLocationName()).snippet(actual.getTitle()).alpha(0.8f).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))));
+            }
         }
     }
 

@@ -26,6 +26,7 @@ import com.example.letshang.activities.DescripcionEventoActivity;
 import com.example.letshang.model.Chat;
 import com.example.letshang.model.Event;
 import com.example.letshang.model.Participant;
+import com.example.letshang.model.SocialEvent;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -275,10 +276,11 @@ public class NotificationService extends IntentService {
 
                 Log.i(TAG, "onChildAdded evento: " + snapshot.getValue());
 
-                Event e = Transformer.transform(snapshot.getValue(SocialEventDTO.class));
+                SocialEventDTO dto = snapshot.getValue(SocialEventDTO.class);
+                Event e = Transformer.transform(dto);
                 e.setID(snapshot.getKey());
 
-                if(esInteresante(e)){
+                if(esInteresante(e) && !dto.getHostName().equals(user.getName())){
                     notifyEvent(e);
                 }
 
@@ -321,10 +323,11 @@ public class NotificationService extends IntentService {
 
                 Log.i(TAG, "onChildAdded evento: " + snapshot.getValue());
 
-                Event e = Transformer.transform(snapshot.getValue(GameEventDTO.class));
+                GameEventDTO dto = snapshot.getValue(GameEventDTO.class);
+                Event e = Transformer.transform(dto);
                 e.setID(snapshot.getKey());
 
-                if(esInteresante(e)){
+                if(esInteresante(e) && !dto.getHostName().equals(user.getName())){
                     notifyEvent(e);
                 }
 
@@ -367,10 +370,11 @@ public class NotificationService extends IntentService {
 
                 Log.i(TAG, "onChildAdded evento: " + snapshot.getValue());
 
-                Event e = Transformer.transform(snapshot.getValue(AcademicEventDTO.class));
+                AcademicEventDTO dto = snapshot.getValue(AcademicEventDTO.class);
+                Event e = Transformer.transform(dto);
                 e.setID(snapshot.getKey());
 
-                if(esInteresante(e)){
+                if(esInteresante(e) && !dto.getHostName().equals(user.getName())){
                     notifyEvent(e);
                 }
 

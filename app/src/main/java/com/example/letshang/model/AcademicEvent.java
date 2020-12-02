@@ -57,6 +57,8 @@ public class AcademicEvent extends Event {
         this.level = level;
         this.typeAcademicalEvent = typeAcademicalEvent;
         this.languages = languages;
+        this.type = EventsEnum.ACADEMIC;
+
     }
 
     public String getSubject() {

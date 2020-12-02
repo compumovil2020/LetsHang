@@ -48,6 +48,8 @@ public class SocialEvent extends Event {
         this.theme = theme;
         this.minimumAge = minimumAge;
         this.rules = rules;
+        this.type = EventsEnum.SOCIAL;
+
     }
 
     public void setMusicGenre(String musicGenre) {

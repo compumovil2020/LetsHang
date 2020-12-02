@@ -70,6 +70,8 @@ public class GameEvent extends Event{
         this.prize = prize;
         this.adult = adult;
         this.ageRange = ageRange;
+        this.type = EventsEnum.GAME;
+
     }
 
     /**
