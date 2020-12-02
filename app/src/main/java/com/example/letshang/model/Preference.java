@@ -60,4 +60,13 @@ public class Preference {
     public void setInterests(List<String> interests) {
         this.interests = interests;
     }
+
+
+    @Override
+    public String toString() {
+        return "Preference{" +
+                "categories=" + categories +
+                ", interests=" + interests +
+                '}';
+    }
 }

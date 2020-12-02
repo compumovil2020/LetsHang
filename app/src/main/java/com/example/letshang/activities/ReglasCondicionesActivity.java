@@ -44,7 +44,7 @@ public class ReglasCondicionesActivity extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(), PrincipalActivity.class);
 
                 evProv.inscribirEvento(mAuth.getUid(), evento.getID());
-                ((Participant) usProv.getCurrentUser()).getPastEvents().add(evento);
+                //((Participant) usProv.getCurrentUser()).getPastEvents().add(evento);
                 startActivity(intent);
             }
         });

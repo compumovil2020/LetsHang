@@ -87,6 +87,7 @@ public class EventsAdapter extends BaseAdapter {
         //Asignar lugar
         LatLng latLng = events.get(i).getLocation();
         String city = "";
+
         Geocoder gcd = new Geocoder(context, Locale.getDefault());
         try {
 
