@@ -44,6 +44,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
+import static android.content.ContentValues.TAG;
+
 
 //*******************
 // Esta clase tiene valores de mentiras, despues esos
@@ -227,6 +229,8 @@ public class UserProvider {
                     e.setID(dataSnapshot.getKey());
                     if(!pastEventsKeys.contains(e.getID())) {
                         pastEvents.add(e);
+                        Log.i(TAG, "la lista tiene tam " + pastEvents.size());
+
                         pastEventsKeys.add(e.getID());
                     }
                 }
@@ -253,6 +257,8 @@ public class UserProvider {
 
                     if(!pastEventsKeys.contains(e.getID())) {
                         pastEvents.add(e);
+                        Log.i(TAG, "la lista tiene tam " + pastEvents.size());
+
                         pastEventsKeys.add(e.getID());
                     }
                 }
@@ -278,6 +284,8 @@ public class UserProvider {
 
                     if(!pastEventsKeys.contains(e.getID())) {
                         pastEvents.add(e);
+                        Log.i(TAG, "la lista tiene tam " + pastEvents.size());
+
                         pastEventsKeys.add(e.getID());
                     }
                 }
@@ -303,6 +311,8 @@ public class UserProvider {
 
                     if(!pastEventsKeys.contains(e.getID())) {
                         pastEvents.add(e);
+                        Log.i(TAG, "la lista tiene tam " + pastEvents.size());
+
                         pastEventsKeys.add(e.getID());
                     }
                 }
@@ -328,6 +338,8 @@ public class UserProvider {
 
                     if(!pastEventsKeys.contains(e.getID())) {
                         pastEvents.add(e);
+                        Log.i(TAG, "la lista tiene tam " + pastEvents.size());
+
                         pastEventsKeys.add(e.getID());
                     }
                 }

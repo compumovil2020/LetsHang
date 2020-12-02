@@ -100,6 +100,7 @@ public class EventsAdapter extends BaseAdapter {
 
         //Asignar host
         Log.i(TAG, "llamando al metodo el evento " + events.get(i).getTitle() + " con id " + events.get(i).getID());
+        Log.i(TAG, "la lista tiene tam " + events.size());
         host.setText(EventProvider.getInsatance().getEventHostName(events.get(i).getID()));
 
         //Asignar foto
