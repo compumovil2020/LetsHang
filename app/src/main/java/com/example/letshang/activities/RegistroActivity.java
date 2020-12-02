@@ -96,6 +96,8 @@ public class RegistroActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(etPassword.getText().toString().equals(etVerify.getText().toString())) {
                     attemptSignUp();
+                    UserProvider userProvider = UserProvider.getInstance();
+                    userProvider.getCurrentUser();
                 }
                 else{
                     Toast.makeText(getApplicationContext() , "Las contraseñas no coinciden :("
