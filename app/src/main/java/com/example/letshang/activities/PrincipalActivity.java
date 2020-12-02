@@ -25,6 +25,7 @@ import com.example.letshang.model.MusicEvent;
 import com.example.letshang.model.SocialEvent;
 import com.example.letshang.model.SportEvent;
 import com.example.letshang.providers.EventProvider;
+import com.example.letshang.providers.NotificationService;
 import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.adapter.EventsAdapter;
 import com.github.clans.fab.FloatingActionButton;
@@ -111,6 +112,11 @@ public class PrincipalActivity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+
+        //call notification service
+        Intent intentNotifications = new Intent(PrincipalActivity.this, NotificationService.class);
+        startService(intentNotifications);
+
 
 
     }
