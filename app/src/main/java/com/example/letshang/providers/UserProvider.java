@@ -3,6 +3,7 @@ package com.example.letshang.providers;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.letshang.DTO.AcademicEventDTO;
 import com.example.letshang.DTO.GameEventDTO;
@@ -26,6 +27,7 @@ import com.example.letshang.model.User;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,6 +41,10 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+import static android.content.ContentValues.TAG;
 
 
 //*******************
@@ -57,6 +63,7 @@ public class UserProvider {
     private static final  String TAG = "UserProvider";
     private final ArrayList<String> eventsKeys = new ArrayList<>();
     private ArrayList<Event> pastEvents;
+    private Set<String> pastEventsKeys;
 
 
 
@@ -145,6 +152,33 @@ public class UserProvider {
         pastEvents  = new ArrayList<>();
         ((Participant) currentUser).setPastEvents(pastEvents);
         DatabaseReference pastEventsRef = database.getReference().child("user-event-list").child(mAuth.getUid());
+
+        pastEventsRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
         pastEventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -173,6 +207,7 @@ public class UserProvider {
 
     private void fillUserPastEvents() {
 
+        pastEventsKeys = new TreeSet<>();
 
         for(String k: eventsKeys) {
             Log.i(TAG, "buscando la llave: " + k);
@@ -192,7 +227,12 @@ public class UserProvider {
 
                     SportEvent e =Transformer.transform(dto);
                     e.setID(dataSnapshot.getKey());
-                    pastEvents.add(e);
+                    if(!pastEventsKeys.contains(e.getID())) {
+                        pastEvents.add(e);
+                        Log.i(TAG, "la lista tiene tam " + pastEvents.size());
+
+                        pastEventsKeys.add(e.getID());
+                    }
                 }
 
                 @Override
@@ -215,7 +255,12 @@ public class UserProvider {
                     AcademicEvent e = Transformer.transform(dto);
                     e.setID(dataSnapshot.getKey());
 
-                    pastEvents.add(e);
+                    if(!pastEventsKeys.contains(e.getID())) {
+                        pastEvents.add(e);
+                        Log.i(TAG, "la lista tiene tam " + pastEvents.size());
+
+                        pastEventsKeys.add(e.getID());
+                    }
                 }
 
                 @Override
@@ -237,7 +282,12 @@ public class UserProvider {
                     MusicEvent e = Transformer.transform(dto);
                     e.setID(dataSnapshot.getKey());
 
-                    pastEvents.add(e);
+                    if(!pastEventsKeys.contains(e.getID())) {
+                        pastEvents.add(e);
+                        Log.i(TAG, "la lista tiene tam " + pastEvents.size());
+
+                        pastEventsKeys.add(e.getID());
+                    }
                 }
 
                 @Override
@@ -259,7 +309,12 @@ public class UserProvider {
                     SocialEvent e= Transformer.transform(dto);
                     e.setID(dataSnapshot.getKey());
 
-                    pastEvents.add(e);
+                    if(!pastEventsKeys.contains(e.getID())) {
+                        pastEvents.add(e);
+                        Log.i(TAG, "la lista tiene tam " + pastEvents.size());
+
+                        pastEventsKeys.add(e.getID());
+                    }
                 }
 
                 @Override
@@ -281,7 +336,12 @@ public class UserProvider {
                     GameEvent e = Transformer.transform(dto);
                     e.setID(dataSnapshot.getKey());
 
-                    pastEvents.add(e);
+                    if(!pastEventsKeys.contains(e.getID())) {
+                        pastEvents.add(e);
+                        Log.i(TAG, "la lista tiene tam " + pastEvents.size());
+
+                        pastEventsKeys.add(e.getID());
+                    }
                 }
 
                 @Override

@@ -121,11 +121,6 @@ public class ChatAdminActivity extends AppCompatActivity {
                         nuevoChat.setIdUsuario(ds.getValue().toString());
                         nuevoChat.setNombre(nameUser);
                     }
-                    if(ds.getKey().equals("admin")){
-                        Log.i("CHATADMIN",ds.getValue()+" ");
-                        nuevoChat.setIdUsuario("admin");
-                        nuevoChat.setNombre("Admin");
-                    }
                     if(ds.getKey().equals("cuerpo")){
                         Log.i("CHATADMIN",ds.getValue()+" ");
                         nuevoChat.setCuerpo(ds.getValue().toString());

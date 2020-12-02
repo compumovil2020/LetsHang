@@ -120,19 +120,21 @@ public class ChatEventoActivity extends AppCompatActivity {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat dtf = new SimpleDateFormat("yyyy-MM-dd h:mm:ss a");
 
-        Map<String, String> dato = new HashMap<>();
+
+        long unixTime = System.currentTimeMillis() / 1000L;
+
+
+        Map<String, Object> dato = new HashMap<>();
         dato.put("IDUsuario", idUsuario);
         dato.put("Nombre",userProvider.getCurrentUser().getName());
         dato.put("cuerpo", mensaje);
-        dato.put("fecha", dtf.format(c).toString());
+        dato.put("fecha", unixTime);
 
-        long unixTime = System.currentTimeMillis() / 1000L;
-        Chat dat = new Chat(idUsuario, userProvider.getCurrentUser().getName(), mensaje, unixTime, null);
 
         //Crear en firebase
         String key = databaseReferenceUsuario.push().getKey();
         databaseReference = database.getReference("chats-evento");
-        databaseReference.child(idEvento).child(key).setValue(dat);
+        databaseReference.child(idEvento).child(key).setValue(dato);
     }
 
     public void verifyChat(final String idEvento){

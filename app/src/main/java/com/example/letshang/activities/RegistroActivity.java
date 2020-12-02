@@ -158,7 +158,6 @@ public class RegistroActivity extends AppCompatActivity {
                             Log.d("signup", "createUserWithEmail:success");
                             user = mAuth.getCurrentUser();
 
-                            //TODO: crear un campo para la fecha de nacimiento
                             Participant dbUser = crearUsuario();
                             userProvider.setUser(dbUser, mAuth.getUid());
                             updateUI(user);

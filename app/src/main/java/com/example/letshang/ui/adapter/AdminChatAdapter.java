@@ -121,7 +121,7 @@ public class AdminChatAdapter extends BaseAdapter {
             }
 
             if(nombreRemitente != null && fechaRemitente != null && cuerpoRemitente != null){
-                nombreRemitente.setText(chats.get(i).getNombre());
+                nombreRemitente.setText("Admin");
 
 
                 Date c = new Date(chats.get(i).getFecha());

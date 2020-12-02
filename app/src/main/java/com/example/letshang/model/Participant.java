@@ -52,4 +52,6 @@ public class Participant extends User {
     public void setPreferences(Preference preferences) {
         this.preferences = preferences;
     }
+
+
 }
