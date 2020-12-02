@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     tools:context=".activities.PrincipalActivity"
     android:id="@+id/principal_drawer_layout"
     android:layout_height="match_parent"
@@ -82,9 +83,9 @@
                         <ImageView
                             android:id="@+id/ivFiltrarPrincipal"
                             style="@style/icn_filter"
-                            android:layout_gravity="center_vertical"
                             android:layout_width="32dp"
-                            android:layout_height="32dp" />
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_vertical" />
 
                         <TextView
                             android:id="@+id/tvFiltrarPrincipal"
@@ -100,37 +101,27 @@
 
                 </RelativeLayout>
 
+
+                <com.github.clans.fab.FloatingActionButton
+                    android:id="@+id/btnMapaPrincipal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp"
+                    android:src="@drawable/planetearth"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    fab:fab_label="Mapa"
+                    fab:fab_size="normal"
+                    app:fab_colorNormal="@color/colorPrimary"
+                    app:fab_colorPressed="@color/colorAccent"/>
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.05"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/btnListaPrincipal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:inputType="textPersonName"
-                android:text="@string/List"
-                android:textColor="@color/secondaryColor"
-                android:textSize="17dp" />
-
-            <TextView
-                android:id="@+id/btnMapaPrincipal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:inputType="textPersonName"
-                android:text="@string/Map"
-                android:textColor="@color/black"
-                android:textSize="17dp" />
-        </LinearLayout>
 
     </LinearLayout>
 

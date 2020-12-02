@@ -27,6 +27,7 @@ import com.example.letshang.model.SportEvent;
 import com.example.letshang.providers.EventProvider;
 import com.example.letshang.providers.UserProvider;
 import com.example.letshang.ui.adapter.EventsAdapter;
+import com.github.clans.fab.FloatingActionButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -43,7 +44,7 @@ public class PrincipalActivity extends AppCompatActivity{
     private ActionBarDrawerToggle menuToggle;
     private DrawerLayout drawerLayout;
     private NavigationView navView;
-    private TextView btnMap;
+    private FloatingActionButton btnMap;
     private GoogleSignInClient mGoogleSignInClient;
     private boolean cbMusical, cbAcademico, cbJuego, cbSocial, cbDeporte;
     // should go in utils
