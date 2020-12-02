@@ -16,6 +16,9 @@ import com.example.letshang.model.Chat;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class EventChatAdapter extends BaseAdapter {
@@ -98,7 +101,12 @@ public class EventChatAdapter extends BaseAdapter {
 
             if(nombreTu!= null && fechaTu != null && cuerpoTu!= null && cardTu != null){
                 nombreTu.setText("Tu");
-                fechaTu.setText(chats.get(i).getFecha());
+
+                Date c = new Date(chats.get(i).getFecha());
+                SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy, h:mm:ss aaa");
+
+                String myDate = dtf.format(c);
+                fechaTu.setText(myDate);
                 cuerpoTu.setText(chats.get(i).getCuerpo());
 
                 if(chats.get(i).getFoto() != null){
@@ -124,7 +132,12 @@ public class EventChatAdapter extends BaseAdapter {
 
             if(nombreRemitente != null && fechaRemitente != null && cuerpoRemitente != null && cardRemitente != null) {
                 nombreRemitente.setText(chats.get(i).getNombre());
-                fechaRemitente.setText(chats.get(i).getFecha());
+
+                Date c = new Date(chats.get(i).getFecha());
+                SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy, h:mm:ss aaa");
+
+                String myDate = dtf.format(c);
+                fechaRemitente.setText(myDate);
                 cuerpoRemitente.setText(chats.get(i).getCuerpo());
                 if(chats.get(i).getFoto() != null){
                     cardRemitente.setImageBitmap(chats.get(i).getFoto());

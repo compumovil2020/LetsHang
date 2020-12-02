@@ -9,6 +9,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/lets_hang_launcher"
@@ -16,6 +18,9 @@
         android:roundIcon="@mipmap/lets_hang_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service android:name=".providers.NotificationService" />
+
+
         <activity android:name=".activities.ChatAdminActivity"></activity>
 
         <meta-data

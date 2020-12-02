@@ -18,6 +18,7 @@ public class User {
     private String linkedIn;
     private LatLng location;
     private GregorianCalendar birthDate;
+    private String id;
 
 
     public User(String name, String email, GregorianCalendar birthDate,
@@ -117,4 +118,11 @@ public class User {
         this.birthDate = birthDate;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

@@ -7,14 +7,14 @@ public class Chat {
     String idUsuario;
     String nombre;
     String cuerpo;
-    String fecha;
+    long fecha;
     Bitmap foto = null;
 
     public Chat(){
 
     }
 
-    public Chat(String idUsuario, String nombre, String cuerpo, String fecha, Bitmap foto) {
+    public Chat(String idUsuario, String nombre, String cuerpo, long fecha, Bitmap foto) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.cuerpo = cuerpo;
@@ -38,11 +38,11 @@ public class Chat {
         this.cuerpo = cuerpo;
     }
 
-    public String getFecha() {
+    public long getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(long fecha) {
         this.fecha = fecha;
     }
 

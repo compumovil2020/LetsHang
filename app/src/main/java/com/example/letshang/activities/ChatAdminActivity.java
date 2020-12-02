@@ -92,10 +92,16 @@ public class ChatAdminActivity extends AppCompatActivity {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy, h:mm:ss aaa");
 
-        Map<String, String> dato = new HashMap<>();
+        long unixTime = System.currentTimeMillis() / 1000L;
+
+        Map<String, Object> dato = new HashMap<>();
         dato.put("IDUsuario", idUsuario);
+        dato.put("admin", false);
         dato.put("cuerpo", mensaje);
-        dato.put("fecha", dtf.format(c).toString());
+        dato.put("fecha", unixTime);
+
+
+        Chat dat = new Chat(idUsuario, userProvider.getCurrentUser().getName(), mensaje, unixTime, null);
 
         //Crear en firebase
         String key = databaseReferenceUsuario.push().getKey();
@@ -126,7 +132,7 @@ public class ChatAdminActivity extends AppCompatActivity {
                     }
                     if(ds.getKey().equals("fecha")){
                         Log.i("CHATADMIN",ds.getValue()+" ");
-                        nuevoChat.setFecha(ds.getValue().toString());
+                        nuevoChat.setFecha((long)ds.getValue());
                     }
                 }
                 listChat.add(nuevoChat);

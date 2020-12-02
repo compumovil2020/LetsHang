@@ -35,6 +35,7 @@ import com.google.firebase.storage.StorageReference;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -125,10 +126,13 @@ public class ChatEventoActivity extends AppCompatActivity {
         dato.put("cuerpo", mensaje);
         dato.put("fecha", dtf.format(c).toString());
 
+        long unixTime = System.currentTimeMillis() / 1000L;
+        Chat dat = new Chat(idUsuario, userProvider.getCurrentUser().getName(), mensaje, unixTime, null);
+
         //Crear en firebase
         String key = databaseReferenceUsuario.push().getKey();
         databaseReference = database.getReference("chats-evento");
-        databaseReference.child(idEvento).child(key).setValue(dato);
+        databaseReference.child(idEvento).child(key).setValue(dat);
     }
 
     public void verifyChat(final String idEvento){
@@ -148,9 +152,8 @@ public class ChatEventoActivity extends AppCompatActivity {
                     if(ds.getKey().equals("cuerpo")){
                         eCInfoMensajes.setCuerpo(ds.getValue().toString());
                     }
-
                     if(ds.getKey().equals("fecha")){
-                        eCInfoMensajes.setFecha(ds.getValue().toString());
+                        eCInfoMensajes.setFecha((long)ds.getValue());
                     }
                 }
                 getProfilePhoto(eCInfoMensajes);

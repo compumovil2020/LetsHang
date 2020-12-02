@@ -88,9 +88,9 @@ public class UserProvider {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 currentUser = Transformer.transform(dataSnapshot.getValue(ParticipantDTO.class));
+                currentUser.setId(dataSnapshot.getKey());
                 currentUser = (Participant)currentUser;
 
-                //TODO: cambiar esto por el metodo que de verdad hace la query por los eventos pasados
 
                 getUserPastEvents();
                 if(((Participant) currentUser).getPreferences().getInterests() == null){

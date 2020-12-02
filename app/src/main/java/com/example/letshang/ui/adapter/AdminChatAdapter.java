@@ -16,6 +16,8 @@ import com.example.letshang.model.Chat;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class AdminChatAdapter extends BaseAdapter {
@@ -76,7 +78,7 @@ public class AdminChatAdapter extends BaseAdapter {
         llRemitente = view.findViewById(R.id.llAdminChat);
         llTu = view.findViewById(R.id.llTuAdminChat);
 
-        Log.i("Nuevo mensaje",chats.get(i).getIdUsuario());
+        //Log.i("Nuevo mensaje",chats.get(i).getIdUsuario());
 
         //Si es tu enviado o si es otro
         if(chats.get(i).getIdUsuario().equals(this.getUserAuthid())){
@@ -93,7 +95,12 @@ public class AdminChatAdapter extends BaseAdapter {
 
             if(nombreTu != null && fechaTu != null && cuerpoTu!= null){
                 nombreTu.setText(chats.get(i).getNombre());
-                fechaTu.setText(chats.get(i).getFecha());
+
+                Date c = new Date(chats.get(i).getFecha());
+                SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy, h:mm:ss aaa");
+
+                String myDate = dtf.format(c);
+                fechaTu.setText(myDate);
                 cuerpoTu.setText(chats.get(i).getCuerpo());
             }
 
@@ -115,7 +122,13 @@ public class AdminChatAdapter extends BaseAdapter {
 
             if(nombreRemitente != null && fechaRemitente != null && cuerpoRemitente != null){
                 nombreRemitente.setText(chats.get(i).getNombre());
-                fechaRemitente.setText(chats.get(i).getFecha());
+
+
+                Date c = new Date(chats.get(i).getFecha());
+                SimpleDateFormat dtf = new SimpleDateFormat("dd/MM/yyyy, h:mm:ss aaa");
+
+                String myDate = dtf.format(c);
+                fechaRemitente.setText(myDate);
                 cuerpoRemitente.setText(chats.get(i).getCuerpo());
             }
 
