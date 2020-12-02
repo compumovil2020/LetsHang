@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>login de admin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="credentialForm">
+
+    <ion-item>
+      <ion-input
+      placeholder="email"
+      formControlName="email"
+      autofocus="true"
+      clearInput="true">
+
+      </ion-input>
+    </ion-item>
+
+    <div *ngIf="(email.dirty || email.touched) && email.errors">
+      <span *ngIf="email.errors?.required">
+        Email is required
+      </span>
+      <span *ngIf="email.errors?.email">
+        Email is invalid
+      </span>
+    </div>
+
+    <ion-item>
+      <ion-input
+      placeholder="password"
+      formControlName="password"
+      type="password"
+      clearInput="true">
+
+      </ion-input>
+    </ion-item>
+
+    <div *ngIf="(password.dirty || password.touched) && email.errors">
+      <span *ngIf="password.errors?.required">
+        Password is required
+      </span>
+      <span *ngIf="password.errors?.minlength">
+        Password needs to be at leats 6 characters long
+      </span>
+    </div>
+
+
+  </form>
+
+  <ion-button (click)="signUp()" expand="full"> Sign Up</ion-button>
+  <ion-button (click)="signIn()" expand="full"> Sign </ion-button>
+
+
+</ion-content>

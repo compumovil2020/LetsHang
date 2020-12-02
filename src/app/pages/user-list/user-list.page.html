@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>userList</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="users">
+  <ion-list *ngFor="let u of users | async">
+
+    <ion-item (click)="chatWith(u)">
+      <ion-avatar slot="start">
+        <!--<img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">-->
+        <img [src]="getImageURL(u.uid)"  (error) ="onImgError($event)">
+      </ion-avatar>
+      <ion-label> 
+        <h2>{{u.name}}</h2>
+        
+        <p>{{u.email}}</p>
+      </ion-label>
+    </ion-item>
+    
+  </ion-list>
+  </div>
+
+
+</ion-content>
+
+<!-- <div *ngIf="users">
+    {{tam}}
+    <ion-list *ngFor="let u of users" | async>
+      <ion-item>
+        {{u.name}}
+
+
+      </ion-item>
+    </ion-list>
+  </div>-->

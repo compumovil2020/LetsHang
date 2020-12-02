@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{userName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div *ngIf="mensajes">
+    <ion-grid>
+      <ion-row *ngFor="let m of mensajes | async">
+        <ion-col size="9" class="message"
+        [offset]="m.admin ? 3 : 0"
+        [ngClass]="{ 'my-message': m.admin, 'other-message': !m.admin }">
+        <ion-label *ngIf="m.admin"><b>Tu</b>  </ion-label>
+        <ion-label *ngIf="!m.admin"> <b>{{userName}} </b></ion-label><br>
+
+        <span>{{m.cuerpo}}</span>
+        <div class="time ion-text-right">
+          <br>{{formatDate(m.fecha)}}
+        </div>
+
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar color="light">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="10">
+        <ion-textarea autogrow="true" class="message-input" rows="1" maxlength="500" [(ngModel)]="newMessage">
+        </ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="primary" [disabled]="newMessage === ''"
+        class="msg-btn" (click)="sendMessage()">
+        <ion-icon name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-toolbar>
+</ion-footer>
+

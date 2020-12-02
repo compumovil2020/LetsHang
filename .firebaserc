@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "lets-hang-7c528": {
+      "hosting": {
+        "app": [
+          "lets-hang-7c528"
+        ]
+      }
+    }
+  }
+}
